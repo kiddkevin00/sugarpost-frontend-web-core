@@ -1,0 +1,23 @@
+{
+  "env": {
+    "jasmine": false,
+    "mocha": true
+  },
+  "globals": {
+    "expect": true,
+    "spy": true,
+    "stub": true
+  },
+  "extends": "airbnb",
+  "rules": {
+    "no-underscore-dangle": 0,
+    "keyword-spacing": [2, {
+      "overrides": {
+        "throw": { "after": false, "before": true }
+      }
+    }],
+    "spaced-comment": 0,
+    "padded-blocks": 0,
+    "no-unused-expressions": 1
+  }
+}
