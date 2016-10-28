@@ -2,11 +2,37 @@
   "name": "bulletin-board-system-frontend",
   "version": "0.0.0",
   "description": "This is the frontend stack of a generic BBS.",
-  "main": "src/server-mock/app.js",
+  "main": "src/lib/server/app.js",
+  "config": {
+    "ip": "127.0.0.1",
+    "port": 8081
+  },
   "scripts": {
-    "start": "node src/server-mock/app.js",
+    "start": "node src/lib/server/app.js",
     "lint": "npm run eslint",
-    "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' src/",
+    "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' src/"
+  },
+  "engines": {
+    "node": "6.1.0",
+    "npm": ">=3.8.6"
+  },
+  "dependencies": {
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-react": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "errorhandler": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "jade": "^1.11.0",
+    "method-override": "^2.3.6",
+    "morgan": "^1.7.0",
+    "react": "^15.3.2",
+    "react-router": "^3.0.0",
+    "serve-favicon": "^2.3.0"
   },
   "author": "Marcus Hsu",
   "license": "ISC",

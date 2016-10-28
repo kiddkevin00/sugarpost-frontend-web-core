@@ -1,0 +1,8 @@
+{
+  "env": {
+    "development": {
+      "presets": ["react"],
+      "plugins": ["add-module-exports"]
+    }
+  }
+}

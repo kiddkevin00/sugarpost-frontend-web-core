@@ -1,0 +1,14 @@
+doctype html lang='en'
+head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title Server-Side Rendering
+    link(rel='stylesheet' href='library/bootswatch-flatly/bootstrap-flatly.min.css')
+    link(rel='stylesheet' href='app/dashboard/dashboard.css')
+    link(rel='stylesheet' href='app/memo/memo.css')
+body
+    div.container
+      div.row
+        div.col-lg-12
+          div#my-main-container !{markup}
+    script(src='app/index-0.1.0.js')
