@@ -1,50 +1,49 @@
-module.exports = function(grunt) {
-  // loads grunt tasks automatically, when needed
+module.exports = function (grunt) {
+  // Loads grunt tasks automatically whenever necessary.
   require('jit-grunt')(grunt, {
-    express: 'grunt-express-server',
-    browserify: 'grunt-browserify',
-    jshint: 'grunt-jsxhint',
-    jscs: 'grunt-jscs'
+    express: 'grunt-express-server'
   });
 
-  // times how long tasks take. Can help when optimizing build times
+  // Times how long it takes for each task. Might help when optimizing build times.
   require('time-grunt')(grunt);
 
-  // defines the configuration for all the tasks
+  // Defines the configuration for all the tasks.
   grunt.initConfig({
-    // loads project settings
+    // Loads project settings.
     pkg: grunt.file.readJSON('package.json'),
     env: {
       dev: {
         NODE_ENV: 'development',
-        //PORT_NUMBER_HTTPS: '8889', /// `PORT` name not working
-        //PORT_NUMBER_HTTP: '8888',
+        PORT_NUMBER_HTTPS: '8089', // `PORT` name does not work
+        PORT_NUMBER_HTTP: '8088',
         IP_ADDRESS: '127.0.0.1'
       },
       lint: {
+        NODE_ENV: 'lint'
+      },
+      test: {
         NODE_ENV: 'test',
-        //PORT_NUMBER_HTTPS: '8001', /// `PORT` name not working
-        //PORT_NUMBER_HTTP: '8000',
+        PORT_NUMBER_HTTPS: '8089', // `PORT` name does not work
+        PORT_NUMBER_HTTP: '8088',
         IP_ADDRESS: '127.0.0.1'
       },
       prod: {
         NODE_ENV: 'production',
-        //PORT_NUMBER_HTTPS: '8112', /// `PORT` name not working
-        //PORT_NUMBER_HTTP: '8111',
+        PORT_NUMBER_HTTPS: '443', /// `PORT` name does not work
+        PORT_NUMBER_HTTP: '8088',
         IP_ADDRESS: '127.0.0.1'
       }
     },
     browserify: {
       options: {
         transform: [
-          //['reactify', {es6: true}],
-          ['babelify', {loose: 'all'}]
+          ['babelify']
         ]
       },
       client: {
         files: {
-          'client/static/app/index-<%= pkg.version %>.js': [
-            'client/src/app/app.jsx'
+          'src/lib/client/static/app/index-<%= pkg.version %>.js': [
+            'src/lib/client/src/app/app.js'
           ]
         },
         options: {
@@ -55,13 +54,13 @@ module.exports = function(grunt) {
     express: {
       dev: {
         options: {
-          script: 'server/app.js',
+          script: 'src/lib/server/app.js',
           debug: true
         }
       },
       prod: {
         options: {
-          script: 'server/app.js',
+          script: 'dist/lib/server/app.js',
           debug: false
         }
       }
@@ -72,11 +71,11 @@ module.exports = function(grunt) {
       },
       gruntfile: {
         files: ['Gruntfile.js'],
-        tasks: ['develop']
+        tasks: ['grunt-dev']
       },
-      express: {
+      server: {
         files: [
-          'server/**/*.+(js|jsx|json|jade)',
+          'src/lib/server/**/*.+(js|jsx|jade|json)',
           'package.json'
         ],
         tasks: ['express:dev', 'wait-for-server'],
@@ -85,157 +84,47 @@ module.exports = function(grunt) {
           livereload: true
         }
       },
-      livereload: {
+      client: {
         files: [
-          'client/static/app/index-0.0.0.js',
-          'client/static/index2.html'
+          'src/lib/client/static/index2.html',
+          'src/lib/client/static/app/index-<%= pkg.version %>.js',
+          'src/lib/client/static/**/*.css'
         ],
         options: {
           livereload: true
         }
       },
-      template: {
-        files: [
-          'client/static/**/*.css'
-        ],
-        options: {
-          livereload: true
-        }
-      },
-      // separate test files from other development files
       lint: {
         files: [
-          '<%= jshint.gruntfile.src %>',
-          '<%= jshint.client.files.common %>',
-          '<%= jshint.client.files.dashboard %>',
-          '<%= jshint.client.files.memo %>',
-          '<%= jshint.server.src %>'
+          '<%= eslint.target %>'
         ],
-        /// [TBD] For Faster Development Purpose
-        //tasks: ['jscs', 'jshint']
+        tasks: []
       }
     },
     open: {
       dev: {
-        url: 'https://localhost:8889'
+        url: 'http://localhost:<%= env.dev.PORT_NUMBER_HTTP %>'
       },
       prod: {
-        url: 'https://localhost:8001'
+        url: 'http://localhost:<%= env.prod.PORT_NUMBER_HTTP %>'
       }
     },
-    jshint: {
+    eslint: {
       options: {
-        force: true,
-        strict: true,
-        devel: true,
-        undef: true,
-        bitwise: true,
-        latedef: true,
-        noarg: true,
-        unused: true,
-        reporter: require('jshint-html-reporter'),
-        globals: {
-          modules: true,
-          exports: true,
-          console: true
-        }
+        format: './node_modules/eslint-friendly-formatter'
       },
-      gruntfile: {
-        src: ['Gruntfile.js'],
-        options: {
-          reporterOutput: 'reporter/grunt.jshint.txt',
-          node: true
-        }
-      },
-      client: {
-        files: {
-          common: [
-            'client/src/common/**/*.+(js|jsx)',
-            //'!client/src/common/**/*.spec.js'
-          ],
-          dashboard: ['client/src/app/dashboard/**/*.+(js|jsx)'],
-          memo: ['client/src/app/memo/**/*.+(js|jsx)']
-
-        },
-        options: {
-          reporterOutput: 'reporter/client.jshint.txt',
-          esnext: true,
-          browser: true,
-          browserify: true,
-          globals: {
-            modules: true,
-            exports: true,
-            console: true,
-            angular: true,
-            $: true,
-            _: true,
-            moment: true,
-            numeral: true,
-            runs: true,
-            waitsFor: true
-          }
-        }
-      },
-      server: {
-        src: [
-          'server/**/*.+(js|jsx)',
-          //'!server/**/*.spec.js'
-        ],
-        options: {
-          reporterOutput: 'reporter/server.jshint.txt',
-          node: true
-        }
-      }
+      target: ['src/lib/client/src/**/*.+(jsx|js)', 'src/lib/server/**/*.+(js|jsx)', 'src/spec/**/*.+(js|jsx)']
     },
-    jscs: {
-      options: {
-        fix: false,
-        verbose: true,
-        force: true
-      },
-      gruntfile: {
-        src: ['Gruntfile.js'],
-        options: {
-          preset: 'grunt',
-          reporterOutput: 'reporter/grunt.jscs.txt'
-        }
-      },
-      client: {
-        files: {
-          common: [
-            'client/src/common/**/*.+(js|jsx)',
-            //'!client/src/common/**/*.spec.js'
-          ],
-          dashboard: ['client/src/app/dashboard/**/*.+(js|jsx)'],
-          memo: ['client/src/app/memo/**/*.+(js|jsx)']
-        },
-        options: {
-          preset: 'google',
-          reporterOutput: 'reporter/client.jscs.txt',
-          esnext: true
-        }
-      },
-      server: {
-        src: [
-          'server/**/*.+(js|jsx)',
-          //'!server/**/*.spec.js'
-        ],
-        options: {
-          preset: 'google',
-          reporterOutput: 'reporter/server.jscs.txt'
-        }
-      }
-    },
-    // [NOTE] JEST Not Working For Now Since `--harmony` Flag Is Not Able To Setup
+    // [TODO]
     jest: {
       coverage: true,
-      testPathPattern: /.*\.spec\.js/
+      testPathPattern: /.+\.spec\.js/
     },
     // empties folders to start fresh
     clean: {
-      dev: 'client/static/app/index-*.js',
-      lint: ['reporter', 'coverage'],
-      prod: 'dist'
+      dev: ['src/lib/client/static/app/index-<%= pkg.version %>.js'],
+      test: ['spec/'],
+      prod: ['src/lib/client/static/app/index-<%= pkg.version %>.js', 'dist/css/', 'dist/js/', 'dist/lib/']
     },
     uglify: {
       options: {
@@ -252,57 +141,96 @@ module.exports = function(grunt) {
         }
       },
       js: {
-        src: [
-          'client/static/app/dashboard/index-<%= pkg.version %>.js'
-        ],
-        dest: 'dist/app/dashboard/index-<%= pkg.version %>.js'
+        src: ['src/lib/client/static/app/index-<%= pkg.version %>.js'],
+        dest: 'dist/js/index-<%= pkg.version %>.min.js'
       }
-      // [TODO] Minify (And Concat) All CSS And HTML Files As Well
-
     },
-    autoprefixer: {
+    postcss: {
       options: {
-        browsers: ['last 2 version', 'ie 9', 'ie 10']
+        processors: [
+          require('pixrem')(), // Adds fallbacks for `rem` units.
+          require('autoprefixer')({ browsers: ['last 2 versions', 'ie 9', 'ie 10'] }), // Adds vendor's prefixes.
+          require('cssnano')() // Minifies the result.
+        ]
       },
-      dev: {
-        files: [{
-          expand: true,
-          cwd: 'client/static/',
-          src: '**/*.css',
-          dest: 'client/static/'
-        }]
+      prod: {
+        src: 'src/lib/client/static/**/*.css',
+        dest: 'dist/css/index-<%= pkg.version %>.min.css'
+      }
+    },
+    copy: {
+      prod: {
+        cwd: 'src/lib/client/static/assets/images/',
+        src: ['*'],
+        dest: 'dist/assets/images/',
+        filter: 'isFile',
+        expand: true
       }
     }
-
   });
 
-  // for delaying livereload until after server has restarted
-  grunt.registerTask('wait-for-server', function() {
+  // For delaying live reload until after server has restarted.
+  grunt.registerTask('wait-for-server', function () {
     grunt.log.ok('Waiting for server reload...');
 
     var done = this.async();
 
-    setTimeout(function() {
+    setTimeout(function () {
       grunt.log.writeln('Done waiting!');
       done();
     }, 1500);
   });
 
-  grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
+  grunt.registerTask('express-keep-alive', 'Keep grunt running', function () {
     this.async();
   });
 
-  // for setup development environment
-  grunt.registerTask('develop', ['clean:dev', 'env:dev', 'newer:autoprefixer:dev', 'express:dev', 'browserify', 'wait-for-server',
-    'open:dev', 'watch']);
+  // For setup Grunt config environment.
+  grunt.registerTask('grunt-dev', [
+    'clean:dev',
+    'env:dev',
+    'browserify'
+  ]);
 
-  // for setup testing environment
-  grunt.registerTask('lint', ['clean:lint', 'env:lint', 'jscs', 'jshint', 'watch:lint']);
+  // For setup development environment.
+  grunt.registerTask('dev', [
+    'clean:dev',
+    'env:dev',
+    'express:dev',
+    'browserify',
+    'wait-for-server',
+    'open:dev',
+    'watch'
+  ]);
 
-  // for setup production environment
-  grunt.registerTask('build', ['clean:prod', 'env:prod', 'browserify', 'newer:uglify', 'express:prod', 'wait-for-server',
-    'open:prod', 'express-keepalive']);
+  // For setup linting environment.
+  grunt.registerTask('lint', [
+    'env:lint',
+    'eslint',
+    'watch:lint'
+  ]);
 
-  // for default task
-  grunt.registerTask('default', 'develop');
+  // For setup testing environment.
+  grunt.registerTask('test', [
+    'clean:test',
+    'env:test',
+    'jest'
+  ]);
+
+  // For setup production environment.
+  grunt.registerTask('prod', [
+    //'clean:prod', // [TODO] Need to run `$ babel --copy-files src/lib/ --out-dir dist/lib/`.
+    'env:prod',
+    'express:prod',
+    'copy',
+    'postcss',
+    'browserify',
+    'uglify',
+    'wait-for-server',
+    'open:prod',
+    'express-keep-alive'
+  ]);
+
+  // For default task.
+  grunt.registerTask('default', 'dev');
 };

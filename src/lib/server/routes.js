@@ -1,6 +1,7 @@
+const routes = require('../client/src/app/routes');
+const ReactDOMServer = require('react-dom/server');
 const React = require('react');
 const Router = require('react-router');
-const routes = require('../client/src/app/routes.jsx');
 const path = require('path');
 
 function setupRoutes(app) {
@@ -28,27 +29,38 @@ function setupRoutes(app) {
        * [Note] Server-side rendering - normal version, implemented as the following:
        * ```
        * const MyComponent =
-       *    React.createFactory(require('../client/src/app/memo/components/MemoApp.jsx'));
-       *  const markup = React.renderToString( MyComponent() );
-       *  res.render('index', { markup });
+       *   React.createFactory(require('../client/src/app/memo/components/MemoApp.js'));
+       * const markup = ReactDOMServer.renderToString( MyComponent() );
+       * res.render('index', { markup });
        * ```
        */
 
-      /// [Note] Server-side rendering - React Router version, implemented as the following:
+      ///Server-side rendering - React Router version, implemented as the following:
       //const router = Router.createRoutes({ routes, location: req.url });
       //
       //router.render((Handler, state) => {
-      //  //console.log('SSR:', _.has(req, 'session.userID'));
+      //  console.log('SSR:', _.has(req, 'session.userID'));
       //
-      //  const markup = React.renderToString(<Handler isLoggedIn={_.has(req, 'session.userID')}
-      // />);  res.cookie('login_tmp', _.has(req, 'session.userID') ? 'yes' : 'no');
-      // res.render('index', { markup }); });
+      //  const markup =
+      //    ReactDOMServer.renderToString(<Handler isLoggedIn={ _.has(req, 'session.userID') } />);
+      //  res.cookie('login_tmp', _.has(req, 'session.userID') ? 'yes' : 'no');
+      //  res.render('index', { markup });
+      //});
 
       /*
        * [Note] Client-side Rendering, implemented as the following:
-       * `res.sendFile(path.resolve(config.get('root'), 'client/static', 'index2.html'));`
+       * ```
+       * res.sendFile(path.resolve(config.get('root'), 'client/static', 'index2.html'));
+       * ```
        */
-      res.sendFile(path.resolve(__dirname, '../client/static', 'index2.html'));
+      const env = app.get('env'); // Same as `process.env.NODE_ENV`.
+
+      if (env === 'production') {
+        res.sendFile(path.resolve(__dirname, '../../../dist', 'index2.html'));
+      } else {
+        res.sendFile(path.resolve(__dirname, '../client/static', 'index2.html'));
+      }
+
     });
 }
 

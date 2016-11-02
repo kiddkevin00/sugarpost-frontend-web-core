@@ -1,7 +1,6 @@
 import Dispatcher from './AppDispatcher';
-import assign from 'object-assign';
 
-const CustomDispatcher = assign({}, Dispatcher.prototype, {
+const CustomDispatcher = Object.assign({}, Dispatcher.prototype, {
   /**
    * A bridge function between the views and the dispatcher, marking the action
    * as a view action.  Another variant here could be `handleServerAction` method.
@@ -15,13 +14,12 @@ const CustomDispatcher = assign({}, Dispatcher.prototype, {
     });
   },
 
-  headleServerAction(action) {
+  handleServerAction(action) {
     this.dispatch({
       source: 'SERVER_ACTION',
       action: action
     });
   }
-
 });
 
 export { CustomDispatcher as default };

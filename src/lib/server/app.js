@@ -5,7 +5,7 @@
 require('babel-register');
 
 const setupExpressServer = require('./express-server');
-const setupRoutes = require('./routes.jsx');
+const setupRoutes = require('./routes');
 const packageJson = require('../../../package.json');
 const express = require('express');
 const http = require('http');
@@ -19,7 +19,10 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 setupExpressServer(app);
 setupRoutes(app);
 
-const webServer = server.listen(packageJson.config.port, packageJson.config.ip, () => {
+const ip = process.env.IP_ADDRESS || packageJson.config.ip;
+const port = process.env.PORT_NUMBER_HTTP || packageJson.config.port;
+
+const webServer = server.listen(port, ip, () => {
   // [TODO] Replace with logger module.
   console.log('Express server listening on port: %d at IP: %s, in %s mode',
     webServer.address().port,

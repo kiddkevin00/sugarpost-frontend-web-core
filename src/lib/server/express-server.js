@@ -38,11 +38,11 @@ function setupExpressServer(app) {
 
   app.use(favicon(path.resolve(__dirname, '../client/static/', 'favicon.ico')));
 
-  // For 404 error and Server-side rendering pages only.
+  // For 404 error and server-side rendering pages only.
   app.set('views', path.resolve(__dirname, './views'));
   app.set('view engine', 'jade');
 
-  const env = app.get('env'); // same as `process.env.NODE_ENV`
+  const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
   if (env === 'production') {
     // Here are all the minified version of all JS and CSS files.
@@ -50,19 +50,14 @@ function setupExpressServer(app) {
       etag: true,
       maxAge: 86400000, // [TBD] 86400000 (unit: ms) - one day.
     }));
-
-    // Here are all the original version of JS and CSS files.
-    app.use(express.static(path.resolve(__dirname, '../client/static/'), {
-      etag: true,
-      maxAge: 86400000, // [TBD] 86400000 (unit: ms) - one day.
-    }));
-
+    
     const accessLogStream = fs.createWriteStream(path.resolve(__dirname, '../../../morgan.log'),
       { flags: 'a' });
 
     app.use(morgan('combined', { stream: accessLogStream }));
+    app.use(morgan('dev'));
   } else {
-    // The Node environment should be either "test" or "development".
+    // The Node environment variable should be either "test" or "development".
 
     /*
      * [Note] Install Chrome extension LiveReload instead of adding live-reloaded script to the
@@ -74,14 +69,14 @@ function setupExpressServer(app) {
      * For more information: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
      */
 
-    // Here are all to-be-included JS and CSS files.
+    // Here are all the original version of JS and CSS files.
     app.use(express.static(path.resolve(__dirname, '../client/static/'), {
       etag: true,
       maxAge: 0,
     }));
 
     app.use(morgan('dev'));
-    app.use(errorHandler()); // Error handler - has to be the last
+    app.use(errorHandler()); // Error handler - has to be the last.
   }
 }
 

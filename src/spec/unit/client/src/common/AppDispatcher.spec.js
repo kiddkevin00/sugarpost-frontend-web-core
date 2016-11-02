@@ -4,7 +4,7 @@ describe('AppDispatcher', function() {
   var AppDispatcher;
 
   beforeEach(function() {
-    AppDispatcher = require('../AppDispatcher.js');
+    AppDispatcher = require('../../../../../lib/client/src/common/dispatcher/AppDispatcher.js');
   });
 
   it('sends actions to subscribers', function() {

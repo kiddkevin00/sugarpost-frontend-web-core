@@ -1,12 +1,14 @@
 /**
  * The process of the web application begins here - cluster mode.
  *
- * Usage: Run `$ NODE_DEBUG=cluster node server/cluster-app.js`
+ * Usage: Run `$ NODE_DEBUG=cluster node src/lib/server/cluster-app.js`
  */
 
-const packageJson = require('../../package.json');
-const setupExpressServer = require('./server/express-server');
-const setupRoutes = require('./routes/');
+require('babel-register');
+
+const packageJson = require('../../../package.json');
+const setupExpressServer = require('./express-server');
+const setupRoutes = require('./routes.js');
 const cluster = require('cluster');
 const http = require('http');
 const express = require('express');

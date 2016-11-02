@@ -1,8 +1,14 @@
 {
   "env": {
     "development": {
-      "presets": ["react"],
-      "plugins": ["add-module-exports"]
+      "presets": ["react", "es2015"],
+      "plugins": ["add-module-exports"],
+      "sourceMap": true,
+    },
+    "production": {
+      "presets": ["react", "es2015"],
+      "plugins": ["add-module-exports"],
+      "sourceMap": "inline"
     }
   }
 }

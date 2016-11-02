@@ -4,15 +4,17 @@ const AppDispatcher = new Dispatcher();
 
 export { AppDispatcher as default };
 
-/// [BLOCK] Source Code For `require('flux').Dispatcher`
+/*
+ * Source code for `require('flux').Dispatcher` is the following:
+ */
+
 //var Promise = require('es6-promise').Promise;
-//var assign = require('object-assign');
 //
 //var _callbacks = [];
 //var _promises = [];
 //
 //var Dispatcher = function() {};
-//Dispatcher.prototype = assign({}, Dispatcher.prototype, {
+//Dispatcher.prototype = Object.assign({}, Dispatcher.prototype, {
 //
 //  /**
 //   * Register a Store's callback so that it may be invoked by an action.
