@@ -2,7 +2,11 @@
  * The process of the web application begins here - non-cluster mode.
  */
 
-require('babel-register');
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+if (process.env.NODE_ENV !== 'production') {
+  require('babel-register');
+}
 
 const setupExpressServer = require('./express-server');
 const setupRoutes = require('./routes');
@@ -14,7 +18,7 @@ const app = express();
 const server = http.createServer(app);
 
 // Set default Node environment to "development".
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 
 setupExpressServer(app);
 setupRoutes(app);
