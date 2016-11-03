@@ -69,10 +69,6 @@ module.exports = function (grunt) {
       options: {
         interrupt: true
       },
-      gruntfile: {
-        files: ['Gruntfile.js'],
-        tasks: ['grunt-dev']
-      },
       server: {
         files: [
           'src/lib/server/**/*.+(js|jsx|jade|json)',
@@ -160,11 +156,37 @@ module.exports = function (grunt) {
     },
     copy: {
       prod: {
-        cwd: 'src/lib/client/static/assets/images/',
-        src: ['*'],
-        dest: 'dist/assets/images/',
-        filter: 'isFile',
-        expand: true
+        files: [
+          {
+            cwd: 'src/lib/client/static/',
+            src: ['assets/images/*'],
+            dest: 'dist/',
+            filter: 'isFile',
+            expand: true
+          },
+          {
+            cwd: 'src/',
+            src: ['lib/client/static/favicon.ico'],
+            dest: 'dist/',
+            filter: 'isFile',
+            expand: true
+          }
+        ]
+      }
+    },
+    babel: {
+      options: {
+        sourceMap: 'both'
+      },
+      prod: {
+        files: [
+          {
+            cwd: 'src/',
+            src: ['lib/**/*.js'],
+            dest: 'dist/',
+            expand: true
+          }
+        ]
       }
     }
   });
@@ -184,13 +206,6 @@ module.exports = function (grunt) {
   grunt.registerTask('express-keep-alive', 'Keep grunt running', function () {
     this.async();
   });
-
-  // For setup Grunt config environment.
-  grunt.registerTask('grunt-dev', [
-    'clean:dev',
-    'env:dev',
-    'browserify'
-  ]);
 
   // For setup development environment.
   grunt.registerTask('dev', [
@@ -219,10 +234,11 @@ module.exports = function (grunt) {
 
   // For setup production environment.
   grunt.registerTask('prod', [
-    //'clean:prod', // [TODO] Need to run `$ babel --copy-files src/lib/ --out-dir dist/lib/`.
+    'clean:prod',
     'env:prod',
-    'express:prod',
+    'babel',
     'copy',
+    'express:prod',
     'postcss',
     'browserify',
     'uglify',
