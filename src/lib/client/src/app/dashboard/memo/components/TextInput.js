@@ -3,11 +3,12 @@ import React from 'react';
 
 const ENTER_KEY_CODE = 13;
 
-// generic text input React Component
+// A React component class for generic text input
 class TextInput extends BaseComponent {
+
   constructor(props) {
     super(props);
-    
+
     this._bind('_onSave', '_onChange', '_onKeyDown');
     this.state = props;
   }
@@ -15,21 +16,22 @@ class TextInput extends BaseComponent {
   render() {
     return (
       <input
-        onBlur={this._onSave}
-        onChange={this._onChange}
-        onKeyDown={this._onKeyDown}
-        value={this.state.value}
-        className={this.props.className}
-        id={this.props.id}
-        placeholder={this.props.placeholder}
-        autoFocus={true}
-        type='text'
+        onBlur={ this._onSave }
+        onChange={ this._onChange }
+        onKeyDown={ this._onKeyDown }
+        value={ this.state.value }
+        className={ this.props.className }
+        id={ this.props.id }
+        placeholder={ this.props.placeholder }
+        autoFocus={ true }
+        type="text"
       />
     );
   }
 
   _onSave() {
     this.props.onSave(this.state.value);
+    
     this.setState({
       value: ''
     });
@@ -50,10 +52,10 @@ class TextInput extends BaseComponent {
 }
 TextInput.popTypes = {
   onSave: React.PropTypes.func.isRequired,
-  placeholder: React.PropTypes.string,
-  value: React.PropTypes.string,
   className: React.PropTypes.string,
-  id: React.PropTypes.string
+  id: React.PropTypes.string,
+  placeholder: React.PropTypes.string,
+  value: React.PropTypes.string
 };
 
-export { TextInput as default };
+export default TextInput;

@@ -1,13 +1,13 @@
 import MemoStore from '../stores/MemoStore';
 import Header from './Header';
-//import MainSection from './MainSection.jsx';
-//import Footer from './Footer.jsx';
+import MainSection from './MainSection';
+import Footer from './Footer';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
 /*
  * A private method. It should only be used by `setState()` and `getInitialState()` to sync with
- * the data in the Flux store.
+ * the data in the Flux's store.
  */
 function _getState() {
   return {
@@ -18,8 +18,8 @@ function _getState() {
 
 class MemoApp extends BaseComponent {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this._bind('_onChange');
     this.state = _getState();
@@ -35,10 +35,15 @@ class MemoApp extends BaseComponent {
 
   render() {
     return (
-      <div className='row'>
-        <div className='col-lg-offset-4 col-lg-8'>
+      <div className="row">
+        <div className="col-lg-offset-4 col-lg-8">
           <Header />
-
+          <br />
+          <MainSection
+            allTodos={ this.state.allTodos }
+            areAllComplete={ this.state.areAllComplete }
+          />
+          <Footer allTodos={ this.state.allTodos } />
         </div>
       </div>
     );

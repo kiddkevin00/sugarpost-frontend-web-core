@@ -4,43 +4,41 @@ import MemoConstants from '../constants/MemoConstants';
 const MemoActionCreator = {
   create(text) {
     AppDispatcher.dispatch({
-      actionType: MemoConstants.TODO_CREATE,
-      text: text
+      text,
+      actionType: MemoConstants.TODO_CREATE
     });
   },
-  
+
   toggleComplete(todo) {
-    var id = todo.id;
-    var isComplete = todo.isComplete;
+    const id = todo.id;
+    const isComplete = todo.isComplete;
 
     AppDispatcher.dispatch({
-      actionType: MemoConstants.TODO_TOGGLE_COMPLETE,
-      id: id,
-      isComplete: isComplete
+      id, isComplete,
+      actionType: MemoConstants.TODO_TOGGLE_COMPLETE
     });
   },
-  
+
   toggleCompleteAll() {
     AppDispatcher.dispatch({
       actionType: MemoConstants.TODO_TOGGLE_COMPLETE_ALL
     });
   },
-  
+
   destroy(id) {
     AppDispatcher.dispatch({
-      actionType: MemoConstants.TODO_DESTROY,
-      id: id
+      id, 
+      actionType: MemoConstants.TODO_DESTROY
     });
   },
-  
+
   updateText(id, text) {
     AppDispatcher.dispatch({
-      actionType: MemoConstants.TODO_UPDATE_TEXT,
-      id: id,
-      text: text
+      id, text,
+      actionType: MemoConstants.TODO_UPDATE_TEXT
     });
   },
-  
+
   destroyCompleted() {
     AppDispatcher.dispatch({
       actionType: MemoConstants.TODO_DESTROY_COMPLETED
@@ -48,4 +46,4 @@ const MemoActionCreator = {
   }
 };
 
-export { MemoActionCreator as default };
+export default MemoActionCreator;

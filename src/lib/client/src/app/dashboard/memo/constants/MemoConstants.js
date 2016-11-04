@@ -9,4 +9,4 @@ const MemoConstants = keyMirror({
   TODO_DESTROY_COMPLETED: null
 });
 
-export { MemoConstants as default};
+export default MemoConstants;

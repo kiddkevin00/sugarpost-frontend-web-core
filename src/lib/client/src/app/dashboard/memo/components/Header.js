@@ -14,7 +14,7 @@ class Header extends BaseComponent {
       <header>
         <h1>Memo</h1>
         <TextInput
-          onSave={this._onSave}
+          onSave={ this._onSave }
           value=''
           placeholder='What needs to be done?'
         />
@@ -30,4 +30,4 @@ class Header extends BaseComponent {
 
 }
 
-export { Header as default };
+export default Header;
