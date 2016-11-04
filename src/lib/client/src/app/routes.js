@@ -33,7 +33,7 @@ class Dashboard extends BaseComponent {
             <Navbar.Toggle />
           </Navbar.Header>
           <Nav>
-            <LinkContainer to="/memo">
+            <LinkContainer to="/dashbpard/memo">
               <NavItem>Memo</NavItem>
             </LinkContainer>
           </Nav>

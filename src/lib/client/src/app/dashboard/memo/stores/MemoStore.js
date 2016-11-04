@@ -3,43 +3,83 @@ import MemoConstants from '../constants/MemoConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
-
-/*
- * All internal store data are the following:
- */
-const _todos = {};
+const storeContext = Symbol('storeContext');
 
 // A Flux's store.
-const MemoStore = Object.assign({}, EventEmitter.prototype, {
+class MemoStore extends EventEmitter {
+
+  constructor() {
+    super();
+
+    // All internal store data.
+    this[storeContext] = {
+      todos: {},
+    };
+  }
+
   getAll() {
-    return _todos;
-  },
+    return this[storeContext].todos;
+  }
 
   areAllComplete() {
-    for (let id in _todos) {
-      if (!_todos[id].isComplete) {
+    for (let id in this[storeContext].todos) {
+      if (!this[storeContext].todos[id].isComplete) {
         return false;
       }
     }
     return true;
-  },
+  }
 
   emitChange() {
     this.emit(changeEvent);
-  },
+  }
 
   addChangeListener(callback) {
     this.on(changeEvent, callback);
-  },
+  }
 
   removeChangeListener(callback) {
     this.removeListener(changeEvent, callback);
   }
-});
+
+  _create(text) {
+    const id = (+new Date() + Math.floor(Math.random() * 999999).toString(36));
+
+    this[storeContext].todos[id] = {
+      id, text,
+      isComplete: false
+    };
+  }
+
+  _update(id, updates) {
+    this[storeContext].todos[id] = Object.assign({}, this[storeContext].todos[id], updates);
+  }
+
+  _updateAll(updates) {
+    for (let id in this[storeContext].todos) {
+      this._update(id, updates);
+    }
+  }
+
+  _destroy(id) {
+    delete this[storeContext].todos[id];
+  }
+
+  _destroyCompleted() {
+    for (let id in this[storeContext].todos) {
+      if (this[storeContext].todos[id].isComplete) {
+        this._destroy(id);
+      }
+    }
+  }
+
+}
+
+const memoStore = new MemoStore();
 
 // The dispatcher registration for the current store component.
-AppDispatcher.register(action => {
-  console.log(`Action in \`MemoStore\`: ${JSON.stringify(action, null, 2)}`);
+AppDispatcher.register((action) => {
+  console.log(`Action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
 
   const actionType = action.actionType;
   const id = action.id || 0;
@@ -49,77 +89,47 @@ AppDispatcher.register(action => {
   switch (actionType) {
     case MemoConstants.TODO_CREATE:
       if (text) {
-        _create(text);
+        memoStore._create(text);
 
-        MemoStore.emitChange();
+        memoStore.emitChange();
       }
       break;
     case MemoConstants.TODO_TOGGLE_COMPLETE:
-      _update(id, { isComplete: !isComplete });
+      memoStore._update(id, { isComplete: !isComplete });
 
-      MemoStore.emitChange();
+      memoStore.emitChange();
       break;
     case MemoConstants.TODO_TOGGLE_COMPLETE_ALL:
-      if (MemoStore.areAllComplete()) {
-        _updateAll({ isComplete: false });
+      if (memoStore.areAllComplete()) {
+        memoStore._updateAll({ isComplete: false });
       } else {
-        _updateAll({ isComplete: true });
+        memoStore._updateAll({ isComplete: true });
       }
 
-      MemoStore.emitChange();
+      memoStore.emitChange();
       break;
     case MemoConstants.TODO_DESTROY:
-      _destroy(id);
+      memoStore._destroy(id);
 
-      MemoStore.emitChange();
+      memoStore.emitChange();
       break;
     case MemoConstants.TODO_DESTROY_COMPLETED:
-      _destroyCompleted();
+      memoStore._destroyCompleted();
 
-      MemoStore.emitChange();
+      memoStore.emitChange();
       break;
     case MemoConstants.TODO_UPDATE_TEXT:
       if (text) {
-        _update(id, { text });
+        memoStore._update(id, { text });
       } else {
-        _destroy(id);
+        memoStore._destroy(id);
       }
 
-      MemoStore.emitChange();
+      memoStore.emitChange();
       break;
     default:
       return;
   }
-
 });
 
-/*
- * All helper functions for dispatcher registration are the following:
- */
-function _create(text) {
-  const id = (+new Date() + Math.floor(Math.random() * 999999).toString(36));
-
-  _todos[id] = {
-    id, text,
-    isComplete: false };
-}
-function _update(id, updates) {
-  _todos[id] = Object.assign({}, _todos[id], updates);
-}
-function _updateAll(updates) {
-  for (let id in _todos) {
-    _update(id, updates);
-  }
-}
-function _destroy(id) {
-  delete _todos[id];
-}
-function _destroyCompleted() {
-  for (let id in _todos) {
-    if (_todos[id].isComplete) {
-      _destroy(id);
-    }
-  }
-}
-
-export default MemoStore;
+export default memoStore;

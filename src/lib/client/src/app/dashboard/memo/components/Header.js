@@ -15,8 +15,8 @@ class Header extends BaseComponent {
         <h1>Memo</h1>
         <TextInput
           onSave={ this._onSave }
-          value=''
-          placeholder='What needs to be done?'
+          value=""
+          placeholder="What needs to be done?"
         />
       </header>
     );
