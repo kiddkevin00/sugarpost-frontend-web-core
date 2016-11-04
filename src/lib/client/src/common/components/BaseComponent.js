@@ -8,4 +8,4 @@ class BaseComponent extends React.Component {
   }
 }
 
-export { BaseComponent as default };
+export default BaseComponent;

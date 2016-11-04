@@ -4,11 +4,10 @@ import Header from './Header';
 //import Footer from './Footer.jsx';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
-//import moment from 'moment';
 
 /*
- * A private method should only be used for `setState()` and `getInitialState()` to sync with
- * the data in `MemoStore`.
+ * A private method. It should only be used by `setState()` and `getInitialState()` to sync with
+ * the data in the Flux store.
  */
 function _getState() {
   return {
@@ -19,8 +18,8 @@ function _getState() {
 
 class MemoApp extends BaseComponent {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this._bind('_onChange');
     this.state = _getState();
@@ -51,4 +50,4 @@ class MemoApp extends BaseComponent {
 
 }
 
-export { MemoApp as default };
+export default MemoApp;

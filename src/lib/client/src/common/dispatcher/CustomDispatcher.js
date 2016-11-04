@@ -22,4 +22,4 @@ const CustomDispatcher = Object.assign({}, Dispatcher.prototype, {
   }
 });
 
-export { CustomDispatcher as default };
+export default CustomDispatcher;

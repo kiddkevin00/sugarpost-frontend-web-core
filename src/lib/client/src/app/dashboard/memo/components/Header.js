@@ -4,8 +4,9 @@ import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
 class Header extends BaseComponent {
-  constructor() {
-    super();
+
+  constructor(props) {
+    super(props);
   }
 
   render() {

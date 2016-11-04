@@ -6,7 +6,8 @@ const ENTER_KEY_CODE = 13;
 // generic text input React Component
 class TextInput extends BaseComponent {
   constructor(props) {
-    super();
+    super(props);
+    
     this._bind('_onSave', '_onChange', '_onKeyDown');
     this.state = props;
   }

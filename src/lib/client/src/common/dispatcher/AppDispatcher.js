@@ -2,7 +2,7 @@ import { Dispatcher } from 'flux';
 
 const AppDispatcher = new Dispatcher();
 
-export { AppDispatcher as default };
+export default AppDispatcher;
 
 /*
  * Source code for `require('flux').Dispatcher` is the following:
