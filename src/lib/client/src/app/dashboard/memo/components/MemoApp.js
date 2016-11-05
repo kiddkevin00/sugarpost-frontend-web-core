@@ -1,4 +1,4 @@
-import MemoStore from '../stores/MemoStore';
+import memoStore from '../stores/memoStore';
 import Header from './Header';
 import MainSection from './MainSection';
 import Footer from './Footer';
@@ -11,26 +11,26 @@ import React from 'react';
  */
 function _getState() {
   return {
-    allTodos: MemoStore.getAll(),
-    areAllComplete: MemoStore.areAllComplete()
+    allTodos: memoStore.getAll(),
+    areAllComplete: memoStore.areAllComplete()
   };
 }
 
 class MemoApp extends BaseComponent {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this._bind('_onChange');
     this.state = _getState();
   }
 
   componentDidMount() {
-    MemoStore.addChangeListener(this._onChange);
+    memoStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
-    MemoStore.removeChangeListener(this._onChange);
+    memoStore.removeChangeListener(this._onChange);
   }
 
   render() {

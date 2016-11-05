@@ -1,19 +1,18 @@
-import DashboardActionCreator from '../actions/MemoActionCreator';
-import React from 'react';
-
+import memoActionCreator from '../actions/memoActionCreator';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import React from 'react';
 
 class Footer extends BaseComponent {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   render() {
     const totalAmount = Object.keys(this.props.allTodos).length;
     let clearAllCompletedButton = null;
 
-    if (totalAmount> 0) {
+    if (totalAmount > 0) {
       let completeAmount = 0;
 
       for (var id in this.props.allTodos) {
@@ -23,34 +22,32 @@ class Footer extends BaseComponent {
       }
       if (completeAmount > 0) {
         clearAllCompletedButton = (
-          <button onClick={ this._onClearAllCompletedClick }>
+          <button onClick={ this._onDestroyCompletedClick }>
             clear { completeAmount } completed { completeAmount > 1 ? 'items' : 'item' }
           </button>
         );
       }
     }
-    const descriptionSpan = (
-      <p>
-        <span>
-          Total:&nbsp;&nbsp;
-          <strong>{ totalAmount }</strong>
-          { totalAmount > 0 ? ' items' : ' item' }
-        </span>
-        &nbsp;&nbsp;&nbsp;
-        { clearAllCompletedButton }
-      </p>
-    );
 
     return (
       <footer>
-        { descriptionSpan }
+        <p>
+          <span>
+            Total:&nbsp;&nbsp;
+            <strong>{ totalAmount }</strong>
+            { totalAmount > 0 ? ' items' : ' item' }
+          </span>
+          <br />
+          <br />
+          { clearAllCompletedButton }
+        </p>
         <p>Some other info..</p>
       </footer>
     );
   }
 
-  _onClearAllCompletedClick() {
-    DashboardActionCreator.destroyCompleted();
+  _onDestroyCompletedClick() {
+    memoActionCreator.destroyCompleted();
   }
 
 }

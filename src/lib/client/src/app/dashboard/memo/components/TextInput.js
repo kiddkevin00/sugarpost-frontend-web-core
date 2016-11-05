@@ -1,9 +1,9 @@
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
-const ENTER_KEY_CODE = 13;
+const enterKeyCode = 13;
 
-// A React component class for generic text input
+// A React component class for generic text input.
 class TextInput extends BaseComponent {
 
   constructor(props) {
@@ -19,10 +19,10 @@ class TextInput extends BaseComponent {
         onBlur={ this._onSave }
         onChange={ this._onChange }
         onKeyDown={ this._onKeyDown }
-        value={ this.state.value }
         className={ this.props.className }
         id={ this.props.id }
         placeholder={ this.props.placeholder }
+        value={ this.state.value }
         autoFocus={ true }
         type="text"
       />
@@ -31,20 +31,16 @@ class TextInput extends BaseComponent {
 
   _onSave() {
     this.props.onSave(this.state.value);
-    
-    this.setState({
-      value: ''
-    });
+
+    this.setState({ value: '' });
   }
 
   _onChange(event) {
-    this.setState({
-      value: event.target.value
-    });
+    this.setState({ value: event.target.value });
   }
 
   _onKeyDown(event) {
-    if (event.keyCode === ENTER_KEY_CODE) {
+    if (event.keyCode === enterKeyCode) {
       this._onSave();
     }
   }

@@ -1,4 +1,4 @@
-import DashboardActionCreator from '../actions/MemoActionCreator';
+import memoActionCreator from '../actions/memoActionCreator';
 import TextInput from './TextInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
@@ -14,50 +14,47 @@ class ListItem extends BaseComponent {
   }
 
   render() {
-    const todo = this.props.todo;
     let input = null;
+    const todo = this.props.todo;
 
     if (this.state.isEditing) {
       input = (
         <TextInput
           onSave={ this._onSave }
-          value={ this.props.todo.text }
+          value={ todo.text }
         />
       );
     }
 
     return (
-      <li key={ todo.key }
-        className={ classNames({
+      <li className={ classNames({
           'text-danger': !todo.isComplete,
           'text-success': todo.isComplete,
           'text-warning': this.state.isEditing
         }) }>
-        <div>
-          <input
-            onChange={ this._onToggleComplete }
-            checked={ todo.isComplete }
-            type="checkbox"
-          />
-          &nbsp;&nbsp;
-          <label onDoubleClick={ this._onDoubleClick }>
-            { todo.text }
-          </label>
-          &nbsp;&nbsp;
-          <button onClick={ this._onDeleteClick } type="button">delete</button>
-          &nbsp;&nbsp;&nbsp;
-          { input }
-        </div>
+        <input
+          onChange={ this._onToggleComplete }
+          checked={ todo.isComplete }
+          type="checkbox"
+        />
+        &nbsp;&nbsp;
+        <label onDoubleClick={ this._onDoubleClick }>
+          { todo.text }
+        </label>
+        &nbsp;&nbsp;
+        <button onClick={ this._onDeleteClick } type="button">delete</button>
+        &nbsp;&nbsp;&nbsp;
+        { input }
       </li>
     );
   }
 
   _onToggleComplete() {
-    DashboardActionCreator.toggleComplete(this.props.todo);
+    memoActionCreator.toggleComplete(this.props.todo);
   }
 
   _onDeleteClick() {
-    DashboardActionCreator.destroy(this.props.todo.id);
+    memoActionCreator.destroy(this.props.todo.id);
   }
 
   _onDoubleClick() {
@@ -65,7 +62,7 @@ class ListItem extends BaseComponent {
   }
 
   _onSave(text) {
-    DashboardActionCreator.updateText(this.props.todo.id, text);
+    memoActionCreator.updateText(this.props.todo.id, text);
 
     this.setState({ isEditing: false });
   }

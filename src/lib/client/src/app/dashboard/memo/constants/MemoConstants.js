@@ -1,6 +1,6 @@
-var keyMirror = require('keymirror');
+import keyMirror from 'keymirror';
 
-const MemoConstants = keyMirror({
+const memoConstants = keyMirror({
   TODO_CREATE: null,
   TODO_TOGGLE_COMPLETE: null,
   TODO_TOGGLE_COMPLETE_ALL: null,
@@ -9,4 +9,4 @@ const MemoConstants = keyMirror({
   TODO_DESTROY_COMPLETED: null
 });
 
-export default MemoConstants;
+export default memoConstants;

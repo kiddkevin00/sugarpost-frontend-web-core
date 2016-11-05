@@ -1,9 +1,9 @@
 import AppDispatcher from '../../../../common/dispatcher/AppDispatcher';
-import MemoConstants from '../constants/MemoConstants';
+import memoConstants from '../constants/memoConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
-const storeContext = Symbol('storeContext');
+const storeContext = Symbol('memoStoreContext');
 
 // A Flux's store.
 class MemoStore extends EventEmitter {
@@ -87,19 +87,19 @@ AppDispatcher.register((action) => {
   const text = action.text && action.text.trim() || '';
 
   switch (actionType) {
-    case MemoConstants.TODO_CREATE:
+    case memoConstants.TODO_CREATE:
       if (text) {
         memoStore._create(text);
 
         memoStore.emitChange();
       }
       break;
-    case MemoConstants.TODO_TOGGLE_COMPLETE:
+    case memoConstants.TODO_TOGGLE_COMPLETE:
       memoStore._update(id, { isComplete: !isComplete });
 
       memoStore.emitChange();
       break;
-    case MemoConstants.TODO_TOGGLE_COMPLETE_ALL:
+    case memoConstants.TODO_TOGGLE_COMPLETE_ALL:
       if (memoStore.areAllComplete()) {
         memoStore._updateAll({ isComplete: false });
       } else {
@@ -108,24 +108,22 @@ AppDispatcher.register((action) => {
 
       memoStore.emitChange();
       break;
-    case MemoConstants.TODO_DESTROY:
+    case memoConstants.TODO_DESTROY:
       memoStore._destroy(id);
 
       memoStore.emitChange();
       break;
-    case MemoConstants.TODO_DESTROY_COMPLETED:
+    case memoConstants.TODO_DESTROY_COMPLETED:
       memoStore._destroyCompleted();
 
       memoStore.emitChange();
       break;
-    case MemoConstants.TODO_UPDATE_TEXT:
+    case memoConstants.TODO_UPDATE_TEXT:
       if (text) {
         memoStore._update(id, { text });
-      } else {
-        memoStore._destroy(id);
-      }
 
-      memoStore.emitChange();
+        memoStore.emitChange();
+      }
       break;
     default:
       return;

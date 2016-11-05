@@ -1,5 +1,5 @@
 import TextInput from './TextInput';
-import DashboardActionCreator from '../actions/MemoActionCreator';
+import memoActionCreator from '../actions/memoActionCreator';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
@@ -24,7 +24,7 @@ class Header extends BaseComponent {
 
   _onSave(text) {
     if (text.trim()) {
-      DashboardActionCreator.create(text);
+      memoActionCreator.create(text);
     }
   }
 

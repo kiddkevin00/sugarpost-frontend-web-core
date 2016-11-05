@@ -1,4 +1,4 @@
-import MemoActionCreator from '../actions/MemoActionCreator';
+import memoActionCreator from '../actions/memoActionCreator';
 import ListItem from './ListItem';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
@@ -20,11 +20,11 @@ class MainSection extends BaseComponent {
 
     const todoList = [];
 
-    for (let key in allTodos) {
+    for (let id in allTodos) {
       todoList.push(
         <ListItem
-          key={ key }
-          todo={ allTodos[key] }
+
+          todo={ allTodos[id] }
         />
       );
     }
@@ -38,14 +38,14 @@ class MainSection extends BaseComponent {
           type="checkbox"
         />
         &nbsp;
-        <label htmlFor="ToggleAll">Toggle All</label>
+        <label htmlFor="toggle-all">Toggle All</label>
         <ul>{ todoList }</ul>
       </section>
     );
   }
 
   _onToggleCompleteAll() {
-    MemoActionCreator.toggleCompleteAll();
+    memoActionCreator.toggleCompleteAll();
   }
 
 }
