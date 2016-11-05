@@ -1,0 +1,47 @@
+'use strict';
+
+/**
+ * The process of the web application begins here - cluster mode.
+ *
+ * Usage: Run `$ NODE_DEBUG=cluster node src/lib/server/cluster-app.js`
+ */
+
+require('babel-register');
+
+var packageJson = require('../../../package.json');
+var setupExpressServer = require('./express-server');
+var setupRoutes = require('./routes.js');
+var cluster = require('cluster');
+var http = require('http');
+var express = require('express');
+var os = require('os');
+
+var numCPUs = os.cpus().length;
+
+if (cluster.isMaster) {
+  // Forks the master worker.
+  for (var i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', function (worker, code, signal) {
+    // [TODO] Replace with logger module.
+    console.log('Worker ' + worker.process.pid + ' died');
+  });
+} else {
+  (function () {
+    // Forked Workers can share a new TCP connection.
+    var app = express();
+    var server = http.createServer(app);
+
+    setupExpressServer(app);
+    setupRoutes(app);
+
+    var webServer = server.listen(packageJson.config.port, packageJson.config.ip, function () {
+      // [TODO] Replace with logger module.
+      console.log('Express server listening on port: %d at IP: %s, in %s mode', webServer.address().port, webServer.address().address, app.get('env'));
+    });
+  })();
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9saWIvc2VydmVyL2NsdXN0ZXItYXBwLmpzIl0sIm5hbWVzIjpbInJlcXVpcmUiLCJwYWNrYWdlSnNvbiIsInNldHVwRXhwcmVzc1NlcnZlciIsInNldHVwUm91dGVzIiwiY2x1c3RlciIsImh0dHAiLCJleHByZXNzIiwib3MiLCJudW1DUFVzIiwiY3B1cyIsImxlbmd0aCIsImlzTWFzdGVyIiwiaSIsImZvcmsiLCJvbiIsIndvcmtlciIsImNvZGUiLCJzaWduYWwiLCJjb25zb2xlIiwibG9nIiwicHJvY2VzcyIsInBpZCIsImFwcCIsInNlcnZlciIsImNyZWF0ZVNlcnZlciIsIndlYlNlcnZlciIsImxpc3RlbiIsImNvbmZpZyIsInBvcnQiLCJpcCIsImFkZHJlc3MiLCJnZXQiXSwibWFwcGluZ3MiOiI7O0FBQUE7Ozs7OztBQU1BQSxRQUFRLGdCQUFSOztBQUVBLElBQU1DLGNBQWNELFFBQVEsdUJBQVIsQ0FBcEI7QUFDQSxJQUFNRSxxQkFBcUJGLFFBQVEsa0JBQVIsQ0FBM0I7QUFDQSxJQUFNRyxjQUFjSCxRQUFRLGFBQVIsQ0FBcEI7QUFDQSxJQUFNSSxVQUFVSixRQUFRLFNBQVIsQ0FBaEI7QUFDQSxJQUFNSyxPQUFPTCxRQUFRLE1BQVIsQ0FBYjtBQUNBLElBQU1NLFVBQVVOLFFBQVEsU0FBUixDQUFoQjtBQUNBLElBQU1PLEtBQUtQLFFBQVEsSUFBUixDQUFYOztBQUVBLElBQU1RLFVBQVVELEdBQUdFLElBQUgsR0FBVUMsTUFBMUI7O0FBRUEsSUFBSU4sUUFBUU8sUUFBWixFQUFzQjtBQUNwQjtBQUNBLE9BQUssSUFBSUMsSUFBSSxDQUFiLEVBQWdCQSxJQUFJSixPQUFwQixFQUE2QkksR0FBN0IsRUFBa0M7QUFDaENSLFlBQVFTLElBQVI7QUFDRDs7QUFFRFQsVUFBUVUsRUFBUixDQUFXLE1BQVgsRUFBbUIsVUFBQ0MsTUFBRCxFQUFTQyxJQUFULEVBQWVDLE1BQWYsRUFBMEI7QUFDM0M7QUFDQUMsWUFBUUMsR0FBUixDQUFZLFlBQVlKLE9BQU9LLE9BQVAsQ0FBZUMsR0FBM0IsR0FBaUMsT0FBN0M7QUFDRCxHQUhEO0FBSUQsQ0FWRCxNQVVPO0FBQUE7QUFDTDtBQUNBLFFBQU1DLE1BQU1oQixTQUFaO0FBQ0EsUUFBTWlCLFNBQVNsQixLQUFLbUIsWUFBTCxDQUFrQkYsR0FBbEIsQ0FBZjs7QUFFQXBCLHVCQUFtQm9CLEdBQW5CO0FBQ0FuQixnQkFBWW1CLEdBQVo7O0FBRUEsUUFBTUcsWUFBWUYsT0FBT0csTUFBUCxDQUFjekIsWUFBWTBCLE1BQVosQ0FBbUJDLElBQWpDLEVBQXVDM0IsWUFBWTBCLE1BQVosQ0FBbUJFLEVBQTFELEVBQThELFlBQU07QUFDcEY7QUFDQVgsY0FBUUMsR0FBUixDQUFZLDREQUFaLEVBQ0VNLFVBQVVLLE9BQVYsR0FBb0JGLElBRHRCLEVBRUVILFVBQVVLLE9BQVYsR0FBb0JBLE9BRnRCLEVBRStCUixJQUFJUyxHQUFKLENBQVEsS0FBUixDQUYvQjtBQUdELEtBTGlCLENBQWxCO0FBUks7QUFjTiIsImZpbGUiOiJjbHVzdGVyLWFwcC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogVGhlIHByb2Nlc3Mgb2YgdGhlIHdlYiBhcHBsaWNhdGlvbiBiZWdpbnMgaGVyZSAtIGNsdXN0ZXIgbW9kZS5cbiAqXG4gKiBVc2FnZTogUnVuIGAkIE5PREVfREVCVUc9Y2x1c3RlciBub2RlIHNyYy9saWIvc2VydmVyL2NsdXN0ZXItYXBwLmpzYFxuICovXG5cbnJlcXVpcmUoJ2JhYmVsLXJlZ2lzdGVyJyk7XG5cbmNvbnN0IHBhY2thZ2VKc29uID0gcmVxdWlyZSgnLi4vLi4vLi4vcGFja2FnZS5qc29uJyk7XG5jb25zdCBzZXR1cEV4cHJlc3NTZXJ2ZXIgPSByZXF1aXJlKCcuL2V4cHJlc3Mtc2VydmVyJyk7XG5jb25zdCBzZXR1cFJvdXRlcyA9IHJlcXVpcmUoJy4vcm91dGVzLmpzJyk7XG5jb25zdCBjbHVzdGVyID0gcmVxdWlyZSgnY2x1c3RlcicpO1xuY29uc3QgaHR0cCA9IHJlcXVpcmUoJ2h0dHAnKTtcbmNvbnN0IGV4cHJlc3MgPSByZXF1aXJlKCdleHByZXNzJyk7XG5jb25zdCBvcyA9IHJlcXVpcmUoJ29zJyk7XG5cbmNvbnN0IG51bUNQVXMgPSBvcy5jcHVzKCkubGVuZ3RoO1xuXG5pZiAoY2x1c3Rlci5pc01hc3Rlcikge1xuICAvLyBGb3JrcyB0aGUgbWFzdGVyIHdvcmtlci5cbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBudW1DUFVzOyBpKyspIHtcbiAgICBjbHVzdGVyLmZvcmsoKTtcbiAgfVxuXG4gIGNsdXN0ZXIub24oJ2V4aXQnLCAod29ya2VyLCBjb2RlLCBzaWduYWwpID0+IHtcbiAgICAvLyBbVE9ET10gUmVwbGFjZSB3aXRoIGxvZ2dlciBtb2R1bGUuXG4gICAgY29uc29sZS5sb2coJ1dvcmtlciAnICsgd29ya2VyLnByb2Nlc3MucGlkICsgJyBkaWVkJyk7XG4gIH0pO1xufSBlbHNlIHtcbiAgLy8gRm9ya2VkIFdvcmtlcnMgY2FuIHNoYXJlIGEgbmV3IFRDUCBjb25uZWN0aW9uLlxuICBjb25zdCBhcHAgPSBleHByZXNzKCk7XG4gIGNvbnN0IHNlcnZlciA9IGh0dHAuY3JlYXRlU2VydmVyKGFwcCk7XG5cbiAgc2V0dXBFeHByZXNzU2VydmVyKGFwcCk7XG4gIHNldHVwUm91dGVzKGFwcCk7XG5cbiAgY29uc3Qgd2ViU2VydmVyID0gc2VydmVyLmxpc3RlbihwYWNrYWdlSnNvbi5jb25maWcucG9ydCwgcGFja2FnZUpzb24uY29uZmlnLmlwLCAoKSA9PiB7XG4gICAgLy8gW1RPRE9dIFJlcGxhY2Ugd2l0aCBsb2dnZXIgbW9kdWxlLlxuICAgIGNvbnNvbGUubG9nKCdFeHByZXNzIHNlcnZlciBsaXN0ZW5pbmcgb24gcG9ydDogJWQgYXQgSVA6ICVzLCBpbiAlcyBtb2RlJyxcbiAgICAgIHdlYlNlcnZlci5hZGRyZXNzKCkucG9ydCxcbiAgICAgIHdlYlNlcnZlci5hZGRyZXNzKCkuYWRkcmVzcywgYXBwLmdldCgnZW52JykpO1xuICB9KTtcbn1cbiJdfQ==
+//# sourceMappingURL=cluster-app.js.map
