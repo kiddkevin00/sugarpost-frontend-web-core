@@ -120,7 +120,7 @@ module.exports = function (grunt) {
     clean: {
       dev: ['src/lib/client/static/app/index-<%= pkg.version %>.js'],
       test: ['spec/'],
-      prod: ['src/lib/client/static/app/index-<%= pkg.version %>.js', 'dist/css/', 'dist/js/', 'dist/lib/']
+      prod: ['src/lib/client/static/app/index-<%= pkg.version %>.js', 'dist/css/', 'dist/js/', 'dist/lib/', 'dist/assets']
     },
     uglify: {
       options: {

@@ -87,7 +87,9 @@
     "react-router-bootstrap": "^0.23.1",
     "serve-favicon": "^2.3.0",
     "time-grunt": "^1.4.0",
-    "pixrem": "^3.0.2"
+    "pixrem": "^3.0.2",
+    "autoprefixer": "^6.5.1",
+    "cssnano": "^3.8.0"
   },
   "author": "Marcus Hsu",
   "license": "ISC",
@@ -96,7 +98,6 @@
     "url": "git@github.com:kiddkevin00/bulletin-board-system-frontend.git"
   },
   "devDependencies": {
-    "autoprefixer": "^6.5.1",
     "babel-cli": "^6.18.0",
     "babel-jest": "^16.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -104,7 +105,6 @@
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.18.0",
     "babelify": "^7.3.0",
-    "cssnano": "^3.8.0",
     "eslint": "^3.8.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-friendly-formatter": "^2.0.6",
