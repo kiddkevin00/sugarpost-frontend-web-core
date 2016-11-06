@@ -23,7 +23,9 @@ const server = http.createServer(app);
 setupExpressServer(app);
 setupRoutes(app);
 
-const ip = process.env.IP_ADDRESS || packageJson.config.ip;
+console.log('###', process.env.PORT)
+
+const ip = '0.0.0.0' || process.env.IP_ADDRESS || packageJson.config.ip;
 const port = process.env.PORT || process.env.PORT_NUMBER_HTTP || packageJson.config.port;
 
 const webServer = server.listen(port, ip, () => {
