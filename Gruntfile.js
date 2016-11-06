@@ -31,7 +31,7 @@ module.exports = function (grunt) {
         NODE_ENV: 'production',
         PORT_NUMBER_HTTPS: '443', /// `PORT` name does not work
         PORT_NUMBER_HTTP: '8088',
-        IP_ADDRESS: '127.0.0.1'
+        IP_ADDRESS: '0.0.0.0'
       }
     },
     browserify: {
