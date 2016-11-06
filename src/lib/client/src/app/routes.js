@@ -1,6 +1,10 @@
 'use strict';
 
 import LoginApp from './registration/login/components/LoginApp';
+import HomeApp from './dashboard/home/components/HomeApp';
+import ProductsApp from './dashboard/products/components/ProductsApp';
+import QuoteApp from './dashboard/quote/components/QuoteApp';
+import TeachersApp from './dashboard/teachers/components/TeachersApp';
 import MemoApp from './dashboard/memo/components/MemoApp.js';
 import BaseComponent from '../common/components/BaseComponent.js';
 import React from 'react';
@@ -33,7 +37,27 @@ class Dashboard extends BaseComponent {
             <Navbar.Toggle />
           </Navbar.Header>
           <Nav>
-            <LinkContainer to="/dashbpard/memo">
+            <LinkContainer to="/dashboard/home">
+              <NavItem>Home</NavItem>
+            </LinkContainer>
+          </Nav>
+          <Nav>
+            <LinkContainer to="/dashboard/products">
+              <NavItem>Products</NavItem>
+            </LinkContainer>
+          </Nav>
+          <Nav>
+            <LinkContainer to="/dashboard/quote">
+              <NavItem>Get a Quote</NavItem>
+            </LinkContainer>
+          </Nav>
+          <Nav>
+            <LinkContainer to="/dashboard/teachers">
+              <NavItem>Our Teachers</NavItem>
+            </LinkContainer>
+          </Nav>
+          <Nav>
+            <LinkContainer to="/dashboard/memo">
               <NavItem>Memo</NavItem>
             </LinkContainer>
           </Nav>
@@ -56,7 +80,11 @@ const clientRoutes = (
       <IndexRoute component={ LoginApp } />
       <Route path="login" component={ LoginApp } />
       <Route path="dashboard" component={ Dashboard }>
-        <IndexRoute component={ MemoApp } />
+        <IndexRoute component={ HomeApp} />
+        <Route path="home" component={ HomeApp } />
+        <Route path="products" component={ ProductsApp } />
+        <Route path="quote" component={ QuoteApp } />
+        <Route path="teachers" component={ TeachersApp } />
         <Route path="memo" component={ MemoApp } />
       </Route>
     </Route>

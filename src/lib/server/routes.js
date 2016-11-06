@@ -34,7 +34,6 @@ function setupRoutes(app) {
        * res.render('index', { markup });
        * ```
        */
-
       ///Server-side rendering - React Router version, implemented as the following:
       //const router = Router.createRoutes({ routes, location: req.url });
       //

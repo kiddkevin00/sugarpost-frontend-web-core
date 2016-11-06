@@ -14,24 +14,21 @@ module.exports = function (grunt) {
     env: {
       dev: {
         NODE_ENV: 'development',
-        PORT_NUMBER_HTTPS: '8089', // `PORT` name does not work
-        PORT_NUMBER_HTTP: '8088',
-        IP_ADDRESS: '127.0.0.1'
+        PORT: '8088',
+        IP: '127.0.0.1'
       },
       lint: {
         NODE_ENV: 'lint'
       },
       test: {
         NODE_ENV: 'test',
-        PORT_NUMBER_HTTPS: '8089', // `PORT` name does not work
-        PORT_NUMBER_HTTP: '8088',
-        IP_ADDRESS: '127.0.0.1'
+        PORT: '8088',
+        IP: '127.0.0.1'
       },
       prod: {
         NODE_ENV: 'production',
-        PORT_NUMBER_HTTPS: '443', /// `PORT` name does not work
-        PORT_NUMBER_HTTP: '8088',
-        IP_ADDRESS: '0.0.0.0'
+        PORT: '8088',
+        IP: '127.0.0.1'
       }
     },
     browserify: {
@@ -52,16 +49,20 @@ module.exports = function (grunt) {
       }
     },
     express: {
+      options: {
+        port: '',
+        node_env: undefined,
+        output: 'Express server listening on port: [0-9]+ at IP: [0-9]+.[0-9]+.[0-9]+.[0-9]+, in [a-z]+ mode.',
+        debug: false
+      },
       dev: {
         options: {
-          script: 'src/lib/server/app.js',
-          debug: true
+          script: 'src/lib/server/app.js'
         }
       },
       prod: {
         options: {
-          script: 'dist/lib/server/app.js',
-          debug: false
+          script: 'dist/lib/server/app.js'
         }
       }
     },
@@ -69,14 +70,17 @@ module.exports = function (grunt) {
       options: {
         interrupt: true
       },
-      server: {
+      // [TODO] Server-side live reload is not working.
+      express: {
         files: [
           'src/lib/server/**/*.+(js|jsx|jade|json)',
           'package.json'
         ],
         tasks: ['express:dev', 'wait-for-server'],
         options: {
-          nospawn: true,
+          spawn: false, // Without this option, specified Express won't be reloaded.
+          nospawn: true, // For backward compatiability.
+          atBegin: false, // Setting this to `true` will run tasks once when `watch:express` task loads.
           livereload: true
         }
       },
@@ -99,10 +103,10 @@ module.exports = function (grunt) {
     },
     open: {
       dev: {
-        url: 'http://localhost:<%= env.dev.PORT_NUMBER_HTTP %>'
+        url: 'http://<%= env.dev.IP %>:<%= env.dev.PORT %>'
       },
       prod: {
-        url: 'http://localhost:<%= env.prod.PORT_NUMBER_HTTP %>'
+        url: 'http://<%= env.prod.IP %>:<%= env.prod.PORT %>'
       }
     },
     eslint: {
@@ -116,7 +120,7 @@ module.exports = function (grunt) {
       coverage: true,
       testPathPattern: /.+\.spec\.js/
     },
-    // empties folders to start fresh
+    // Empties folders to start fresh.
     clean: {
       dev: ['src/lib/client/static/app/index-<%= pkg.version %>.js'],
       test: ['spec/'],
@@ -233,7 +237,7 @@ module.exports = function (grunt) {
   ]);
 
   // For setup production environment.
-  grunt.registerTask('prod', [
+  grunt.registerTask('prod:preview', [
     'clean:prod',
     'env:prod',
     'babel',
@@ -247,7 +251,7 @@ module.exports = function (grunt) {
     'express-keep-alive'
   ]);
 
-  // For Heroku deployment for post-install
+  // For "npm" post-install
   grunt.registerTask('postinstall', [
     'clean:prod',
     'env:prod',

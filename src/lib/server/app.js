@@ -17,20 +17,26 @@ const http = require('http');
 const app = express();
 const server = http.createServer(app);
 
-// Set default Node environment to "development".
-
-
 setupExpressServer(app);
 setupRoutes(app);
 
-const ip = process.env.IP_ADDRESS || packageJson.config.ip;
-const port = process.env.PORT || process.env.PORT_NUMBER_HTTP || packageJson.config.port;
+const ip = process.env.IP  || packageJson.config.ip;
+const port = process.env.PORT || packageJson.config.port;
 
 const webServer = server.listen(port, ip, () => {
-  // [TODO] Replace with logger module.
-  console.log('Express server listening on port: %d at IP: %s, in %s mode',
+  // [TODO] Replaces `console.log()` with a logger module.
+  console.log('Express server listening on port: %d at IP: %s, in %s mode.',
     webServer.address().port,
     webServer.address().address, app.get('env'));
+});
+
+// [TODO] Cleans up whenever the app crashes.
+process.on('uncaughtException', () => {
+
+});
+// [TODO] Cleans up whenever getting a default kill signal.
+process.on('SIGTERM', () => {
+
 });
 
 module.exports = exports = app;
