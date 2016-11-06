@@ -1,4 +1,4 @@
-import memoStore from '../stores/memostore';
+import memoStore from '../stores/memoStore';
 import Header from './Header';
 import MainSection from './MainSection';
 import Footer from './Footer';
