@@ -16,6 +16,8 @@
     "integration-test": "",
     "coverage:unit-test": "",
     "coverage:integration-test": "",
+    "start-prod": "NODE_ENV=production node --stack-size=65500 src/lib/server/app.js",
+    "postinstall": "grunt postinstall",
     "-------------- INTERNAL -------------": "",
     "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' --ext .js,.jsx src/lib/client/src/ src/lib/server/ src/spec/",
     "-------------- LOCAL DEV ------------": "",

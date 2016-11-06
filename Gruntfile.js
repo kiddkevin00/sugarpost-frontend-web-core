@@ -247,6 +247,17 @@ module.exports = function (grunt) {
     'express-keep-alive'
   ]);
 
+  // For Heroku deployment for post-install
+  grunt.registerTask('postinstall', [
+    'clean:prod',
+    'env:prod',
+    'babel',
+    'copy',
+    'postcss',
+    'browserify',
+    'uglify'
+  ]);
+
   // For default task.
   grunt.registerTask('default', 'dev');
 };
