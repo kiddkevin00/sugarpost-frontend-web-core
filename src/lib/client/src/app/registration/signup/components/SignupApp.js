@@ -10,7 +10,7 @@ function _getState() {
   };
 }
 
-class QuoteApp extends BaseComponent {
+class SignupApp extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -31,16 +31,7 @@ class QuoteApp extends BaseComponent {
     return (
       <div className="row">
         <div className="col-lg-12">
-          <p>
-            Get a Quote Box
 
-            Program of study- (allow person option to choose several programs) English classes (fulltime), Skype lessons etc
-            Length of study- Have a calendar to choose start date and for end date
-            Level of study- Drop down of 1-10, 1 being a complete beginner and 10 being advanced
-            Name
-            Email Address
-            Phone number
-          </p>
         </div>
       </div>
     );
@@ -52,4 +43,4 @@ class QuoteApp extends BaseComponent {
 
 }
 
-export default QuoteApp;
+export default SignupApp;

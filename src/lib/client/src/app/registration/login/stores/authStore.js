@@ -6,7 +6,7 @@ const changeEvent = Symbol('change');
 const storeContext = Symbol('loginStoreContext');
 
 // A Flux's store.
-class LoginStore extends EventEmitter {
+class AuthStore extends EventEmitter {
 
   constructor() {
     super();
@@ -41,7 +41,7 @@ class LoginStore extends EventEmitter {
 
 }
 
-const loginStore = new LoginStore();
+const authStore = new AuthStore();
 
 // The dispatcher registration for the current store component.
 AppDispatcher.register((action) => {
@@ -53,13 +53,13 @@ AppDispatcher.register((action) => {
 
   switch (actionType) {
     case loginConstants.BASIC_LOGIN:
-      loginStore._login(email, password);
+      authStore._login(email, password);
 
-      loginStore.emitChange();
+      authStore.emitChange();
       break;
     default:
       return;
   }
 });
 
-export default loginStore;
+export default authStore;

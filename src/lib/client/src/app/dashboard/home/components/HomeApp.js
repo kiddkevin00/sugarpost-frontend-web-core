@@ -1,7 +1,3 @@
-//import memoStore from '../stores/memoStore';
-//import Header from './Header';
-//import MainSection from './MainSection';
-//import Footer from './Footer';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
@@ -24,17 +20,17 @@ class HomeApp extends BaseComponent {
   }
 
   componentDidMount() {
-    //memoStore.addChangeListener(this._onChange);
+    
   }
 
   componentWillUnmount() {
-    //memoStore.removeChangeListener(this._onChange);
+    
   }
 
   render() {
     return (
-      <div className='row'>
-        <div className='col-lg-12'>
+      <div className="row">
+        <div className="col-lg-12">
           <p>Welcome to English University!</p>
         </div>
       </div>

@@ -1,7 +1,3 @@
-//import memoStore from '../stores/memoStore';
-//import Header from './Header';
-//import MainSection from './MainSection';
-//import Footer from './Footer';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
@@ -24,17 +20,17 @@ class TeachersApp extends BaseComponent {
   }
 
   componentDidMount() {
-    //memoStore.addChangeListener(this._onChange);
+    
   }
 
   componentWillUnmount() {
-    //memoStore.removeChangeListener(this._onChange);
+    
   }
 
   render() {
     return (
-      <div className='row'>
-        <div className='col-lg-12'>
+      <div className="row">
+        <div className="col-lg-12">
           <p>
             Get Here at The English University, our teachers are patient, innovative, and passionate about the success of our students. They come from diverse backgrounds and are dedicated to reach your goals in a fun, engaging, and effective manner. They're trained to properly assess your goals and create a customized lesson plan that suits your needs. The lesson plan gives students a clear idea of what they will be learning, what the assignments are, and what the grading policy is. All assignments have learning goals and develop new skills for the student. Below you can view our teachers' biographies and schedule an  appointment with one today!e number
           </p>

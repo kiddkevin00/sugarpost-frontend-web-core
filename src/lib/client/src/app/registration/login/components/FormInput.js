@@ -11,7 +11,7 @@ class FormInput extends BaseComponent {
       email: '',
       emailIsValid: false,
       password: '',
-      passwordIsValid: false
+      passwordIsValid: false,
     };
   }
 
@@ -19,7 +19,7 @@ class FormInput extends BaseComponent {
     return (
       <input
         onChange={ this._onChange }
-        className={this.props.className}
+        className={ this.props.className }
         placeholder={ this.props.placeholder }
         value={ this.props.value }
         type={ this.props.type }

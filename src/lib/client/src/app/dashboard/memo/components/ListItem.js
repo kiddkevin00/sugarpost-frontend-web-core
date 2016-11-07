@@ -27,11 +27,13 @@ class ListItem extends BaseComponent {
     }
 
     return (
-      <li className={ classNames({
+      <li
+        className={ classNames({
           'text-danger': !todo.isComplete,
           'text-success': todo.isComplete,
-          'text-warning': this.state.isEditing
-        }) }>
+          'text-warning': this.state.isEditing,
+        }) }
+      >
         <input
           onChange={ this._onToggleComplete }
           checked={ todo.isComplete }

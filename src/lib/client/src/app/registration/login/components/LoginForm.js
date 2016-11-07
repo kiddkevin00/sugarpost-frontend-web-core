@@ -10,39 +10,39 @@ class LoginForm extends BaseComponent {
     this._bind('_onChange', '_onSubmit');
     this.state = {
       email: '',
-      emailIsValid: false,
       password: '',
-      passwordIsValid: false
+      emailIsValid: false,
+      passwordIsValid: false,
     };
   }
 
   render() {
     return (
-      <form onSubmit={this._onSubmit}>
-        <div className='form-group'>
+      <form onSubmit={ this._onSubmit }>
+        <div className="form-group">
           <label>Email</label>
           <FormInput
-            onChange={this._onChange.bind(this, 'email')}
-            value={this.state.email}
-            type='email'
-            placeholder='Email'
-            className='form-control'
+            onChange={ this._onChange.bind(this, 'email') }
+            value={ this.state.email }
+            type="email"
+            placeholder="Email"
+            className="form-control"
           />
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <label>Password</label>
           <FormInput
             onChange={ this._onChange.bind(this, 'password') }
-            value={this.state.password}
-            type='password'
-            placeholder='Password'
-            className='form-control'
+            value={ this.state.password }
+            type="password"
+            placeholder="Password"
+            className="form-control"
           />
         </div>
         <button
-          disabled={this.state.emailIsValid && this.state.passwordIsValid ? '' : 'disabled'}
-          className='btn btn-success btn-sm btn-block'
-          type='submit'
+          disabled={ this.state.emailIsValid && this.state.passwordIsValid ? '' : 'disabled' }
+          className="btn btn-success btn-sm btn-block"
+          type="submit"
         >
           Login
         </button>
@@ -51,11 +51,9 @@ class LoginForm extends BaseComponent {
   }
 
   _onChange(field, value, isValid) {
-    console.log(field, value, isValid)
-    
     this.setState({
       [field]: value,
-      [field + 'IsValid']: isValid
+      [field + 'IsValid']: isValid,
     });
   }
 

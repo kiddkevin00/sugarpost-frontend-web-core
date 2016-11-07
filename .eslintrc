@@ -18,6 +18,10 @@
     }],
     "spaced-comment": 0,
     "padded-blocks": 0,
-    "no-unused-expressions": 1
+    "no-unused-expressions": 1,
+    "new-cap": [2, { "capIsNew": false }],
+    "react/jsx-filename-extension": 0,
+    "react/jsx-curly-spacing": [2, "always"],
+    "import/first": 0
   }
 }

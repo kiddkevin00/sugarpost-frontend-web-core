@@ -1,4 +1,4 @@
-import loginStore from '../stores/loginStore';
+import authStore from '../stores/authStore';
 import loginActionCreator from '../actions/loginActionCreator';
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
@@ -10,7 +10,7 @@ import React from 'react';
  */
 function _getState() {
   return {
-    isLoggedIn: loginStore.isLoggedIn,
+    isLoggedIn: authStore.isLoggedIn,
   };
 }
 
@@ -24,31 +24,33 @@ class LoginApp extends BaseComponent {
   }
 
   componentDidMount() {
-    loginStore.addChangeListener(this._onChange);
+    authStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
-    loginStore.removeChangeListener(this._onChange);
+    authStore.removeChangeListener(this._onChange);
   }
 
   render() {
     return (
       <div>
-        <div className='row'>
-          <div className='col-lg-12'>
-            <div style={ {paddingTop: '15%'} }></div>
+        <div className="row">
+          <div className="col-lg-12">
+            <div style={ { paddingTop: '5%' } } />
           </div>
         </div>
-        <div className='row'>
-          <div className='col-lg-offset-4 col-lg-4'>
-            <div className='panel panel-default'>
-              <div className='panel-heading text-center'>
-                <h4><span className='label label-primary'>The English University</span></h4>
+        <div className="row">
+          <div className="col-lg-offset-4 col-lg-4">
+            <div className="panel panel-default">
+              <div className="panel-heading text-center">
+                <h4><span className="label label-primary">The English University</span></h4>
               </div>
-              <div className='panel-body'>
+              <div className="panel-body">
                 <LoginForm onSubmit={ this._onSubmit } />
-                <div className='panel-footer text-center'>
-                  <p className='text-muted'><a href='mailto:inquiries@TheEnglishUniversity.com'>Development Support</a></p>
+                <div className="panel-footer text-center">
+                  <p className="text-muted">
+                    <a href="mailto:inquiries@TheEnglishUniversity.com">Development Support</a>
+                  </p>
                   <p>v0.0.0</p>
                 </div>
               </div>
@@ -68,6 +70,9 @@ class LoginApp extends BaseComponent {
     event.preventDefault();
 
     loginActionCreator.login(email, password);
+
+    // [TODO] Use React Router to navigate to home dashboard.
+
   }
 
 }
