@@ -22,11 +22,8 @@ class HomeApp extends BaseComponent {
     return (
       <div>
         <div className="row">
-          <div className="col-lg-12">
-            <img
-              src="assets/images/free-english-classes.jpg" width="60%"
-              style={ { 'margin-left': 'auto', 'margin-right': 'auto', display: 'block' } }
-            />
+          <div className="col-lg-12 text-center">
+            <img src="assets/images/free-english-classes.jpg" width="60%" />
           </div>
         </div>
         <div className="row">

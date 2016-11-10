@@ -21,11 +21,13 @@ class LoginApp extends BaseComponent {
     authStore.removeChangeListener(this._onChange);
   }
 
-  render() {
-    if (this.state.isLoggedIn) {
-      // [TODO] Use React Router to navigate to home dashboard.
-
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.isLoggedIn) {
+      this.context.router.push('/home');
     }
+  }
+
+  render() {
     return (
       <div>
         <div className="row">
@@ -67,6 +69,9 @@ class LoginApp extends BaseComponent {
   }
 
 }
+LoginApp.contextTypes = {
+  router: React.PropTypes.object.isRequired,
+};
 
 /*
  * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
@@ -74,7 +79,7 @@ class LoginApp extends BaseComponent {
  */
 function _getState() {
   return {
-    isLoggedIn: authStore.isLoggedIn,
+    isLoggedIn: authStore.isLoggedIn(),
   };
 }
 

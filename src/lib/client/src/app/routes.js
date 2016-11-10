@@ -35,7 +35,7 @@ class App extends BaseComponent {
     if (this.state.isLoggedIn) {
       tabsShownWhenUserLoggedIn = (
         <Nav>
-          <LinkContainer to="/home">
+          <LinkContainer to="/logout">
             <NavItem>Logout</NavItem>
           </LinkContainer>
         </Nav>
