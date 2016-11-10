@@ -1,15 +1,6 @@
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync with
- * the data in the Flux's store.
- */
-function _getState() {
-  return {
-  };
-}
-
 class QuoteApp extends BaseComponent {
 
   constructor(props) {
@@ -20,11 +11,11 @@ class QuoteApp extends BaseComponent {
   }
 
   componentDidMount() {
-    
+
   }
 
   componentWillUnmount() {
-    
+
   }
 
   render() {
@@ -50,6 +41,16 @@ class QuoteApp extends BaseComponent {
     this.setState(_getState());
   }
 
+}
+
+/*
+ * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
+ * the data in the Flux's store.
+ */
+function _getState() {
+  return {
+    
+  };
 }
 
 export default QuoteApp;

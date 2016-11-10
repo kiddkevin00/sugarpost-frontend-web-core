@@ -4,16 +4,6 @@ import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync with
- * the data in the Flux store.
- */
-function _getState() {
-  return {
-    isLoggedIn: authStore.isLoggedIn,
-  };
-}
-
 class LoginApp extends BaseComponent {
 
   constructor(props) {
@@ -32,6 +22,10 @@ class LoginApp extends BaseComponent {
   }
 
   render() {
+    if (this.state.isLoggedIn) {
+      // [TODO] Transit to home page via React Router.
+
+    }
     return (
       <div>
         <div className="row">
@@ -75,6 +69,16 @@ class LoginApp extends BaseComponent {
 
   }
 
+}
+
+/*
+ * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
+ * the data in the Flux store.
+ */
+function _getState() {
+  return {
+    isLoggedIn: authStore.isLoggedIn,
+  };
 }
 
 export default LoginApp;

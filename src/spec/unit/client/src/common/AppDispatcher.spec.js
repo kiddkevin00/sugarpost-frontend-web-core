@@ -2,19 +2,19 @@
 
 jest.autoMockOff();
 
-describe('AppDispatcher', function() {
-  var AppDispatcher;
+var AppDispatcher = require('../../../../../lib/client/src/common/dispatcher/AppDispatcher');
 
-  beforeEach(function() {
-    AppDispatcher = require('../../../../../lib/client/src/common/dispatcher/AppDispatcher.js');
-  });
+describe('App dispatcher', function() {
 
   it('sends actions to subscribers', function() {
     var listener = jest.genMockFunction();
+
     AppDispatcher.register(listener);
 
     var payload = {};
+
     AppDispatcher.dispatch(payload);
+
     expect(listener.mock.calls.length).toBe(1);
     expect(listener.mock.calls[0][0]).toBe(payload);
   });

@@ -16,7 +16,7 @@ class AuthStore extends EventEmitter {
       isLoggedIn: false,
     };
   }
-  
+
   isLoggedIn() {
     return this[storeContext].isLoggedIn;
   }
@@ -58,7 +58,7 @@ AppDispatcher.register((action) => {
       authStore.emitChange();
       break;
     default:
-      return;
+      break;
   }
 });
 

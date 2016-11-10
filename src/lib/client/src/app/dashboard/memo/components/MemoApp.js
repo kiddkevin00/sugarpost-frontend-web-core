@@ -5,17 +5,6 @@ import Footer from './Footer';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync with
- * the data in the Flux's store.
- */
-function _getState() {
-  return {
-    allTodos: memoStore.getAll(),
-    areAllComplete: memoStore.areAllComplete()
-  };
-}
-
 class MemoApp extends BaseComponent {
 
   constructor(props) {
@@ -53,6 +42,17 @@ class MemoApp extends BaseComponent {
     this.setState(_getState());
   }
 
+}
+
+/*
+ * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
+ * the data in the Flux's store.
+ */
+function _getState() {
+  return {
+    allTodos: memoStore.getAll(),
+    areAllComplete: memoStore.areAllComplete()
+  };
 }
 
 export default MemoApp;

@@ -1,3 +1,4 @@
+import authStore from './registration/login/stores/'
 import HomeApp from './dashboard/home/components/HomeApp';
 import ProductsApp from './dashboard/products/components/ProductsApp';
 import QuoteApp from './dashboard/quote/components/QuoteApp';
@@ -13,7 +14,20 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 class App extends BaseComponent {
 
+  constructor(props) {
+    super(props);
 
+    this._bind('_onChange', '_onSubmit');
+    this.state = _getState();
+  }
+
+  componentDidMount() {
+    memoStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    memoStore.removeChangeListener(this._onChange);
+  }
 
   render() {
     return (

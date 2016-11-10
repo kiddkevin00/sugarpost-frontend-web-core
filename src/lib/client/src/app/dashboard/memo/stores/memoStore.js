@@ -126,7 +126,7 @@ AppDispatcher.register((action) => {
       }
       break;
     default:
-      return;
+      break;
   }
 });
 
