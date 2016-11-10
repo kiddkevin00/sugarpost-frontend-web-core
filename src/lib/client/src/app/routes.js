@@ -1,4 +1,4 @@
-import authStore from './registration/login/stores/'
+import authStore from '../common/stores/authStore';
 import HomeApp from './dashboard/home/components/HomeApp';
 import ProductsApp from './dashboard/products/components/ProductsApp';
 import QuoteApp from './dashboard/quote/components/QuoteApp';
@@ -17,19 +17,46 @@ class App extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', '_onSubmit');
+    this._bind('_onChange');
     this.state = _getState();
   }
 
   componentDidMount() {
-    memoStore.addChangeListener(this._onChange);
+    authStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
-    memoStore.removeChangeListener(this._onChange);
+    authStore.removeChangeListener(this._onChange);
   }
 
   render() {
+    let tabsShownWhenUserLoggedIn;
+
+    if (this.state.isLoggedIn) {
+      tabsShownWhenUserLoggedIn = (
+        <Nav>
+          <LinkContainer to="/home">
+            <NavItem>Logout</NavItem>
+          </LinkContainer>
+        </Nav>
+      );
+    } else {
+      tabsShownWhenUserLoggedIn = (
+        <div>
+          <Nav>
+            <LinkContainer to="/signup">
+              <NavItem>Signup</NavItem>
+            </LinkContainer>
+          </Nav>
+          <Nav>
+            <LinkContainer to="/login">
+              <NavItem>Login</NavItem>
+            </LinkContainer>
+          </Nav>
+        </div>
+      );
+    }
+
     return (
       <div>
         <Navbar>
@@ -64,20 +91,15 @@ class App extends BaseComponent {
               <NavItem>Memo</NavItem>
             </LinkContainer>
           </Nav>
-          <Nav>
-            <LinkContainer to="/signup">
-              <NavItem>Signup</NavItem>
-            </LinkContainer>
-          </Nav>
-          <Nav>
-            <LinkContainer to="/login">
-              <NavItem>Login</NavItem>
-            </LinkContainer>
-          </Nav>
+          { tabsShownWhenUserLoggedIn }
         </Navbar>
         { this.props.children }
       </div>
     );
+  }
+
+  _onChange() {
+    this.setState(_getState());
   }
 
 }
@@ -96,5 +118,15 @@ const clientRoutes = (
     </Route>
   </Router>
 );
+
+/*
+ * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
+ * the data in the Flux's store.
+ */
+function _getState() {
+  return {
+    isLoggedIn: authStore.isLoggedIn(),
+  };
+}
 
 export default clientRoutes;

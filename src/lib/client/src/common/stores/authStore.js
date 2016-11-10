@@ -1,5 +1,5 @@
-import AppDispatcher from '../../../../common/dispatcher/AppDispatcher';
-import loginConstants from '../constants/loginConstants';
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import loginConstants from '../../app/registration/login/constants/loginConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');

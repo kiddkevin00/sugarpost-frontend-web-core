@@ -1,4 +1,4 @@
-import authStore from '../stores/authStore';
+import authStore from '../../../../common/stores/authStore';
 import loginActionCreator from '../actions/loginActionCreator';
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
