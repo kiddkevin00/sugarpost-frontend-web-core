@@ -20,11 +20,11 @@ class ProductsApp extends BaseComponent {
 
   render() {
     return (
-      <div>
+      <div className="text-center">
         <div className="row">
           <div className="col-lg-12">
-            <h4 style={ { 'text-align': 'center' } }>English Classes (Full-Time Course)</h4>
-            <p style={ { 'text-align': 'center' } }>
+            <h4>English Classes (Full-Time Course)</h4>
+            <p>
               In this program you will learn English through a combination of online classes,
               private lessons, and video courses. This program provides all of the advantages of
               each product to create the ultimate learning experience. Students choose the program
@@ -36,8 +36,8 @@ class ProductsApp extends BaseComponent {
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <h4 style={ { 'text-align': 'center' } }>Private Skype Lessons</h4>
-            <p style={ { 'text-align': 'center' } }>
+            <h4>Private Skype Lessons</h4>
+            <p>
               In this course you will learn English one-on-one with an instructor over Skype. It's
               the most preferred method of learning for our students and is ideal for those seeking
               the most interactive and communicative experience possible. Instructors ask students
@@ -50,8 +50,8 @@ class ProductsApp extends BaseComponent {
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <h4 style={ { 'text-align': 'center' } }>Private Lessons</h4>
-            <p style={ { 'text-align': 'center' } }>
+            <h4>Private Lessons</h4>
+            <p>
               In this course you will learn English one-on-one with an instructor in person. It is
               ideal for those seeking the most interactive and communicative experience possible.
               Instructors ask students about their experiences, goals, problems, and level of
@@ -64,8 +64,8 @@ class ProductsApp extends BaseComponent {
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <h4 style={ { 'text-align': 'center' } }>Video Course: English for Beginners</h4>
-            <p style={ { 'text-align': 'center' } }>
+            <h4>Video Course: English for Beginners</h4>
+            <p>
               Ideal for self-study learning, this video series teaches grammar, pronunciation,
               vocabulary, spelling, speaking, reading, and writing. During each lesson, the
               instructor will give practice questions, quizzes, and other exercises to involve
@@ -76,8 +76,8 @@ class ProductsApp extends BaseComponent {
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <h4 style={ { 'text-align': 'center' } }>Live Online Classes</h4>
-            <p style={ { 'text-align': 'center' } }>
+            <h4>Live Online Classes</h4>
+            <p>
               We offer live online classes for beginner, intermediate, and advanced English
               students. With this option you get to learn English from anywhere in the world, in
               a fun and interactive way. We offer classes on a flexible time schedule and if you

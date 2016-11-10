@@ -22,7 +22,7 @@ class QuoteApp extends BaseComponent {
   render() {
     return (
       <div className="row">
-        <div className="col-lg-12">
+        <div className="col-lg-offset-4 col-lg-4">
           <h3>Get a Quote Box</h3>
           <hr />
           <h4>Length</h4>

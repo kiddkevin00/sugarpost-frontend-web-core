@@ -7,12 +7,6 @@ class FormInput extends BaseComponent {
     super(props);
 
     this._bind('_onChange');
-    this.state = {
-      email: '',
-      emailIsValid: false,
-      password: '',
-      passwordIsValid: false,
-    };
   }
 
   render() {

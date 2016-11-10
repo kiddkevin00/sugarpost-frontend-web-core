@@ -21,8 +21,8 @@ class TeachersApp extends BaseComponent {
   render() {
     return (
       <div className="row">
-        <div className="col-lg-12">
-          <h3 style={ { 'text-align': 'center' } }>
+        <div className="col-lg-12 text-center">
+          <h3>
             Get here at The English University, our teachers are patient, innovative, and
             passionate about the success of our students. They come from diverse backgrounds
             and are dedicated to reach your goals in a fun, engaging, and effective manner.

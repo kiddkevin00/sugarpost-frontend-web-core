@@ -23,7 +23,7 @@ class LoginApp extends BaseComponent {
 
   render() {
     if (this.state.isLoggedIn) {
-      // [TODO] Transit to home page via React Router.
+      // [TODO] Use React Router to navigate to home dashboard.
 
     }
     return (
@@ -64,9 +64,6 @@ class LoginApp extends BaseComponent {
     event.preventDefault();
 
     loginActionCreator.login(email, password);
-
-    // [TODO] Use React Router to navigate to home dashboard.
-
   }
 
 }

@@ -30,9 +30,9 @@ class HomeApp extends BaseComponent {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-12">
-            <h2 style={ { 'text-align': 'center' } }>Welcome to The English University!</h2>
-            <h3 style={ { 'text-align': 'center' } }>
+          <div className="col-lg-12 text-center">
+            <h2>Welcome to The English University!</h2>
+            <h3>
               Here you will find everything you need to become fluent in English. English is
               spoken by billions of people and is the international language of business. No
               matter what your field of study or work, understanding and speaking English is
