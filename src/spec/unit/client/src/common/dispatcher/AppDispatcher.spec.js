@@ -2,7 +2,7 @@
 
 jest.autoMockOff();
 
-var AppDispatcher = require('../../../../../lib/client/src/common/dispatcher/AppDispatcher');
+var AppDispatcher = require('../../../../../../lib/client/src/common/dispatcher/AppDispatcher');
 
 describe('App dispatcher', function() {
 

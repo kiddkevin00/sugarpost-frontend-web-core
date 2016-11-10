@@ -1,3 +1,4 @@
+import FormInput from '../../../registration/login/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
@@ -22,16 +23,13 @@ class QuoteApp extends BaseComponent {
     return (
       <div className="row">
         <div className="col-lg-12">
-          <p>
-            Get a Quote Box
-
-            Program of study- (allow person option to choose several programs) English classes (fulltime), Skype lessons etc
-            Length of study- Have a calendar to choose start date and for end date
-            Level of study- Drop down of 1-10, 1 being a complete beginner and 10 being advanced
-            Name
-            Email Address
-            Phone number
-          </p>
+          <h3>Get a Quote Box</h3>
+          <hr />
+          <h4>Length</h4>
+          <h4>Level</h4>
+          <h4>Name</h4>
+          <h4>Email</h4>
+          <h4>Phone</h4>
         </div>
       </div>
     );
@@ -48,9 +46,7 @@ class QuoteApp extends BaseComponent {
  * the data in the Flux's store.
  */
 function _getState() {
-  return {
-    
-  };
+  return {};
 }
 
 export default QuoteApp;
