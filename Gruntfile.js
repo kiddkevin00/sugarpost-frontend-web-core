@@ -268,6 +268,7 @@ module.exports = function (grunt) {
     'env:prod',
     'babel',
     'copy',
+    'concat',
     'postcss',
     'browserify',
     'uglify'
