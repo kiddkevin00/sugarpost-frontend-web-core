@@ -25,16 +25,18 @@ class HomeApp extends BaseComponent {
           <div className="jumbotron jumbotron-background" />
         </div>
         <div className="row">
-          <div className="col-lg-12 text-center">
-            <h2>Welcome to The English University!</h2>
-            <h3>
-              Here you will find everything you need to become fluent in English. English is
-              spoken by billions of people and is the international language of business. No
-              matter what your field of study or work, understanding and speaking English is
-              vital to your success. We provide English classes and private tutoring to help
-              you achieve your goals. Our program covers grammar, vocabulary, pronunciation,
-              spelling, listening, speaking, reading, and writing.
-            </h3>
+          <div className="container">
+            <div className="col-lg-12 text-center">
+              <h2>Welcome to The English University!</h2>
+              <h3>
+                Here you will find everything you need to become fluent in English. English is
+                spoken by billions of people and is the international language of business. No
+                matter what your field of study or work, understanding and speaking English is
+                vital to your success. We provide English classes and private tutoring to help
+                you achieve your goals. Our program covers grammar, vocabulary, pronunciation,
+                spelling, listening, speaking, reading, and writing.
+              </h3>
+            </div>
           </div>
         </div>
       </div>
