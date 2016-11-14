@@ -53,7 +53,8 @@ module.exports = function (grunt) {
         port: '',
         node_env: undefined,
         output: 'Express server listening on port: [0-9]+ at IP: [0-9]+.[0-9]+.[0-9]+.[0-9]+, in [a-z]+ mode.',
-        debug: false
+        debug: false,
+        background: true // Sets to false to debug the reason for stopping Express server.
       },
       dev: {
         options: {
@@ -145,6 +146,15 @@ module.exports = function (grunt) {
         dest: 'dist/js/index-<%= pkg.version %>.min.js'
       }
     },
+    concat: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+      },
+      prod: {
+        src: ['src/lib/client/static/assets/**/*.css', 'src/lib/client/static/app/**/*.css'],
+        dest: 'dist/css/index-<%= pkg.version %>.css'
+      }
+    },
     postcss: {
       options: {
         processors: [
@@ -154,7 +164,7 @@ module.exports = function (grunt) {
         ]
       },
       prod: {
-        src: 'src/lib/client/static/**/*.css',
+        src: 'dist/css/index-<%= pkg.version %>.css',
         dest: 'dist/css/index-<%= pkg.version %>.min.css'
       }
     },
@@ -243,6 +253,7 @@ module.exports = function (grunt) {
     'babel',
     'copy',
     'express:prod',
+    'concat',
     'postcss',
     'browserify',
     'uglify',

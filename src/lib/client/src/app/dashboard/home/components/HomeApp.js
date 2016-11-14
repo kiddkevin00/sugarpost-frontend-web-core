@@ -20,11 +20,9 @@ class HomeApp extends BaseComponent {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-12 text-center">
-            <img src="assets/images/free-english-classes.jpg" width="60%" />
-          </div>
+          <div className="jumbotron jumbotron-background" />
         </div>
         <div className="row">
           <div className="col-lg-12 text-center">

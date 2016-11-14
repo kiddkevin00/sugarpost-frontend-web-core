@@ -8,7 +8,7 @@ import SignupApp from './dashboard/signup/components/SignupApp';
 import MemoApp from './dashboard/memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
 import React from 'react';
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -30,68 +30,58 @@ class App extends BaseComponent {
   }
 
   render() {
-    let tabsShownWhenUserLoggedIn;
+    const tabsShownWhenUserLoggedIn = [];
 
     if (this.state.isLoggedIn) {
-      tabsShownWhenUserLoggedIn = (
-        <Nav>
+      tabsShownWhenUserLoggedIn.push(
+        <Nav key="0" className="navbar-right">
           <LinkContainer to="/logout">
-            <NavItem>Logout</NavItem>
+            <NavItem>Log out</NavItem>
           </LinkContainer>
         </Nav>
       );
     } else {
-      tabsShownWhenUserLoggedIn = (
-        <div>
-          <Nav>
-            <LinkContainer to="/signup">
-              <NavItem>Signup</NavItem>
-            </LinkContainer>
-          </Nav>
-          <Nav>
-            <LinkContainer to="/login">
-              <NavItem>Login</NavItem>
-            </LinkContainer>
-          </Nav>
-        </div>
+      tabsShownWhenUserLoggedIn.push(
+        <LinkContainer key="1" to="/signup">
+          <NavItem>Sign Up</NavItem>
+        </LinkContainer>
+      );
+      tabsShownWhenUserLoggedIn.push(
+        <LinkContainer key="2" to="/login">
+          <NavItem>Log In</NavItem>
+        </LinkContainer>
       );
     }
 
     return (
       <div>
-        <Navbar>
+        <Navbar className="navbar-static-top navbar-custom">
           <Navbar.Header>
             <Navbar.Brand>
-              <img src="assets/images/logo.jpeg" width="70px" />
+              <img className="main-icon" src="/assets/images/logo.jpeg" alt="Icon" />
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-          <Nav>
-            <LinkContainer to="/home">
-              <NavItem>Home</NavItem>
-            </LinkContainer>
-          </Nav>
-          <Nav>
-            <LinkContainer to="/products">
-              <NavItem>Products</NavItem>
-            </LinkContainer>
-          </Nav>
-          <Nav>
-            <LinkContainer to="/quote">
-              <NavItem>Get a Quote</NavItem>
-            </LinkContainer>
-          </Nav>
-          <Nav>
-            <LinkContainer to="/teachers">
-              <NavItem>Our Teachers</NavItem>
-            </LinkContainer>
-          </Nav>
-          <Nav>
-            <LinkContainer to="/memo">
-              <NavItem>Memo</NavItem>
-            </LinkContainer>
-          </Nav>
-          { tabsShownWhenUserLoggedIn }
+          <Navbar.Collapse>
+            <Nav className="navbar-right pointer-cursor">
+              <LinkContainer to="/home">
+                <NavItem>Home</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/products">
+                <NavItem>Products</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/quote">
+                <NavItem>Get a Quote</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/teachers">
+                <NavItem>Our Teachers</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/memo">
+                <NavItem>Memo</NavItem>
+              </LinkContainer>
+              { tabsShownWhenUserLoggedIn }
+            </Nav>
+          </Navbar.Collapse>
         </Navbar>
         { this.props.children }
       </div>

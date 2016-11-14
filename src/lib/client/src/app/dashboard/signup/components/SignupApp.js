@@ -28,10 +28,10 @@ class SignupApp extends BaseComponent {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <div className="row">
           <div className="col-lg-12">
-            <div className="form-padding-top" />
+            <div className="signup-form-padding-top" />
           </div>
         </div>
         <div className="row">
