@@ -44,7 +44,7 @@ class LoginForm extends BaseComponent {
           className="btn btn-success btn-sm btn-block"
           type="submit"
         >
-          Login
+          Log in
         </button>
       </form>
     );
