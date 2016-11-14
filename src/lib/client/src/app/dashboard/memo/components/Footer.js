@@ -23,7 +23,7 @@ class Footer extends BaseComponent {
       if (completeAmount > 0) {
         clearAllCompletedButton = (
           <button onClick={ this._onDestroyCompletedClick }>
-            clear { completeAmount } completed { completeAmount > 1 ? 'items' : 'item' }
+            Clear { completeAmount } completed { completeAmount > 1 ? 'items' : 'item' }
           </button>
         );
       }

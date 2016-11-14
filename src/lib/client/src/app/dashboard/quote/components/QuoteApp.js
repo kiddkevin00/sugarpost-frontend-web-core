@@ -1,4 +1,4 @@
-import FormInput from '../../../registration/login/components/FormInput';
+import FormInput from '../../login/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
