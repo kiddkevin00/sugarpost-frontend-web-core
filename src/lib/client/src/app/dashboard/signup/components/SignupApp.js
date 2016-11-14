@@ -1,15 +1,14 @@
 import authStore from '../../../../common/stores/authStore';
-import loginActionCreator from '../actions/loginActionCreator';
-import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
-class LoginApp extends BaseComponent {
+class SignupApp extends BaseComponent {
 
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', '_onSubmit');
+    this._bind('_onChange');
     this.state = _getState();
   }
 
@@ -32,7 +31,7 @@ class LoginApp extends BaseComponent {
       <div>
         <div className="row">
           <div className="col-lg-12">
-            <div style={ { paddingTop: '5%' } } />
+            <div className="form-padding-top" />
           </div>
         </div>
         <div className="row">
@@ -42,7 +41,7 @@ class LoginApp extends BaseComponent {
                 <h4><span className="label label-primary">The English University</span></h4>
               </div>
               <div className="panel-body">
-                <LoginForm onSubmit={ this._onSubmit } />
+                <SignupForm onSubmit={ this._onSubmit } />
                 <div className="panel-footer text-center">
                   <p className="text-muted">
                     <a href="mailto:inquiries@TheEnglishUniversity.com">Development Support</a>
@@ -69,13 +68,13 @@ class LoginApp extends BaseComponent {
   }
 
 }
-LoginApp.contextTypes = {
+SignupApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
 /*
  * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux store.
+ * the data in the Flux's store.
  */
 function _getState() {
   return {
@@ -83,4 +82,4 @@ function _getState() {
   };
 }
 
-export default LoginApp;
+export default SignupApp;

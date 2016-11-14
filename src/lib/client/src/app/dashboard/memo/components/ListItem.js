@@ -44,7 +44,7 @@ class ListItem extends BaseComponent {
           { todo.text }
         </label>
         &nbsp;&nbsp;
-        <button onClick={ this._onDeleteClick } type="button">delete</button>
+        <button onClick={ this._onDeleteClick } type="button">Delete</button>
         &nbsp;&nbsp;&nbsp;
         { input }
       </li>
