@@ -4,10 +4,6 @@ import React from 'react';
 
 class Footer extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const totalAmount = Object.keys(this.props.allTodos).length;
     let clearAllCompletedButton = null;
@@ -15,14 +11,14 @@ class Footer extends BaseComponent {
     if (totalAmount > 0) {
       let completeAmount = 0;
 
-      for (var id in this.props.allTodos) {
+      for (const id in this.props.allTodos) {
         if (this.props.allTodos[id].isComplete) {
           completeAmount += 1;
         }
       }
       if (completeAmount > 0) {
         clearAllCompletedButton = (
-          <button onClick={ this._onDestroyCompletedClick }>
+          <button onClick={ Footer._onDestroyCompletedClick }>
             Clear { completeAmount } completed { completeAmount > 1 ? 'items' : 'item' }
           </button>
         );
@@ -46,13 +42,13 @@ class Footer extends BaseComponent {
     );
   }
 
-  _onDestroyCompletedClick() {
+  static _onDestroyCompletedClick() {
     memoActionCreator.destroyCompleted();
   }
 
 }
 Footer.propTypes = {
-  allTodos: React.PropTypes.object.isRequired
+  allTodos: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default Footer;

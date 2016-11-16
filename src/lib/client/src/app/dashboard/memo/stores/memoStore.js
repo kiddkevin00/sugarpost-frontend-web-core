@@ -22,7 +22,7 @@ class MemoStore extends EventEmitter {
   }
 
   areAllComplete() {
-    for (let id in this[storeContext].todos) {
+    for (const id in this[storeContext].todos) {
       if (!this[storeContext].todos[id].isComplete) {
         return false;
       }
@@ -46,8 +46,9 @@ class MemoStore extends EventEmitter {
     const id = (+new Date() + Math.floor(Math.random() * 999999).toString(36));
 
     this[storeContext].todos[id] = {
-      id, text,
-      isComplete: false
+      id,
+      text,
+      isComplete: false,
     };
   }
 
@@ -56,8 +57,10 @@ class MemoStore extends EventEmitter {
   }
 
   _updateAll(updates) {
-    for (let id in this[storeContext].todos) {
-      this._update(id, updates);
+    for (const id in this[storeContext].todos) {
+      if (this[storeContext].todos.hasOwnProperty(id)) {
+        this._update(id, updates);
+      }
     }
   }
 
@@ -66,7 +69,7 @@ class MemoStore extends EventEmitter {
   }
 
   _destroyCompleted() {
-    for (let id in this[storeContext].todos) {
+    for (const id in this[storeContext].todos) {
       if (this[storeContext].todos[id].isComplete) {
         this._destroy(id);
       }
@@ -84,7 +87,7 @@ AppDispatcher.register((action) => {
   const actionType = action.actionType;
   const id = action.id || 0;
   const isComplete = action.isComplete || false;
-  const text = action.text && action.text.trim() || '';
+  const text = (action.text && action.text.trim()) || '';
 
   switch (actionType) {
     case memoConstants.TODO_CREATE:

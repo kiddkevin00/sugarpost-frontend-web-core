@@ -51,7 +51,7 @@ class MemoApp extends BaseComponent {
 function _getState() {
   return {
     allTodos: memoStore.getAll(),
-    areAllComplete: memoStore.areAllComplete()
+    areAllComplete: memoStore.areAllComplete(),
   };
 }
 

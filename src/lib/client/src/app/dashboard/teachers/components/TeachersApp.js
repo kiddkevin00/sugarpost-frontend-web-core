@@ -26,11 +26,11 @@ class TeachersApp extends BaseComponent {
             Get here at The English University, our teachers are patient, innovative, and
             passionate about the success of our students. They come from diverse backgrounds
             and are dedicated to reach your goals in a fun, engaging, and effective manner.
-            They're trained to properly assess your goals and create a customized lesson
+            They&apos;re trained to properly assess your goals and create a customized lesson
             plan that suits your needs. The lesson plan gives students a clear idea of what
             they will be learning, what the assignments are, and what the grading policy is.
             All assignments have learning goals and develop new skills for the student. Below
-            you can view our teachers' biographies and schedule an appointment with one today!
+            you can view our teachers&apos; biographies and schedule an appointment with one today!
           </h3>
         </div>
       </div>
