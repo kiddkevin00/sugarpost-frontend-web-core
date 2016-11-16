@@ -18,13 +18,13 @@ const numCPUs = os.cpus().length;
 
 if (cluster.isMaster) {
   // Forks the master worker.
-  for (let i = 0; i < numCPUs; i++) {
+  for (let i = 0; i < numCPUs; i += 1) {
     cluster.fork();
   }
 
   cluster.on('exit', (worker, code, signal) => {
     // [TODO] Replace with logger module.
-    console.log('Worker ' + worker.process.pid + ' died');
+    console.log(`Worker ${worker.process.pid} died`);
   });
 } else {
   // Forked Workers can share a new TCP connection.

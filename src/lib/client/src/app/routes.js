@@ -97,7 +97,7 @@ class App extends BaseComponent {
 const clientRoutes = (
   <Router history={ hashHistory }>
     <Route path="/" component={ App }>
-      <IndexRoute component={ HomeApp} />
+      <IndexRoute component={ HomeApp } />
       <Route path="home" component={ HomeApp } />
       <Route path="products" component={ ProductsApp } />
       <Route path="quote" component={ QuoteApp } />

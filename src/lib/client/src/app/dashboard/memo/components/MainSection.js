@@ -5,12 +5,6 @@ import React from 'react';
 
 class MainSection extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-
-    this._bind('_onToggleCompleteAll');
-  }
-
   render() {
     const allTodos = this.props.allTodos;
 
@@ -20,20 +14,21 @@ class MainSection extends BaseComponent {
 
     const todoList = [];
 
-    for (let id in allTodos) {
-      todoList.push(
-        <ListItem
-
-          todo={ allTodos[id] }
-        />
-      );
+    for (const id in allTodos) {
+      if (allTodos.hasOwnProperty(id)) {
+        todoList.push(
+          <ListItem
+            todo={ allTodos[id] }
+          />
+        );
+      }
     }
 
     return (
       <section>
         <input
           checked={ this.props.areAllComplete }
-          onChange={ this._onToggleCompleteAll }
+          onChange={ MainSection._onToggleCompleteAll }
           id="toggle-all"
           type="checkbox"
         />
@@ -44,14 +39,14 @@ class MainSection extends BaseComponent {
     );
   }
 
-  _onToggleCompleteAll() {
+  static _onToggleCompleteAll() {
     memoActionCreator.toggleCompleteAll();
   }
 
 }
 MainSection.propTypes = {
-  allTodos: React.PropTypes.object.isRequired,
-  areAllComplete: React.PropTypes.bool.isRequired
+  allTodos: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  areAllComplete: React.PropTypes.bool.isRequired,
 };
 
 export default MainSection;

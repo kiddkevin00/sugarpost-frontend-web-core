@@ -5,7 +5,7 @@ const memoActionCreator = {
   create(text) {
     AppDispatcher.dispatch({
       text,
-      actionType: memoConstants.TODO_CREATE
+      actionType: memoConstants.TODO_CREATE,
     });
   },
 
@@ -14,36 +14,38 @@ const memoActionCreator = {
     const isComplete = todo.isComplete;
 
     AppDispatcher.dispatch({
-      id, isComplete,
-      actionType: memoConstants.TODO_TOGGLE_COMPLETE
+      id,
+      isComplete,
+      actionType: memoConstants.TODO_TOGGLE_COMPLETE,
     });
   },
 
   toggleCompleteAll() {
     AppDispatcher.dispatch({
-      actionType: memoConstants.TODO_TOGGLE_COMPLETE_ALL
+      actionType: memoConstants.TODO_TOGGLE_COMPLETE_ALL,
     });
   },
 
   destroy(id) {
     AppDispatcher.dispatch({
       id,
-      actionType: memoConstants.TODO_DESTROY
+      actionType: memoConstants.TODO_DESTROY,
     });
   },
 
   updateText(id, text) {
     AppDispatcher.dispatch({
-      id, text,
-      actionType: memoConstants.TODO_UPDATE_TEXT
+      id,
+      text,
+      actionType: memoConstants.TODO_UPDATE_TEXT,
     });
   },
 
   destroyCompleted() {
     AppDispatcher.dispatch({
-      actionType: memoConstants.TODO_DESTROY_COMPLETED
+      actionType: memoConstants.TODO_DESTROY_COMPLETED,
     });
-  }
+  },
 };
 
 export default memoActionCreator;
