@@ -21,15 +21,17 @@ class QuoteApp extends BaseComponent {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-lg-offset-4 col-lg-4">
-          <h3>Get a Quote Box</h3>
-          <hr />
-          <h4>Length</h4>
-          <h4>Level</h4>
-          <h4>Name</h4>
-          <h4>Email</h4>
-          <h4>Phone</h4>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-offset-4 col-lg-4">
+            <h3>Get a Quote Box</h3>
+            <hr />
+            <h4>Length</h4>
+            <h4>Level</h4>
+            <h4>Name</h4>
+            <h4>Email</h4>
+            <h4>Phone</h4>
+          </div>
         </div>
       </div>
     );
