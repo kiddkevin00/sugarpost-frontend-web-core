@@ -5,7 +5,7 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 if (process.env.NODE_ENV !== 'production') {
-  require('babel-register');
+  require('babel-register'); // eslint-disable-line global-require
 }
 
 const setupExpressServer = require('./express-server');
@@ -20,7 +20,7 @@ const server = http.createServer(app);
 setupExpressServer(app);
 setupRoutes(app);
 
-const ip = process.env.IP  || packageJson.config.ip;
+const ip = process.env.IP || packageJson.config.ip;
 const port = process.env.PORT || packageJson.config.port;
 
 const webServer = server.listen(port, ip, () => {

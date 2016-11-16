@@ -15,11 +15,10 @@ export default AppDispatcher;
 //
 //var Dispatcher = function() {};
 //Dispatcher.prototype = Object.assign({}, Dispatcher.prototype, {
-//
 //  /**
 //   * Register a Store's callback so that it may be invoked by an action.
 //   *
-//   * @param  {Function} callback                                              - the callback to be registered
+//   * @param  {Function} callback - the callback to be registered
 //   * @return {number}   the index of the callback within the _callbacks array
 //   */
 //  register: function(callback) {

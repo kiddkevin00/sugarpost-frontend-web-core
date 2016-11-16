@@ -7,7 +7,7 @@ class SignupForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', '_onSubmit');
+    this._bind('_onSubmit');
     this.state = {
       firstName: '',
       lastName: '',
@@ -22,43 +22,47 @@ class SignupForm extends BaseComponent {
     return (
       <form onSubmit={ this._onSubmit }>
         <div className="form-group">
-          <label>First Name</label>
+          <label htmlFor="first-name">First Name</label>
           <FormInput
-            onChange={ this._onChange.bind(this, 'firstName') }
+            onChange={ this._onChange.bind(this, 'firstName') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.firstName }
             type="text"
             placeholder="First name"
             className="form-control"
+            id="first-name"
           />
         </div>
         <div className="form-group">
-          <label>Last Name</label>
+          <label htmlFor="last-name">Last Name</label>
           <FormInput
-            onChange={ this._onChange.bind(this, 'lastName') }
+            onChange={ this._onChange.bind(this, 'lastName') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.lastName }
             type="text"
             placeholder="Last name"
             className="form-control"
+            id="last-name"
           />
         </div>
         <div className="form-group">
-          <label>Email</label>
+          <label htmlFor="email">Email</label>
           <FormInput
-            onChange={ this._onChange.bind(this, 'email') }
+            onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.email }
             type="email"
             placeholder="Email address"
             className="form-control"
+            id="email"
           />
         </div>
         <div className="form-group">
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <FormInput
-            onChange={ this._onChange.bind(this, 'password') }
+            onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.password }
             type="password"
             placeholder=" New password"
             className="form-control"
+            id="password"
           />
         </div>
         <button
@@ -75,7 +79,7 @@ class SignupForm extends BaseComponent {
   _onChange(field, value, isValid) {
     this.setState({
       [field]: value,
-      [field + 'IsValid']: isValid,
+      [`${field}IsValid`]: isValid,
     });
   }
 

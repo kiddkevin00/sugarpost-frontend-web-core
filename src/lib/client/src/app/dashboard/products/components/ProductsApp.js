@@ -38,13 +38,13 @@ class ProductsApp extends BaseComponent {
           <div className="col-lg-12">
             <h4>Private Skype Lessons</h4>
             <p>
-              In this course you will learn English one-on-one with an instructor over Skype. It's
-              the most preferred method of learning for our students and is ideal for those seeking
-              the most interactive and communicative experience possible. Instructors ask students
-              about their experiences, goals, problems, and level of English, in order to provide
-              the most effective learning experience. Through a combination of teaching, exercises,
-              and online tools, students will receive a unique learning experience that will allow
-              them to achieve their goals at an accelerated rate.
+              In this course you will learn English one-on-one with an instructor over Skype.
+              It&apos;s the most preferred method of learning for our students and is ideal for
+              those seeking the most interactive and communicative experience possible. Instructors
+              ask students about their experiences, goals, problems, and level of English, in order
+              to provide the most effective learning experience. Through a combination of teaching,
+              exercises, and online tools, students will receive a unique learning experience that
+              will allow them to achieve their goals at an accelerated rate.
             </p>
           </div>
         </div>
@@ -93,14 +93,14 @@ class ProductsApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  }
+}
 
-    /*
-     * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
-     * the data in the Flux's store.
-     */
-  function _getState() {
-    return {};
-  }
+/*
+ * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
+ * the data in the Flux's store.
+ */
+function _getState() {
+  return {};
+}
 
-  export default ProductsApp;
+export default ProductsApp;

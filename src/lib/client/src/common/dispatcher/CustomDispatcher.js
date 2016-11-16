@@ -9,17 +9,17 @@ const CustomDispatcher = Object.assign({}, Dispatcher.prototype, {
    */
   handleViewAction(action) {
     this.dispatch({
+      action,
       source: 'VIEW_ACTION',
-      action: action
     });
   },
 
   handleServerAction(action) {
     this.dispatch({
+      action,
       source: 'SERVER_ACTION',
-      action: action
     });
-  }
+  },
 });
 
 export default CustomDispatcher;

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 jest.autoMockOff();
 
 var AppDispatcher = require('../../../../../../lib/client/src/common/dispatcher/AppDispatcher');

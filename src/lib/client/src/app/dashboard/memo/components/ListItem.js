@@ -3,6 +3,7 @@ import TextInput from './TextInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 import classNames from 'classnames';
+import uuid from 'node-uuid';
 
 class ListItem extends BaseComponent {
 
@@ -16,12 +17,14 @@ class ListItem extends BaseComponent {
   render() {
     let input = null;
     const todo = this.props.todo;
+    const inputId = uuid.v4();
 
     if (this.state.isEditing) {
       input = (
         <TextInput
           onSave={ this._onSave }
           value={ todo.text }
+          id={ inputId }
         />
       );
     }
@@ -40,7 +43,7 @@ class ListItem extends BaseComponent {
           type="checkbox"
         />
         &nbsp;&nbsp;
-        <label onDoubleClick={ this._onDoubleClick }>
+        <label onDoubleClick={ this._onDoubleClick } htmlFor={ inputId }>
           { todo.text }
         </label>
         &nbsp;&nbsp;
@@ -71,7 +74,7 @@ class ListItem extends BaseComponent {
 
 }
 ListItem.propTypes = {
-  todo: React.PropTypes.object.isRequired
+  todo: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default ListItem;

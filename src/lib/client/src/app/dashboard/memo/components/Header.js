@@ -5,16 +5,12 @@ import React from 'react';
 
 class Header extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <header>
         <h1>Memo</h1>
         <TextInput
-          onSave={ this._onSave }
+          onSave={ Header._onSave }
           value=""
           placeholder="What needs to be done?"
         />
@@ -22,7 +18,7 @@ class Header extends BaseComponent {
     );
   }
 
-  _onSave(text) {
+  static _onSave(text) {
     if (text.trim()) {
       memoActionCreator.create(text);
     }

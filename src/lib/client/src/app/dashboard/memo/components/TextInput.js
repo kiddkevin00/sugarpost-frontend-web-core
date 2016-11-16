@@ -51,7 +51,7 @@ TextInput.popTypes = {
   className: React.PropTypes.string,
   id: React.PropTypes.string,
   placeholder: React.PropTypes.string,
-  value: React.PropTypes.string
+  value: React.PropTypes.string,
 };
 
 export default TextInput;

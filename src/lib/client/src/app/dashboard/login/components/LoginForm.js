@@ -20,23 +20,25 @@ class LoginForm extends BaseComponent {
     return (
       <form onSubmit={ this._onSubmit }>
         <div className="form-group">
-          <label>Email</label>
+          <label htmlFor="email">Email</label>
           <FormInput
             onChange={ this._onChange.bind(this, 'email') }
             value={ this.state.email }
             type="email"
             placeholder="Email"
             className="form-control"
+            id="email"
           />
         </div>
         <div className="form-group">
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <FormInput
             onChange={ this._onChange.bind(this, 'password') }
             value={ this.state.password }
             type="password"
             placeholder="Password"
             className="form-control"
+            id="password"
           />
         </div>
         <button
@@ -53,7 +55,7 @@ class LoginForm extends BaseComponent {
   _onChange(field, value, isValid) {
     this.setState({
       [field]: value,
-      [field + 'IsValid']: isValid,
+      [`${field}IsValid`]: isValid,
     });
   }
 
@@ -63,7 +65,7 @@ class LoginForm extends BaseComponent {
 
 }
 LoginForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired
+  onSubmit: React.PropTypes.func.isRequired,
 };
 
 export default LoginForm;

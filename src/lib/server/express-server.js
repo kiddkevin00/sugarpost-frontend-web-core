@@ -50,7 +50,7 @@ function setupExpressServer(app) {
       etag: true,
       maxAge: 86400000, // [TBD] 86400000 (unit: ms) - one day.
     }));
-    
+
     const accessLogStream = fs.createWriteStream(path.resolve(__dirname, '../../../morgan.log'),
       { flags: 'a' });
 

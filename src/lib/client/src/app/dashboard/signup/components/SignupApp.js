@@ -41,7 +41,7 @@ class SignupApp extends BaseComponent {
                 <h4><span className="label label-primary">The English University</span></h4>
               </div>
               <div className="panel-body">
-                <SignupForm onSubmit={ this._onSubmit } />
+                <SignupForm onSubmit={ SignupApp._onSubmit } />
                 <div className="panel-footer text-center">
                   <p className="text-muted">
                     <a href="mailto:inquiries@TheEnglishUniversity.com">Development Support</a>
@@ -60,11 +60,11 @@ class SignupApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  _onSubmit(event, email, password) {
+  static _onSubmit(event, email, password) {
     // Prevents browser's default navigation (page refresh).
     event.preventDefault();
 
-    loginActionCreator.login(email, password);
+    // loginActionCreator.login(email, password);
   }
 
 }

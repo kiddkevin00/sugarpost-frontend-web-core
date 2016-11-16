@@ -32,7 +32,7 @@ FormInput.propTypes = {
   value: React.PropTypes.string.isRequired,
   type: React.PropTypes.string.isRequired,
   placeholder: React.PropTypes.string.isRequired,
-  className: React.PropTypes.string.isRequired
+  className: React.PropTypes.string.isRequired,
 };
 
 export default FormInput;
