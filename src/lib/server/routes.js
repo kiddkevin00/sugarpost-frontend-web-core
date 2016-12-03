@@ -6,8 +6,32 @@ const path = require('path');
 
 function setupRoutes(app) {
   // [TODO]
-  app.get('/ping', (req, res) => { res.send('OK'); });
-  app.get('/health', (req, res) => {});
+  app.get('/ping', (req, res) => res.json({
+    'uptime(s)': 456,
+    hostname: 'host 2',
+  }));
+  app.get('/health', (req, res) => res.json({
+    version: 0,
+    self: {
+      name: 'bulletin-board-system-frontend',
+      version: 1,
+      status: 200,
+      dateStamp: new Date().toString(),
+      hostname: 'host 2',
+    },
+    dependencies: {
+      http: [
+        {
+          name: 'bulletin-board-system-backend',
+          version: 1,
+          status: 200,
+          dateStamp: new Date().toString(),
+          hostname: 'host 1',
+          uptime: 123,
+        },
+      ],
+    },
+  }));
 
   //app.use('/auth', require('./auth'));
 
@@ -55,9 +79,9 @@ function setupRoutes(app) {
       const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
       if (env === 'production') {
-        res.sendFile(path.resolve(__dirname, '../../../dist', 'index2.html'));
+        res.sendFile(path.resolve(__dirname, '../../../dist/', 'index2.html'));
       } else {
-        res.sendFile(path.resolve(__dirname, '../client/static', 'index2.html'));
+        res.sendFile(path.resolve(__dirname, '../client/static/', 'index2.html'));
       }
 
     });

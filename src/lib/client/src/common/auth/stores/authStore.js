@@ -1,5 +1,5 @@
-import AppDispatcher from '../dispatcher/AppDispatcher';
-import loginConstants from '../../app/dashboard/login/constants/loginConstants';
+import AppDispatcher from '../../dispatcher/AppDispatcher';
+import authConstants from '../constants/authConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
@@ -14,6 +14,7 @@ class AuthStore extends EventEmitter {
     // All internal store data.
     this[storeContext] = {
       isLoggedIn: false,
+      currentSignupUser: [],
     };
   }
 
@@ -33,10 +34,34 @@ class AuthStore extends EventEmitter {
     this.removeListener(changeEvent, callback);
   }
 
+  _signup(email, password, firstName, lastName) {
+    this[storeContext].currentSignupUser.push({
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+    this[storeContext].isLoggedIn = true;
+  }
+
   _login(email, password) {
-    if (email === 'admin@teu.com' && password === 'admin') {
+    if (email === 'admin@admin' && password === 'admin') {
       this[storeContext].isLoggedIn = true;
+      return;
     }
+
+    const currentSignupUser = this[storeContext].currentSignupUser;
+
+    for (const signupUser of currentSignupUser) {
+      if (signupUser.email === email && signupUser.password === password) {
+        this[storeContext].isLoggedIn = true;
+        return;
+      }
+    }
+  }
+
+  _logout() {
+    this[storeContext].isLoggedIn = false;
   }
 
 }
@@ -50,10 +75,22 @@ AppDispatcher.register((action) => {
   const actionType = action.actionType;
   const email = action.email;
   const password = action.password;
+  const firstName = action.firstName;
+  const lastName = action.lastName;
 
   switch (actionType) {
-    case loginConstants.BASIC_LOGIN:
+    case authConstants.BASIC_LOGIN:
       authStore._login(email, password);
+
+      authStore.emitChange();
+      break;
+    case authConstants.BASIC_SIGNUP:
+      authStore._signup(firstName, lastName, email, password);
+
+      authStore.emitChange();
+      break;
+    case authConstants.LOGOUT:
+      authStore._logout();
 
       authStore.emitChange();
       break;

@@ -1,8 +1,8 @@
 import { Dispatcher } from 'flux';
 
-const AppDispatcher = new Dispatcher();
+const appDispatcher = new Dispatcher();
 
-export default AppDispatcher;
+export default appDispatcher;
 
 /*
  * Source code for `require('flux').Dispatcher` is the following:

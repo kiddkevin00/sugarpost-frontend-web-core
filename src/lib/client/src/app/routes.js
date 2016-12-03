@@ -1,4 +1,5 @@
-import authStore from '../common/stores/authStore';
+import authStore from '../common/auth/stores/authStore';
+import authActionCreator from '../common/auth/actions/authActionCreator';
 import HomeApp from './dashboard/home/components/HomeApp';
 import ProductsApp from './dashboard/products/components/ProductsApp';
 import QuoteApp from './dashboard/quote/components/QuoteApp';
@@ -33,24 +34,25 @@ class App extends BaseComponent {
     const tabsShownWhenUserLoggedIn = [];
 
     if (this.state.isLoggedIn) {
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
       tabsShownWhenUserLoggedIn.push(
-        <Nav key="0" className="navbar-right">
-          <LinkContainer to="/logout">
-            <NavItem>Log out</NavItem>
-          </LinkContainer>
-        </Nav>
+        <NavItem key="0">
+          <div onClick={ App._onLogout }>
+            Log out
+          </div>
+        </NavItem>
       );
+      /* eslint-enable */
     } else {
-      tabsShownWhenUserLoggedIn.push(
+      tabsShownWhenUserLoggedIn.push((
         <LinkContainer key="1" to="/signup">
           <NavItem>Sign Up</NavItem>
         </LinkContainer>
-      );
-      tabsShownWhenUserLoggedIn.push(
+      ), (
         <LinkContainer key="2" to="/login">
           <NavItem>Log In</NavItem>
         </LinkContainer>
-      );
+      ));
     }
 
     return (
@@ -90,6 +92,10 @@ class App extends BaseComponent {
 
   _onChange() {
     this.setState(_getState());
+  }
+
+  static _onLogout() {
+    authActionCreator.logout();
   }
 
 }

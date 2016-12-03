@@ -13,6 +13,8 @@ class SignupForm extends BaseComponent {
       lastName: '',
       email: '',
       password: '',
+      firstNameIsValid: false,
+      lastNameIsValid: false,
       emailIsValid: false,
       passwordIsValid: false,
     };
@@ -66,7 +68,9 @@ class SignupForm extends BaseComponent {
           />
         </div>
         <button
-          disabled={ this.state.emailIsValid && this.state.passwordIsValid ? '' : 'disabled' }
+          disabled={ (this.state.emailIsValid && this.state.passwordIsValid
+            && this.state.firstNameIsValid && this.state.lastNameIsValid) ?
+            '' : 'disabled' }
           className="btn btn-success btn-sm btn-block"
           type="submit"
         >
@@ -84,7 +88,8 @@ class SignupForm extends BaseComponent {
   }
 
   _onSubmit(event) {
-    this.props.onSubmit(event, this.state.email, this.state.password);
+    this.props.onSubmit(event, this.state.email, this.state.password, this.state.firstName,
+      this.state.lastName);
   }
 
 }

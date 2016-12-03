@@ -1,6 +1,6 @@
-import Dispatcher from './AppDispatcher';
+import appDispatcher from './AppDispatcher';
 
-const CustomDispatcher = Object.assign({}, Dispatcher.prototype, {
+const customDispatcher = Object.assign({}, appDispatcher.prototype, {
   /**
    * A bridge function between the views and the dispatcher, marking the action
    * as a view action.  Another variant here could be `handleServerAction` method.
@@ -22,4 +22,4 @@ const CustomDispatcher = Object.assign({}, Dispatcher.prototype, {
   },
 });
 
-export default CustomDispatcher;
+export default customDispatcher;
