@@ -48,7 +48,7 @@ class Footer extends BaseComponent {
 
 }
 Footer.propTypes = {
-  allTodos: React.PropTypes.object.isRequired, /* eslint-disable-line react/forbid-prop-types */
+  allTodos: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default Footer;

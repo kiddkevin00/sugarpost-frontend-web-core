@@ -74,7 +74,7 @@ class ListItem extends BaseComponent {
 
 }
 ListItem.propTypes = {
-  todo: React.PropTypes.object.isRequired, /* eslint-disable-line react/forbid-prop-types */
+  todo: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default ListItem;

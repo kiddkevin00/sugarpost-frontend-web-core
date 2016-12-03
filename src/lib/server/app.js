@@ -5,7 +5,7 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 if (process.env.NODE_ENV !== 'production') {
-  require('babel-register'); /* eslint-disable-line global-require */
+  require('babel-register'); // eslint-disable-line global-require
 }
 
 const setupExpressServer = require('./express-server');
