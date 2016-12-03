@@ -123,7 +123,7 @@ module.exports = function (grunt) {
     },
     // Empties folders to start fresh.
     clean: {
-      dev: ['src/lib/client/static/app/index-<%= pkg.version %>.js'],
+      dev: ['src/lib/client/static/app/index-<%= pkg.version %>.js'], // [TODO]
       test: ['spec/'],
       prod: ['src/lib/client/static/app/index-<%= pkg.version %>.js', 'dist/css/', 'dist/js/', 'dist/lib/', 'dist/assets']
     },

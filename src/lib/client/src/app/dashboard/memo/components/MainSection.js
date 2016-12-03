@@ -45,7 +45,7 @@ class MainSection extends BaseComponent {
 
 }
 MainSection.propTypes = {
-  allTodos: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  allTodos: React.PropTypes.object.isRequired, /* eslint-disable-line react/forbid-prop-types */
   areAllComplete: React.PropTypes.bool.isRequired,
 };
 

@@ -39,19 +39,19 @@ function setupExpressServer(app) {
   app.use(favicon(path.resolve(__dirname, '../client/static/', 'favicon.ico')));
 
   // For 404 error and server-side rendering pages only.
-  app.set('views', path.resolve(__dirname, './views'));
+  app.set('views', path.resolve(__dirname, 'views/'));
   app.set('view engine', 'jade');
 
   const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
   if (env === 'production') {
     // Here are all the minified version of all JS and CSS files.
-    app.use(express.static(path.resolve(__dirname, '../../../dist/'), {
+    app.use(express.static(path.resolve(__dirname, '../../../', 'dist/'), {
       etag: true,
       maxAge: 86400000, // [TBD] 86400000 (unit: ms) - one day.
     }));
 
-    const accessLogStream = fs.createWriteStream(path.resolve(__dirname, '../../../morgan.log'),
+    const accessLogStream = fs.createWriteStream(path.resolve(__dirname, '../../../', 'morgan.log'),
       { flags: 'a' });
 
     app.use(morgan('combined', { stream: accessLogStream }));
@@ -70,7 +70,7 @@ function setupExpressServer(app) {
      */
 
     // Here are all the original version of JS and CSS files.
-    app.use(express.static(path.resolve(__dirname, '../client/static/'), {
+    app.use(express.static(path.resolve(__dirname, '../client/', 'static/'), {
       etag: true,
       maxAge: 0,
     }));

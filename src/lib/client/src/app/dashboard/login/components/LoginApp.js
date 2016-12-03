@@ -1,5 +1,5 @@
-import authStore from '../../../../common/stores/authStore';
-import loginActionCreator from '../actions/loginActionCreator';
+import authStore from '../../../../common/auth/stores/authStore';
+import authActionCreator from '../../../../common/auth/actions/authActionCreator';
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
@@ -65,7 +65,7 @@ class LoginApp extends BaseComponent {
     // Prevents browser's default navigation (page refresh).
     event.preventDefault();
 
-    loginActionCreator.login(email, password);
+    authActionCreator.login(email, password);
   }
 
 }

@@ -3,7 +3,7 @@
     "development": {
       "presets": ["react", "es2015"],
       "plugins": ["add-module-exports"],
-      "sourceMap": true,
+      "sourceMap": true
     },
     "production": {
       "presets": ["react", "es2015"],
