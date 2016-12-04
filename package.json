@@ -1,6 +1,6 @@
 {
   "name": "bulletin-board-system-frontend",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A generic frontend for Single-Page Web Application with a static server.",
   "main": "./src/lib/server/app.js",
   "config": {
@@ -99,6 +99,7 @@
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0",
     "react-router-bootstrap": "^0.23.1",
+    "request": "^2.79.0",
     "serve-favicon": "^2.3.0",
     "time-grunt": "^1.4.0"
   },

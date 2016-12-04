@@ -38,8 +38,11 @@ AppDispatcher.register((action) => {
   const actionType = action.actionType;
 
   switch (actionType) {
-    case homeConstants.SUBSCRIBE:
-      window.alert('Thank you! We will keep in touch!');
+    case homeConstants.SUBSCRIBE_SUCCESS:
+      window.alert('Thank you!  We will keep you posted!');
+      break;
+    case homeConstants.SUBSCRIBE_FAIL:
+      window.alert('The Email address you entered is already in our subscription system!');
       break;
     default:
       break;
