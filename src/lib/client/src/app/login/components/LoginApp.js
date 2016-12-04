@@ -39,15 +39,15 @@ class LoginApp extends BaseComponent {
           <div className="col-lg-offset-4 col-lg-4">
             <div className="panel panel-default">
               <div className="panel-heading text-center">
-                <h4><span className="label label-primary">The English University</span></h4>
+                <h4><span className="label label-primary">My Supgarpost</span></h4>
               </div>
               <div className="panel-body">
                 <LoginForm onSubmit={ LoginApp._onSubmit } />
                 <div className="panel-footer text-center">
                   <p className="text-muted">
-                    <a href="mailto:inquiries@TheEnglishUniversity.com">Development Support</a>
+                    <a href="mailto:inquiries@mysugarpost.com">Development Support</a>
                   </p>
-                  <p>v0.0.0</p>
+                  <p>v1.3.0</p>
                 </div>
               </div>
             </div>
