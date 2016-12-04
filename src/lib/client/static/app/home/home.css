@@ -1,0 +1,14 @@
+.row .jumbotron-custom {
+    background: url("/assets/images/jumbotron-background.jpg") no-repeat;
+    background-size: 100% 100%;
+    margin-top: 4%;
+    padding-top: 16%;
+    border-radius: 0;
+}
+
+.brand-custom {
+    background: url("/assets/images/logo.jpg") no-repeat;
+    background-size: 100% 100%;
+    padding-top: 13%;
+    margin-top: -2%;
+}

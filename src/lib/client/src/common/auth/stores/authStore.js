@@ -70,7 +70,7 @@ const authStore = new AuthStore();
 
 // The dispatcher registration for the current store component.
 AppDispatcher.register((action) => {
-  console.log(`Action in \`loginStore\`: ${JSON.stringify(action, null, 2)}`);
+  console.log(`Action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
 
   const actionType = action.actionType;
   const email = action.email;

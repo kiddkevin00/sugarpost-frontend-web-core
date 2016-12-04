@@ -1,7 +1,7 @@
 {
   "name": "bulletin-board-system-frontend",
   "version": "1.2.0",
-  "description": "This is the frontend stack of a generic BBS.",
+  "description": "A generic frontend for Single-Page Web Application with a static server.",
   "main": "./src/lib/server/app.js",
   "config": {
     "ip": "0.0.0.0",
@@ -22,11 +22,15 @@
     "-------------- INTERNAL -------------": "",
     "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' --ext .js,.jsx src/lib/client/src/ src/lib/server/ src/spec/",
     "-------------- LOCAL DEV ------------": "",
+    "local-unit-test": "",
+    "local-integration-test": "",
+    "coverage:report": "",
+    "coverage:html-report": "",
     "dev:start": "grunt dev",
+    "dev:prod-preview": "grunt prod:preview",
     "dev:lint": "grunt lint --force",
     "dev:test": "grunt test --force",
-    "dev:prod-preview": "grunt prod:preview",
-    "debug": "node --debug src/lib/server/app.js"
+    "debug": "node --debug --debug-brk src/lib/server/app.js"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",

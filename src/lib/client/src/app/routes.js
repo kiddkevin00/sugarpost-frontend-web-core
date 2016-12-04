@@ -1,19 +1,16 @@
 import authStore from '../common/auth/stores/authStore';
 import authActionCreator from '../common/auth/actions/authActionCreator';
-import HomeApp from './dashboard/home/components/HomeApp';
-import ProductsApp from './dashboard/products/components/ProductsApp';
-import QuoteApp from './dashboard/quote/components/QuoteApp';
-import TeachersApp from './dashboard/teachers/components/TeachersApp';
-import LoginApp from './dashboard/login/components/LoginApp';
-import SignupApp from './dashboard/signup/components/SignupApp';
-import MemoApp from './dashboard/memo/components/MemoApp';
+import HomeApp from './home/components/HomeApp';
+import LoginApp from './login/components/LoginApp';
+import SignupApp from './signup/components/SignupApp';
+import MemoApp from './memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-class App extends BaseComponent {
+class RootApp extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -37,7 +34,7 @@ class App extends BaseComponent {
       /* eslint-disable jsx-a11y/no-static-element-interactions */
       tabsShownWhenUserLoggedIn.push(
         <NavItem key="0">
-          <div onClick={ App._onLogout }>
+          <div onClick={ RootApp._onLogout }>
             Log out
           </div>
         </NavItem>
@@ -57,29 +54,17 @@ class App extends BaseComponent {
 
     return (
       <div>
-        <Navbar className="navbar-static-top navbar-custom">
+        <Navbar className="navbar-fixed-top navbar-custom">
           <Navbar.Header>
             <Navbar.Brand>
-              <img className="main-icon" src="/assets/images/logo.jpeg" alt="Icon" />
+              <img className="main-icon" src="/assets/images/logo-tmp.jpg" alt="Icon" />
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav className="navbar-right pointer-cursor">
+            <Nav className="navbar-right">
               <LinkContainer to="/home">
                 <NavItem>Home</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/products">
-                <NavItem>Products</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/quote">
-                <NavItem>Get a Quote</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/teachers">
-                <NavItem>Our Teachers</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/memo">
-                <NavItem>Memo</NavItem>
               </LinkContainer>
               { tabsShownWhenUserLoggedIn }
             </Nav>
@@ -102,12 +87,9 @@ class App extends BaseComponent {
 
 const clientRoutes = (
   <Router history={ hashHistory }>
-    <Route path="/" component={ App }>
+    <Route path="/" component={ RootApp }>
       <IndexRoute component={ HomeApp } />
       <Route path="home" component={ HomeApp } />
-      <Route path="products" component={ ProductsApp } />
-      <Route path="quote" component={ QuoteApp } />
-      <Route path="teachers" component={ TeachersApp } />
       <Route path="memo" component={ MemoApp } />
       <Route path="signup" component={ SignupApp } />
       <Route path="login" component={ LoginApp } />
