@@ -34,6 +34,11 @@ exports.HTTP_METHODS = {
   DELETE: 'DELTE',
 };
 
+exports.URL_BASES = {
+  LOCAL_BACKEND_API: 'http://localhost:8087',
+  PROD_BACKEND_API: 'https://mysugarpost.herokuapp.com',
+};
+
 exports.COMMON = {
   CURRENT_SOURCE: sources.BULLETIN_BOARD_SYSTEM,
 };
