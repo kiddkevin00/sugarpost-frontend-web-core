@@ -1,7 +1,8 @@
 import keyMirror from 'keymirror';
 
 const homeConstants = keyMirror({
-  SUBSCRIBE: null,
+  SUBSCRIBE_SUCCESS: null,
+  SUBSCRIBE_FAIL: null,
 });
 
 export default homeConstants;
