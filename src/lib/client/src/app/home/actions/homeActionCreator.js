@@ -1,7 +1,7 @@
 import Proxy from '../../../common/proxies/proxy';
 import dispatcher from '../../../common/dispatcher/AppDispatcher';
 import homeConstants from '../constants/homeConstants';
-import constants from '../../../common/constants/'
+import constants from '../../../common/constants/';
 
 const homeActionCreator = {
   subscribe(email) {
