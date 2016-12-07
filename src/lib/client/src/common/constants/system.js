@@ -35,8 +35,8 @@ exports.HTTP_METHODS = {
 };
 
 exports.URL_BASES = {
-  LOCAL_BACKEND_API: 'http://localhost:8087',
-  PROD_BACKEND_API: 'https://mysugarpost.herokuapp.com',
+  LOCAL_BACKEND_API: 'http://127.0.0.1:8087',
+  PROD_BACKEND_API: 'https://bulletin-board-system.herokuapp.com',
 };
 
 exports.COMMON = {

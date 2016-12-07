@@ -45,7 +45,7 @@ class SignupApp extends BaseComponent {
                 <SignupForm onSubmit={ SignupApp._onSubmit } />
                 <div className="panel-footer text-center">
                   <p className="text-muted">
-                    <a href="mailto:inquiries@mysugarpost.com">Development Support</a>
+                    <a href="mailto:info@mysugarpost.com">Development Support</a>
                   </p>
                   <p>v1.4.0</p>
                 </div>
