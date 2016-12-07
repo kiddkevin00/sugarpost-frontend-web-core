@@ -66,7 +66,8 @@ function setupExpressServer(app) {
      * app.use(require('connect-livereload')());
      * ```
      *
-     * For more information: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
+     * For more information:
+     * - https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
      */
 
     // Here are all the original version of JS and CSS files.

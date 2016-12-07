@@ -11,6 +11,7 @@
   },
   "extends": "airbnb",
   "rules": {
+    "max-len": [2, {"code": 100, "ignoreStrings": true }],
     "keyword-spacing": [2, {
       "overrides": {
         "throw": { "after": false, "before": true }
@@ -30,6 +31,6 @@
     "react/jsx-boolean-value": [2, "always"],
     "react/jsx-no-bind": [1],
     "import/imports-first": 0,
-    "import/no-extraneous-dependencies": [2, {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}]
+    "import/no-extraneous-dependencies": [2, { "devDependencies": true, "optionalDependencies": false, "peerDependencies": false }]
   }
 }
