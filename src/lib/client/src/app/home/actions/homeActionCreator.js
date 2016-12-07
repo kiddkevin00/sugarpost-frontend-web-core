@@ -7,12 +7,22 @@ const homeActionCreator = {
     const body = { email };
 
     Proxy.post('/api/auth/subscribe', body)
-      .then(() => {
-        dispatcher.dispatch({
-          actionType: homeConstants.SUBSCRIBE_SUCCESS,
-        });
+      .then((response) => {
+        const payload = response.body;
+
+        if (payload.isSubscribed) {
+          dispatcher.dispatch({
+            actionType: homeConstants.IS_SUBSCRIBED,
+          });
+        } else {
+          dispatcher.dispatch({
+            actionType: homeConstants.SUBSCRIBE_SUCCESS,
+          });
+        }
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
+
         dispatcher.dispatch({
           actionType: homeConstants.SUBSCRIBE_FAIL,
         });

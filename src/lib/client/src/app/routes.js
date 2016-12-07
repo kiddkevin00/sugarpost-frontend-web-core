@@ -54,6 +54,7 @@ class RootApp extends BaseComponent {
 
     return (
       <div>
+        {/*
         <Navbar className="navbar-fixed-top navbar-custom">
           <Navbar.Header>
             <Navbar.Brand>
@@ -70,6 +71,7 @@ class RootApp extends BaseComponent {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        */}
         { this.props.children }
       </div>
     );
