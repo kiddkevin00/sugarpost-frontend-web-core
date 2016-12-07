@@ -42,7 +42,7 @@ class LoginForm extends BaseComponent {
           />
         </div>
         <button
-          disabled={ !this.state.emailIsValid || this.state.passwordIsValid }
+          disabled={ !this.state.emailIsValid || !this.state.passwordIsValid }
           className="btn btn-success btn-sm btn-block"
           type="submit"
         >

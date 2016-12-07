@@ -41,7 +41,7 @@ class Proxy {
   static get(url, queryString, headers) {
     const options = {
       method: constants.SYSTEM.HTTP_METHODS.GET,
-      url,
+      url: Proxy._getFullUrl(url),
       headers,
       qs: queryString,
       json: true,
@@ -53,7 +53,7 @@ class Proxy {
   static post(url, body, headers) {
     const options = {
       method: constants.SYSTEM.HTTP_METHODS.POST,
-      url,
+      url: Proxy._getFullUrl(url),
       headers,
       body,
       json: true,
@@ -65,7 +65,7 @@ class Proxy {
   static put(url, body, headers) {
     const options = {
       method: constants.SYSTEM.HTTP_METHODS.PUT,
-      url,
+      url: Proxy._getFullUrl(url),
       body,
       headers,
       json: true,
@@ -77,7 +77,7 @@ class Proxy {
   static delete(url, queryString, headers) {
     const options = {
       method: constants.SYSTEM.HTTP_METHODS.DELETE,
-      url,
+      url: Proxy._getFullUrl(url),
       headers,
       qs: queryString,
       json: true,
@@ -86,6 +86,22 @@ class Proxy {
     return HttpRequest.exec(options);
   }
 
+  static _getFullUrl(url) {
+    let fullUrl;
+
+    if (url[0] === '/') {
+      const urlBase = (window.location.hostname === 'localhost') ||
+        (window.location.hostname === '127.0.0.1') ||
+        (window.location.hostname === '0.0.0.0') ?
+        constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API : constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
+
+      fullUrl = urlBase + url;
+    } else {
+      fullUrl = url;
+    }
+
+    return fullUrl;
+  }
 }
 
 module.exports = Proxy;
