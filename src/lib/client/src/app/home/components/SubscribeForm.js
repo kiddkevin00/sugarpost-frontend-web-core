@@ -29,7 +29,7 @@ class SubscribeForm extends BaseComponent {
           <span className="input-group-btn">
             <button
               disabled={ !this.state.emailIsValid }
-              className="btn btn-success btn-md"
+              className="btn btn-warning btn-md"
               type="submit"
             >
               Subscribe

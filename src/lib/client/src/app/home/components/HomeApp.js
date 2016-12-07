@@ -28,11 +28,12 @@ class HomeApp extends BaseComponent {
           <div className="jumbotron jumbotron-custom" />
         </div>
         <div className="row">
-          <div className="col-lg-offset-1 col-lg-3 brand-custom" />
-          <div className="col-lg-2 text-right">
+          <div className="col-lg-12 text-center">
             <h3>ABOUT US:</h3>
           </div>
-          <div className="col-lg-5 text-left">
+        </div>
+        <div className="row">
+          <div className="col-lg-offset-4 col-lg-4 text-center">
             <h4>
               Founded in Winter 2016, Sugarpost is currently a New York based online monthly
               subscription service that sends its users a package of dessert deals including
@@ -42,7 +43,7 @@ class HomeApp extends BaseComponent {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-offset-4 col-lg-5">
+          <div className="col-lg-offset-4 col-lg-4">
             <SubscribeForm onSubmit={ HomeApp._onSubmit } />
           </div>
         </div>
