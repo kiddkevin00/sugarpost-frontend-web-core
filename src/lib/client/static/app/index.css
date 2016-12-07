@@ -1,3 +1,12 @@
+@font-face {
+    font-family: Futura;
+    src: url("/assets/fonts/josefinsans-light-italic.ttf");
+}
+
+body * {
+    font-family: Futura
+}
+
 .pointer-cursor {
     cursor: pointer;
 }

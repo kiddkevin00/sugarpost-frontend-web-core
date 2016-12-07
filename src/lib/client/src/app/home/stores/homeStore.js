@@ -41,8 +41,11 @@ AppDispatcher.register((action) => {
     case homeConstants.SUBSCRIBE_SUCCESS:
       window.alert('Thank you!  We will keep you posted!');
       break;
-    case homeConstants.SUBSCRIBE_FAIL:
+    case homeConstants.IS_SUBSCRIBED:
       window.alert('The Email address you entered is already in our subscription system!');
+      break;
+    case homeConstants.SUBSCRIBE_FAIL:
+      window.alert('Oops! Something went wrong!  Try again later please!');
       break;
     default:
       break;
