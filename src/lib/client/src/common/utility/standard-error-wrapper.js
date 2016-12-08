@@ -5,8 +5,8 @@
  *    errors: [
  *      {
  *        code: 404,
- *        source: 'current-app',
  *        name: 'SOMETHING_NOT_FOUND', // optional
+ *        source: 'current-app',
  *        message: 'Something is not found.', // optional
  *        detail: `err` // optional
  *      }
@@ -39,7 +39,7 @@ class StandardErrorWrapper {
   append(newError) {
     let errElement;
 
-    if (newError.toString !== '[object Object]') {
+    if (newError.toString() !== '[object Object]') {
       errElement = { message: newError.toString(), detail: newError };
     } else {
       // If new error is an object, it should follow standard error format.
@@ -49,11 +49,20 @@ class StandardErrorWrapper {
     this.errorStack.unshift(errElement);
   }
 
+  getNthError(number) {
+    return this.errorStack[number];
+  }
+
   format(context) {
     return {
       context,
       errors: this.errorStack,
     };
+  }
+
+  // [TODO] Verify if `obj` follows standard error format.
+  static verifyFormat(obj) {
+
   }
 
 }

@@ -1,7 +1,11 @@
 .row .jumbotron-custom {
-    background: url("/assets/images/jumbotron-background.png") no-repeat;
-    background-size: 100% 100%;
+    display: block;
     margin-top: 0;
-    padding-top: 18%;
-    border-radius: 0;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.headline-custom {
+    font-family: nexa-bold;
 }
