@@ -24,6 +24,10 @@ body * {
     font-family: nexa-light
 }
 
+.bold-font-custom {
+    font-family: nexa-bold;
+}
+
 .icon-custom {
     width: 150px;
 }

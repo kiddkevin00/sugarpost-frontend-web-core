@@ -86,17 +86,17 @@ class RootApp extends BaseComponent {
           <Navbar.Collapse>
             <Nav className="navbar-right">
               <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }>
+                <div onClick={ RootApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') } className="bold-font-custom">
                   Facebook
                 </div>
               </NavItem>
               <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }>
+                <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') } className="bold-font-custom">
                   Instagram
                 </div>
               </NavItem>
               <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }>
+                <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') } className="bold-font-custom">
                   Twitter
                 </div>
               </NavItem>

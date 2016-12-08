@@ -29,7 +29,7 @@ class HomeApp extends BaseComponent {
         </div>
         <div className="row">
           <div className="col-lg-12 text-center">
-            <h3 className="headline-custom">ABOUT US:</h3>
+            <h3 className="bold-font-custom">ABOUT US:</h3>
           </div>
         </div>
         <div className="row">
