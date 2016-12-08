@@ -25,7 +25,7 @@ class HomeApp extends BaseComponent {
     return (
       <div className="container-fluid">
         <div className="row">
-          <img className="jumbotron-custom" src="/assets/images/jumbotron.png" />
+          <img src="/assets/images/jumbotron.png" className="jumbotron-custom" alt="jumbotron" />
         </div>
         <div className="row">
           <div className="col-lg-12 text-center">
