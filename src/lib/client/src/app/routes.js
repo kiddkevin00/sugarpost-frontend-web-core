@@ -58,7 +58,7 @@ class RootApp extends BaseComponent {
         <Navbar className="navbar-fixed-top navbar-custom">
           <Navbar.Header>
             <Navbar.Brand>
-              <img className="main-icon" src="/assets/images/logo-tmp.jpg" alt="Icon" />
+              <img className="icon-custom" src="/assets/images/logo-tmp.jpg" alt="Icon" />
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -72,7 +72,37 @@ class RootApp extends BaseComponent {
           </Navbar.Collapse>
         </Navbar>
         */}
+
         { this.props.children }
+
+        <div className="footer-hack"></div>
+        <Navbar className="navbar footer-custom">
+          <Navbar.Header>
+            <Navbar.Brand>
+              <img className="icon-custom" src="/assets/images/logo-tmp.jpg" alt="Icon" />
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav className="navbar-right">
+              <NavItem>
+                <div onClick={ RootApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') } className="bold-font-custom">
+                  Facebook
+                </div>
+              </NavItem>
+              <NavItem>
+                <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') } className="bold-font-custom">
+                  Instagram
+                </div>
+              </NavItem>
+              <NavItem>
+                <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') } className="bold-font-custom">
+                  Twitter
+                </div>
+              </NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       </div>
     );
   }
@@ -83,6 +113,12 @@ class RootApp extends BaseComponent {
 
   static _onLogout() {
     authActionCreator.logout();
+  }
+
+  static _onLink(url) {
+    const win = window.open(url, '_blank');
+
+    win.focus();
   }
 
 }
