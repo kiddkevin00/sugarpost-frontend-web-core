@@ -1,21 +1,48 @@
 @font-face {
-    font-family: Futura;
-    src: url("/assets/fonts/josefinsans-light-italic.ttf");
+    font-family: nexa-light;
+    src: url("/assets/fonts/nexa-light.otf");
+}
+
+@font-face {
+    font-family: nexa-bold;
+    src: url("/assets/fonts/nexa-bold.otf");
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#react-main-container {
+    position: relative;
+    min-height: 100%;
 }
 
 body * {
-    font-family: Futura
+    font-family: nexa-light
 }
 
-.pointer-cursor {
-    cursor: pointer;
-}
-
-.main-icon {
+.icon-custom {
     width: 150px;
 }
 
 .navbar-custom {
     background-color: #4a4848;
     border-color: #4a4848;
+}
+
+.footer-hack {
+    height: 80px;
+}
+
+.footer-custom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 0;
+    background-color: #4a4848;
+    border-color: #4a4848;
+    border-radius: 0;
 }
