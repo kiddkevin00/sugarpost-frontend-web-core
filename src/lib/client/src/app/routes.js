@@ -75,7 +75,7 @@ class RootApp extends BaseComponent {
 
         { this.props.children }
 
-        <div className="footer-hack"></div>
+        <div className="footer-hack" />
         <Navbar className="navbar footer-custom">
           <Navbar.Header>
             <Navbar.Brand>
@@ -86,6 +86,7 @@ class RootApp extends BaseComponent {
           <Navbar.Collapse>
             <Nav className="navbar-right">
               <NavItem>
+                {/* eslint-disable jsx-a11y/no-static-element-interactions */}
                 <div onClick={ RootApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') } className="bold-font-custom">
                   Facebook
                 </div>
@@ -99,6 +100,7 @@ class RootApp extends BaseComponent {
                 <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') } className="bold-font-custom">
                   Twitter
                 </div>
+                {/* eslint-enable */}
               </NavItem>
             </Nav>
           </Navbar.Collapse>
