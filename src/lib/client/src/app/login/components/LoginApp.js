@@ -47,7 +47,7 @@ class LoginApp extends BaseComponent {
                   <p className="text-muted">
                     <a href="mailto:info@mysugarpost.com">Development Support</a>
                   </p>
-                  <p>v1.5.1</p>
+                  <p>v1.5.2</p>
                 </div>
               </div>
             </div>
