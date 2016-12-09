@@ -1,6 +1,7 @@
 .jumbotron-custom {
     display: block;
     margin-top: 0;
+    margin-bottom: 20px;
     min-width: 100%;
     max-width: 100%;
     height: auto;
