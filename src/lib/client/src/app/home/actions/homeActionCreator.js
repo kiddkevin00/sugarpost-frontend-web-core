@@ -10,7 +10,7 @@ const homeActionCreator = {
       .then((response) => {
         const payload = response.body;
 
-        if (payload.isSubscribed) {
+        if (payload.data && payload.data[0] && payload.data[0].isSubscribed) {
           dispatcher.dispatch({
             actionType: homeConstants.IS_SUBSCRIBED,
           });

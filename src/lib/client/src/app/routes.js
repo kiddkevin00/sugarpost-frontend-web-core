@@ -88,17 +88,17 @@ class RootApp extends BaseComponent {
               <NavItem>
                 {/* eslint-disable jsx-a11y/no-static-element-interactions */}
                 <div onClick={ RootApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') } className="bold-font-custom">
-                  Facebook
+                  <img src="/assets/images/facebook.ico" />
                 </div>
               </NavItem>
               <NavItem>
                 <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') } className="bold-font-custom">
-                  Instagram
+                  <img src="/assets/images/instagram.ico" />
                 </div>
               </NavItem>
               <NavItem>
                 <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') } className="bold-font-custom">
-                  Twitter
+                  <img src="/assets/images/twitter.ico" />
                 </div>
                 {/* eslint-enable */}
               </NavItem>
