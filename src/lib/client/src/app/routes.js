@@ -79,7 +79,7 @@ class RootApp extends BaseComponent {
         <Navbar className="navbar footer-custom">
           <Navbar.Header>
             <Navbar.Brand>
-              <img className="icon-custom" src="/assets/images/logo-tmp.jpg" alt="Icon" />
+              <img className="icon-custom" src="/assets/images/logo-tmp.jpg" alt="Sugarpost Icon" />
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -88,17 +88,17 @@ class RootApp extends BaseComponent {
               <NavItem>
                 {/* eslint-disable jsx-a11y/no-static-element-interactions */}
                 <div onClick={ RootApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') } className="bold-font-custom">
-                  <img src="/assets/images/facebook.ico" />
+                  <img src="/assets/images/facebook.ico" alt="Facebook Icon" />
                 </div>
               </NavItem>
               <NavItem>
                 <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') } className="bold-font-custom">
-                  <img src="/assets/images/instagram.ico" />
+                  <img src="/assets/images/instagram.ico" alt="Instagram Icon" />
                 </div>
               </NavItem>
               <NavItem>
                 <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') } className="bold-font-custom">
-                  <img src="/assets/images/twitter.ico" />
+                  <img src="/assets/images/twitter.ico" alt="Twitter Icon" />
                 </div>
                 {/* eslint-enable */}
               </NavItem>
