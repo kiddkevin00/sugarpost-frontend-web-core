@@ -37,6 +37,10 @@ body * {
     border-color: #4a4848;
 }
 
+.navbar-collapse-custom {
+    background-color: #4a4848;
+}
+
 .footer-hack {
     margin-top: 50px;
     height: 60px;
