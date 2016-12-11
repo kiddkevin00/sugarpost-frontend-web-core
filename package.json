@@ -1,6 +1,6 @@
 {
   "name": "bulletin-board-system-frontend",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "A generic frontend for Single-Page Web Application with a static server.",
   "main": "./src/lib/server/app.js",
   "bin": {
@@ -20,6 +20,7 @@
     "coverage:unit-test": "",
     "coverage:integration-test": "",
     "prepush": "npm run lint",
+    "precommit": "npm run lint",
     "postinstall": "grunt postinstall",
     "build": "babel --source-maps --copy-files src/lib/ --out-dir dist/lib/",
     "version:bump": "npm run version:instruction && ./bin/version-bump.js",
