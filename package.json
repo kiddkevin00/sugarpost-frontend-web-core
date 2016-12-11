@@ -1,6 +1,6 @@
 {
   "name": "bulletin-board-system-frontend",
-  "version": "1.6.0",
+  "version": "1.6.2",
   "description": "A generic frontend for Single-Page Web Application with a static server.",
   "main": "./src/lib/server/app.js",
   "bin": {
@@ -24,7 +24,7 @@
     "build": "babel --source-maps --copy-files src/lib/ --out-dir dist/lib/",
     "version:bump": "npm run version:instruction && ./bin/version-bump.js",
     "-------------- INTERNAL -------------": "",
-    "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' --ext .js,.jsx src/lib/client/src/ src/lib/server/ src/spec/",
+    "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' --ext .js,.jsx src/lib/client/src/ src/lib/server/ src/spec/ bin/",
     "version:instruction": "echo 'Please specify full version number after `npm run version:bump`.  E.g. $ npm run version:bump 0.0.1'",
     "-------------- LOCAL DEV ------------": "",
     "local-unit-test": "",

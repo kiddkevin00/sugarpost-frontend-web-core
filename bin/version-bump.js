@@ -10,10 +10,16 @@ const childProcess = require('child_process');
 Promise.promisifyAll(fs);
 
 const newVersion = process.argv[process.argv.length - 1];
+const versionRegex = /[0-9]+.[0-9]+.[0-9]+/g;
+
+if (!versionRegex.test(newVersion)) {
+  console.error(`[Version Bump] Provided version - ${newVersion || 'N/A'} is invalid (or missing).`);
+  process.exit(1);
+}
 
 console.log(`[Version Bump] Updating version to ${newVersion}`);
 
-const versionRegex = /[0-9]+.[0-9]+.[0-9]+/g;
+const promises = [];
 const updateFilePaths = [
   'dist/index2.html',
   'src/lib/client/static/index2.html',
@@ -21,7 +27,6 @@ const updateFilePaths = [
   'src/lib/client/src/app/signup/components/SignupApp.js',
 ];
 
-const promises = [];
 
 for (const filePath of updateFilePaths) {
   const promise = fs.readFileAsync(filePath, 'utf8')
@@ -40,8 +45,10 @@ const newPackageJson = JSON.parse(JSON.stringify(packageJson));
 
 newPackageJson.version = newVersion;
 
+const newPackageJsonContent = `${JSON.stringify(newPackageJson, null, 2)}\n`;
+
 Promise.all(promises)
-  .then(() => fs.writeFileAsync(packageJsonFileName, `${JSON.stringify(newPackageJson, null, 2)}\n`))
+  .then(() => fs.writeFileAsync(packageJsonFileName, newPackageJsonContent))
   .then(() => {
     let gitAddExecString = 'git add ';
     const gitAddFilePaths = [packageJsonFileName].concat(updateFilePaths);
@@ -53,7 +60,11 @@ Promise.all(promises)
     execSync(gitAddExecString);
     execSync(`git commit -m "[System] Bump the version to ${newVersion}."`);
   })
-  .then(() => console.log('[Version Bump] All files containing version number are updated.'))
+  .then(() => {
+    console.log('[Version Bump] All files containing version number are updated.');
+    return process.exit(0);
+  })
   .catch((err) => {
-    console.log(`[Version Bump] ${err}.`);
+    console.error(`[Version Bump Error] ${err}.`);
+    return process.exit(1);
   });
