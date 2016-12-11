@@ -1,8 +1,11 @@
 {
   "name": "bulletin-board-system-frontend",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "A generic frontend for Single-Page Web Application with a static server.",
   "main": "./src/lib/server/app.js",
+  "bin": {
+    "version-bump": "./bin/version-bump.js"
+  },
   "config": {
     "ip": "0.0.0.0",
     "port": 8088
@@ -19,8 +22,10 @@
     "prepush": "npm run lint",
     "postinstall": "grunt postinstall",
     "build": "babel --source-maps --copy-files src/lib/ --out-dir dist/lib/",
+    "version:bump": "npm run version:instruction && ./bin/version-bump.js",
     "-------------- INTERNAL -------------": "",
     "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' --ext .js,.jsx src/lib/client/src/ src/lib/server/ src/spec/",
+    "version:instruction": "echo 'Please specify full version number after `npm run version:bump`.  E.g. $ npm run version:bump 0.0.1'",
     "-------------- LOCAL DEV ------------": "",
     "local-unit-test": "",
     "local-integration-test": "",
@@ -62,6 +67,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babelify": "^7.3.0",
+    "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.5",
     "compression": "^1.6.2",

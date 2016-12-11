@@ -83,7 +83,7 @@ class RootApp extends BaseComponent {
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-          <Navbar.Collapse>
+          <Navbar.Collapse className="navbar-collapse-custom">
             <Nav className="navbar-right">
               <NavItem>
                 {/* eslint-disable jsx-a11y/no-static-element-interactions */}
