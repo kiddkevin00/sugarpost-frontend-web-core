@@ -61,7 +61,7 @@ Promise.all(promises)
     execSync(`git commit -m "[System] Bump the version to ${newVersion}."`);
   })
   .then(() => {
-    console.log('[Version Bump] All files containing version number are updated.')
+    console.log('[Version Bump] All files containing version number are updated.');
     return process.exit(0);
   })
   .catch((err) => {
