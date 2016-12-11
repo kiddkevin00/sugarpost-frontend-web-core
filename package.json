@@ -20,6 +20,7 @@
     "coverage:unit-test": "",
     "coverage:integration-test": "",
     "prepush": "npm run lint",
+    "precommit": "npm run lint",
     "postinstall": "grunt postinstall",
     "build": "babel --source-maps --copy-files src/lib/ --out-dir dist/lib/",
     "version:bump": "npm run version:instruction && ./bin/version-bump.js",
