@@ -1,6 +1,6 @@
 {
   "name": "bulletin-board-system-frontend",
-  "version": "1.6.4",
+  "version": "1.6.6",
   "description": "A generic frontend for Single-Page Web Application with a static server.",
   "main": "./src/lib/server/app.js",
   "bin": {
