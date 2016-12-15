@@ -47,7 +47,7 @@ class SignupApp extends BaseComponent {
                   <p className="text-muted">
                     <a href="mailto:info@mysugarpost.com">Development Support</a>
                   </p>
-                  <p>v1.6.4</p>
+                  <p>v1.6.6</p>
                 </div>
               </div>
             </div>
