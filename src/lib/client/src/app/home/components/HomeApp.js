@@ -33,7 +33,7 @@ class HomeApp extends BaseComponent {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-offset-4 col-lg-4 text-center">
+          <div className="col-lg-offset-3 col-lg-6 text-center">
             <h4>
               Sugarpost is a New York based online monthly premium subscription service that
               provides its customers with e-packages of trendy and innovative dessert deals
@@ -45,12 +45,12 @@ class HomeApp extends BaseComponent {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-offset-4 col-lg-4">
+          <div className="col-lg-offset-3 col-lg-6">
             <SubscribeForm onSubmit={ HomeApp._onSubmit } />
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-offset-4 col-lg-4">
+          <div className="col-lg-offset-3 col-lg-6">
             <h6 className={ this.state.subscribeFeedbackCssClass }>
               { this.state.subscribeFeedbackTxt }
             </h6>
