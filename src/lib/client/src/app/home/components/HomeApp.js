@@ -35,16 +35,25 @@ class HomeApp extends BaseComponent {
         <div className="row">
           <div className="col-lg-offset-4 col-lg-4 text-center">
             <h4>
-              Founded in Winter 2016, Sugarpost is currently a New York based online monthly
-              subscription service that sends its users a package of dessert deals including
-              frozen treats and baked goods. For exclusive offers and updates on the launch,
-              please subscribe by entering your e-mail below.
+              Sugarpost is a New York based online monthly premium subscription service that
+              provides its customers with e-packages of trendy and innovative dessert deals
+              ranging from frozen treats to baked goods. We have scoured the internet and
+              attained insight from various food bloggers and dessert connoisseurs to deliver
+              our subscribers a selection of unique desserts around New York City! For exclusive
+              offers and updates on the launch, please subscribe by entering your e-mail below.
             </h4>
           </div>
         </div>
         <div className="row">
           <div className="col-lg-offset-4 col-lg-4">
             <SubscribeForm onSubmit={ HomeApp._onSubmit } />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-offset-4 col-lg-4">
+            <h6 className={ this.state.subscribeFeedbackCssClass }>
+              { this.state.subscribeFeedbackTxt }
+            </h6>
           </div>
         </div>
       </div>
@@ -69,7 +78,10 @@ class HomeApp extends BaseComponent {
  * the data in the Flux's store.
  */
 function _getState() {
-  return {};
+  return {
+    subscribeFeedbackTxt: homeStore.getSubscribeFeedbackTxt(),
+    subscribeFeedbackCssClass: homeStore.getSubscribeFeedbackCssClass(),
+  };
 }
 
 export default HomeApp;
