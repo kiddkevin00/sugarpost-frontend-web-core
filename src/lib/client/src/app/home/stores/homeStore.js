@@ -55,12 +55,12 @@ AppDispatcher.register((action) => {
 
   switch (actionType) {
     case homeConstants.SUBSCRIBE_SUCCESS:
-      homeStore._subscribeResult('Thank you for signing up! We will keep you posted!', 'text-success');
+      homeStore._subscribeResult('Thank you for signing up! We will keep you posted!', 'text-warning');
 
       homeStore.emitChange();
       break;
     case homeConstants.IS_SUBSCRIBED:
-      homeStore._subscribeResult('The e-mail address you entered in is already in our system!', 'text-warning');
+      homeStore._subscribeResult('The e-mail address you entered in is already in our system!', 'text-danger');
 
       homeStore.emitChange();
       break;
