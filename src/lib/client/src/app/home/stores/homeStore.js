@@ -12,7 +12,18 @@ class HomeStore extends EventEmitter {
     super();
 
     // All internal store data.
-    this[storeContext] = {};
+    this[storeContext] = {
+      subscribeFeedbackTxt: '\u00a0',
+      subscribeFeedbackCssClass: '',
+    };
+  }
+
+  getSubscribeFeedbackTxt() {
+    return this[storeContext].subscribeFeedbackTxt;
+  }
+
+  getSubscribeFeedbackCssClass() {
+    return this[storeContext].subscribeFeedbackCssClass;
   }
 
   emitChange() {
@@ -27,6 +38,11 @@ class HomeStore extends EventEmitter {
     this.removeListener(changeEvent, callback);
   }
 
+  _subscribeResult(feedbackTxt, cssClass) {
+    this[storeContext].subscribeFeedbackTxt = feedbackTxt;
+    this[storeContext].subscribeFeedbackCssClass = cssClass;
+  }
+
 }
 
 const homeStore = new HomeStore();
@@ -39,13 +55,19 @@ AppDispatcher.register((action) => {
 
   switch (actionType) {
     case homeConstants.SUBSCRIBE_SUCCESS:
-      window.alert('Thank you!  We will keep you posted!');
+      homeStore._subscribeResult('Thank you for your subscription! We will Keep you posted!', 'text-success');
+
+      homeStore.emitChange();
       break;
     case homeConstants.IS_SUBSCRIBED:
-      window.alert('The Email address you entered is already in our subscription system!');
+      homeStore._subscribeResult('The Email address you entered is already in our subscription system!', 'text-warning');
+
+      homeStore.emitChange();
       break;
     case homeConstants.SUBSCRIBE_FAIL:
-      window.alert('Oops! Something went wrong!  Try again later please!');
+      homeStore._subscribeResult('Oops! Something went wrong!  Try again later please!', 'text-danger');
+
+      homeStore.emitChange();
       break;
     default:
       break;

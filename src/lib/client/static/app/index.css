@@ -57,6 +57,11 @@ body * {
     border-radius: 0;
 }
 
+#react-main-container > div > nav > div > div.navbar-header > a:hover,
+#react-main-container > div > nav > div > div.navbar-collapse.navbar-collapse-custom.collapse > ul > li > a:hover {
+    color: #f7b855;
+}
+
 .footer-custom .navbar-nav > li > a {
     padding-bottom: 0;
 }

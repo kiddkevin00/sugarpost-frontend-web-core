@@ -101,7 +101,7 @@ class RootApp extends BaseComponent {
                 </div>
               </NavItem>
               <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }>
+                <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }>
                   <svg className="link-icon-custom" width="24px" height="24px" viewBox="0 0 612 612">
                     <g>
                       <path
@@ -118,7 +118,7 @@ class RootApp extends BaseComponent {
                 </div>
               </NavItem>
               <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }>
+                <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }>
                   <svg className="link-icon-custom" width="24px" height="24px" viewBox="0 0 97.395 97.395">
                     <g>
                       <path
