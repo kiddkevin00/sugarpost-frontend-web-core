@@ -40,7 +40,7 @@ class HomeStore extends EventEmitter {
 
   _subscribeResult(feedbackTxt, cssClass) {
     this[storeContext].subscribeFeedbackTxt = feedbackTxt;
-    this[storeContext].subscribeFeedbackCssClass = cssClass;
+    this[storeContext].subscribeFeedbackCssClass = `${cssClass} text-center`;
   }
 
 }
@@ -55,12 +55,12 @@ AppDispatcher.register((action) => {
 
   switch (actionType) {
     case homeConstants.SUBSCRIBE_SUCCESS:
-      homeStore._subscribeResult('Thank you for your subscription! We will Keep you posted!', 'text-success');
+      homeStore._subscribeResult('Thank you for signing up! We will keep you posted!', 'text-success');
 
       homeStore.emitChange();
       break;
     case homeConstants.IS_SUBSCRIBED:
-      homeStore._subscribeResult('The Email address you entered is already in our subscription system!', 'text-warning');
+      homeStore._subscribeResult('The e-mail address you entered in is already in our system!', 'text-warning');
 
       homeStore.emitChange();
       break;
