@@ -187,7 +187,7 @@ module.exports = function (grunt) {
           },
           {
             cwd: 'src/',
-            src: ['lib/client/static/favicon.png'],
+            src: ['lib/client/static/*.png', 'lib/client/static/*.ico'],
             dest: 'dist/',
             filter: 'isFile',
             expand: true
