@@ -36,7 +36,7 @@ function setupExpressServer(app) {
     saveUninitialized: false,
   }));
 
-  app.use(favicon(path.resolve(__dirname, '../client/static/', 'favicon.ico')));
+  app.use(favicon(path.resolve(__dirname, '../client/static/', 'favicon.png')));
 
   // For 404 error and server-side rendering pages only.
   app.set('views', path.resolve(__dirname, 'views/'));
