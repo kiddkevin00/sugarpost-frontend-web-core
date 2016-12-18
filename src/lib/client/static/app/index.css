@@ -28,8 +28,17 @@ body * {
     font-family: nexa-bold;
 }
 
+#react-main-container > div > nav > div > div.navbar-collapse.navbar-collapse-custom.collapse > ul > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .icon-custom {
-    width: 150px;
+    color: white;
+}
+
+.icon-custom:hover {
+    color: #f7b855;
 }
 
 .header-custom {
@@ -55,17 +64,4 @@ body * {
     background-color: #4a4848;
     border-color: #4a4848;
     border-radius: 0;
-}
-
-#react-main-container > div > nav > div > div.navbar-header > a:hover,
-#react-main-container > div > nav > div > div.navbar-collapse.navbar-collapse-custom.collapse > ul > li > a:hover {
-    color: #f7b855;
-}
-
-.footer-custom .navbar-nav > li > a {
-    padding-bottom: 0;
-}
-
-.link-icon-custom {
-    fill: currentColor;
 }
