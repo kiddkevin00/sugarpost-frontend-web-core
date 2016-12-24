@@ -4,13 +4,13 @@ import homeConstants from '../constants/homeConstants';
 
 const homeActionCreator = {
   subscribe(email) {
+    const url = '/api/auth/subscribe';
     const body = { email };
+    const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
-    Proxy.post('/api/auth/subscribe', body)
-      .then((response) => {
-        const payload = response.body;
-
-        if (payload.data && payload.data[0] && payload.data[0].isSubscribed) {
+    Proxy.post(url, body, headers)
+      .then((payloadObj) => {
+        if (payloadObj.data && payloadObj.data[0] && payloadObj.data[0].isSubscribed) {
           dispatcher.dispatch({
             actionType: homeConstants.IS_SUBSCRIBED,
           });
@@ -21,10 +21,9 @@ const homeActionCreator = {
         }
       })
       .catch((err) => {
-        console.log(err);
-
         dispatcher.dispatch({
           actionType: homeConstants.SUBSCRIBE_FAIL,
+          data: err,
         });
       });
   },

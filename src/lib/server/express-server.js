@@ -66,8 +66,8 @@ function setupExpressServer(app) {
     app.use(express.static(path.resolve(__dirname, '../client/', 'static/'), {
       etag: true,
       maxAge: 31536000000, // [TBD] one year - unit: millisecond.
-      setHeaders(res, path) {
-        if (path.indexOf('.css') === -1 && path.indexOf('.js') === -1) {
+      setHeaders(res, filepPath) {
+        if (filepPath.indexOf('.css') === -1 && filepPath.indexOf('.js') === -1) {
           res.append('Cache-Control', 'no-cache');
         }
       },
