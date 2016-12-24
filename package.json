@@ -1,6 +1,6 @@
 {
   "name": "bulletin-board-system-frontend",
-  "version": "1.6.11",
+  "version": "1.6.12",
   "description": "A generic frontend for Single-Page Web Application with a static server.",
   "main": "./src/lib/server/app.js",
   "bin": {
@@ -101,6 +101,7 @@
     "morgan": "^1.7.0",
     "node-uuid": "^1.4.7",
     "pixrem": "^3.0.2",
+    "promise-polyfill": "^6.0.2",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.2",
@@ -108,7 +109,8 @@
     "react-router-bootstrap": "^0.23.1",
     "request": "^2.79.0",
     "serve-favicon": "^2.3.0",
-    "time-grunt": "^1.4.0"
+    "time-grunt": "^1.4.0",
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

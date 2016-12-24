@@ -73,7 +73,12 @@ function setupExpressServer(app) {
     // Here are all the original version of JS and CSS files.
     app.use(express.static(path.resolve(__dirname, '../client/', 'static/'), {
       etag: true,
-      maxAge: 0,
+      maxAge: 31536000000, // [TBD] one year - unit: millisecond.
+      setHeaders(res, filepPath) {
+        if (filepPath.indexOf('.css') === -1 && filepPath.indexOf('.js') === -1) {
+          res.append('Cache-Control', 'no-cache');
+        }
+      },
     }));
 
     app.use(morgan('dev'));

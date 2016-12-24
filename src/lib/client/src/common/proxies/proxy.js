@@ -4,89 +4,86 @@ const request = require('request');
 
 class HttpRequest {
 
-  static exec(options) {
-    return new Promise((resolve, reject) => {
-      request(options, (_err, response) => {
-        let err;
-
-        if (_err) {
-          const code = response ? response.statusCode :
-            constants.SYSTEM.ERROR_CODES.INTERNAL_SERVER_ERROR;
-          const message = (_err && _err.message) ? _err.message :
-            constants.SYSTEM.ERROR_MSG.PROXY_ERROR;
-
-          err = new StandardErrorWrapper([
-            {
-              code,
-              message,
-              name: constants.SYSTEM.ERROR_NAMES.PROXY_ERROR,
-              source: constants.SYSTEM.COMMON.CURRENT_SOURCE,
-            },
-          ]);
-
-          return reject(err);
-        } else if (response.statusCode !== constants.SYSTEM.HTTP_STATUS_CODES.OK) {
+  static exec(url, options) {
+    return window.fetch(url, options)
+      .then((response) => {
+        if (response.status !== constants.SYSTEM.HTTP_STATUS_CODES.OK) {
           // Assumes that the response body follows the standard error format.
-          return reject(response.body);
+          return response.json();
         }
-        return resolve(response);
+        return response.json();
+      })
+      .catch((_err) => {
+        const err = new StandardErrorWrapper([
+          {
+            code: constants.SYSTEM.ERROR_CODES.INTERNAL_SERVER_ERROR,
+            name: constants.SYSTEM.ERROR_NAMES.PROXY_ERROR,
+            source: constants.SYSTEM.COMMON.CURRENT_SOURCE,
+            message: (_err && _err.message) ? _err.message : constants.SYSTEM.ERROR_MSG.PROXY_ERROR,
+            detail: _err,
+          },
+        ]);
+
+        throw err;
       });
-    });
   }
 
 }
 
 class Proxy {
 
-  static get(url, queryString, headers) {
+  static get(_url, queryStringObj = {}, headers = {}) {
+    const url = Proxy._getFullUrl(_url, queryStringObj);
     const options = {
+      headers,
       method: constants.SYSTEM.HTTP_METHODS.GET,
-      url: Proxy._getFullUrl(url),
-      headers,
-      qs: queryString,
-      json: true,
+      mode: 'cors',
+      credentials: 'include',
     };
 
-    return HttpRequest.exec(options);
+    return HttpRequest.exec(url, options);
   }
 
-  static post(url, body, headers) {
+  static post(_url, body = {}, headers = {}, queryStringObj = {}) {
+    const url = Proxy._getFullUrl(_url, queryStringObj);
     const options = {
+      headers,
+      body: JSON.stringify(body),
       method: constants.SYSTEM.HTTP_METHODS.POST,
-      url: Proxy._getFullUrl(url),
-      headers,
-      body,
-      json: true,
+      mode: 'cors',
+      credentials: 'include',
     };
 
-    return HttpRequest.exec(options);
+    return HttpRequest.exec(url, options);
   }
 
-  static put(url, body, headers) {
+  static put(_url, body = {}, headers = {}, queryStringObj = {}) {
+    const url = Proxy._getFullUrl(_url, queryStringObj);
     const options = {
+      headers,
+      body: JSON.stringify(body),
       method: constants.SYSTEM.HTTP_METHODS.PUT,
-      url: Proxy._getFullUrl(url),
-      body,
-      headers,
-      json: true,
+      mode: 'cors',
+      credentials: 'include',
     };
 
-    return HttpRequest.exec(options);
+    return HttpRequest.exec(url, options);
   }
 
-  static delete(url, queryString, headers) {
+  static delete(_url, body = {}, headers = {}, queryStringObj = {}) {
+    const url = Proxy._getFullUrl(_url, queryStringObj);
     const options = {
-      method: constants.SYSTEM.HTTP_METHODS.DELETE,
-      url: Proxy._getFullUrl(url),
       headers,
-      qs: queryString,
-      json: true,
+      body: JSON.stringify(body),
+      method: constants.SYSTEM.HTTP_METHODS.DELETE,
+      mode: 'cors',
+      credentials: 'include',
     };
 
-    return HttpRequest.exec(options);
+    return HttpRequest.exec(url, options);
   }
 
-  static _getFullUrl(url) {
+  static _getFullUrl(url, queryStringObj = {}) {
     let fullUrl;
 
     if (url[0] === '/') {
@@ -100,8 +97,21 @@ class Proxy {
       fullUrl = url;
     }
 
+    if (Object.keys(queryStringObj).length) {
+      fullUrl += `?${Proxy._parseQueryStringOBj(queryStringObj)}`;
+    }
+
     return fullUrl;
   }
+
+  static _parseQueryStringOBj(queryStringObj) {
+    const esc = window.encodeURIComponent;
+
+    return Object.keys(queryStringObj)
+      .map((key) => `${esc(key)}=${esc(queryStringObj[key])}`)
+      .join('&');
+  }
+
 }
 
 module.exports = Proxy;
