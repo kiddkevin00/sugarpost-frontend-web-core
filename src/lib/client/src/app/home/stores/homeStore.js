@@ -52,6 +52,7 @@ AppDispatcher.register((action) => {
   console.log(`Action in \`homeStore\`: ${JSON.stringify(action, null, 2)}`);
 
   const actionType = action.actionType;
+  const data = action.data;
 
   switch (actionType) {
     case homeConstants.SUBSCRIBE_SUCCESS:
@@ -66,6 +67,12 @@ AppDispatcher.register((action) => {
       break;
     case homeConstants.SUBSCRIBE_FAIL:
       homeStore._subscribeResult('Oops! Something went wrong!  Try again later please!', 'text-danger');
+
+      console.log(
+        '============ ERROR START ============\n',
+        data,
+        '\n============= ERROR END ============='
+      );
 
       homeStore.emitChange();
       break;
