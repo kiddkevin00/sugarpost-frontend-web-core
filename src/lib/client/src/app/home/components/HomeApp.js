@@ -70,10 +70,9 @@ class HomeApp extends BaseComponent {
         </div>
         <div className="row">
           <div
-            className="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-6 \
-              col-sm-7 col-md-8 col-lg-8 text-left"
+            className="col-xs-12 col-sm-9 col-md-8 col-lg-10 text-left"
           >
-            <h3>
+            <h3 className="about-us-custom">
               Sugarpost is a New York based online monthly premium subscription service that
               provides its customers with e-packages of trendy and innovative dessert deals
               ranging from frozen treats to baked goods. We have scoured the internet and
@@ -81,8 +80,11 @@ class HomeApp extends BaseComponent {
               our subscribers a selection of unique desserts around New York City!
             </h3>
           </div>
-          <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <img src="/assets/images/sugarpost-logo.png" alt="SUGARPOST" />
+          <div
+            className="col-xs-offset-8 col-sm-offset-0 col-md-offset-1 col-lg-offset-0
+              col-xs-4 col-sm-3 col-md-3 col-lg-2"
+          >
+            <img className="logo-custom" src="/assets/images/sugarpost-logo.png" alt="SUGARPOST" />
           </div>
         </div>
       </div>
