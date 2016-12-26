@@ -75,10 +75,11 @@ class RootApp extends BaseComponent {
 
         { this.props.children }
 
+
         <div className="footer-hack" />
         <Navbar className="navbar footer-custom">
           <Navbar.Header>
-            <Navbar.Brand>
+            <Navbar.Brand className="navbar-brand-custom">
               <a>©Sugarpost 2016</a>
             </Navbar.Brand>
             <Navbar.Toggle />
@@ -87,18 +88,18 @@ class RootApp extends BaseComponent {
             <Nav className="navbar-right">
               <NavItem>
                 {/* eslint-disable jsx-a11y/no-static-element-interactions, max-len */}
+                <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }>
+                  <img src="/assets/images/instagram-icon.png" alt="instagram" />
+                </div>
+              </NavItem>
+              <NavItem>
                 <div onClick={ RootApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }>
-                  <i className="icono-facebook icon-custom" />
+                  <img src="/assets/images/facebook-icon.png" alt="facebook" />
                 </div>
               </NavItem>
               <NavItem>
                 <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }>
-                  <i className="icono-twitter icon-custom" />
-                </div>
-              </NavItem>
-              <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }>
-                  <i className="icono-instagram icon-custom" />
+                  <img src="/assets/images/twitter-icon.png" alt="twitter" />
                 </div>
                 {/* eslint-enable */}
               </NavItem>

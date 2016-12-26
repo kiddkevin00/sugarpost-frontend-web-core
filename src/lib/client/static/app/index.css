@@ -8,6 +8,21 @@
     src: url("/assets/fonts/nexa-bold.otf");
 }
 
+@font-face {
+    font-family: trajanpro-bold;
+    src: url("/assets/fonts/trajan-pro-bold.ttf");
+}
+
+@font-face {
+    font-family: trajanpro-regular;
+    src: url("/assets/fonts/trajan-pro-regular.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-bold;
+    src: url("/assets/fonts/sfuitext-bold.otf");
+}
+
 html,
 body {
     margin: 0;
@@ -21,38 +36,16 @@ body {
 }
 
 body * {
-    font-family: nexa-light
+    font-family: nexa-light;
 }
 
 .bold-font-custom {
     font-family: nexa-bold;
 }
 
-#react-main-container > div > nav > div > div.navbar-collapse.navbar-collapse-custom.collapse > ul > li > a {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.icon-custom {
-    color: white;
-}
-
-.icon-custom:hover {
-    color: #f7b855;
-}
-
 .header-custom {
     background-color: #4a4848;
     border-color: #4a4848;
-}
-
-.navbar-collapse-custom {
-    background-color: #4a4848;
-}
-
-.footer-hack {
-    margin-top: 50px;
-    height: 60px;
 }
 
 .footer-custom {
@@ -61,7 +54,38 @@ body * {
     width: 100%;
     height: 60px;
     margin-bottom: 0;
-    background-color: #4a4848;
+    background-color: rgba(0, 0, 0, 0);
     border-color: #4a4848;
     border-radius: 0;
+}
+
+.navbar-collapse-custom {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.navbar-brand-custom {
+    font-family: trajanpro-bold;
+    color: #FBB352 !important;
+}
+
+.footer-hack {
+    margin-top: 50px;
+    height: 60px;
+}
+
+.footer-custom .navbar-toggle {
+    background-color: black;
+}
+
+#react-main-container > div > nav > div > div.navbar-collapse.navbar-collapse-custom.collapse > ul > li > a {
+    padding-top: 16px;
+    padding-bottom: 14px;
+}
+
+.icon-custom {
+    color: black;
+}
+
+.icon-custom:hover {
+    color: #FBB352;
 }
