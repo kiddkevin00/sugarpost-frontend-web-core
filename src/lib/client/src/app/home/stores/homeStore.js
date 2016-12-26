@@ -40,7 +40,7 @@ class HomeStore extends EventEmitter {
 
   _subscribeResult(feedbackTxt, cssClass) {
     this[storeContext].subscribeFeedbackTxt = feedbackTxt;
-    this[storeContext].subscribeFeedbackCssClass = `${cssClass} text-center`;
+    this[storeContext].subscribeFeedbackCssClass = `${cssClass}`;
   }
 
 }

@@ -7,4 +7,4 @@ if (!window.Promise) {
   window.Promise = Promise;
 }
 
-ReactDOM.render(routes, document.getElementById('react-main-container'));
+ReactDOM.render(routes, window.document.getElementById('react-main-container'));

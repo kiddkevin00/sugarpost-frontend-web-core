@@ -25,35 +25,64 @@ class HomeApp extends BaseComponent {
     return (
       <div className="container-fluid">
         <div className="row">
-          <img src="/assets/images/jumbotron.png" className="jumbotron-custom" alt="jumbotron" />
-        </div>
-        <div className="row">
-          <div className="col-lg-12 text-center">
-            <h3 className="bold-font-custom">ABOUT US:</h3>
+          <div className="jumbotron jumbotron-custom">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h1 className="headline-custom">SUGARPOST</h1>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h2 className="sub-headline-custom">
+                    Premium subscription service to a sweet
+                    adventure
+                  </h2>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div className="lines-break-custom" />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
+                  <p className="subscribe-text">
+                    For exclusive offers and updates on the launch,please subscribe by entering
+                    your e-mail below.
+                  </p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
+                  <SubscribeForm onSubmit={ HomeApp._onSubmit } />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
+                  <h6 className={ `${this.state.subscribeFeedbackCssClass} subscribe-fb-custom` }>
+                    { this.state.subscribeFeedbackTxt }
+                  </h6>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-offset-3 col-lg-6 text-center">
-            <h4>
+          <div
+            className="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-6 \
+              col-sm-7 col-md-8 col-lg-8 text-left"
+          >
+            <h3>
               Sugarpost is a New York based online monthly premium subscription service that
               provides its customers with e-packages of trendy and innovative dessert deals
               ranging from frozen treats to baked goods. We have scoured the internet and
               attained insight from various food bloggers and dessert connoisseurs to deliver
-              our subscribers a selection of unique desserts around New York City! For exclusive
-              offers and updates on the launch, please subscribe by entering your e-mail below.
-            </h4>
+              our subscribers a selection of unique desserts around New York City!
+            </h3>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-offset-3 col-lg-6">
-            <SubscribeForm onSubmit={ HomeApp._onSubmit } />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-offset-3 col-lg-6">
-            <h6 className={ this.state.subscribeFeedbackCssClass }>
-              { this.state.subscribeFeedbackTxt }
-            </h6>
+          <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <img src="/assets/images/sugarpost-logo.png" alt="SUGARPOST" />
           </div>
         </div>
       </div>

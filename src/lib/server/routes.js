@@ -79,9 +79,13 @@ function setupRoutes(app) {
       const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
       if (env === 'production') {
-        res.sendFile(path.resolve(__dirname, '../../../dist/', 'index2.html'));
+        res.sendFile(path.resolve(__dirname, '../../../dist/', 'index2.html'), {
+          headers: { 'Cache-Control': 'no-cache' },
+        });
       } else {
-        res.sendFile(path.resolve(__dirname, '../client/static/', 'index2.html'));
+        res.sendFile(path.resolve(__dirname, '../client/static/', 'index2.html'), {
+          headers: { 'Cache-Control': 'no-cache' },
+        });
       }
 
     });
