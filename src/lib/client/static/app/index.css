@@ -61,7 +61,7 @@ body * {
 
 .navbar-brand-custom {
     font-family: trajanpro-bold;
-    color: #FBB352 !important;
+    color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .footer-hack {
@@ -76,12 +76,4 @@ body * {
 #react-main-container > div > nav > div > div.navbar-collapse.navbar-collapse-custom.collapse > ul > li > a {
     padding-top: 16px;
     padding-bottom: 14px;
-}
-
-.icon-custom {
-    color: black;
-}
-
-.icon-custom:hover {
-    color: #FBB352;
 }

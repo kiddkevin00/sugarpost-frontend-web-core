@@ -58,7 +58,7 @@ class RootApp extends BaseComponent {
         <Navbar className="navbar-fixed-top header-custom">
           <Navbar.Header>
             <Navbar.Brand>
-              <img className="icon-custom" src="/assets/images/logo-tmp.jpg" alt="Icon" />
+              <a>©Sugarpost 2016</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
