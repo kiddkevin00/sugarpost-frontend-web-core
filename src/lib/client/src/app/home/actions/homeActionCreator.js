@@ -13,7 +13,7 @@ const homeActionCreator = {
       .then((payloadObj) => {
         try {
           const res = StandardResponseWrapper.deserialize(payloadObj);
-          
+
           if (res.data[0] && res.data[0].isSubscribed) {
             dispatcher.dispatch({
               actionType: constants.IS_SUBSCRIBED,

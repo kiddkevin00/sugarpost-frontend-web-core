@@ -36,7 +36,10 @@ class SignupApp extends BaseComponent {
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-offset-0 col-sm-offset-1 col-md-offset-3 col-lg-offset-4 col-xs-12 col-sm-10 col-md-6 col-lg-4">
+          <div
+            className="col-xs-offset-0 col-sm-offset-1 col-md-offset-3 col-lg-offset-4
+              col-xs-12 col-sm-10 col-md-6 col-lg-4"
+          >
             <div className="panel panel-default">
               <div className="panel-heading text-center">
                 <h4><span className="label label-primary">My Supgarpost</span></h4>
