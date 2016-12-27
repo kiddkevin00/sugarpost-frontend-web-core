@@ -54,11 +54,10 @@ class RootApp extends BaseComponent {
 
     return (
       <div>
-        {/*
         <Navbar className="navbar-fixed-top header-custom">
           <Navbar.Header>
-            <Navbar.Brand>
-              <a>©Sugarpost 2016</a>
+            <Navbar.Brand className="header-navbar-brand-custom">
+              <a>Sugarpost</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -71,15 +70,14 @@ class RootApp extends BaseComponent {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        */}
+        <div className="header-hack" />
 
         { this.props.children }
-
 
         <div className="footer-hack" />
         <Navbar className="navbar footer-custom">
           <Navbar.Header>
-            <Navbar.Brand className="navbar-brand-custom">
+            <Navbar.Brand className="footer-navbar-brand-custom">
               <a>©Sugarpost 2016</a>
             </Navbar.Brand>
             <Navbar.Toggle />

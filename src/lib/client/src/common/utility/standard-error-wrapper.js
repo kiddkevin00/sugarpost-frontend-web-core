@@ -4,9 +4,16 @@
  *  {
  *    errors: [
  *      {
+ *        code: 500,
+ *        name: 'SOMETHING_WENT_WRONG', // optional
+ *        source: 'current-app',
+ *        message: 'Something went wrong.', // optional
+ *        detail: `err` // optional
+ *      },
+ *      {
  *        code: 404,
  *        name: 'SOMETHING_NOT_FOUND', // optional
- *        source: 'current-app',
+ *        source: 'another-app',
  *        message: 'Something is not found.', // optional
  *        detail: `err` // optional
  *      }
