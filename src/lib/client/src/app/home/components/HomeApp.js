@@ -35,8 +35,7 @@ class HomeApp extends BaseComponent {
               <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                   <h2 className="sub-headline-custom">
-                    Premium subscription service to a sweet
-                    adventure
+                    Premium subscription service to a sweet adventure
                   </h2>
                 </div>
               </div>
@@ -60,31 +59,37 @@ class HomeApp extends BaseComponent {
               </div>
               <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <h6 className={ `${this.state.subscribeFeedbackCssClass} subscribe-fb-custom` }>
+                  <p className={ `${this.state.subscribeFeedbackCssClass} subscribe-fb-custom` }>
                     { this.state.subscribeFeedbackTxt }
-                  </h6>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="row">
-          <div
-            className="col-xs-12 col-sm-9 col-md-8 col-lg-10 text-left"
-          >
-            <h3 className="about-us-custom">
-              Sugarpost is a New York based online monthly premium subscription service that
-              provides its customers with e-packages of trendy and innovative dessert deals
-              ranging from frozen treats to baked goods. We have scoured the internet and
-              attained insight from various food bloggers and dessert connoisseurs to deliver
-              our subscribers a selection of unique desserts around New York City!
-            </h3>
-          </div>
-          <div
-            className="col-xs-offset-8 col-sm-offset-0 col-md-offset-1 col-lg-offset-0
+          <div className="container-custom">
+            <div
+              className="col-xs-12 col-sm-9 col-md-8 col-lg-10 text-left"
+            >
+              <h3 className="about-us-custom">
+                Sugarpost is a New York based online monthly premium subscription service that
+                provides its customers with e-packages of trendy and innovative dessert deals
+                ranging from frozen treats to baked goods. We have scoured the internet and
+                attained insight from various food bloggers and dessert connoisseurs to deliver
+                our subscribers a selection of unique desserts around New York City!
+              </h3>
+            </div>
+            <div
+              className="col-xs-offset-8 col-sm-offset-0 col-md-offset-1 col-lg-offset-0
               col-xs-4 col-sm-3 col-md-3 col-lg-2"
-          >
-            <img className="logo-custom" src="/assets/images/sugarpost-logo.png" alt="SUGARPOST" />
+            >
+              <img
+                className="logo-custom"
+                src="/assets/images/sugarpost-logo.png"
+                alt="SUGARPOST"
+              />
+            </div>
           </div>
         </div>
       </div>
