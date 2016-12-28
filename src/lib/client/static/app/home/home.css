@@ -133,3 +133,12 @@
 .logo-custom {
     width: 100%;
 }
+
+.icon-custom {
+    cursor: pointer;
+    padding-bottom: 15px;
+}
+
+.icon-move-left-custom {
+    margin-left: -3%;
+}
