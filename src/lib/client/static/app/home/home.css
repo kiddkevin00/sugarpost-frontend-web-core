@@ -1,60 +1,10 @@
 .jumbotron-custom {
-    background: url("/assets/images/jumbotron.jpg") no-repeat center center;
+    background: url("/assets/images/jumbotron-with-opacity.png") no-repeat center center;
     margin-bottom: 0;
     border-radius: 0 !important;
     height: 0;
     padding: 0 0 35% 0;
     background-size: 100% auto;
-}
-
-.gradient-custom {
-    background: rgba(0,0,0,0.40);
-    background-image: linear-gradient(180deg, rgba(255,255,255,0.00) 0%, rgba(0,0,0,0.35) 59%, rgba(0,0,0,0.54) 100%);
-    height: 0;
-    background-size: 100% auto;
-    padding-bottom: 59%;
-}
-
-@media screen and (min-width: 600px) {
-    .gradient-custom {
-        padding-bottom: 35%;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .gradient-custom {
-        padding-bottom: 43%;
-    }
-}
-
-@media screen and (min-width: 992px) {
-    .gradient-custom {
-        padding-bottom: 40.5%;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    .gradient-custom {
-        padding-bottom: 40%;
-    }
-}
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-    .gradient-custom {
-        padding-bottom: 80%;
-    }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-    .gradient-custom {
-        padding-bottom: 57%;
-    }
-}
-
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
-    .gradient-custom {
-        padding-bottom: 41%;
-    }
 }
 
 .headline-custom {
@@ -128,6 +78,13 @@
     font-size: 20px;
     letter-spacing: -0.12px;
     line-height: 35px;
+    margin-top: 10%;
+}
+
+@media screen and (min-width: 768px) {
+    .about-us-custom {
+        margin-top: 0;
+    }
 }
 
 .logo-custom {
