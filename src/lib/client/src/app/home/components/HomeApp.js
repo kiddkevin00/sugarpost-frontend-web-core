@@ -26,42 +26,44 @@ class HomeApp extends BaseComponent {
       <div className="container-fluid">
         <div className="row">
           <div className="jumbotron jumbotron-custom">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h1 className="headline-custom">SUGARPOST</h1>
+            <div className="gradient-custom">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1 className="headline-custom">SUGARPOST</h1>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h2 className="sub-headline-custom">
-                    Premium subscription service to a sweet adventure
-                  </h2>
+                <div className="row">
+                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h2 className="sub-headline-custom">
+                      Premium subscription service to a sweet adventure
+                    </h2>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div className="lines-break-custom" />
+                <div className="row">
+                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div className="lines-break-custom" />
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <p className="subscribe-text">
-                    For exclusive offers and updates on the launch,please subscribe by entering
-                    your e-mail below.
-                  </p>
+                <div className="row">
+                  <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
+                    <p className="subscribe-text">
+                      For exclusive offers and updates on the launch,please subscribe by entering
+                      your e-mail below.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <SubscribeForm onSubmit={ HomeApp._onSubmit } />
+                <div className="row">
+                  <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
+                    <SubscribeForm onSubmit={ HomeApp._onSubmit } />
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <p className={ `${this.state.subscribeFeedbackCssClass} subscribe-fb-custom` }>
-                    { this.state.subscribeFeedbackTxt }
-                  </p>
+                <div className="row">
+                  <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
+                    <p className={ `${this.state.subscribeFeedbackCssClass} subscribe-fb-custom` }>
+                      { this.state.subscribeFeedbackTxt }
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
