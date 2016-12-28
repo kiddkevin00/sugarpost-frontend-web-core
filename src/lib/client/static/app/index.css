@@ -20,7 +20,22 @@
 
 @font-face {
     font-family: sfuitext-bold;
-    src: url("/assets/fonts/sfuitext-bold.otf");
+    src: url("/assets/fonts/sfuitext-bold.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-semibold;
+    src: url("/assets/fonts/sfuitext-semibold.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-medium;
+    src: url("/assets/fonts/sfuitext-medium.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-regular;
+    src: url("/assets/fonts/sfuitext-regular.ttf");
 }
 
 html,
@@ -36,11 +51,7 @@ body {
 }
 
 body * {
-    font-family: nexa-light;
-}
-
-.bold-font-custom {
-    font-family: nexa-bold;
+    font-family: sfuitext-regular;
 }
 
 .header-custom {
@@ -65,7 +76,7 @@ body * {
 
 .navbar-brand-custom {
     font-family: trajanpro-bold;
-    color: #FBB352 !important;
+    color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .footer-hack {
@@ -80,12 +91,4 @@ body * {
 #react-main-container > div > nav > div > div.navbar-collapse.navbar-collapse-custom.collapse > ul > li > a {
     padding-top: 16px;
     padding-bottom: 14px;
-}
-
-.icon-custom {
-    color: black;
-}
-
-.icon-custom:hover {
-    color: #FBB352;
 }
