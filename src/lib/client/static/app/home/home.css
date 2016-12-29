@@ -3,7 +3,7 @@
     margin-bottom: 0;
     border-radius: 0 !important;
     height: 0;
-    padding: 0 0 35% 0;
+    padding: 0 0 36% 0;
     background-size: 100% auto;
 }
 
@@ -40,13 +40,6 @@
 @media screen and (min-width: 768px) {
     .jumbotron-custom {
         border: 20px solid white;
-    }
-
-    .gradient-custom {
-        margin-left: -60px;
-        margin-right: -60px;
-        padding-left: 60px;
-        padding-right: 60px;
     }
 
     .headline-custom {
@@ -97,5 +90,65 @@
 }
 
 .icon-move-left-custom {
-    margin-left: -3%;
+    margin-left: 6%;
+}
+
+
+@media screen and (min-width: 768px) {
+    .icon-move-left-custom {
+        margin-left: 0%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .icon-move-left-custom {
+        margin-left: -3%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .icon-move-left-custom {
+        margin-left: 2%;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .headline-custom {
+        font-size: 31px;
+        margin-bottom: 2%;
+    }
+
+    .sub-headline-custom {
+        font-size: 21px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .subscribe-text {
+        margin-top: 8%;
+    }
+
+    .about-us-custom {
+        display: none;
+    }
+
+    .icon-move-left-custom {
+        margin-left: 6%;
+    }
+
+    .icon-custom {
+        margin-top: -17px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .subscribe-text {
+        margin-top: -7%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .subscribe-text {
+        margin-top: -10%;
+    }
 }
