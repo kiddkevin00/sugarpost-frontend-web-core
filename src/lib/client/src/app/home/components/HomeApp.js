@@ -26,44 +26,42 @@ class HomeApp extends BaseComponent {
       <div className="container-fluid">
         <div className="row">
           <div className="jumbotron jumbotron-custom">
-            <div className="gradient-custom">
-              <div className="container-fluid">
-                <div className="row">
-                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1 className="headline-custom">SUGARPOST</h1>
-                  </div>
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h1 className="headline-custom">SUGARPOST</h1>
                 </div>
-                <div className="row">
-                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2 className="sub-headline-custom">
-                      Premium subscription service to a sweet adventure
-                    </h2>
-                  </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <h2 className="sub-headline-custom">
+                    Premium subscription service to a sweet adventure
+                  </h2>
                 </div>
-                <div className="row">
-                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div className="lines-break-custom" />
-                  </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div className="lines-break-custom" />
                 </div>
-                <div className="row">
-                  <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                    <p className="subscribe-text">
-                      For exclusive offers and updates on the launch, please subscribe by entering
-                      your e-mail below.
-                    </p>
-                  </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
+                  <p className="subscribe-text">
+                    For exclusive offers and updates on the launch, please subscribe by entering
+                    your e-mail below.
+                  </p>
                 </div>
-                <div className="row">
-                  <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                    <SubscribeForm onSubmit={ HomeApp._onSubmit } />
-                  </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
+                  <SubscribeForm onSubmit={ HomeApp._onSubmit } />
                 </div>
-                <div className="row">
-                  <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                    <p className={ `${this.state.subscribeFeedbackCssClass} subscribe-fb-custom` }>
-                      { this.state.subscribeFeedbackTxt }
-                    </p>
-                  </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
+                  <p className={ `${this.state.subscribeFeedbackCssClass} subscribe-fb-custom` }>
+                    { this.state.subscribeFeedbackTxt }
+                  </p>
                 </div>
               </div>
             </div>
@@ -94,13 +92,28 @@ class HomeApp extends BaseComponent {
           <div className="row">
             <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
               {/* eslint-disable jsx-a11y/no-static-element-interactions, max-len */}
-              <img onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') } className="icon-custom" src="/assets/images/instagram-icon.png" alt="instagram" />
+              <img
+                onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
+                className="icon-custom"
+                src="/assets/images/instagram-icon.png"
+                alt="instagram"
+              />
             </div>
             <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-              <img onClick={ HomeApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') } className="icon-custom" src="/assets/images/facebook-icon.png" alt="facebook" />
+              <img
+                onClick={ HomeApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }
+                className="icon-custom"
+                src="/assets/images/facebook-icon.png"
+                alt="facebook"
+              />
             </div>
             <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-              <img onClick={ HomeApp._onLink.bind(null, 'https://twitter.com/mysugarpost') } className="icon-custom" src="/assets/images/twitter-icon.png" alt="twitter" />
+              <img
+                onClick={ HomeApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }
+                className="icon-custom"
+                src="/assets/images/twitter-icon.png"
+                alt="twitter"
+              />
               {/* eslint-enable */}
             </div>
           </div>

@@ -61,7 +61,7 @@ AppDispatcher.register((action) => {
       homeStore.emitChange();
       break;
     case homeConstants.IS_SUBSCRIBED:
-      homeStore._subscribeResult('The e-mail address you entered in is already in our system!', 'text-danger');
+      homeStore._subscribeResult('The e-mail address you entered is already in our system!', 'text-danger');
 
       homeStore.emitChange();
       break;
