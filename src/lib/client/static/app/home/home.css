@@ -89,14 +89,10 @@
     padding-bottom: 15px;
 }
 
-.icon-move-left-custom {
-    margin-left: 6%;
-}
-
 
 @media screen and (min-width: 768px) {
     .icon-move-left-custom {
-        margin-left: 0%;
+        margin-left: 0;
     }
 }
 
@@ -112,7 +108,7 @@
     }
 }
 
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 435px) {
     .headline-custom {
         font-size: 31px;
         margin-bottom: 2%;
@@ -129,15 +125,11 @@
     }
 
     .about-us-custom {
-        display: none;
+        visibility: hidden;
     }
 
     .icon-move-left-custom {
         margin-left: 6%;
-    }
-
-    .icon-custom {
-        margin-top: -17px;
     }
 }
 
