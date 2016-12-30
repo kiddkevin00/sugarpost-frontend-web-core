@@ -89,6 +89,9 @@
     padding-bottom: 15px;
 }
 
+.mobile-icon-row-custom {
+    display: none;
+}
 
 @media screen and (min-width: 768px) {
     .icon-move-left-custom {
@@ -107,6 +110,7 @@
         margin-left: 2%;
     }
 }
+
 
 @media only screen and (max-width: 480px) {
     .headline-custom {
@@ -128,16 +132,16 @@
         display: none;
     }
 
-    .logo-custom {
-        display: none;
-    }
-
-    .icon-custom {
+    .container-custom {
         display: none;
     }
 
     .icon-move-left-custom {
         margin-left: 6%;
+    }
+
+    .mobile-icon-row-custom {
+        display: block;
     }
 }
 

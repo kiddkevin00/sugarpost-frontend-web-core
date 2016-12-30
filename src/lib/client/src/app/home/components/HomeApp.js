@@ -64,6 +64,34 @@ class HomeApp extends BaseComponent {
                   </p>
                 </div>
               </div>
+              <div className="row mobile-icon-row-custom">
+                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                  {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+                  <img
+                    onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
+                    className="icon-custom"
+                    src="/assets/images/instagram-icon.png"
+                    alt="instagram"
+                  />
+                </div>
+                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
+                  <img
+                    onClick={ HomeApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }
+                    className="icon-custom"
+                    src="/assets/images/facebook-icon.png"
+                    alt="facebook"
+                  />
+                </div>
+                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
+                  <img
+                    onClick={ HomeApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }
+                    className="icon-custom"
+                    src="/assets/images/twitter-icon.png"
+                    alt="twitter"
+                  />
+                  {/* eslint-enable */}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -91,7 +119,7 @@ class HomeApp extends BaseComponent {
           </div>
           <div className="row">
             <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-              {/* eslint-disable jsx-a11y/no-static-element-interactions, max-len */}
+              {/* eslint-disable jsx-a11y/no-static-element-interactions */}
               <img
                 onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
                 className="icon-custom"
