@@ -92,13 +92,13 @@
 
 @media screen and (min-width: 768px) {
     .icon-move-left-custom {
-        margin-left: 0;
+        margin-left: 3%;
     }
 }
 
 @media screen and (min-width: 992px) {
     .icon-move-left-custom {
-        margin-left: -3%;
+        margin-left: -2%;
     }
 }
 
@@ -108,7 +108,7 @@
     }
 }
 
-@media only screen and (max-width: 435px) {
+@media only screen and (max-width: 480px) {
     .headline-custom {
         font-size: 31px;
         margin-bottom: 2%;
@@ -125,7 +125,15 @@
     }
 
     .about-us-custom {
-        visibility: hidden;
+        display: none;
+    }
+
+    .logo-custom {
+        display: none;
+    }
+
+    .icon-custom {
+        display: none;
     }
 
     .icon-move-left-custom {
