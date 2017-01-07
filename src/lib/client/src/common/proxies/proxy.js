@@ -88,8 +88,7 @@ class Proxy {
 
     if (url[0] === '/') {
       const urlBase = (window.location.hostname === 'localhost') ||
-        (window.location.hostname === '127.0.0.1') ||
-        (window.location.hostname === '0.0.0.0') ?
+        (window.location.hostname === '127.0.0.1') || (window.location.hostname === '0.0.0.0') ?
         constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API : constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
 
       fullUrl = urlBase + url;
