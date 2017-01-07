@@ -20,7 +20,22 @@
 
 @font-face {
     font-family: sfuitext-bold;
-    src: url("/assets/fonts/sfuitext-bold.otf");
+    src: url("/assets/fonts/sfuitext-bold.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-semibold;
+    src: url("/assets/fonts/sfuitext-semibold.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-medium;
+    src: url("/assets/fonts/sfuitext-medium.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-regular;
+    src: url("/assets/fonts/sfuitext-regular.ttf");
 }
 
 html,
@@ -36,7 +51,7 @@ body {
 }
 
 body * {
-    font-family: nexa-light;
+    font-family: sfuitext-regular;
 }
 
 .header-custom {

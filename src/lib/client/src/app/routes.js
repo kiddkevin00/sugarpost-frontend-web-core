@@ -74,6 +74,7 @@ class RootApp extends BaseComponent {
 
         { this.props.children }
 
+        {/*
         <div className="footer-hack" />
         <Navbar className="navbar footer-custom">
           <Navbar.Header>
@@ -85,8 +86,10 @@ class RootApp extends BaseComponent {
           <Navbar.Collapse className="navbar-collapse-custom">
             <Nav className="navbar-right">
               <NavItem>
-                {/* eslint-disable jsx-a11y/no-static-element-interactions, max-len */}
-                <div onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }>
+                // eslint-disable jsx-a11y/no-static-element-interactions, max-len
+                <div
+                  onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
+                >
                   <img src="/assets/images/instagram-icon.png" alt="instagram" />
                 </div>
               </NavItem>
@@ -97,13 +100,14 @@ class RootApp extends BaseComponent {
               </NavItem>
               <NavItem>
                 <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }>
+                  // eslint-enable
                   <img src="/assets/images/twitter-icon.png" alt="twitter" />
                 </div>
-                {/* eslint-enable */}
               </NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        */}
       </div>
     );
   }

@@ -12,7 +12,16 @@ const path = require('path');
 const fs = require('fs');
 
 function setupExpressServer(app) {
-  app.use(cors());
+  const env = app.get('env'); // Same as `process.env.NODE_ENV`.
+
+  if (env === 'production') {
+    app.use((req, res, next) => {
+      if (req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect(301, `https://${req.headers.host}${req.url}`);
+      }
+      return next();
+    });
+  }
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
@@ -28,8 +37,6 @@ function setupExpressServer(app) {
   // For 404 error and server-side rendering pages only.
   app.set('views', path.resolve(__dirname, 'views/'));
   app.set('view engine', 'jade');
-
-  const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
   if (env === 'production') {
     // Here are all the minified version of all JS and CSS files.
