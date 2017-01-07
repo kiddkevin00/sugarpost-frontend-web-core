@@ -15,7 +15,13 @@ function setupExpressServer(app) {
   const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
   if (env === 'production') {
-    app.get('/*', (req, res) => res.redirect(301, `https://${req.headers.host}${req.url}`));
+    app.get('/*', (req, res, next) => {
+      if (!req.secure) {
+        return res.redirect(301, `https://${req.headers.host}${req.url}`);
+      } else {
+        return next();
+      }
+    }
   }
 
   app.use(bodyParser.urlencoded({ extended: false }));
