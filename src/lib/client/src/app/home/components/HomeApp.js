@@ -64,6 +64,34 @@ class HomeApp extends BaseComponent {
                   </p>
                 </div>
               </div>
+              <div className="row mobile-icon-row-custom">
+                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                  {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+                  <img
+                    onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
+                    className="icon-custom"
+                    src="/assets/images/instagram-icon.png"
+                    alt="instagram"
+                  />
+                </div>
+                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
+                  <img
+                    onClick={ HomeApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }
+                    className="icon-custom"
+                    src="/assets/images/facebook-icon.png"
+                    alt="facebook"
+                  />
+                </div>
+                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
+                  <img
+                    onClick={ HomeApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }
+                    className="icon-custom"
+                    src="/assets/images/twitter-icon.png"
+                    alt="twitter"
+                  />
+                  {/* eslint-enable */}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -72,10 +100,10 @@ class HomeApp extends BaseComponent {
             <div className="col-xs-12 col-sm-9 col-md-8 col-lg-10 text-left">
               <h3 className="about-us-custom">
                 Sugarpost is a New York based online monthly premium subscription service that
-                provides its customers with e-packages of trendy and innovative dessert deals
-                ranging from frozen treats to baked goods. We have scoured the internet and
-                attained insight from various food bloggers and dessert connoisseurs to deliver
-                our subscribers a selection of unique desserts around New York City!
+                provides its customers with e-packages of trendy and innovative desserts ranging
+                from frozen treats to baked goods. We have scoured the internet and attained
+                insight from various food bloggers and dessert connoisseurs to deliver our
+                subscribers a selection of unique desserts around New York City!
               </h3>
             </div>
             <div
@@ -91,7 +119,7 @@ class HomeApp extends BaseComponent {
           </div>
           <div className="row">
             <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-              {/* eslint-disable jsx-a11y/no-static-element-interactions, max-len */}
+              {/* eslint-disable jsx-a11y/no-static-element-interactions */}
               <img
                 onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
                 className="icon-custom"

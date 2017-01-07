@@ -89,20 +89,19 @@
     padding-bottom: 15px;
 }
 
-.icon-move-left-custom {
-    margin-left: 6%;
+.mobile-icon-row-custom {
+    display: none;
 }
-
 
 @media screen and (min-width: 768px) {
     .icon-move-left-custom {
-        margin-left: 0%;
+        margin-left: 3%;
     }
 }
 
 @media screen and (min-width: 992px) {
     .icon-move-left-custom {
-        margin-left: -3%;
+        margin-left: -2%;
     }
 }
 
@@ -112,23 +111,28 @@
     }
 }
 
-@media only screen and (max-width: 414px) {
+
+@media only screen and (max-width: 480px) {
     .headline-custom {
         font-size: 31px;
         margin-bottom: 2%;
     }
 
     .sub-headline-custom {
-        font-size: 21px;
+        font-size: 18px;
         margin-top: 0;
         margin-bottom: 0;
     }
 
     .subscribe-text {
-        margin-top: 8%;
+        margin-top: 6%;
     }
 
     .about-us-custom {
+        display: none;
+    }
+
+    .container-custom {
         display: none;
     }
 
@@ -136,19 +140,19 @@
         margin-left: 6%;
     }
 
-    .icon-custom {
-        margin-top: -17px;
+    .mobile-icon-row-custom {
+        display: block;
     }
 }
 
 @media only screen and (max-width: 360px) {
     .subscribe-text {
-        margin-top: -7%;
+        margin-top: 4%;
     }
 }
 
 @media only screen and (max-width: 320px) {
     .subscribe-text {
-        margin-top: -10%;
+        margin-top: 0;
     }
 }
