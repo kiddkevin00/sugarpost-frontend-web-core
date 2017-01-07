@@ -15,7 +15,7 @@ function setupExpressServer(app) {
   const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
   if (env !== 'production') {
-    app.get('/*', (req, res, next) => {
+    app.use((req, res, next) => {
       if (req.headers['x-forwarded-proto'] !== 'https') {
         return res.redirect(301, `https://${req.headers.host}${req.url}`);
       }
