@@ -64,11 +64,8 @@ class SignupApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(event, email, password, firstName, lastName) {
-    // Prevents browser's default navigation (page refresh).
-    event.preventDefault();
-
-    authActionCreator.signup(email, password, firstName, lastName);
+  static _onSubmit(email, password, firstName, lastName, token) {
+    authActionCreator.signup(email, password, firstName, lastName, token);
   }
 
 }

@@ -39,6 +39,7 @@ class Proxy {
       method: constants.SYSTEM.HTTP_METHODS.GET,
       mode: 'cors',
       credentials: 'include',
+      redirect: 'follow',
     };
 
     return HttpRequest.exec(url, options);

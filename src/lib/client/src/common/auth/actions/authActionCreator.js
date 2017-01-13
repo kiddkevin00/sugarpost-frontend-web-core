@@ -4,13 +4,14 @@ import StandardResponseWrapper from '../../utility/standard-response-wrapper';
 import constants from '../constants/authConstants';
 
 const authActionCreator = {
-  signup(firstName, lastName, email, password) {
+  signup(firstName, lastName, email, password, token) {
     const url = '/api/auth/signup';
     const body = {
       firstName,
       lastName,
       email,
       password,
+      token,
     };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
