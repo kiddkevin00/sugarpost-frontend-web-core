@@ -81,6 +81,7 @@ class SignupForm extends BaseComponent {
             id="confirm-password"
           />
         </div>
+        {/*
         <StripeCheckout
           token={ this._onToken }
           stripeKey="pk_test_jx78Ig5R5FcBYoGcMoTvNnia"
@@ -93,10 +94,10 @@ class SignupForm extends BaseComponent {
           currency="USD"
           locale="en"
           email="administrator@mysugarpost.com"
-          billingAddress={ true }
-          alipay={ true }
-          bitcoin={ true }
-          allowRememberMe={ true }
+          billingAddress={ false }
+          alipay={ false }
+          bitcoin={ false }
+          allowRememberMe={ false }
           reconfigureOnUpdate={ false }
           triggerEvent="onClick"
         >
@@ -110,16 +111,16 @@ class SignupForm extends BaseComponent {
             Pay Now
           </button>
         </StripeCheckout>
-        {/*
+        */}
         <button
           disabled={ !this.state.emailIsValid || !this.state.passwordIsValid ||
-            !this.state.firstNameIsValid || !this.state.lastNameIsValid }
+              !this.state.confirmPasswordIsValid || !this.state.firstNameIsValid ||
+              !this.state.lastNameIsValid || (this.state.password !== this.state.confirmPassword) }
           className="btn btn-success btn-sm btn-block"
           type="submit"
         >
-          Sign Up
+          Sign Up Now
         </button>
-        */}
       </form>
     );
   }
@@ -134,6 +135,11 @@ class SignupForm extends BaseComponent {
       [field]: value,
       [`${field}IsValid`]: isValid,
     });
+  }
+
+  _onSubmit(event) {
+    this.props.onSubmit(event, this.state.email, this.state.password, this.state.firstName,
+      this.state.lastName);
   }
 
 }

@@ -3,6 +3,7 @@ import authActionCreator from '../common/auth/actions/authActionCreator';
 import HomeApp from './home/components/HomeApp';
 import LoginApp from './login/components/LoginApp';
 import SignupApp from './signup/components/SignupApp';
+import ProfileApp from './profile/components/ProfileApp';
 import MemoApp from './memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
 import React from 'react';
@@ -21,6 +22,16 @@ class RootApp extends BaseComponent {
 
   componentDidMount() {
     authStore.addChangeListener(this._onChange);
+
+    if (!this.state.isLoggedIn && this.context.router.isActive('/profile')) {
+      this.context.router.push('/home');
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    if (!nextState.isLoggedIn && nextContext.router.isActive('/profile')) {
+      this.context.router.push('/home');
+    }
   }
 
   componentWillUnmount() {
@@ -31,25 +42,31 @@ class RootApp extends BaseComponent {
     const tabsShownWhenUserLoggedIn = [];
 
     if (this.state.isLoggedIn) {
-      /* eslint-disable jsx-a11y/no-static-element-interactions */
-      tabsShownWhenUserLoggedIn.push(
-        <NavItem key="0">
+      tabsShownWhenUserLoggedIn.push((
+        <LinkContainer key="0" to="/profile">
+          <NavItem>Profile</NavItem>
+        </LinkContainer>
+      ), (
+        /* eslint-disable jsx-a11y/no-static-element-interactions */
+        <NavItem key="1">
           <div onClick={ RootApp._onLogout }>
             Log out
           </div>
         </NavItem>
-      );
-      /* eslint-enable */
+        /* eslint-enable */
+    ));
     } else {
       tabsShownWhenUserLoggedIn.push((
-        <LinkContainer key="1" to="/signup">
+        <LinkContainer key="2" to="/signup">
           <NavItem>Sign Up</NavItem>
         </LinkContainer>
       ), (
-        <LinkContainer key="2" to="/login">
+        <LinkContainer key="3" to="/login">
           <NavItem>Log In</NavItem>
         </LinkContainer>
       ));
+
+
     }
 
     return (
@@ -70,13 +87,12 @@ class RootApp extends BaseComponent {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div className="header-hack" />
+        {/* <div className="header-hack" /> */}
 
         { this.props.children }
 
-        {/*
         <div className="footer-hack" />
-        <Navbar className="navbar footer-custom">
+        <Navbar className="footer-custom">
           <Navbar.Header>
             <Navbar.Brand className="footer-navbar-brand-custom">
               <a>©Sugarpost 2016</a>
@@ -86,7 +102,7 @@ class RootApp extends BaseComponent {
           <Navbar.Collapse className="navbar-collapse-custom">
             <Nav className="navbar-right">
               <NavItem>
-                // eslint-disable jsx-a11y/no-static-element-interactions, max-len
+                {/* eslint-disable jsx-a11y/no-static-element-interactions, max-len */}
                 <div
                   onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
                 >
@@ -100,14 +116,13 @@ class RootApp extends BaseComponent {
               </NavItem>
               <NavItem>
                 <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }>
-                  // eslint-enable
+                  {/* eslint-enable */}
                   <img src="/assets/images/twitter-icon.png" alt="twitter" />
                 </div>
               </NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        */}
       </div>
     );
   }
@@ -127,15 +142,19 @@ class RootApp extends BaseComponent {
   }
 
 }
+RootApp.contextTypes = {
+  router: React.PropTypes.object.isRequired,
+};
 
 const clientRoutes = (
   <Router history={ hashHistory }>
     <Route path="/" component={ RootApp }>
       <IndexRoute component={ HomeApp } />
       <Route path="home" component={ HomeApp } />
-      <Route path="memo" component={ MemoApp } />
       <Route path="signup" component={ SignupApp } />
       <Route path="login" component={ LoginApp } />
+      <Route path="profile" component={ ProfileApp } />
+      <Route path="memo" component={ MemoApp } />
     </Route>
   </Router>
 );

@@ -15,6 +15,10 @@ class SignupApp extends BaseComponent {
 
   componentDidMount() {
     authStore.addChangeListener(this._onChange);
+
+    if (this.state.isLoggedIn) {
+      this.context.router.push('/profile');
+    }
   }
 
   componentWillUnmount() {
@@ -23,7 +27,7 @@ class SignupApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextState.isLoggedIn) {
-      this.context.router.push('/home');
+      this.context.router.push('/profile');
     }
   }
 
@@ -64,7 +68,10 @@ class SignupApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(email, password, firstName, lastName, token) {
+  static _onSubmit(event, email, password, firstName, lastName, token) {
+    // Prevents browser's default navigation (page refresh).
+    event.preventDefault();
+
     authActionCreator.signup(email, password, firstName, lastName, token);
   }
 

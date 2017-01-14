@@ -15,6 +15,10 @@ class LoginApp extends BaseComponent {
 
   componentDidMount() {
     authStore.addChangeListener(this._onChange);
+
+    if (this.state.isLoggedIn) {
+      this.context.router.push('/profile');
+    }
   }
 
   componentWillUnmount() {
@@ -23,7 +27,7 @@ class LoginApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextState.isLoggedIn) {
-      this.context.router.push('/home');
+      this.context.router.push('/profile');
     }
   }
 
