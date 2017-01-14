@@ -1,6 +1,7 @@
 import Proxy from '../../../common/proxies/proxy';
 import dispatcher from '../../../common/dispatcher/AppDispatcher';
-import homeConstants from '../constants/homeConstants';
+import StandardResponseWrapper from '../../../common/utility/standard-response-wrapper';
+import constants from '../constants/homeConstants';
 
 const homeActionCreator = {
   subscribe(email) {
@@ -10,19 +11,28 @@ const homeActionCreator = {
 
     Proxy.post(url, body, headers)
       .then((payloadObj) => {
-        if (payloadObj.data && payloadObj.data[0] && payloadObj.data[0].isSubscribed) {
+        try {
+          const res = StandardResponseWrapper.deserialize(payloadObj);
+
+          if (res.data[0] && res.data[0].isSubscribed) {
+            dispatcher.dispatch({
+              actionType: constants.IS_SUBSCRIBED,
+            });
+          } else {
+            dispatcher.dispatch({
+              actionType: constants.SUBSCRIBE_SUCCESS,
+            });
+          }
+        } catch (err) {
           dispatcher.dispatch({
-            actionType: homeConstants.IS_SUBSCRIBED,
-          });
-        } else {
-          dispatcher.dispatch({
-            actionType: homeConstants.SUBSCRIBE_SUCCESS,
+            actionType: constants.SUBSCRIBE_FAIL,
+            data: err,
           });
         }
       })
       .catch((err) => {
         dispatcher.dispatch({
-          actionType: homeConstants.SUBSCRIBE_FAIL,
+          actionType: constants.SUBSCRIBE_FAIL,
           data: err,
         });
       });
