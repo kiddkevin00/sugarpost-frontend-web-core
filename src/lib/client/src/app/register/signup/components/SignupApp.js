@@ -1,7 +1,7 @@
-import authStore from '../../../common/auth/stores/authStore';
-import authActionCreator from '../../../common/auth/actions/authActionCreator';
+import authStore from '../../../../common/auth/stores/authStore';
+import authActionCreator from '../../../../common/auth/actions/authActionCreator';
 import SignupForm from './SignupForm';
-import BaseComponent from '../../../common/components/BaseComponent';
+import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
 class SignupApp extends BaseComponent {
