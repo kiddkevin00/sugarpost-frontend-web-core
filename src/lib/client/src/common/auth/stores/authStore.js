@@ -79,17 +79,20 @@ AppDispatcher.register((action) => {
   const lastName = action.lastName;
 
   switch (actionType) {
-    case authConstants.BASIC_LOGIN:
+    case authConstants.BASIC_LOGIN_SUCCESS:
       authStore._login(email, password);
 
       authStore.emitChange();
       break;
-    case authConstants.BASIC_SIGNUP:
+    case authConstants.SIGNUP_SUCCESS:
       authStore._signup(firstName, lastName, email, password);
 
       authStore.emitChange();
       break;
-    case authConstants.LOGOUT:
+    case authConstants.IS_SIGNED_UP:
+
+      break;
+    case authConstants.LOGOUT_SUCCESS:
       authStore._logout();
 
       authStore.emitChange();

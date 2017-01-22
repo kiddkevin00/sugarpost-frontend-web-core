@@ -23,15 +23,21 @@ class RootApp extends BaseComponent {
   }
 
   componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-
-    if (!this.state.isLoggedIn && this.context.router.isActive('/profile')) {
+    if (!this.state.isLoggedIn && (
+      this.context.router.isActive('/profile') ||
+      this.context.router.isActive('/register/payment')
+    )) {
       this.context.router.push('/home');
     }
+
+    authStore.addChangeListener(this._onChange);
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (!nextState.isLoggedIn && nextContext.router.isActive('/profile')) {
+    if (!nextState.isLoggedIn && (
+      nextContext.router.isActive('/profile') ||
+      nextContext.router.isActive('/register/payment')
+    )) {
       this.context.router.push('/home');
     }
   }
@@ -52,11 +58,11 @@ class RootApp extends BaseComponent {
         /* eslint-disable jsx-a11y/no-static-element-interactions */
         <NavItem key="1">
           <div onClick={ RootApp._onLogout }>
-            Log out
+            Log Out
           </div>
         </NavItem>
         /* eslint-enable */
-    ));
+      ));
     } else {
       tabsShownWhenUserLoggedIn.push((
         <LinkContainer key="2" to="/register/signup">
@@ -67,7 +73,6 @@ class RootApp extends BaseComponent {
           <NavItem>Log In</NavItem>
         </LinkContainer>
       ));
-
 
     }
 

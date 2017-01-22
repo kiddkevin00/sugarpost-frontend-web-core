@@ -14,20 +14,20 @@ class SignupApp extends BaseComponent {
   }
 
   componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-
     if (this.state.isLoggedIn) {
       this.context.router.push('/profile');
     }
+
+    authStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
     authStore.removeChangeListener(this._onChange);
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.isLoggedIn) {
-      this.context.router.push('/profile');
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    if (nextState.isLoggedIn && this.context.router.isActive('/register/signup')) {
+      this.context.router.push('/register/payment');
     }
   }
 
@@ -73,9 +73,6 @@ class SignupApp extends BaseComponent {
     //event.preventDefault();
 
     authActionCreator.signup(email, password, firstName, lastName, token);
-
-    // [TODO] Should wait until signup process succeeds.
-    this.context.router.push('/register/payment');
   }
 
 }

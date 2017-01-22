@@ -21,23 +21,24 @@ const authActionCreator = {
 
         if (res.data[0] && res.data[0].isSignedUp) {
           dispatcher.dispatch({
-            actionType: constants.BASIC_SIGNUP_SUCCESS,
+            actionType: constants.IS_SIGNED_UP, // TODO
           });
         } else {
           dispatcher.dispatch({
-            actionType: constants.IS_SIGNED_UP,
+            actionType: constants.SIGNUP_SUCCESS,
           });
         }
       })
       .catch((err) => {
         dispatcher.dispatch({
-          actionType: constants.BASIC_SIGNUP_FAIL,
+          actionType: constants.SIGNUP_FAIL,
           data: err,
         });
       });
   },
 
   login(email, password) {
+    // TODO
     dispatcher.dispatch({
       email,
       password,
@@ -46,6 +47,7 @@ const authActionCreator = {
   },
 
   logout() {
+    // TODO
     dispatcher.dispatch({
       actionType: constants.LOGOUT_SUCCESS,
     });

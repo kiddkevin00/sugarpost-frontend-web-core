@@ -8,7 +8,7 @@ class SignupForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onClick', '_onToken');
+    this._bind('_onClick');
     this.state = {
       firstName: '',
       lastName: '',
