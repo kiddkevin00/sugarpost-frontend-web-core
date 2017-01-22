@@ -9,7 +9,7 @@ class SignupApp extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', '_onSubmit');
+    this._bind('_onChange');
     this.state = _getState();
   }
 
@@ -49,7 +49,7 @@ class SignupApp extends BaseComponent {
                 <h4><span className="label label-primary">My Supgarpost</span></h4>
               </div>
               <div className="panel-body">
-                <SignupForm onSubmit={ this._onSubmit } />
+                <SignupForm onSubmit={ SignupApp._onSubmit } />
                 <div className="panel-footer text-center">
                   <p className="text-muted">
                     <a href="mailto:administrator@mysugarpost.com">Development Support</a>
@@ -68,10 +68,7 @@ class SignupApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  _onSubmit(event, email, password, firstName, lastName, token) {
-    // Prevents browser's default navigation (page refresh).
-    //event.preventDefault();
-
+  static _onSubmit(event, email, password, firstName, lastName, token) {
     authActionCreator.signup(email, password, firstName, lastName, token);
   }
 
