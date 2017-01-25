@@ -34,7 +34,7 @@ class RootApp extends BaseComponent {
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (!nextState.isLoggedIn && (
+    if ((this.state.isLoggedIn !== nextState.isLoggedIn && !nextState.isLoggedIn) && (
       nextContext.router.isActive('/profile') ||
       nextContext.router.isActive('/register/payment')
     )) {

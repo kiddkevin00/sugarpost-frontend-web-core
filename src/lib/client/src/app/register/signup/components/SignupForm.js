@@ -120,7 +120,7 @@ class SignupForm extends BaseComponent {
           className="btn btn-success btn-sm btn-block"
           type="click"
         >
-          Sign Up Now
+          Sign Up
         </button>
       </form>
     );
@@ -144,5 +144,8 @@ class SignupForm extends BaseComponent {
   }
 
 }
+SignupForm.propTypes = {
+  onSubmit: React.PropTypes.func.isRequired,
+};
 
 export default SignupForm;

@@ -1,3 +1,4 @@
+import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
@@ -11,14 +12,36 @@ class PaymentApp extends BaseComponent {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1>Placeholder for payment section.</h1>
+            <div className="signup-form-padding-top" />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div className="panel panel-default">
+              <div className="panel-heading text-center">
+                <h4><span className="label label-primary">My Supgarpost</span></h4>
+              </div>
+              <div className="panel-body">
+                <PaymentForm onSubmit={ PaymentApp._onSubmit } />
+                <div className="panel-footer text-center">
+                  <p className="text-muted">
+                    <a href="mailto:administrator@mysugarpost.com">Development Support</a>
+                  </p>
+                  <p>v1.12.1</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
+  }
+
+  static _onSubmit(token) {
+    console.log(token);
   }
 
 }
