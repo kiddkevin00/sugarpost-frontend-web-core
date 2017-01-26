@@ -14,11 +14,11 @@ class LoginApp extends BaseComponent {
   }
 
   componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-
     if (this.state.isLoggedIn) {
       this.context.router.push('/profile');
     }
+
+    authStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {

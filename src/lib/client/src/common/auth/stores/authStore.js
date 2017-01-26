@@ -14,7 +14,6 @@ class AuthStore extends EventEmitter {
     // All internal store data.
     this[storeContext] = {
       isLoggedIn: false,
-      currentSignupUser: [],
     };
   }
 
@@ -34,30 +33,8 @@ class AuthStore extends EventEmitter {
     this.removeListener(changeEvent, callback);
   }
 
-  _signup(email, password, firstName, lastName) {
-    this[storeContext].currentSignupUser.push({
-      firstName,
-      lastName,
-      email,
-      password,
-    });
+  _login() {
     this[storeContext].isLoggedIn = true;
-  }
-
-  _login(email, password) {
-    if (email === 'admin@admin' && password === 'admin') {
-      this[storeContext].isLoggedIn = true;
-      return;
-    }
-
-    const currentSignupUser = this[storeContext].currentSignupUser;
-
-    for (const signupUser of currentSignupUser) {
-      if (signupUser.email === email && signupUser.password === password) {
-        this[storeContext].isLoggedIn = true;
-        return;
-      }
-    }
   }
 
   _logout() {
@@ -73,29 +50,30 @@ AppDispatcher.register((action) => {
   console.log(`Action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
 
   const actionType = action.actionType;
-  const email = action.email;
-  const password = action.password;
-  const firstName = action.firstName;
-  const lastName = action.lastName;
 
   switch (actionType) {
-    case authConstants.BASIC_LOGIN_SUCCESS:
-      authStore._login(email, password);
+    case authConstants.IS_LOGGED_IN:
+      authStore._login();
 
       authStore.emitChange();
       break;
-    case authConstants.SIGNUP_SUCCESS:
-      authStore._signup(firstName, lastName, email, password);
+    case authConstants.NOT_LOGGED_IN:
+    case authConstants.AUTH_CHECK_FAIL:
+      authStore._logout();
 
       authStore.emitChange();
       break;
     case authConstants.IS_SIGNED_UP:
+      // TODO
 
       break;
-    case authConstants.LOGOUT_SUCCESS:
-      authStore._logout();
+    case authConstants.SIGNUP_FAIL:
+      // TODO
 
-      authStore.emitChange();
+      break;
+    case authConstants.LOGOUT_FAIL:
+      // TODO
+
       break;
     default:
       break;

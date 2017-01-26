@@ -16,16 +16,19 @@ exports.SOURCES = sources;
 exports.HTTP_STATUS_CODES = httpStatusCodes;
 
 exports.ERROR_CODES = Object.assign({}, httpStatusCodes, {
-  RESPONSE_INTERFACE_INVALID: 1000,
+  INVALID_RESPONSE_INTERFACE: 1000,
+  INVALID_ERROR_INTERFACE: 1001,
 });
 
 exports.ERROR_NAMES = {
   RESPONSE_OBJ_PARSE_ERROR: 'RESPONSE_OBJ_PARSE_ERROR',
+  ERROR_OBJ_PARSE_ERROR: 'ERROR_OBJ_PARSE_ERROR',
   PROXY_ERROR: 'PROXY_ERROR',
 };
 
 exports.ERROR_MSG = {
-  RESPONSE_OBJ_PARSE_ERROR: 'The response object is not able to deserialize back to an instance of Standard Reponse Wrapper',
+  RESPONSE_OBJ_PARSE_ERROR: 'The response object is not able to deserialize back to an instance of Standard Response Wrapper.',
+  ERROR_OBJ_PARSE_ERROR: 'The error object is not able to deserialize back to an instance of Standard Error Wrapper.',
   PROXY_ERROR: 'An error occurred in HTTP proxy.',
 };
 

@@ -23,18 +23,15 @@ class RootApp extends BaseComponent {
   }
 
   componentDidMount() {
-    if (!this.state.isLoggedIn && (
-      this.context.router.isActive('/profile') ||
-      this.context.router.isActive('/register/payment')
-    )) {
-      this.context.router.push('/home');
+    if (!this.state.isLoggedIn) {
+      authActionCreator.authCheck();
     }
 
     authStore.addChangeListener(this._onChange);
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if ((this.state.isLoggedIn !== nextState.isLoggedIn && !nextState.isLoggedIn) && (
+    if (!nextState.isLoggedIn && (
       nextContext.router.isActive('/profile') ||
       nextContext.router.isActive('/register/payment')
     )) {

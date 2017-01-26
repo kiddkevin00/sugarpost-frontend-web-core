@@ -36,7 +36,7 @@ class PaymentForm extends BaseComponent {
           amount={ 1999 }
           currency="USD"
           locale="en"
-          email="administrator@mysugarpost.com"
+          email={ this.props.email }
           billingAddress={ false }
           alipay={ false }
           bitcoin={ false }

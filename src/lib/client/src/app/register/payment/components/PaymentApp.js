@@ -25,7 +25,10 @@ class PaymentApp extends BaseComponent {
                 <h4><span className="label label-primary">My Supgarpost</span></h4>
               </div>
               <div className="panel-body">
-                <PaymentForm onSubmit={ PaymentApp._onSubmit } />
+                <PaymentForm
+                  onSubmit={ PaymentApp._onSubmit }
+                  email={ this.props.location.query.email }
+                />
                 <div className="panel-footer text-center">
                   <p className="text-muted">
                     <a href="mailto:administrator@mysugarpost.com">Development Support</a>
