@@ -1,5 +1,5 @@
-import FormInput from '../../../common/components/FormInput';
-import BaseComponent from '../../../common/components/BaseComponent';
+import FormInput from '../../../../common/components/FormInput';
+import BaseComponent from '../../../../common/components/BaseComponent';
 import StripeCheckout from 'react-stripe-checkout';
 import React from 'react';
 
@@ -8,7 +8,7 @@ class SignupForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onToken');
+    this._bind('_onClick');
     this.state = {
       firstName: '',
       lastName: '',
@@ -116,19 +116,20 @@ class SignupForm extends BaseComponent {
           disabled={ !this.state.emailIsValid || !this.state.passwordIsValid ||
               !this.state.confirmPasswordIsValid || !this.state.firstNameIsValid ||
               !this.state.lastNameIsValid || (this.state.password !== this.state.confirmPassword) }
+          onClick={ this._onClick }
           className="btn btn-success btn-sm btn-block"
-          type="submit"
+          type="click"
         >
-          Sign Up Now
+          Sign Up
         </button>
       </form>
     );
   }
 
-  _onToken(token) {
-    this.props.onSubmit(this.state.email, this.state.password, this.state.firstName,
-      this.state.lastName, token);
-  }
+  //_onToken(token) {
+  //  this.props.onSubmit(this.state.email, this.state.password, this.state.firstName,
+  //    this.state.lastName, token);
+  //}
 
   _onChange(field, value, isValid) {
     this.setState({
@@ -137,11 +138,14 @@ class SignupForm extends BaseComponent {
     });
   }
 
-  _onSubmit(event) {
+  _onClick(event) {
     this.props.onSubmit(event, this.state.email, this.state.password, this.state.firstName,
       this.state.lastName);
   }
 
 }
+SignupForm.propTypes = {
+  onSubmit: React.PropTypes.func.isRequired,
+};
 
 export default SignupForm;
