@@ -81,41 +81,7 @@ class SignupForm extends BaseComponent {
             id="confirm-password"
           />
         </div>
-        {/*
-        <StripeCheckout
-          token={ this._onToken }
-          stripeKey="pk_test_jx78Ig5R5FcBYoGcMoTvNnia"
-          name="Sugarpost LLC"
-          description="Premium subscription service"
-          image="/assets/images/sugarpost-logo.png"
-          ComponentClass="div"
-          panelLabel="Get Your April Treat"
-          amount={ 1999 }
-          currency="USD"
-          locale="en"
-          email="administrator@mysugarpost.com"
-          billingAddress={ false }
-          alipay={ false }
-          bitcoin={ false }
-          allowRememberMe={ false }
-          reconfigureOnUpdate={ false }
-          triggerEvent="onClick"
-        >
-          <button
-            disabled={ !this.state.emailIsValid || !this.state.passwordIsValid ||
-              !this.state.confirmPasswordIsValid || !this.state.firstNameIsValid ||
-              !this.state.lastNameIsValid || (this.state.password !== this.state.confirmPassword) }
-            className="btn btn-success btn-sm btn-block"
-            type="button"
-          >
-            Pay Now
-          </button>
-        </StripeCheckout>
-        */}
         <button
-          disabled={ !this.state.emailIsValid || !this.state.passwordIsValid ||
-              !this.state.confirmPasswordIsValid || !this.state.firstNameIsValid ||
-              !this.state.lastNameIsValid || (this.state.password !== this.state.confirmPassword) }
           onClick={ this._onClick }
           className="btn btn-success btn-sm btn-block"
           type="click"
@@ -125,11 +91,6 @@ class SignupForm extends BaseComponent {
       </form>
     );
   }
-
-  //_onToken(token) {
-  //  this.props.onSubmit(this.state.email, this.state.password, this.state.firstName,
-  //    this.state.lastName, token);
-  //}
 
   _onChange(field, value, isValid) {
     this.setState({

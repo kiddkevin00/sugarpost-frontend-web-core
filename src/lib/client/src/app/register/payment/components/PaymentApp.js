@@ -43,8 +43,8 @@ class PaymentApp extends BaseComponent {
     );
   }
 
-  static _onSubmit(token) {
-    console.log(token);
+  static _onSubmit(token, referCode) {
+    console.log(token, referCode);
   }
 
 }

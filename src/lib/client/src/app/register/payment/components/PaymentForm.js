@@ -1,3 +1,4 @@
+import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import StripeCheckout from 'react-stripe-checkout';
 import React from 'react';
@@ -9,22 +10,25 @@ class PaymentForm extends BaseComponent {
 
     this._bind('_onToken');
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      firstNameIsValid: false,
-      lastNameIsValid: false,
-      emailIsValid: false,
-      passwordIsValid: false,
-      confirmPasswordIsValid: false,
+      referCode: '',
+      referCodeIsValid: false,
     };
   }
 
   render() {
     return (
       <form>
+        <div className="form-group">
+          <label htmlFor="email">Refer Code</label>
+          <FormInput
+            onChange={ this._onChange.bind(this, 'referCode') } /* eslint-disable-line react/jsx-no-bind */
+            value={ this.state.referCode }
+            type="text"
+            placeholder="Refer Code"
+            className="form-control"
+            id="refer-code"
+          />
+        </div>
         <StripeCheckout
           token={ this._onToken }
           stripeKey="pk_test_jx78Ig5R5FcBYoGcMoTvNnia"
@@ -57,8 +61,16 @@ class PaymentForm extends BaseComponent {
     );
   }
 
+  _onChange(field, value, isValid) {
+    this.setState({
+      [field]: value,
+      [`${field}IsValid`]: isValid,
+    });
+  }
+
   _onToken(token) {
-    this.props.onSubmit(token);
+    // TODO
+    this.props.onSubmit(token, this.state.referCode);
   }
 
 }
