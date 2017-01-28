@@ -1,18 +1,14 @@
 import dispatcher from '../../dispatcher/AppDispatcher';
 import Proxy from '../../../common/proxies/proxy';
 import StandardResponseWrapper from '../../utility/standard-response-wrapper';
-import constants from '../constants/authConstants';
+import StandardErrorWrapper from '../../utility/standard-error-wrapper';
+import authConstants from '../constants/authConstants';
+import constants from '../../constants/';
 
 const authActionCreator = {
-  signup(firstName, lastName, email, password, token) {
+  signup(email, password, firstName, lastName) {
     const url = '/api/auth/signup';
-    const body = {
-      firstName,
-      lastName,
-      email,
-      password,
-      token,
-    };
+    const body = { email, password, firstName, lastName };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
     Proxy.post(url, body, headers)
@@ -21,36 +17,111 @@ const authActionCreator = {
 
         if (res.data[0] && res.data[0].isSignedUp) {
           dispatcher.dispatch({
-            actionType: constants.BASIC_SIGNUP_SUCCESS,
+            actionType: authConstants.IS_SIGNED_UP,
           });
         } else {
           dispatcher.dispatch({
-            actionType: constants.IS_SIGNED_UP,
+            actionType: authConstants.IS_LOGGED_IN,
           });
         }
       })
       .catch((err) => {
         dispatcher.dispatch({
-          actionType: constants.BASIC_SIGNUP_FAIL,
+          actionType: authConstants.SIGNUP_FAIL,
           data: err,
         });
       });
   },
 
   login(email, password) {
-    dispatcher.dispatch({
-      email,
-      password,
-      actionType: constants.BASIC_LOGIN_SUCCESS,
-    });
+    const url = '/api/auth/login';
+    const body = { email, password };
+    const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
+
+    Proxy.post(url, body, headers)
+      .then((payloadObj) => {
+        const res = StandardResponseWrapper.deserialize(payloadObj);
+
+        if (res.data[0] && res.data[0].isAuthenticated) {
+          dispatcher.dispatch({
+            actionType: authConstants.IS_LOGGED_IN,
+          });
+        } else {
+          dispatcher.dispatch({
+            actionType: authConstants.NOT_LOGGED_IN,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatcher.dispatch({
+          actionType: authConstants.BASIC_LOGIN_FAIL,
+          data: err,
+        });
+      });
   },
 
   logout() {
-    dispatcher.dispatch({
-      actionType: constants.LOGOUT_SUCCESS,
-    });
+    const url = '/api/auth/logout';
+
+    Proxy.get(url)
+      .then((payloadObj) => {
+        const res = StandardResponseWrapper.deserialize(payloadObj);
+
+        if (res.data[0] && res.data[0].isAuthenticated) {
+          dispatcher.dispatch({
+            actionType: authConstants.IS_LOGGED_IN,
+          });
+        } else {
+          dispatcher.dispatch({
+            actionType: authConstants.NOT_LOGGED_IN,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatcher.dispatch({
+          actionType: authConstants.LOGOUT_FAIL,
+          data: err,
+        });
+      });
   },
 
+  authCheck() {
+    const url = '/api/auth/check';
+
+    Proxy.get(url)
+      .then((payloadObj) => {
+        if (StandardResponseWrapper.verifyFormat(payloadObj)) {
+          const res = StandardResponseWrapper.deserialize(payloadObj);
+
+          if (res.data[0] && res.data[0].isAuthenticated) {
+            return dispatcher.dispatch({
+              actionType: authConstants.IS_LOGGED_IN,
+            });
+          }
+          return dispatcher.dispatch({
+            actionType: authConstants.NOT_LOGGED_IN,
+          });
+        } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+          const err = StandardErrorWrapper.deserialize(payloadObj);
+          const firstErr = err.getNthError(0);
+
+          if (firstErr.code === constants.SYSTEM.ERROR_CODES.UNAUTHENTICATED) {
+            return dispatcher.dispatch({
+              actionType: authConstants.NOT_LOGGED_IN,
+            });
+          }
+        }
+        return dispatcher.dispatch({
+          actionType: authConstants.AUTH_CHECK_FAIL,
+        });
+      })
+      .catch((err) => {
+        dispatcher.dispatch({
+          actionType: authConstants.AUTH_CHECK_FAIL,
+          data: err,
+        });
+      });
+  },
 };
 
 export default authActionCreator;

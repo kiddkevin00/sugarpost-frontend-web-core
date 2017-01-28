@@ -1,7 +1,7 @@
-import authStore from '../../../common/auth/stores/authStore';
-import authActionCreator from '../../../common/auth/actions/authActionCreator';
+import authStore from '../../../../common/auth/stores/authStore';
+import authActionCreator from '../../../../common/auth/actions/authActionCreator';
 import SignupForm from './SignupForm';
-import BaseComponent from '../../../common/components/BaseComponent';
+import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
 class SignupApp extends BaseComponent {
@@ -9,25 +9,28 @@ class SignupApp extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange');
+    this._bind('_onChange', '_onSubmit');
     this.state = _getState();
   }
 
   componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-
     if (this.state.isLoggedIn) {
       this.context.router.push('/profile');
     }
+
+    authStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
     authStore.removeChangeListener(this._onChange);
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.isLoggedIn) {
-      this.context.router.push('/profile');
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    if (nextState.isLoggedIn && this.context.router.isActive('/register/signup')) {
+      this.context.router.push({
+        pathname: '/register/payment',
+        query: { email: this.email },
+      });
     }
   }
 
@@ -41,15 +44,14 @@ class SignupApp extends BaseComponent {
         </div>
         <div className="row">
           <div
-            className="col-xs-offset-0 col-sm-offset-1 col-md-offset-3 col-lg-offset-4
-              col-xs-12 col-sm-10 col-md-6 col-lg-4"
+            className="col-xs-12 col-sm-12 col-md-12 col-lg-12"
           >
             <div className="panel panel-default">
               <div className="panel-heading text-center">
                 <h4><span className="label label-primary">My Supgarpost</span></h4>
               </div>
               <div className="panel-body">
-                <SignupForm onSubmit={ SignupApp._onSubmit } />
+                <SignupForm onSubmit={ this._onSubmit } />
                 <div className="panel-footer text-center">
                   <p className="text-muted">
                     <a href="mailto:administrator@mysugarpost.com">Development Support</a>
@@ -68,11 +70,10 @@ class SignupApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(event, email, password, firstName, lastName, token) {
-    // Prevents browser's default navigation (page refresh).
-    event.preventDefault();
+  _onSubmit(event, email, password, firstName, lastName) {
+    this.email = email;
 
-    authActionCreator.signup(email, password, firstName, lastName, token);
+    authActionCreator.signup(this.email, password, firstName, lastName);
   }
 
 }

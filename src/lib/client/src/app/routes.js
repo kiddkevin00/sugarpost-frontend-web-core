@@ -2,7 +2,9 @@ import authStore from '../common/auth/stores/authStore';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import HomeApp from './home/components/HomeApp';
 import LoginApp from './login/components/LoginApp';
-import SignupApp from './signup/components/SignupApp';
+import RegisterApp from './register/';
+import SignupApp from './register/signup/components/SignupApp';
+import PaymentApp from './register/payment/components/PaymentApp';
 import ProfileApp from './profile/components/ProfileApp';
 import MemoApp from './memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
@@ -21,15 +23,18 @@ class RootApp extends BaseComponent {
   }
 
   componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-
-    if (!this.state.isLoggedIn && this.context.router.isActive('/profile')) {
-      this.context.router.push('/home');
+    if (!this.state.isLoggedIn) {
+      authActionCreator.authCheck();
     }
+
+    authStore.addChangeListener(this._onChange);
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (!nextState.isLoggedIn && nextContext.router.isActive('/profile')) {
+    if (!nextState.isLoggedIn && (
+      nextContext.router.isActive('/profile') ||
+      nextContext.router.isActive('/register/payment')
+    )) {
       this.context.router.push('/home');
     }
   }
@@ -50,14 +55,14 @@ class RootApp extends BaseComponent {
         /* eslint-disable jsx-a11y/no-static-element-interactions */
         <NavItem key="1">
           <div onClick={ RootApp._onLogout }>
-            Log out
+            Log Out
           </div>
         </NavItem>
         /* eslint-enable */
-    ));
+      ));
     } else {
       tabsShownWhenUserLoggedIn.push((
-        <LinkContainer key="2" to="/signup">
+        <LinkContainer key="2" to="/register/signup">
           <NavItem>Sign Up</NavItem>
         </LinkContainer>
       ), (
@@ -65,7 +70,6 @@ class RootApp extends BaseComponent {
           <NavItem>Log In</NavItem>
         </LinkContainer>
       ));
-
 
     }
 
@@ -151,7 +155,11 @@ const clientRoutes = (
     <Route path="/" component={ RootApp }>
       <IndexRoute component={ HomeApp } />
       <Route path="home" component={ HomeApp } />
-      <Route path="signup" component={ SignupApp } />
+      <Route path="register" component={ RegisterApp }>
+        <IndexRoute component={ SignupApp } />
+        <Route path="signup" component={ SignupApp } />
+        <Route path="payment" component={ PaymentApp } />
+      </Route>
       <Route path="login" component={ LoginApp } />
       <Route path="profile" component={ ProfileApp } />
       <Route path="memo" component={ MemoApp } />

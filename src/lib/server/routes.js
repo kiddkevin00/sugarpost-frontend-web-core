@@ -84,7 +84,7 @@ function setupRoutes(app) {
         });
       } else {
         res.sendFile(path.resolve(__dirname, '../client/static/', 'index2.html'), {
-          headers: { 'Cache-Control': 'no-cache' },
+          headers: { 'Cache-Control': 'no-store' },
         });
       }
 
