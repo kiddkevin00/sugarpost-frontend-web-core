@@ -69,7 +69,6 @@ class PaymentForm extends BaseComponent {
   }
 
   _onToken(token) {
-    // TODO
     this.props.onSubmit(token, this.state.referCode);
   }
 

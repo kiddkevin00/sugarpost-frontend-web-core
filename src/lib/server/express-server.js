@@ -42,11 +42,15 @@ function setupExpressServer(app) {
     // Here are all the minified version of all JS and CSS files.
     app.use(express.static(path.resolve(__dirname, '../../../', 'dist/'), {
       etag: true,
-      maxAge: 31536000000, // Set for one year - unit: millisecond.
       setHeaders(res, filePath) {
-        if (filePath.indexOf('.css') === -1 && filePath.indexOf('.js') === -1) {
-          res.append('Cache-Control', '86400'); // Set for a day - unit: second.
+        if (filePath.indexOf('.js') >= -1) {
+          res.append('Cache-Control', 'private, max-age=31536000'); // Set for one year
+        } else if (filePath.indexOf('.css') > -1) {
+          res.append('Cache-Control', 'public, max-age=31536000'); // Set for one year
+        } else {
+          res.append('Cache-Control', 'public, max-age=86400'); // Set for one day
         }
+
       },
     }));
 
@@ -72,11 +76,8 @@ function setupExpressServer(app) {
     // Here are all the original version of JS and CSS files.
     app.use(express.static(path.resolve(__dirname, '../client/', 'static/'), {
       etag: true,
-      maxAge: 31536000000, // [TBD] one year - unit: millisecond.
       setHeaders(res, filepPath) {
-        if (filepPath.indexOf('.css') === -1 && filepPath.indexOf('.js') === -1) {
-          res.append('Cache-Control', 'no-cache');
-        }
+        res.append('Cache-Control', 'no-store');
       },
     }));
 

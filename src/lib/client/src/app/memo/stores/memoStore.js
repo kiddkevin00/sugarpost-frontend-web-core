@@ -1,4 +1,4 @@
-import AppDispatcher from '../../../common/dispatcher/AppDispatcher';
+import dispatcher from '../../../common/dispatcher/AppDispatcher';
 import memoConstants from '../constants/memoConstants';
 import EventEmitter from 'events';
 
@@ -81,7 +81,7 @@ class MemoStore extends EventEmitter {
 const memoStore = new MemoStore();
 
 // The dispatcher registration for the current store component.
-AppDispatcher.register((action) => {
+dispatcher.register((action) => {
   console.log(`Action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
 
   const actionType = action.actionType;

@@ -1,4 +1,4 @@
-import AppDispatcher from '../../dispatcher/AppDispatcher';
+import dispatcher from '../../dispatcher/AppDispatcher';
 import authConstants from '../constants/authConstants';
 import EventEmitter from 'events';
 
@@ -46,7 +46,7 @@ class AuthStore extends EventEmitter {
 const authStore = new AuthStore();
 
 // The dispatcher registration for the current store component.
-AppDispatcher.register((action) => {
+dispatcher.register((action) => {
   console.log(`Action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
 
   const actionType = action.actionType;

@@ -1,3 +1,4 @@
+import paymentActionCreator from '../actions/paymentActionCreator';
 import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
@@ -44,7 +45,7 @@ class PaymentApp extends BaseComponent {
   }
 
   static _onSubmit(token, referCode) {
-    console.log(token, referCode);
+    paymentActionCreator.pay(token, referCode);
   }
 
 }

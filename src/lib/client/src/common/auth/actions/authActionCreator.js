@@ -122,7 +122,6 @@ const authActionCreator = {
         });
       });
   },
-
 };
 
 export default authActionCreator;
