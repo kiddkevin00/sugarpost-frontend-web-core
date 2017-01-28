@@ -23,130 +23,15 @@ class HomeApp extends BaseComponent {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="jumbotron jumbotron-custom">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h1 className="headline-custom">SUGARPOST</h1>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h2 className="sub-headline-custom">
-                    Premium subscription service to a sweet adventure
-                  </h2>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div className="lines-break-custom" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <p className="subscribe-text">
-                    For exclusive offers and updates on the launch, please subscribe by entering
-                    your e-mail below.
-                  </p>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <SubscribeForm onSubmit={ HomeApp._onSubmit } />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <p className={ `${this.state.subscribeFeedbackCssClass} subscribe-fb-custom` }>
-                    { this.state.subscribeFeedbackTxt }
-                  </p>
-                </div>
-              </div>
-              <div className="row mobile-icon-row-custom">
-                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                  {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-                  <img
-                    onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
-                    className="icon-custom"
-                    src="/assets/images/instagram-icon.png"
-                    alt="instagram"
-                  />
-                </div>
-                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-                  <img
-                    onClick={ HomeApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }
-                    className="icon-custom"
-                    src="/assets/images/facebook-icon.png"
-                    alt="facebook"
-                  />
-                </div>
-                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-                  <img
-                    onClick={ HomeApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }
-                    className="icon-custom"
-                    src="/assets/images/twitter-icon.png"
-                    alt="twitter"
-                  />
-                  {/* eslint-enable */}
-                </div>
-              </div>
-            </div>
+         <header>
+          <div className="header-content">
+          <div className="header-content-inner">
+              <h1 id="homeHeading">SUGARPOST</h1>
+              <p>Premium subscription service to a sweet adventure</p>
+                <SubscribeForm onSubmit={ HomeApp._onSubmit } />
           </div>
         </div>
-        <div className="container-custom">
-          <div className="row">
-            <div className="col-xs-12 col-sm-9 col-md-8 col-lg-10 text-left">
-              <h3 className="about-us-custom">
-                Sugarpost is a New York based online monthly premium subscription service that
-                provides its customers with e-packages of trendy and innovative desserts ranging
-                from frozen treats to baked goods. We have scoured the internet and attained
-                insight from various food bloggers and dessert connoisseurs to deliver our
-                subscribers a selection of unique desserts around New York City!
-              </h3>
-            </div>
-            <div
-              className="col-xs-offset-8 col-sm-offset-0 col-md-offset-1 col-lg-offset-0
-                col-xs-4 col-sm-3 col-md-3 col-lg-2"
-            >
-              <img
-                className="logo-custom"
-                src="/assets/images/sugarpost-logo.png"
-                alt="SUGARPOST"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-              {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-              <img
-                onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
-                className="icon-custom"
-                src="/assets/images/instagram-icon.png"
-                alt="instagram"
-              />
-            </div>
-            <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-              <img
-                onClick={ HomeApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }
-                className="icon-custom"
-                src="/assets/images/facebook-icon.png"
-                alt="facebook"
-              />
-            </div>
-            <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-              <img
-                onClick={ HomeApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }
-                className="icon-custom"
-                src="/assets/images/twitter-icon.png"
-                alt="twitter"
-              />
-              {/* eslint-enable */}
-            </div>
-          </div>
-        </div>
-      </div>
+       </header>
     );
   }
 

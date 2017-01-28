@@ -70,7 +70,7 @@ class RootApp extends BaseComponent {
     }
 
     return (
-      <div>
+      <div id="page-top">
         <Navbar className="header-custom">
           <Navbar.Header>
             <Navbar.Brand className="header-navbar-brand-custom">

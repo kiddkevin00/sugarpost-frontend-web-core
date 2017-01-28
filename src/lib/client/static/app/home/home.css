@@ -37,6 +37,15 @@
     line-height: 30px;
 }
 
+.subscribe-input-group {
+    width: 40%;
+    margin: auto;
+}
+
+.subscribe-input {
+    border-radius: 300px 0 0 300px;
+}
+
 @media screen and (min-width: 768px) {
     .jumbotron-custom {
         border: 20px solid white;

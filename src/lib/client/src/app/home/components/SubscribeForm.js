@@ -17,19 +17,19 @@ class SubscribeForm extends BaseComponent {
   render() {
     return (
       <form onSubmit={ this._onSubmit }>
-        <div className="input-group">
+        <div className="input-group subscribe-input-group">
           <FormInput
             onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.email }
             type="email"
             placeholder="Email Address"
-            className="form-control"
+            className="form-control subscribe-input"
             id="email"
           />
           <span className="input-group-btn">
             <button
               disabled={ !this.state.emailIsValid }
-              className="btn btn-warning btn-md"
+              className="btn btn-warning btn-md sr-button"
               type="submit"
             >
               Subscribe
