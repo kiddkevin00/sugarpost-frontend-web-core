@@ -62,6 +62,10 @@ class RootApp extends BaseComponent {
       ));
     } else {
       tabsShownWhenUserLoggedIn.push((
+        <LinkContainer to="/home">
+          <NavItem>Home</NavItem>
+        </LinkContainer>
+      ), (
         <LinkContainer key="2" to="/register/signup">
           <NavItem>Sign Up</NavItem>
         </LinkContainer>
@@ -70,7 +74,6 @@ class RootApp extends BaseComponent {
           <NavItem>Log In</NavItem>
         </LinkContainer>
       ));
-
     }
 
     return (
@@ -84,9 +87,6 @@ class RootApp extends BaseComponent {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav className="navbar-right">
-              <LinkContainer to="/home">
-                <NavItem>Home</NavItem>
-              </LinkContainer>
               { tabsShownWhenUserLoggedIn }
             </Nav>
           </Navbar.Collapse>
