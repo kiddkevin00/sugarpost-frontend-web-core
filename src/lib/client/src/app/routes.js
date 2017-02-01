@@ -91,10 +91,10 @@ class RootApp extends BaseComponent {
                         <a className="page-scroll" href="#about">About</a>
                     </li>
                     <li>
-                        <a className="page-scroll" href="#services">Services</a>
+                        <a className="page-scroll" href="#product">Product</a>
                     </li>
                     <li>
-                        <a className="page-scroll" href="#portfolio">Portfolio</a>
+                        <a className="page-scroll" href="#press">Press</a>
                     </li>
                     <li>
                         <a className="page-scroll" href="#contact">Contact</a>
