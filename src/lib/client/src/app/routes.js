@@ -74,72 +74,46 @@ class RootApp extends BaseComponent {
     }
 
     return (
-      <div id="page-top">
-
-      <nav id="mainNav" className="navbar navbar-default navbar-fixed-top">
-        <div className="container-fluid">
+      <div id="root-app">
+        <nav className="navbar navbar-default navbar-fixed-top">
+          <div className="container-fluid">
             <div className="navbar-header">
-                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
-                </button>
-                <a className="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+              <button
+                type="button"
+                className="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1"
+              >
+                <span className="sr-only">Toggle navigation</span>
+                Menu
+                <i className="fa fa-bars" />
+              </button>
+              <a className="navbar-brand page-scroll" href="#home-app">Sugarpost</a>
             </div>
-
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul className="nav navbar-nav navbar-right">
-                    <li>
-                        <a className="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a className="page-scroll" href="#product">Product</a>
-                    </li>
-                    <li>
-                        <a className="page-scroll" href="#press">Press</a>
-                    </li>
-                    <li>
-                        <a className="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
+              <ul className="nav navbar-nav navbar-right">
+                <li>
+                  <a className="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                  <a className="page-scroll" href="#services">Services</a>
+                </li>
+                <li>
+                  <a className="page-scroll" href="#portfolio">Feature</a>
+                </li>
+                <li>
+                  <a className="page-scroll" href="#press">Press</a>
+                </li>
+                <li>
+                  <a className="page-scroll" href="#contact">Contact</a>
+                </li>
+              </ul>
             </div>
-        </div>
-    </nav>
-
-        {/* <div className="header-hack" /> */}
+          </div>
+        </nav>
 
         { this.props.children }
 
-        <div className="footer-hack" />
-        <Navbar className="footer-custom">
-          <Navbar.Header>
-            <Navbar.Brand className="footer-navbar-brand-custom">
-              <a>©Sugarpost 2016</a>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse className="navbar-collapse-custom">
-            <Nav className="navbar-right">
-              <NavItem>
-                {/* eslint-disable jsx-a11y/no-static-element-interactions, max-len */}
-                <div
-                  onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
-                >
-                  <img src="/assets/images/instagram-icon.png" alt="instagram" />
-                </div>
-              </NavItem>
-              <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }>
-                  <img src="/assets/images/facebook-icon.png" alt="facebook" />
-                </div>
-              </NavItem>
-              <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }>
-                  {/* eslint-enable */}
-                  <img src="/assets/images/twitter-icon.png" alt="twitter" />
-                </div>
-              </NavItem>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
       </div>
     );
   }
