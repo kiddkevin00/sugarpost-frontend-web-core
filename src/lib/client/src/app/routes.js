@@ -54,9 +54,9 @@ class RootApp extends BaseComponent {
       ), (
         /* eslint-disable jsx-a11y/no-static-element-interactions */
         <NavItem key="1">
-          <div onClick={ RootApp._onLogout }>
+          <span onClick={ RootApp._onLogout }>
             Log Out
-          </div>
+          </span>
         </NavItem>
         /* eslint-enable */
       ));
@@ -88,7 +88,7 @@ class RootApp extends BaseComponent {
                 Menu
                 <i className="fa fa-bars" />
               </button>
-              <a className="navbar-brand page-scroll" href="#home-app">Sugarpost</a>
+              <a className="navbar-brand page-scroll" href="#/home">Sugarpost</a>
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav navbar-right">
@@ -107,6 +107,17 @@ class RootApp extends BaseComponent {
                 <li>
                   <a className="page-scroll" href="#contact">Contact</a>
                 </li>
+                <LinkContainer to="/register/signup">
+                  <NavItem>Sign Up</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/login">
+                  <NavItem>log In</NavItem>
+                </LinkContainer>
+                <NavItem>
+                  <span onClick={ RootApp._onLogout }>
+                    Log Out
+                  </span>
+                </NavItem>
               </ul>
             </div>
           </div>

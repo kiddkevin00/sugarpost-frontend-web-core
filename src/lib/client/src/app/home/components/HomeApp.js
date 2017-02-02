@@ -194,7 +194,7 @@ class HomeApp extends BaseComponent {
               <br />
               <h2>Can&#39;t Wait?</h2>
               <a
-                href="http://startbootstrap.com/template-overviews/creative/"
+                href="#/register/signup"
                 className="btn btn-default btn-xl sr-button"
               >
                 Sign Up Now!
