@@ -31,7 +31,7 @@ class HomeApp extends BaseComponent {
               <p>We are New York City&#39;s Premium Subscription Service!</p>
               <a className="btn btn-primary btn-xl page-scroll">Sign Up Now</a>
               <br />
-              <a href="#about" className="page-scroll">Find Out More</a>
+              <a href="#about" className="page-scroll">find out more</a>
             </div>
           </div>
         </header>
@@ -124,7 +124,7 @@ class HomeApp extends BaseComponent {
           </div>
           <div className="container-fluid">
             <div className="row no-gutter popup-gallery">
-              <div className="col-lg-4 col-sm-6">
+              <div className="col-lg-3 col-sm-6">
                 <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
                   <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
                   <div className="portfolio-box-caption">
@@ -139,7 +139,7 @@ class HomeApp extends BaseComponent {
                   </div>
                 </a>
               </div>
-              <div className="col-lg-4 col-sm-6">
+              <div className="col-lg-3 col-sm-6">
                 <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
                   <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
                   <div className="portfolio-box-caption">
@@ -154,7 +154,7 @@ class HomeApp extends BaseComponent {
                   </div>
                 </a>
               </div>
-              <div className="col-lg-4 col-sm-6">
+              <div className="col-lg-3 col-sm-6">
                 <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
                   <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
                   <div className="portfolio-box-caption">
@@ -169,37 +169,7 @@ class HomeApp extends BaseComponent {
                   </div>
                 </a>
               </div>
-              <div className="col-lg-4 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                  <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
-                      </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                  <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
-                      </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
+              <div className="col-lg-3 col-sm-6">
                 <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
                   <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
                   <div className="portfolio-box-caption">
@@ -221,6 +191,7 @@ class HomeApp extends BaseComponent {
         <aside className="bg-dark">
           <div className="container text-center">
             <div className="call-to-action">
+              <br />
               <h2>Can&#39;t Wait?</h2>
               <a
                 href="http://startbootstrap.com/template-overviews/creative/"
@@ -228,6 +199,8 @@ class HomeApp extends BaseComponent {
               >
                 Sign Up Now!
               </a>
+              <br />
+              <br />
             </div>
           </div>
         </aside>
@@ -235,118 +208,13 @@ class HomeApp extends BaseComponent {
         <section className="no-padding" id="press">
           <div className="container-fluid">
             <div className="row no-gutter popup-gallery">
-              <div className="col-lg-4 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg" className="portfolio-box">
+              <div className="col-lg-12 col-sm-12">
+                <a href="" className="">
                   <img
-                    src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg"
+                    src="/assets/images/press.png"
                     className="img-responsive"
                     alt=""
                   />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
-                      </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg" className="portfolio-box">
-                  <img
-                    src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg"
-                    className="img-responsive"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
-                      </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg" className="portfolio-box">
-                  <img
-                    src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg"
-                    className="img-responsive"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
-                      </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg" className="portfolio-box">
-                  <img
-                    src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg"
-                    className="img-responsive"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
-                      </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg" className="portfolio-box">
-                  <img
-                    src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg"
-                    className="img-responsive"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
-                      </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-lg-4 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg" className="portfolio-box">
-                  <img
-                    src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_6CKU4XLND6.jpg"
-                    className="img-responsive"
-                    alt=""
-                  />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
-                      </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
-                  </div>
                 </a>
               </div>
             </div>
@@ -359,8 +227,10 @@ class HomeApp extends BaseComponent {
               <div className="col-lg-8 col-lg-offset-2 text-center">
                 <h2 className="section-heading">Let&#39;s Get In Touch!</h2>
                 <hr className="primary" />
-                <p>Ready to start your next project with us? That&#39;s great! Give us a call or
-                  send us an email and we will get back to you as soon as possible!</p>
+                <p>
+                  Ready to start your next project with us? That&#39;s great! Give us a call or
+                  send us an email and we will get back to you as soon as possible!
+                </p>
               </div>
               <div className="col-lg-4 col-lg-offset-2 text-center">
                 <i className="fa fa-phone fa-3x sr-contact" />
