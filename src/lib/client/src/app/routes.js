@@ -9,7 +9,8 @@ import ProfileApp from './profile/components/ProfileApp';
 import MemoApp from './memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
 import React from 'react';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import Scroll from 'react-scroll';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -28,6 +29,7 @@ class RootApp extends BaseComponent {
     }
 
     authStore.addChangeListener(this._onChange);
+
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
@@ -41,6 +43,7 @@ class RootApp extends BaseComponent {
 
   componentWillUnmount() {
     authStore.removeChangeListener(this._onChange);
+
   }
 
   render() {
@@ -138,7 +141,7 @@ RootApp.contextTypes = {
 };
 
 const clientRoutes = (
-  <Router history={ hashHistory }>
+  <Router history={ browserHistory }>
     <Route path="/" component={ RootApp }>
       <IndexRoute component={ HomeApp } />
       <Route path="home" component={ HomeApp } />
