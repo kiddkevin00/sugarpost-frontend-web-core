@@ -36,7 +36,7 @@ class RootApp extends BaseComponent {
       nextContext.router.isActive('/profile') ||
       nextContext.router.isActive('/register/payment')
     )) {
-      this.context.router.push('/home');
+      this.context.router.push('/');
     }
   }
 
@@ -153,9 +153,7 @@ const clientRoutes = (
   <Router history={ browserHistory }>
     <Route path="/" component={ RootApp }>
       <IndexRoute component={ HomeApp } />
-      <Route path="home" component={ HomeApp } />
       <Route path="register" component={ RegisterApp }>
-        <IndexRoute component={ SignupApp } />
         <Route path="signup" component={ SignupApp } />
         <Route path="payment" component={ PaymentApp } />
       </Route>
