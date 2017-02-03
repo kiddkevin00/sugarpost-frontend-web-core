@@ -80,11 +80,8 @@ function setupExpressServer(app) {
         res.append('Cache-Control', 'no-store');
       },
     }));
-    app.get('*', function (request, response){
-      response.sendFile(path.resolve(__dirname, '../client/static', 'index2.html'))
-    })
-    app.use(morgan('dev'));
 
+    app.use(morgan('dev'));
     app.use(errorHandler()); // Error handler - has to be the last.
   }
 }
