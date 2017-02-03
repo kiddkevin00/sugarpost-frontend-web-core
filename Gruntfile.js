@@ -191,6 +191,20 @@ module.exports = function (grunt) {
             dest: 'dist/',
             filter: 'isFile',
             expand: true
+          },
+          {
+            cwd: 'src/lib/client/static/assets/libraries/font-awesome',
+            src: ['fonts/*'],
+            dest: 'dist/',
+            filter: 'isFile',
+            expand: true
+          },
+          {
+            cwd: 'src/lib/client/static/assets/libraries/bootstrap',
+            src: ['fonts/*'],
+            dest: 'dist/',
+            filter: 'isFile',
+            expand: true
           }
         ]
       }
