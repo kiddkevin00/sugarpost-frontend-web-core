@@ -89,24 +89,24 @@ class RootApp extends BaseComponent {
                 Menu
                 <i className="fa fa-bars" />
               </button>
-              <a className="navbar-brand page-scroll" href="#/home">Sugarpost</a>
+              <a className="navbar-brand page-scroll" href="/">Sugarpost</a>
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav navbar-right">
                 <li>
-                  <a className="page-scroll" href="#about">About</a>
+                  <a className="page-scroll" href="/#about">About</a>
                 </li>
                 <li>
-                  <a className="page-scroll" href="#services">Services</a>
+                  <a className="page-scroll" href="/#services">Services</a>
                 </li>
                 <li>
-                  <a className="page-scroll" href="#portfolio">Feature</a>
+                  <a className="page-scroll" href="/#portfolio">Feature</a>
                 </li>
                 <li>
-                  <a className="page-scroll" href="#press">Press</a>
+                  <a className="page-scroll" href="/#press">Press</a>
                 </li>
                 <li>
-                  <a className="page-scroll" href="#contact">Contact</a>
+                  <a className="page-scroll" href="/#contact">Contact</a>
                 </li>
                 <LinkContainer to="/register/signup">
                   <NavItem>Sign Up</NavItem>
