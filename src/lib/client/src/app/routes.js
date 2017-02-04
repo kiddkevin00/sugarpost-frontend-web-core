@@ -9,7 +9,7 @@ import ProfileApp from './profile/components/ProfileApp';
 import MemoApp from './memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import Scroll from 'react-scroll';
@@ -76,56 +76,43 @@ class RootApp extends BaseComponent {
 
     return (
       <div id="root-app">
-        <nav className="navbar navbar-default navbar-fixed-top">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <button
-                type="button"
-                className="navbar-toggle collapsed"
-                data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1"
-              >
-                <span className="sr-only">Toggle navigation</span>
-                Menu
-                <i className="fa fa-bars" />
-              </button>
-              <a className="navbar-brand page-scroll" href="/">Sugarpost</a>
-            </div>
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul className="nav navbar-nav navbar-right">
-                <li>
-                  <a className="page-scroll" href="/#about">About</a>
-                </li>
-                <li>
-                  <a className="page-scroll" href="/#services">Services</a>
-                </li>
-                <li>
-                  <a className="page-scroll" href="/#portfolio">Feature</a>
-                </li>
-                <li>
-                  <a className="page-scroll" href="/#press">Press</a>
-                </li>
-                <li>
-                  <a className="page-scroll" href="/#contact">Contact</a>
-                </li>
-                <LinkContainer to="/register/signup">
-                  <NavItem>Sign Up</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/login">
-                  <NavItem>log In</NavItem>
-                </LinkContainer>
-                <NavItem>
-                  <span onClick={ RootApp._onLogout }>
-                    Log Out
-                  </span>
-                </NavItem>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
+        <Navbar fixedTop default collapseOnSelect fluid id="mainNav">
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a className="navbar-brand page-scroll"href="#">Sugarpost</a>
+            </Navbar.Brand>
+            <Navbar.Toggle>Menu</Navbar.Toggle>
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <ul className="nav navbar-nav navbar-right">
+              <li>
+                <a className="page-scroll" href="/#about">About</a>
+              </li>
+              <li>
+                <a className="page-scroll" href="/#services">Services</a>
+              </li>
+              <li>
+                <a className="page-scroll" href="/#portfolio">Feature</a>
+              </li>
+              <li>
+                <a className="page-scroll" href="/#press">Press</a>
+              </li>
+              <li>
+                <a className="page-scroll" href="/#contact">Contact</a>
+              </li>
+              <LinkContainer to="/register/signup">
+                <NavItem>Sign Up</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/login">
+                <NavItem>log In</NavItem>
+              </LinkContainer>
+              <NavItem>
+                <span onClick={ RootApp._onLogout }>Log Out</span>
+              </NavItem>
+            </ul>
+          </Navbar.Collapse>
+        </Navbar>
         { this.props.children }
-
       </div>
     );
   }
