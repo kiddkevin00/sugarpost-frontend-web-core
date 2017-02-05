@@ -49,12 +49,12 @@ class RootApp extends BaseComponent {
 
     if (this.state.isLoggedIn) {
       tabsShownWhenUserLoggedIn.push((
-        <LinkContainer key="0" to="/profile">
+        <LinkContainer key="1" to="/profile">
           <NavItem>Profile</NavItem>
         </LinkContainer>
       ), (
         /* eslint-disable jsx-a11y/no-static-element-interactions */
-        <NavItem key="1">
+        <NavItem key="2">
           <span onClick={ RootApp._onLogout }>
             Log Out
           </span>
@@ -63,32 +63,30 @@ class RootApp extends BaseComponent {
       ));
     } else {
       tabsShownWhenUserLoggedIn.push((
-        <li>
+        <li key="1">
           <a className="page-scroll" href="/#about">About</a>
         </li>
       ), (
-        <li>
+        <li key="2">
           <a className="page-scroll" href="/#services">Services</a>
         </li>
       ), (
-        <li>
+        <li key="3">
           <a className="page-scroll" href="/#portfolio">Feature</a>
         </li>
       ), (
-        <li>
+        <li key="4">
           <a className="page-scroll" href="/#contact">Contact</a>
         </li>
-      ),
-      (
-        <LinkContainer key="2" to="/register/signup">
+      ), (
+        <LinkContainer key="5" to="/register/signup">
           <NavItem>Sign Up</NavItem>
         </LinkContainer>
       ), (
-        <LinkContainer key="3" to="/login">
+        <LinkContainer key="6" to="/login">
           <NavItem>Log In</NavItem>
         </LinkContainer>
       ));
-
     }
 
     return (
