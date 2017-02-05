@@ -11,10 +11,17 @@ class ProfileApp extends BaseComponent {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h1>Only logged-in user can see this page!</h1>
+      <div id="profile-app">
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div className="header-placeholder-custom" />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <h1>Only logged-in user can see this page!</h1>
+            </div>
           </div>
         </div>
       </div>

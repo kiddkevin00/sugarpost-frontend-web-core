@@ -36,7 +36,7 @@ class RootApp extends BaseComponent {
       nextContext.router.isActive('/profile') ||
       nextContext.router.isActive('/register/payment')
     )) {
-      this.context.router.push('/home');
+      this.context.router.push('/');
     }
   }
 
@@ -49,12 +49,12 @@ class RootApp extends BaseComponent {
 
     if (this.state.isLoggedIn) {
       tabsShownWhenUserLoggedIn.push((
-        <LinkContainer key="0" to="/profile">
+        <LinkContainer key="1" to="/profile">
           <NavItem>Profile</NavItem>
         </LinkContainer>
       ), (
         /* eslint-disable jsx-a11y/no-static-element-interactions */
-        <NavItem key="1">
+        <NavItem key="2">
           <span onClick={ RootApp._onLogout }>
             Log Out
           </span>
@@ -63,15 +63,30 @@ class RootApp extends BaseComponent {
       ));
     } else {
       tabsShownWhenUserLoggedIn.push((
-        <LinkContainer key="2" to="/register/signup">
+        <li key="1">
+          <a className="page-scroll" href="/#about">About</a>
+        </li>
+      ), (
+        <li key="2">
+          <a className="page-scroll" href="/#services">Services</a>
+        </li>
+      ), (
+        <li key="3">
+          <a className="page-scroll" href="/#portfolio">Feature</a>
+        </li>
+      ), (
+        <li key="4">
+          <a className="page-scroll" href="/#contact">Contact</a>
+        </li>
+      ), (
+        <LinkContainer key="5" to="/register/signup">
           <NavItem>Sign Up</NavItem>
         </LinkContainer>
       ), (
-        <LinkContainer key="3" to="/login">
+        <LinkContainer key="6" to="/login">
           <NavItem>Log In</NavItem>
         </LinkContainer>
       ));
-
     }
 
     return (
@@ -85,30 +100,7 @@ class RootApp extends BaseComponent {
           </Navbar.Header>
           <Navbar.Collapse>
             <ul className="nav navbar-nav navbar-right">
-              <li>
-                <a className="page-scroll" href="/#about">About</a>
-              </li>
-              <li>
-                <a className="page-scroll" href="/#services">Services</a>
-              </li>
-              <li>
-                <a className="page-scroll" href="/#portfolio">Feature</a>
-              </li>
-              <li>
-                <a className="page-scroll" href="/#press">Press</a>
-              </li>
-              <li>
-                <a className="page-scroll" href="/#contact">Contact</a>
-              </li>
-              <LinkContainer to="/register/signup">
-                <NavItem>Sign Up</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/login">
-                <NavItem>log In</NavItem>
-              </LinkContainer>
-              <NavItem>
-                <span onClick={ RootApp._onLogout }>Log Out</span>
-              </NavItem>
+              { tabsShownWhenUserLoggedIn }
             </ul>
           </Navbar.Collapse>
         </Navbar>
@@ -140,9 +132,7 @@ const clientRoutes = (
   <Router history={ browserHistory }>
     <Route path="/" component={ RootApp }>
       <IndexRoute component={ HomeApp } />
-      <Route path="home" component={ HomeApp } />
       <Route path="register" component={ RegisterApp }>
-        <IndexRoute component={ SignupApp } />
         <Route path="signup" component={ SignupApp } />
         <Route path="payment" component={ PaymentApp } />
       </Route>

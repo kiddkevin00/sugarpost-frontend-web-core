@@ -26,10 +26,11 @@ class HomeApp extends BaseComponent {
         <header>
           <div className="header-content">
             <div className="header-content-inner">
-              <h1 id="homeHeading">SUGARPOST</h1>
+              <h1 id="home-heading">SUGARPOST</h1>
               <hr />
-              <p>We are New York City&#39;s Premium Subscription Service!</p>
+              <p>We are New York City&#39;s Premium Dessert Subscription Service!</p>
               <a className="btn btn-primary btn-xl page-scroll">Sign Up Now</a>
+              <br />
               <br />
               <a href="#about" className="page-scroll">find out more</a>
             </div>
@@ -40,7 +41,7 @@ class HomeApp extends BaseComponent {
           <div className="container">
             <div className="row">
               <div className="col-lg-8 col-lg-offset-2 text-center">
-                <h2 className="section-heading">We&#39;ve got what you need!</h2>
+                <h2 className="section-heading">Got a sweet tooth? We&#39;ve got the cure!</h2>
                 <hr className="light" />
                 <p className="text-faded">
                   Sugarpost is a New York based online monthly premium
@@ -232,11 +233,7 @@ class HomeApp extends BaseComponent {
                   send us an email and we will get back to you as soon as possible!
                 </p>
               </div>
-              <div className="col-lg-4 col-lg-offset-2 text-center">
-                <i className="fa fa-phone fa-3x sr-contact" />
-                <p>123-456-6789</p>
-              </div>
-              <div className="col-lg-4 text-center">
+              <div className="col-lg-6 col-lg-offset-3 text-center">
                 <i className="fa fa-envelope-o fa-3x sr-contact" />
                 <p>
                   <a href="mailto:administrator@mysugarpost.com">administrator@mysugarpost.com</a>
