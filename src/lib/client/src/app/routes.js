@@ -63,6 +63,23 @@ class RootApp extends BaseComponent {
       ));
     } else {
       tabsShownWhenUserLoggedIn.push((
+        <li>
+          <a className="page-scroll" href="/#about">About</a>
+        </li>
+      ), (
+        <li>
+          <a className="page-scroll" href="/#services">Services</a>
+        </li>
+      ), (
+        <li>
+          <a className="page-scroll" href="/#portfolio">Feature</a>
+        </li>
+      ), (
+        <li>
+          <a className="page-scroll" href="/#contact">Contact</a>
+        </li>
+      ),
+      (
         <LinkContainer key="2" to="/register/signup">
           <NavItem>Sign Up</NavItem>
         </LinkContainer>
@@ -93,32 +110,7 @@ class RootApp extends BaseComponent {
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav navbar-right">
-                <li>
-                  <a className="page-scroll" href="/#about">About</a>
-                </li>
-                <li>
-                  <a className="page-scroll" href="/#services">Services</a>
-                </li>
-                <li>
-                  <a className="page-scroll" href="/#portfolio">Feature</a>
-                </li>
-                <li>
-                  <a className="page-scroll" href="/#press">Press</a>
-                </li>
-                <li>
-                  <a className="page-scroll" href="/#contact">Contact</a>
-                </li>
-                <LinkContainer to="/register/signup">
-                  <NavItem>Sign Up</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/login">
-                  <NavItem>log In</NavItem>
-                </LinkContainer>
-                <NavItem>
-                  <span onClick={ RootApp._onLogout }>
-                    Log Out
-                  </span>
-                </NavItem>
+                { tabsShownWhenUserLoggedIn }
               </ul>
             </div>
           </div>

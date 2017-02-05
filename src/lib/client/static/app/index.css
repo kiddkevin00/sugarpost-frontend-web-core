@@ -4,6 +4,11 @@
 }
 
 @font-face {
+    font-family: 'Open Sans';
+    src: url("/assets/fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
     font-family: nexa-bold;
     src: url("/assets/fonts/nexa-bold.otf");
 }
@@ -45,8 +50,8 @@ body {
 }
 
 body * {
-    font-family:Merriweather,'Helvetica Neue',Arial,sans-serif;
-    webkit-tap-highlight-color:#222
+    font-family: 'Open Sans', sans-serif;
+    webkit-tap-highlight-color: #222;
 }
 
 #react-main-container {
