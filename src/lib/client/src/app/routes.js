@@ -91,20 +91,22 @@ class RootApp extends BaseComponent {
 
     return (
       <div id="root-app">
-        <Navbar fixedTop default collapseOnSelect fluid id="mainNav">
+        <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
           <Navbar.Header>
             <Navbar.Brand>
-              <a className="navbar-brand page-scroll"href="#">Sugarpost</a>
+              <a className="page-scroll" href="/">Sugarpost</a>
             </Navbar.Brand>
             <Navbar.Toggle>Menu</Navbar.Toggle>
           </Navbar.Header>
           <Navbar.Collapse>
-            <ul className="nav navbar-nav navbar-right">
+            <Nav className="navbar-right">
               { tabsShownWhenUserLoggedIn }
-            </ul>
+            </Nav>
           </Navbar.Collapse>
         </Navbar>
+
         { this.props.children }
+
       </div>
     );
   }
