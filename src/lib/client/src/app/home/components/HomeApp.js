@@ -2,6 +2,8 @@ import homeStore from '../stores/homeStore';
 import homeActionCreator from '../actions/homeActionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
+import Scroll from 'react-scroll';
+import Element from'react-scroll/lib/components/Element';
 
 class HomeApp extends BaseComponent {
 
@@ -36,212 +38,214 @@ class HomeApp extends BaseComponent {
             </div>
           </div>
         </header>
-
-        <section className="bg-primary" id="about">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-8 col-lg-offset-2 text-center">
-                <h2 className="section-heading">Got a sweet tooth? We&#39;ve got the cure!</h2>
-                <hr className="light" />
-                <p className="text-faded">
-                  Sugarpost is a New York based online monthly premium
-                  subscription service that provides its customers with e-packages of trendy
-                  and innovative desserts ranging from frozen treats to baked goods. We have
-                  scoured the internet and attained insight from various food bloggers and
-                  dessert connoisseurs to deliver our subscribers a selection of unique desserts
-                  around New York City!
-                </p>
-                <a href="#services" className="page-scroll btn btn-default btn-xl sr-button">
-                  Get Started!
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="services">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12 text-center">
-                <h2 className="section-heading">How It Works</h2>
-                <hr className="primary" />
-              </div>
-            </div>
-          </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-3 col-md-6 text-center">
-                <div className="service-box">
-                  <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
-                  <h3>Get Codes</h3>
-                  <p className="text-muted">
-                    After purchase a monthly subscription, you’ll receive an e-mail with unique
-                    redemption codes during the first week of every month.
-                  </p>
+        <Element name="main">
+          <Element name="about">
+            <section className="bg-primary" id="about">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 className="section-heading">Got a sweet tooth? We&#39;ve got the cure!</h2>
+                    <hr className="light" />
+                    <p className="text-faded">
+                      Sugarpost is a New York based online monthly premium
+                      subscription service that provides its customers with e-packages of trendy
+                      and innovative desserts ranging from frozen treats to baked goods. We have
+                      scoured the internet and attained insight from various food bloggers and
+                      dessert connoisseurs to deliver our subscribers a selection of unique desserts
+                      around New York City!
+                    </p>
+                    <a href="#services" className="page-scroll btn btn-default btn-xl sr-button">
+                      Get Started!
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6 text-center">
-                <div className="service-box">
-                  <i className="fa fa-4x fa-child text-primary sr-icons" />
-                  <h3>Go Venture</h3>
-                  <p className="text-muted">
-                    Visit all of the locations on your curated list of destination dessert spots.
-                    Your e-package will have a little color on each vendor as well.
-                  </p>
+            </section>
+          </Element>
+          <Element name="services">
+            <section id="services">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12 text-center">
+                    <h2 className="section-heading">How It Works</h2>
+                    <hr className="primary" />
+                  </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6 text-center">
-                <div className="service-box">
-                  <i className="fa fa-4x fa-shopping-basket text-primary sr-icons" />
-                  <h3>Claim Desserts</h3>
-                  <p className="text-muted">
-                    Present your redemption codes at the participating locations to claim your
-                    treats. Take a photo, put it on social media, and enjoy.
-                  </p>
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-3 col-md-6 text-center">
+                    <div className="service-box">
+                      <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
+                      <h3>Get Codes</h3>
+                      <p className="text-muted">
+                        After purchase a monthly subscription, you’ll receive an e-mail with unique
+                        redemption codes during the first week of every month.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 text-center">
+                    <div className="service-box">
+                      <i className="fa fa-4x fa-child text-primary sr-icons" />
+                      <h3>Go Venture</h3>
+                      <p className="text-muted">
+                        Visit all of the locations on your curated list of destination dessert spots.
+                        Your e-package will have a little color on each vendor as well.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 text-center">
+                    <div className="service-box">
+                      <i className="fa fa-4x fa-shopping-basket text-primary sr-icons" />
+                      <h3>Claim Desserts</h3>
+                      <p className="text-muted">
+                        Present your redemption codes at the participating locations to claim your
+                        treats. Take a photo, put it on social media, and enjoy.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 text-center">
+                    <div className="service-box">
+                      <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
+                      <h3>Share The Love</h3>
+                      <p className="text-muted">
+                        Eat up! If you enjoyed your experience, refer a friend for credit towards your
+                        next e-package. If enough friends sign up, you’ll even get a month free!
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-6 text-center">
-                <div className="service-box">
-                  <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
-                  <h3>Share The Love</h3>
-                  <p className="text-muted">
-                    Eat up! If you enjoyed your experience, refer a friend for credit towards your
-                    next e-package. If enough friends sign up, you’ll even get a month free!
-                  </p>
+            </section>
+          </Element>
+          <Element name="portfolio">
+            <section className="no-padding" id="portfolio">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12 text-center">
+                    <h2 className="section-heading">Feature Products</h2>
+                    <hr className="primary" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="no-padding" id="portfolio">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12 text-center">
-                <h2 className="section-heading">Feature Products</h2>
-                <hr className="primary" />
-              </div>
-            </div>
-          </div>
-          <div className="container-fluid">
-            <div className="row no-gutter popup-gallery">
-              <div className="col-lg-3 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                  <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
+              <div className="container-fluid">
+                <div className="row no-gutter popup-gallery">
+                  <div className="col-lg-3 col-sm-6">
+                    <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
+                      <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                      <div className="portfolio-box-caption">
+                        <div className="portfolio-box-caption-content">
+                          <div className="project-category text-faded">
+                            Category
+                          </div>
+                          <div className="project-name">
+                            Project Name
+                          </div>
+                        </div>
                       </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
+                    </a>
                   </div>
-                </a>
-              </div>
-              <div className="col-lg-3 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                  <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
+                  <div className="col-lg-3 col-sm-6">
+                    <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
+                      <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                      <div className="portfolio-box-caption">
+                        <div className="portfolio-box-caption-content">
+                          <div className="project-category text-faded">
+                            Category
+                          </div>
+                          <div className="project-name">
+                            Project Name
+                          </div>
+                        </div>
                       </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
+                    </a>
                   </div>
-                </a>
-              </div>
-              <div className="col-lg-3 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                  <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
+                  <div className="col-lg-3 col-sm-6">
+                    <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
+                      <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                      <div className="portfolio-box-caption">
+                        <div className="portfolio-box-caption-content">
+                          <div className="project-category text-faded">
+                            Category
+                          </div>
+                          <div className="project-name">
+                            Project Name
+                          </div>
+                        </div>
                       </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
+                    </a>
                   </div>
-                </a>
-              </div>
-              <div className="col-lg-3 col-sm-6">
-                <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                  <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                  <div className="portfolio-box-caption">
-                    <div className="portfolio-box-caption-content">
-                      <div className="project-category text-faded">
-                        Category
+                  <div className="col-lg-3 col-sm-6">
+                    <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
+                      <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                      <div className="portfolio-box-caption">
+                        <div className="portfolio-box-caption-content">
+                          <div className="project-category text-faded">
+                            Category
+                          </div>
+                          <div className="project-name">
+                            Project Name
+                          </div>
+                        </div>
                       </div>
-                      <div className="project-name">
-                        Project Name
-                      </div>
-                    </div>
+                    </a>
                   </div>
-                </a>
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <aside className="bg-dark">
-          <div className="container text-center">
-            <div className="call-to-action">
-              <br />
-              <h2>Can&#39;t Wait?</h2>
-              <a
-                href="#/register/signup"
-                className="btn btn-default btn-xl sr-button"
-              >
-                Sign Up Now!
-              </a>
-              <br />
-              <br />
-            </div>
-          </div>
-        </aside>
-
-        <section className="no-padding" id="press">
-          <div className="container-fluid">
-            <div className="row no-gutter popup-gallery">
-              <div className="col-lg-12 col-sm-12">
-                <a href="" className="">
-                  <img
-                    src="/assets/images/press.png"
-                    className="img-responsive"
-                    alt=""
-                  />
-                </a>
+            </section>
+            <aside className="bg-dark">
+              <div className="container text-center">
+                <div className="call-to-action">
+                  <br />
+                  <h2>Can&#39;t Wait?</h2>
+                  <a href="#/register/signup"
+                    className="btn btn-default btn-xl sr-button">
+                    Sign Up Now!
+                  </a>
+                  <br />
+                  <br />
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-8 col-lg-offset-2 text-center">
-                <h2 className="section-heading">Let&#39;s Get In Touch!</h2>
-                <hr className="primary" />
-                <p>
-                  Ready to start your next project with us? That&#39;s great! Give us a call or
-                  send us an email and we will get back to you as soon as possible!
-                </p>
+            </aside>
+          </Element>
+          <Element name="contact">
+            <section className="no-padding" id="press">
+              <div className="container-fluid">
+                <div className="row no-gutter popup-gallery">
+                  <div className="col-lg-12 col-sm-12">
+                    <a href="" className="">
+                      <img
+                        src="/assets/images/press.png"
+                        className="img-responsive"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="col-lg-6 col-lg-offset-3 text-center">
-                <i className="fa fa-envelope-o fa-3x sr-contact" />
-                <p>
-                  <a href="mailto:administrator@mysugarpost.com">administrator@mysugarpost.com</a>
-                </p>
+            </section>
+            <section id="contact">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 className="section-heading">Let&#39;s Get In Touch!</h2>
+                    <hr className="primary" />
+                    <p>
+                      Ready to start your next project with us? That&#39;s great! Give us a call or
+                      send us an email and we will get back to you as soon as possible!
+                    </p>
+                  </div>
+                  <div className="col-lg-6 col-lg-offset-3 text-center">
+                    <i className="fa fa-envelope-o fa-3x sr-contact" />
+                    <p>
+                      <a href="mailto:administrator@mysugarpost.com">administrator@mysugarpost.com</a>
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
+          </Element>
+        </Element>
       </div>
     );
   }
