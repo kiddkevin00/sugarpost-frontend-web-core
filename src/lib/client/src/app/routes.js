@@ -8,11 +8,13 @@ import PaymentApp from './register/payment/components/PaymentApp';
 import ProfileApp from './profile/components/ProfileApp';
 import MemoApp from './memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
+import ScrollDiv from '../common/components/ScrollDiv';
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import Scroll from 'react-scroll';
+import Link from 'react-scroll/lib/components/Link';
 
 class RootApp extends BaseComponent {
 
@@ -64,19 +66,23 @@ class RootApp extends BaseComponent {
     } else {
       tabsShownWhenUserLoggedIn.push((
         <li key="1">
-          <a className="page-scroll" href="/#about">About</a>
+          <Link activeClass="active" className="page-scroll" to="about"
+            spy={true} smooth={true} duration={500} >About</Link>
         </li>
       ), (
         <li key="2">
-          <a className="page-scroll" href="/#services">Services</a>
+          <Link activeClass="active" className="page-scroll" to="services"
+            spy={true} smooth={true} duration={500} >Services</Link>
         </li>
       ), (
         <li key="3">
-          <a className="page-scroll" href="/#portfolio">Feature</a>
+          <Link activeClass="active" className="page-scroll" to="portfolio"
+            spy={true} smooth={true} duration={500} >Feature</Link>
         </li>
       ), (
         <li key="4">
-          <a className="page-scroll" href="/#contact">Contact</a>
+          <Link activeClass="active" className="page-scroll" to="contact"
+            spy={true} smooth={true} duration={1000} delay={500}>Contact</Link>
         </li>
       ), (
         <LinkContainer key="5" to="/register/signup">
@@ -91,19 +97,28 @@ class RootApp extends BaseComponent {
 
     return (
       <div id="root-app">
-        <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a className="page-scroll" href="/">Sugarpost</a>
-            </Navbar.Brand>
-            <Navbar.Toggle>Menu</Navbar.Toggle>
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav className="navbar-right">
-              { tabsShownWhenUserLoggedIn }
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+        <ScrollDiv
+          activeClass="scroll"
+          className="navbar navbar-default navbar-fixed-top"
+          to="main"
+          spy={ true }
+          smooth={ true }
+          duration={ 500 }
+        >
+          <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <a className="page-scroll" href="/">Sugarpost</a>
+              </Navbar.Brand>
+              <Navbar.Toggle>Menu</Navbar.Toggle>
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <Nav className="navbar-right">
+                { tabsShownWhenUserLoggedIn }
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </ScrollDiv>
 
         { this.props.children }
 
