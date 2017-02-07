@@ -113,9 +113,9 @@ class RootApp extends BaseComponent {
               <Navbar.Toggle>Menu</Navbar.Toggle>
             </Navbar.Header>
             <Navbar.Collapse>
-              <Nav className="navbar-right">
+              <ul className="nav navbar-nav navbar-right">
                 { tabsShownWhenUserLoggedIn }
-              </Nav>
+              </ul>
             </Navbar.Collapse>
           </Navbar>
         </ScrollDiv>
