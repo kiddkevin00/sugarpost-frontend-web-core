@@ -66,23 +66,31 @@ class RootApp extends BaseComponent {
     } else {
       tabsShownWhenUserLoggedIn.push((
         <li key="1">
-          <Link activeClass="active" className="page-scroll" to="about"
-            spy={true} smooth={true} duration={500} >About</Link>
+          <LinkContainer to="/">
+            <Link activeClass="active" className="page-scroll" to="about"
+              spy={true} smooth={true} duration={700} delay={500}>About</Link>
+          </LinkContainer>
         </li>
       ), (
         <li key="2">
-          <Link activeClass="active" className="page-scroll" to="services"
-            spy={true} smooth={true} duration={500} >Services</Link>
+          <LinkContainer to="/">
+            <Link activeClass="active" className="page-scroll" to="services"
+              spy={true} smooth={true} duration={700} delay={500}>Services</Link>
+          </LinkContainer>
         </li>
       ), (
         <li key="3">
-          <Link activeClass="active" className="page-scroll" to="portfolio"
-            spy={true} smooth={true} duration={500} >Feature</Link>
+          <LinkContainer to="/">
+            <Link activeClass="active" className="page-scroll" to="portfolio"
+              spy={true} smooth={true} duration={700} delay={500}>Feature</Link>
+          </LinkContainer>
         </li>
       ), (
         <li key="4">
-          <Link activeClass="active" className="page-scroll" to="contact"
-            spy={true} smooth={true} duration={1000} delay={500}>Contact</Link>
+          <LinkContainer to="/">
+            <Link activeClass="active" className="page-scroll" to="contact"
+              spy={true} smooth={true} duration={700} delay={500}>Contact</Link>
+          </LinkContainer>    
         </li>
       ), (
         <LinkContainer key="5" to="/register/signup">
@@ -108,7 +116,9 @@ class RootApp extends BaseComponent {
           <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
             <Navbar.Header>
               <Navbar.Brand>
-                <a className="page-scroll" href="/">Sugarpost</a>
+                <LinkContainer to="/">
+                  <a class="navbar-brand page-scroll" href="#page-top">Sugarpost</a>
+                </LinkContainer>
               </Navbar.Brand>
               <Navbar.Toggle>Menu</Navbar.Toggle>
             </Navbar.Header>
