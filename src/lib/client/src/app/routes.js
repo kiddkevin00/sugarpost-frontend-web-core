@@ -8,11 +8,12 @@ import PaymentApp from './register/payment/components/PaymentApp';
 import ProfileApp from './profile/components/ProfileApp';
 import MemoApp from './memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
+import ScrollDiv from '../common/components/ScrollDiv';
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import Scroll from 'react-scroll';
+import { Link } from 'react-scroll';
 
 class RootApp extends BaseComponent {
 
@@ -64,19 +65,67 @@ class RootApp extends BaseComponent {
     } else {
       tabsShownWhenUserLoggedIn.push((
         <li key="1">
-          <a className="page-scroll" href="/#about">About</a>
+          <LinkContainer to="/">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="about"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              About
+            </Link>
+          </LinkContainer>
         </li>
       ), (
         <li key="2">
-          <a className="page-scroll" href="/#services">Services</a>
+          <LinkContainer to="/">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="services"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Services
+            </Link>
+          </LinkContainer>
         </li>
       ), (
         <li key="3">
-          <a className="page-scroll" href="/#portfolio">Feature</a>
+          <LinkContainer to="/">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="portfolio"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Feature
+            </Link>
+          </LinkContainer>
         </li>
       ), (
         <li key="4">
-          <a className="page-scroll" href="/#contact">Contact</a>
+          <LinkContainer to="/">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="contact"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Contact
+            </Link>
+          </LinkContainer>
         </li>
       ), (
         <LinkContainer key="5" to="/register/signup">
@@ -91,28 +140,29 @@ class RootApp extends BaseComponent {
 
     return (
       <div id="root-app">
-        <nav className="navbar navbar-default navbar-fixed-top">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <button
-                type="button"
-                className="navbar-toggle collapsed"
-                data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1"
-              >
-                <span className="sr-only">Toggle navigation</span>
-                Menu
-                <i className="fa fa-bars" />
-              </button>
-              <a className="navbar-brand page-scroll" href="/">Sugarpost</a>
-            </div>
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ScrollDiv
+          activeClass="scroll"
+          className="navbar navbar-default navbar-fixed-top"
+          to="main"
+          spy={ true }
+          smooth={ true }
+        >
+          <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <LinkContainer to="/">
+                  <a className="page-scroll" href="/">Sugarpost</a>
+                </LinkContainer>
+              </Navbar.Brand>
+              <Navbar.Toggle>Menu</Navbar.Toggle>
+            </Navbar.Header>
+            <Navbar.Collapse>
               <ul className="nav navbar-nav navbar-right">
                 { tabsShownWhenUserLoggedIn }
               </ul>
-            </div>
-          </div>
-        </nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </ScrollDiv>
 
         { this.props.children }
 

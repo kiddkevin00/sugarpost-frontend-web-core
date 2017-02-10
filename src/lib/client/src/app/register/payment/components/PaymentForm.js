@@ -2,6 +2,7 @@ import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import StripeCheckout from 'react-stripe-checkout';
 import React from 'react';
+import couponCode from 'coupon-code';
 
 class PaymentForm extends BaseComponent {
 
@@ -47,7 +48,6 @@ class PaymentForm extends BaseComponent {
           allowRememberMe={ false }
           reconfigureOnUpdate={ false }
           triggerEvent="onClick"
-          color="black"
         >
           <button
             disabled={ false }
@@ -61,7 +61,18 @@ class PaymentForm extends BaseComponent {
     );
   }
 
-  _onChange(field, value, isValid) {
+  _onChange(field, value, _isValid) {
+    let isValid;
+
+    if (field === 'referCode' && value) {
+      isValid = !!(couponCode.validate(value, {
+        parts: 1,
+        partLen: 5,
+      }));
+    } else {
+      isValid = _isValid;
+    }
+
     this.setState({
       [field]: value,
       [`${field}IsValid`]: isValid,
