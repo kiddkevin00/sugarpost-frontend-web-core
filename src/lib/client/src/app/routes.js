@@ -54,8 +54,12 @@ class RootApp extends BaseComponent {
           <NavItem>Profile</NavItem>
         </LinkContainer>
       ), (
+        <LinkContainer key="2" to="/register/payment">
+          <NavItem>Payment</NavItem>
+        </LinkContainer>
+      ), (
         /* eslint-disable jsx-a11y/no-static-element-interactions */
-        <NavItem key="2">
+        <NavItem key="3">
           <span onClick={ RootApp._onLogout }>
             Log Out
           </span>
