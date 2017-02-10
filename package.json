@@ -74,6 +74,7 @@
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
+    "coupon-code": "^0.4.5",
     "cssnano": "^3.8.0",
     "errorhandler": "^1.4.3",
     "express": "^4.14.0",

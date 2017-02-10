@@ -13,8 +13,7 @@ import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import Scroll from 'react-scroll';
-import Link from 'react-scroll/lib/components/Link';
+import { Link } from 'react-scroll';
 
 class RootApp extends BaseComponent {
 
@@ -67,30 +66,66 @@ class RootApp extends BaseComponent {
       tabsShownWhenUserLoggedIn.push((
         <li key="1">
           <LinkContainer to="/">
-            <Link activeClass="active" className="page-scroll" to="about"
-              spy={true} smooth={true} duration={700} delay={500}>About</Link>
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="about"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              About
+            </Link>
           </LinkContainer>
         </li>
       ), (
         <li key="2">
           <LinkContainer to="/">
-            <Link activeClass="active" className="page-scroll" to="services"
-              spy={true} smooth={true} duration={700} delay={500}>Services</Link>
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="services"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Services
+            </Link>
           </LinkContainer>
         </li>
       ), (
         <li key="3">
           <LinkContainer to="/">
-            <Link activeClass="active" className="page-scroll" to="portfolio"
-              spy={true} smooth={true} duration={700} delay={500}>Feature</Link>
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="portfolio"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Feature
+            </Link>
           </LinkContainer>
         </li>
       ), (
         <li key="4">
           <LinkContainer to="/">
-            <Link activeClass="active" className="page-scroll" to="contact"
-              spy={true} smooth={true} duration={700} delay={500}>Contact</Link>
-          </LinkContainer>    
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="contact"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Contact
+            </Link>
+          </LinkContainer>
         </li>
       ), (
         <LinkContainer key="5" to="/register/signup">
@@ -111,13 +146,12 @@ class RootApp extends BaseComponent {
           to="main"
           spy={ true }
           smooth={ true }
-          duration={ 500 }
         >
           <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
             <Navbar.Header>
               <Navbar.Brand>
                 <LinkContainer to="/">
-                  <a class="navbar-brand page-scroll" href="#page-top">Sugarpost</a>
+                  <a className="page-scroll" href="/">Sugarpost</a>
                 </LinkContainer>
               </Navbar.Brand>
               <Navbar.Toggle>Menu</Navbar.Toggle>

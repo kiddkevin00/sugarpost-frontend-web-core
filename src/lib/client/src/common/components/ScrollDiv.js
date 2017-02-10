@@ -1,11 +1,17 @@
+import BaseComponent from './BaseComponent';
 import React from 'react';
-import Scroll from 'react-scroll';
 import Helpers from 'react-scroll/lib/mixins/Helpers';
 
-const Div = React.createClass({
+class Div extends BaseComponent {
+
   render() {
-    return React.DOM.div(this.props, this.props.children);
+    return (
+      <div { ...this.props }>
+        { this.props.children }
+      </div>
+    );
   }
-});
+
+}
 
 module.exports = Helpers.Scroll(Div);

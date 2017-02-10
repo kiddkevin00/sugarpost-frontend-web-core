@@ -31,10 +31,10 @@ class HomeApp extends BaseComponent {
               <h1 id="home-heading">SUGARPOST</h1>
               <hr />
               <p>We are New York City&#39;s Premium Dessert Subscription Service!</p>
-              <a className="btn btn-primary btn-xl page-scroll">Sign Up Now</a>
+              <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">Sign Up Now</a>
               <br />
               <br />
-              <a href="#about" className="page-scroll">find out more</a>
+              <a href="/#about" className="page-scroll">find out more</a>
             </div>
           </div>
         </header>
@@ -54,7 +54,7 @@ class HomeApp extends BaseComponent {
                       dessert connoisseurs to deliver our subscribers a selection of unique desserts
                       around New York City!
                     </p>
-                    <a href="#services" className="page-scroll btn btn-default btn-xl sr-button">
+                    <a href="/#services" className="page-scroll btn btn-default btn-xl sr-button">
                       Get Started!
                     </a>
                   </div>
@@ -119,7 +119,7 @@ class HomeApp extends BaseComponent {
             </section>
           </Element>
           <Element name="portfolio">
-            <section className="no-padding" id="portfolio">
+            <section id="portfolio">
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 text-center">
@@ -198,7 +198,7 @@ class HomeApp extends BaseComponent {
                 <div className="call-to-action">
                   <br />
                   <h2>Can&#39;t Wait?</h2>
-                  <a href="#/register/signup"
+                  <a href="/register/signup"
                     className="btn btn-default btn-xl sr-button">
                     Sign Up Now!
                   </a>
@@ -213,13 +213,11 @@ class HomeApp extends BaseComponent {
               <div className="container-fluid">
                 <div className="row no-gutter popup-gallery">
                   <div className="col-lg-12 col-sm-12">
-                    <a href="" className="">
-                      <img
-                        src="/assets/images/press.png"
-                        className="img-responsive"
-                        alt=""
-                      />
-                    </a>
+                    <img
+                      src="/assets/images/press.png"
+                      className="img-responsive"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
