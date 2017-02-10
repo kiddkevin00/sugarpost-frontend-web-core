@@ -214,7 +214,7 @@ class HomeApp extends BaseComponent {
                 <div className="row no-gutter popup-gallery">
                   <div className="col-lg-12 col-sm-12">
                     <img
-                      src="/assets/images/press.png"
+                      src="/assets/images/fun-press.png"
                       className="img-responsive"
                       alt=""
                     />

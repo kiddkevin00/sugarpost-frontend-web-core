@@ -111,7 +111,7 @@ class RootApp extends BaseComponent {
               duration={ 700 }
               delay={ 300 }
             >
-              Feature
+              Featured
             </Link>
           </LinkContainer>
         </li>
