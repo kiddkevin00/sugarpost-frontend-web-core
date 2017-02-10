@@ -38,6 +38,7 @@ class HomeApp extends BaseComponent {
             </div>
           </div>
         </header>
+
         <Element name="main">
           <Element name="about">
             <section className="bg-primary" id="about">
@@ -62,6 +63,7 @@ class HomeApp extends BaseComponent {
               </div>
             </section>
           </Element>
+
           <Element name="services">
             <section id="services">
               <div className="container">
@@ -118,6 +120,7 @@ class HomeApp extends BaseComponent {
               </div>
             </section>
           </Element>
+
           <Element name="portfolio">
             <section id="portfolio">
               <div className="container">
@@ -208,20 +211,22 @@ class HomeApp extends BaseComponent {
               </div>
             </aside>
           </Element>
-          <Element name="contact">
-            <section className="no-padding" id="press">
-              <div className="container-fluid">
-                <div className="row no-gutter popup-gallery">
-                  <div className="col-lg-12 col-sm-12">
-                    <img
-                      src="/assets/images/fun-press.png"
-                      className="img-responsive"
-                      alt=""
-                    />
-                  </div>
+
+          <section className="no-padding" id="press">
+            <div className="container-fluid">
+              <div className="row no-gutter popup-gallery">
+                <div className="col-lg-12 col-sm-12">
+                  <img
+                    src="/assets/images/fun-press.png"
+                    className="img-responsive"
+                    alt=""
+                  />
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
+
+          <Element name="contact">
             <section id="contact">
               <div className="container">
                 <div className="row">
