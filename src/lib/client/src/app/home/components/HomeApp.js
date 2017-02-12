@@ -33,8 +33,9 @@ class HomeApp extends BaseComponent {
               <p>We are New York City&#39;s Premium Dessert Subscription Service!</p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">Sign Up Now</a>
               <br />
-              <br />
-              <a href="/#about" className="page-scroll">find out more</a>
+              <a href="/#about" className="btn btn-circle page-scroll">
+                <i className="fa fa-angle-double-down animated" />
+              </a>
             </div>
           </div>
         </header>
