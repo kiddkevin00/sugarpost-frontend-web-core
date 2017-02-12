@@ -174,7 +174,7 @@ class RootApp extends BaseComponent {
         </ScrollDiv>
 
         { this.props.children }
-
+        
       </div>
     );
   }

@@ -4,13 +4,15 @@ import paymentConstants from '../constants/paymentConstants';
 
 const paymentActionCreator = {
   pay(token, referCode) {
+    console.log('Stripe Token:', token);
+
     const url = '/api/payment/proceed';
-    const body = { token, referCode };
+    const body = { referCode, tokenId: token.id, email: token.email };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
     Proxy.post(url, body, headers)
       .then((payloadObj) => {
-
+        // TODO
         dispatcher.dispatch({
           actionType: paymentConstants.PAY_SUCCESS,
         });
