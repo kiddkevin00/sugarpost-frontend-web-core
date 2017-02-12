@@ -63,7 +63,7 @@ dispatcher.register((action) => {
 
       authStore.emitChange();
       break;
-    case authConstants.IS_SIGNED_UP:
+    case authConstants.ALREADY_SIGNED_UP:
       // TODO
 
       break;

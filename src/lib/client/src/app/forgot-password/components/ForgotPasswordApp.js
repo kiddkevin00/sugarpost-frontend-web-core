@@ -1,10 +1,10 @@
 import authStore from '../../../common/auth/stores/authStore';
 import authActionCreator from '../../../common/auth/actions/authActionCreator';
-import LoginForm from './LoginForm';
+import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
 
-class LoginApp extends BaseComponent {
+class ForgotPasswordApp extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -25,11 +25,7 @@ class LoginApp extends BaseComponent {
     authStore.removeChangeListener(this._onChange);
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.isLoggedIn && this.context.router.isActive('/login')) {
-      this.context.router.push('/profile');
-    }
-  }
+  componentWillUpdate(nextProps, nextState) {}
 
   render() {
     return (
@@ -49,7 +45,7 @@ class LoginApp extends BaseComponent {
                 <h4><span className="label label-primary">My Supgarpost</span></h4>
               </div>
               <div className="panel-body">
-                <LoginForm onSubmit={ LoginApp._onSubmit } />
+                <ForgotPasswordForm onSubmit={ ForgotPasswordApp._onSubmit } />
                 <div className="panel-footer text-center">
                   <p className="text-muted">
                     <a href="mailto:administrator@mysugarpost.com">Development Support</a>
@@ -76,7 +72,7 @@ class LoginApp extends BaseComponent {
   }
 
 }
-LoginApp.contextTypes = {
+ForgotPasswordApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
@@ -90,4 +86,4 @@ function _getState() {
   };
 }
 
-export default LoginApp;
+export default ForgotPasswordApp;

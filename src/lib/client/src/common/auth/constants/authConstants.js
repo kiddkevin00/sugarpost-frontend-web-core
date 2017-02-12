@@ -5,7 +5,7 @@ const authConstants = keyMirror({
   NOT_LOGGED_IN: null,
   AUTH_CHECK_FAIL: null,
 
-  IS_SIGNED_UP: null,
+  ALREADY_SIGNED_UP: null,
   SIGNUP_FAIL: null,
 
   BASIC_LOGIN_FAIL: null,
