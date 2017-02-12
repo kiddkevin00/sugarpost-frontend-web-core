@@ -2,8 +2,7 @@ import homeStore from '../stores/homeStore';
 import homeActionCreator from '../actions/homeActionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
-import Scroll from 'react-scroll';
-import Element from'react-scroll/lib/components/Element';
+import { Scroll, Element } from 'react-scroll';
 
 class HomeApp extends BaseComponent {
 
