@@ -2,8 +2,7 @@ import homeStore from '../stores/homeStore';
 import homeActionCreator from '../actions/homeActionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
-import { Link } from 'react-scroll';
-import Element from'react-scroll/lib/components/Element';
+import { Element } from 'react-scroll';
 
 class HomeApp extends BaseComponent {
 
@@ -33,22 +32,15 @@ class HomeApp extends BaseComponent {
               <p>We are New York City&#39;s premium dessert subscription service!</p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">Sign Up Now</a>
               <br />
-              <Link
-                activeClass="active"
-                className="btn btn-circle page-scroll"
-                to="about"
-                spy={ true }
-                smooth={ true }
-                duration={ 700 }
-                delay={ 300 }
-              >
+              <a href="/#about" className="btn btn-circle page-scroll">
                 <i className="fa fa-angle-double-down animated" />
-              </Link>
+              </a>
             </div>
           </div>
         </header>
 
         <Element name="main">
+
           <Element name="about">
             <section className="bg-primary" id="about">
               <div className="container">
@@ -64,17 +56,9 @@ class HomeApp extends BaseComponent {
                       dessert connoisseurs to deliver our subscribers a selection of unique desserts
                       around New York City!
                     </p>
-                    <Link
-                      activeClass="active"
-                      className="btn btn-default btn-xl sr-button page-scroll"
-                      to="services"
-                      spy={ true }
-                      smooth={ true }
-                      duration={ 700 }
-                      delay={ 300 }
-                    >
+                    <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
                       Get Started!
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -265,6 +249,7 @@ class HomeApp extends BaseComponent {
               </div>
             </section>
           </Element>
+
         </Element>
       </div>
     );
@@ -275,7 +260,7 @@ class HomeApp extends BaseComponent {
   }
 
   static _onSubmit(event, email) {
-    // Prevents browser's default navigation (page refresh).
+    // Prevents browser's default behavior (page refresh).
     event.preventDefault();
 
     homeActionCreator.subscribe(email);

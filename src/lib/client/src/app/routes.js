@@ -147,6 +147,59 @@ class RootApp extends BaseComponent {
       ));
     }
 
+    let navbar;
+
+    if (
+      !this.context.router.isActive('/register/signup') &&
+      !this.context.router.isActive('/login') &&
+      !this.context.router.isActive('/register/payment') &&
+      !this.context.router.isActive('/forgot-password')
+    ) {
+      navbar = (
+        <ScrollDiv
+          activeClass="scroll"
+          className="navbar navbar-default navbar-fixed-top"
+          to="main"
+          spy={ true }
+          smooth={ true }
+        >
+          <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <LinkContainer to="/">
+                  <a className="page-scroll" href="/">Sugarpost</a>
+                </LinkContainer>
+              </Navbar.Brand>
+              <Navbar.Toggle>Menu</Navbar.Toggle>
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <ul className="nav navbar-nav navbar-right">
+                { tabsShownWhenUserLoggedIn }
+              </ul>
+            </Navbar.Collapse>
+          </Navbar>
+        </ScrollDiv>
+      );
+    } else {
+      navbar = (
+        <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <LinkContainer to="/">
+                <a className="page-scroll" href="/">Sugarpost</a>
+              </LinkContainer>
+            </Navbar.Brand>
+            <Navbar.Toggle>Menu</Navbar.Toggle>
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <ul className="nav navbar-nav navbar-right">
+              { tabsShownWhenUserLoggedIn }
+            </ul>
+          </Navbar.Collapse>
+        </Navbar>
+      );
+    }
+
     return (
       <div id="root-app">
         <ScrollDiv
@@ -174,7 +227,7 @@ class RootApp extends BaseComponent {
         </ScrollDiv>
 
         { this.props.children }
-        
+
       </div>
     );
   }

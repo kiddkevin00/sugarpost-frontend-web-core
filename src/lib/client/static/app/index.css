@@ -73,7 +73,7 @@ body * {
 }
 
 .scroll .navbar-default .navbar-header .navbar-brand {
-    color: #000;
+    color: #FBB352;
 }
 
 .scroll .navbar-default .nav > li > a:hover {
@@ -81,7 +81,7 @@ body * {
 }
 
 .scroll .navbar-default .navbar-header .navbar-brand:hover {
-    color: #FBB352;
+    color: #F05F40;
 }
 
 .scroll .navbar-default .nav > li > a:focus {
@@ -89,5 +89,6 @@ body * {
 }
 
 .scroll .navbar-default .navbar-header .navbar-brand:focus {
-    color: #FBB352;
+    color: #F05F40;
+
 }
