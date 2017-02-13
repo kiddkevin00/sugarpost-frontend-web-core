@@ -2,7 +2,7 @@ import homeStore from '../stores/homeStore';
 import homeActionCreator from '../actions/homeActionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
-import { Scroll, Element } from 'react-scroll';
+import { Element } from 'react-scroll';
 
 class HomeApp extends BaseComponent {
 
@@ -23,7 +23,7 @@ class HomeApp extends BaseComponent {
 
   render() {
     return (
-      <div id="home-app">
+      <div id="home-template">
         <header>
           <div className="header-content">
             <div className="header-content-inner">
