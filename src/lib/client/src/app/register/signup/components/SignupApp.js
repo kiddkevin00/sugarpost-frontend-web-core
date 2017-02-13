@@ -48,48 +48,7 @@ class SignupApp extends BaseComponent {
           <div className="form-top-divider" />
         </div>
         <div className="form-bottom">
-          <form role="form" className="registration-form">
-            <div className="form-group">
-              <label className="sr-only" htmlFor="form-first-name">First name</label>
-              <input
-                className="form-first-name form-control"
-                name="form-first-name"
-                type="text"
-                placeholder="First name..."
-                id="form-first-name"
-              />
-            </div>
-            <div className="form-group">
-              <label className="sr-only" htmlFor="form-last-name">Last name</label>
-              <input
-                type="text"
-                name="form-last-name"
-                placeholder="Last name..."
-                className="form-last-name form-control"
-                id="form-last-name"
-              />
-            </div>
-            <div className="form-group">
-              <label className="sr-only" htmlFor="form-email">Email</label>
-              <input
-                type="text"
-                name="form-email"
-                placeholder="Email..."
-                className="form-email form-control"
-                id="form-email"
-              />
-            </div>
-            <div className="form-group">
-              <label className="sr-only" htmlFor="form-about-yourself">About yourself</label>
-              <textarea
-                name="form-about-yourself"
-                placeholder="About yourself..."
-                className="form-about-yourself form-control"
-                id="form-about-yourself"
-              />
-            </div>
-            <button type="submit" className="btn">Sign me up!</button>
-          </form>
+          <SignupForm />
         </div>
       </div>
     );

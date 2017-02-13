@@ -179,6 +179,8 @@
 /***** Form elements *****/
 
 #registration-template input[type="text"],
+#registration-template input[type="email"],
+#registration-template input[type="password"],
 #registration-template textarea,
 #registration-template textarea.form-control {
     height: 50px;
@@ -205,6 +207,8 @@
 }
 
 #registration-template input[type="text"]:focus,
+#registration-template input[type="email"]:focus,
+#registration-template input[type="password"]:focus,
 #registration-template textarea:focus,
 #registration-template textarea.form-control:focus {
     outline: 0;
