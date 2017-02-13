@@ -150,10 +150,11 @@ class RootApp extends BaseComponent {
     let navbar;
 
     if (
-      !this.context.router.isActive('/register/signup') &&
       !this.context.router.isActive('/login') &&
+      !this.context.router.isActive('/forgot-password') &&
+      !this.context.router.isActive('/register/signup') &&
       !this.context.router.isActive('/register/payment') &&
-      !this.context.router.isActive('/forgot-password')
+      !this.context.router.isActive('/profile')
     ) {
       navbar = (
         <ScrollDiv

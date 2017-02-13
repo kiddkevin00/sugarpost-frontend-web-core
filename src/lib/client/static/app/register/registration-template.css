@@ -1,4 +1,4 @@
-/***** global setting *****/
+/***** Global setting *****/
 
 #registration-template {
 	font-family: 'Open Sans', sans-serif;
@@ -7,6 +7,8 @@
 	color: #888;
 	line-height: 30px;
 	text-align: center;
+    width: 100%;
+    height: 100%;
 }
 
 #registration-template strong { font-weight: 500; }
@@ -78,11 +80,17 @@
 #registration-template .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(0, 0, 0, 0.3); color: #fff; }
 
 
-/***** Top content *****/
+/***** Content *****/
 
 .inner-bg {
 	padding: 120px 0 170px 0;
     background-image: url("/assets/images/v2_background.png");
+    min-height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
 }
 
 #registration-template .text {
