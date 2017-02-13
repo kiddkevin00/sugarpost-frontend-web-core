@@ -202,29 +202,7 @@ class RootApp extends BaseComponent {
 
     return (
       <div id="root-app">
-        <ScrollDiv
-          activeClass="scroll"
-          className="navbar navbar-default navbar-fixed-top"
-          to="main"
-          spy={ true }
-          smooth={ true }
-        >
-          <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
-            <Navbar.Header>
-              <Navbar.Brand>
-                <LinkContainer to="/">
-                  <a className="page-scroll" href="/">Sugarpost</a>
-                </LinkContainer>
-              </Navbar.Brand>
-              <Navbar.Toggle>Menu</Navbar.Toggle>
-            </Navbar.Header>
-            <Navbar.Collapse>
-              <ul className="nav navbar-nav navbar-right">
-                { tabsShownWhenUserLoggedIn }
-              </ul>
-            </Navbar.Collapse>
-          </Navbar>
-        </ScrollDiv>
+        { navbar }
 
         { this.props.children }
 

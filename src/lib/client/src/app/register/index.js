@@ -5,13 +5,29 @@ class RegisterApp extends BaseComponent {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-xs-4 col-sm-5 col-md-6 col-lg-7">
-            <img style={ { width: '100%', paddingTop: '15px' } } src="/assets/images/woman-eating-dessert.jpg" alt="Every woman loves desserts.." />
-          </div>
-          <div className="col-xs-8 col-sm-7 col-md-6 col-lg-5">
-            { this.props.children }
+      <div id="registration-template">
+        <div className="inner-bg">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-7 text">
+                <h1><strong>Bootstrap</strong> Flat Registration Form</h1>
+                <div className="description">
+                  <p> This is a free responsive flat registration form made with Bootstrap.
+                    Download it on <a href="http://azmind.com"><strong>AZMIND</strong></a>,
+                    customize and use it as you like!
+                  </p>
+                </div>
+                <div className="top-big-link">
+                  <a className="btn btn-link-1" href="/register/signup">Button 1</a>
+                  <a className="btn btn-link-2" href="/register/signup">Button 2</a>
+                </div>
+              </div>
+              <div className="col-sm-5">
+
+                { this.props.children }
+
+              </div>
+            </div>
           </div>
         </div>
       </div>

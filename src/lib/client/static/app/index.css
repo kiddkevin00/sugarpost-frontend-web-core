@@ -49,9 +49,8 @@ body {
     height: 100%;
 }
 
-body * {
+body {
     font-family: 'Open Sans', sans-serif;
-    webkit-tap-highlight-color: #222;
 }
 
 #react-main-container {

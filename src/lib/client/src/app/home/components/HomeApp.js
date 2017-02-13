@@ -23,7 +23,7 @@ class HomeApp extends BaseComponent {
 
   render() {
     return (
-      <div id="home-app">
+      <div id="home-template">
         <header>
           <div className="header-content">
             <div className="header-content-inner">
@@ -202,8 +202,10 @@ class HomeApp extends BaseComponent {
                 <div className="call-to-action">
                   <br />
                   <h2>Can&#39;t Wait?</h2>
-                  <a href="/register/signup"
-                    className="btn btn-default btn-xl sr-button">
+                  <a
+                    href="/register/signup"
+                    className="btn btn-default btn-xl sr-button"
+                  >
                     Sign Up Now!
                   </a>
                   <br />
