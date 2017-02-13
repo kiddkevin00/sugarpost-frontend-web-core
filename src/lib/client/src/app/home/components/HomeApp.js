@@ -30,7 +30,9 @@ class HomeApp extends BaseComponent {
               <h1 id="home-heading">SUGARPOST</h1>
               <hr />
               <p>We are New York City&#39;s premium dessert subscription service!</p>
-              <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">Sign Up Now</a>
+              <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">
+                Sign Up Now
+              </a>
               <br />
               <a href="/#about" className="btn btn-circle page-scroll">
                 <i className="fa fa-angle-double-down animated" />
@@ -49,12 +51,11 @@ class HomeApp extends BaseComponent {
                     <h2 className="section-heading">Got a sweet tooth? We&#39;ve got the cure!</h2>
                     <hr className="light" />
                     <p className="text-faded">
-                      Sugarpost is a New York based online monthly premium
-                      subscription service that provides its customers with e-packages of trendy
-                      and innovative desserts ranging from frozen treats to baked goods. We have
-                      scoured the internet and attained insight from various food bloggers and
-                      dessert connoisseurs to deliver our subscribers a selection of unique desserts
-                      around New York City!
+                      Sugarpost is a New York based online monthly premium subscription service
+                      that provides its customers with e-packages of trendy and innovative desserts
+                      ranging from frozen treats to baked goods. We have scoured the internet and
+                      attained insight from various food bloggers and dessert connoisseurs to
+                      deliver our subscribers a selection of unique desserts around New York City!
                     </p>
                     <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
                       Get Started!
@@ -92,8 +93,8 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-child text-primary sr-icons" />
                       <h3>Go Venture</h3>
                       <p className="text-muted">
-                        Visit all of the locations on your curated list of destination dessert spots.
-                        Your e-package will have a little color on each vendor as well.
+                        Visit all of the locations on your curated list of destination dessert
+                        spots. Your e-package will have a little color on each vendor as well.
                       </p>
                     </div>
                   </div>
@@ -112,8 +113,9 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
                       <h3>Share The Love</h3>
                       <p className="text-muted">
-                        Eat up! If you enjoyed your experience, refer a friend for credit towards your
-                        next e-package. If enough friends sign up, you’ll even get a month free!
+                        Eat up! If you enjoyed your experience, refer a friend for credit towards
+                        your next e-package. If enough friends sign up, you’ll even get a month
+                        free!
                       </p>
                     </div>
                   </div>
@@ -135,6 +137,7 @@ class HomeApp extends BaseComponent {
               <div className="container-fluid">
                 <div className="row no-gutter popup-gallery">
                   <div className="col-lg-3 col-sm-6">
+                    {/* eslint-disable max-len */}
                     <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
                       <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
                       <div className="portfolio-box-caption">
@@ -182,6 +185,7 @@ class HomeApp extends BaseComponent {
                   <div className="col-lg-3 col-sm-6">
                     <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
                       <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                      {/* eslint-enable max-len */}
                       <div className="portfolio-box-caption">
                         <div className="portfolio-box-caption-content">
                           <div className="project-category text-faded">
@@ -244,7 +248,9 @@ class HomeApp extends BaseComponent {
                   <div className="col-lg-6 col-lg-offset-3 text-center">
                     <i className="fa fa-envelope-o fa-3x sr-contact" />
                     <p>
-                      <a href="mailto:administrator@mysugarpost.com">administrator@mysugarpost.com</a>
+                      <a href="mailto:administrator@mysugarpost.com">
+                        administrator@mysugarpost.com
+                      </a>
                     </p>
                   </div>
                 </div>
