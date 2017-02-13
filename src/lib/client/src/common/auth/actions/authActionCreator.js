@@ -17,7 +17,7 @@ const authActionCreator = {
 
         if (res.data[0] && res.data[0].isSignedUp) {
           dispatcher.dispatch({
-            actionType: authConstants.IS_SIGNED_UP,
+            actionType: authConstants.ALREADY_SIGNED_UP,
           });
         } else {
           dispatcher.dispatch({

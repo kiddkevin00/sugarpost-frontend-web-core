@@ -2,7 +2,7 @@ import homeStore from '../stores/homeStore';
 import homeActionCreator from '../actions/homeActionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
-import { Element } from 'react-scroll';
+import { Link, Element } from 'react-scroll';
 
 class HomeApp extends BaseComponent {
 
@@ -32,8 +32,17 @@ class HomeApp extends BaseComponent {
               <p>We are New York City&#39;s premium dessert subscription service!</p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">Sign Up Now</a>
               <br />
-              <br />
-              <a href="/#about" className="page-scroll">Find out more</a>
+              <Link
+                activeClass="active"
+                className="btn btn-circle page-scroll"
+                to="about"
+                spy={ true }
+                smooth={ true }
+                duration={ 700 }
+                delay={ 300 }
+              >
+                <i className="fa fa-angle-double-down animated" />
+              </Link>
             </div>
           </div>
         </header>
@@ -54,9 +63,17 @@ class HomeApp extends BaseComponent {
                       dessert connoisseurs to deliver our subscribers a selection of unique desserts
                       around New York City!
                     </p>
-                    <a href="/#services" className="page-scroll btn btn-default btn-xl sr-button">
+                    <Link
+                      activeClass="active"
+                      className="btn btn-default btn-xl sr-button page-scroll"
+                      to="services"
+                      spy={ true }
+                      smooth={ true }
+                      duration={ 700 }
+                      delay={ 300 }
+                    >
                       Get Started!
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
