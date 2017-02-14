@@ -133,9 +133,21 @@ class RootApp extends BaseComponent {
           </LinkContainer>
         </li>
       ), (
-        <LinkContainer key="5" to="/register/signup">
-          <NavItem>Sign Up</NavItem>
-        </LinkContainer>
+        <li key="5">
+          <LinkContainer to="/register/signup">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="registration"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Signup
+            </Link>
+          </LinkContainer>
+        </li>
       ), (
         <LinkContainer key="6" to="/login">
           <NavItem>Log In</NavItem>
@@ -147,16 +159,8 @@ class RootApp extends BaseComponent {
       ));
     }
 
-    let navbar;
-
-    if (
-      !this.context.router.isActive('/login') &&
-      !this.context.router.isActive('/forgot-password') &&
-      !this.context.router.isActive('/register/signup') &&
-      !this.context.router.isActive('/register/payment') &&
-      !this.context.router.isActive('/profile')
-    ) {
-      navbar = (
+    return (
+      <div id="root-app">
         <ScrollDiv
           activeClass="scroll"
           className="navbar navbar-default navbar-fixed-top"
@@ -180,30 +184,6 @@ class RootApp extends BaseComponent {
             </Navbar.Collapse>
           </Navbar>
         </ScrollDiv>
-      );
-    } else {
-      navbar = (
-        <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <LinkContainer to="/">
-                <a className="page-scroll" href="/">Sugarpost</a>
-              </LinkContainer>
-            </Navbar.Brand>
-            <Navbar.Toggle>Menu</Navbar.Toggle>
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <ul className="nav navbar-nav navbar-right">
-              { tabsShownWhenUserLoggedIn }
-            </ul>
-          </Navbar.Collapse>
-        </Navbar>
-      );
-    }
-
-    return (
-      <div id="root-app">
-        { navbar }
 
         { this.props.children }
 
