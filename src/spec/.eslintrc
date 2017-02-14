@@ -1,0 +1,15 @@
+{
+  "env": {
+    "jasmine": false,
+    "mocha": true
+  },
+  "globals": {
+    "expect": true,
+    "spy": true,
+    "stub": true,
+    "match": true
+  },
+  "rules": {
+    "prefer-arrow-callback": 1
+  }
+}

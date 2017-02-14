@@ -17,6 +17,8 @@ class HomeApp extends BaseComponent {
     homeStore.addChangeListener(this._onChange);
   }
 
+  componentWillReceiveProps(nextProps) {}
+
   componentWillUnmount() {
     homeStore.removeChangeListener(this._onChange);
   }
@@ -287,10 +289,7 @@ class HomeApp extends BaseComponent {
  * the data in the Flux's store.
  */
 function _getState() {
-  return {
-    subscribeFeedbackTxt: homeStore.getSubscribeFeedbackTxt(),
-    subscribeFeedbackCssClass: homeStore.getSubscribeFeedbackCssClass(),
-  };
+  return {};
 }
 
 export default HomeApp;
