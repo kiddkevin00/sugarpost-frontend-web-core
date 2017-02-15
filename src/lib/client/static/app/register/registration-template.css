@@ -1,7 +1,6 @@
 /***** Global setting *****/
 
 #registration-template {
-	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	font-weight: 300;
 	color: #888;
@@ -197,7 +196,6 @@
     vertical-align: middle;
     background: #fff;
     border: 3px solid #fff;
-	font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 50px;
@@ -237,7 +235,6 @@
     vertical-align: middle;
     background: #66d6c5;
     border: 0;
-	font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 50px;
