@@ -18,16 +18,16 @@ class PaymentForm extends BaseComponent {
 
   render() {
     return (
-      <form>
+      <form role="form">
         <div className="form-group">
-          <label htmlFor="email">Refer Code</label>
+          <label className="sr-only" htmlFor="form-refer-code">First name</label>
           <FormInput
             onChange={ this._onChange.bind(this, 'referCode') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.referCode }
             type="text"
-            placeholder="Refer Code"
+            placeholder="Refer code..."
             className="form-control"
-            id="refer-code"
+            id="form-refer-code"
           />
         </div>
         <StripeCheckout
@@ -51,7 +51,7 @@ class PaymentForm extends BaseComponent {
         >
           <button
             disabled={ false }
-            className="btn btn-success btn-sm btn-block"
+            className="btn btn-block"
             type="button"
           >
             Get Your April Treat $19.99

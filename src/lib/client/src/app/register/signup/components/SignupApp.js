@@ -47,7 +47,7 @@ class SignupApp extends BaseComponent {
           </div>
         </div>
         <div className="form-bottom">
-          <SignupForm onSubmist={ this._onSubmit } />
+          <SignupForm onSubmit={ this._onSubmit } />
         </div>
       </div>
     );
