@@ -38,7 +38,7 @@ class RootApp extends BaseComponent {
       nextContext.router.isActive('/profile') ||
       nextContext.router.isActive('/register/payment')
     )) {
-      this.context.router.push('/');
+      this.context.router.push('/login');
     }
   }
 
