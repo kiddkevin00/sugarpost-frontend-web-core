@@ -13,9 +13,10 @@ class RegisterApp extends BaseComponent {
             <div className="container">
               <div className="row">
                 <div className="col-sm-7 text">
-                  <h1><strong>Bootstrap</strong> Flat Registration Form</h1>
+                  <h1><strong>Bootstrap</strong> Registration Form</h1>
                   <div className="description">
-                    <p> This is a free responsive flat registration form made with Bootstrap.
+                    <p>
+                      This is a free responsive registration form made with Bootstrap.
                       Download it on <a href="http://azmind.com"><strong>AZMIND</strong></a>,
                       customize and use it as you like!
                     </p>

@@ -45,10 +45,9 @@ class SignupApp extends BaseComponent {
           <div className="form-top-right">
             <i className="fa fa-pencil" />
           </div>
-          <div className="form-top-divider" />
         </div>
         <div className="form-bottom">
-          <SignupForm onSubmit={ this._onSubmit } />
+          <SignupForm onSubmist={ this._onSubmit } />
         </div>
       </div>
     );

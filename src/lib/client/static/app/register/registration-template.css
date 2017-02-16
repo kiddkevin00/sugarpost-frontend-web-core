@@ -6,8 +6,6 @@
 	color: #888;
 	line-height: 30px;
 	text-align: center;
-    width: 100%;
-    height: 100%;
 }
 
 #registration-template strong { font-weight: 500; }
@@ -15,7 +13,7 @@
 #registration-template a,
 #registration-template a:hover,
 #registration-template a:focus {
-	color: #66d6c5;
+	color: #19b9e7;
 	text-decoration: none;
 	-o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
@@ -38,8 +36,15 @@
 
 #registration-template img { max-width: 100%; }
 
-#registration-template::-moz-selection { background: #66d6c5; color: #fff; text-shadow: none; }
-#registration-template::selection { background: #66d6c5; color: #fff; text-shadow: none; }
+#registration-template .medium-paragraph {
+	font-size: 18px;
+	line-height: 32px;
+}
+
+#registration-template .blue { color: #19b9e7; }
+
+#registration-template::-moz-selection { background: #19b9e7; color: #fff; text-shadow: none; }
+#registration-template::selection { background: #19b9e7; color: #fff; text-shadow: none; }
 
 
 /***** Buttons *****/
@@ -49,7 +54,7 @@
 	height: 50px;
 	margin: 0 5px;
 	padding: 16px 20px 0 20px;
-	background: #66d6c5;
+	background: #19b9e7;
 	font-size: 16px;
 	font-weight: 300;
 	line-height: 16px;
@@ -64,9 +69,9 @@
 	display: inline-block;
 	height: 50px;
 	margin: 0 5px;
-	padding: 16px 20px 0 20px;
-	background: #333;
+	padding: 15px 20px 0 20px;
 	background: rgba(0, 0, 0, 0.3);
+	border: 1px solid #fff;
 	font-size: 16px;
 	font-weight: 300;
 	line-height: 16px;
@@ -81,15 +86,8 @@
 
 /***** Content *****/
 
-.inner-bg {
+#registration-template .inner-bg {
 	padding: 120px 0 170px 0;
-    background-image: url("/assets/images/v2_background.png");
-    min-height: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    background-position: center;
 }
 
 #registration-template .text {
@@ -118,6 +116,8 @@
 #registration-template .form-top {
 	overflow: hidden;
 	padding: 0 25px 15px 25px;
+	background: #fff;
+	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
 	text-align: left;
 }
 
@@ -127,29 +127,22 @@
 	padding-top: 25px;
 }
 
-#registration-template .form-top-left h3 { margin-top: 0; color: #fff; }
-#registration-template .form-top-left p { color: #fff; opacity: 0.8; }
+#registration-template .form-top-left h3 { margin-top: 0; }
 
 #registration-template .form-top-right {
 	float: left;
 	width: 25%;
 	padding-top: 5px;
 	font-size: 66px;
-	color: #fff;
+	color: #ddd;
 	line-height: 100px;
 	text-align: right;
 }
 
-#registration-template .form-top-divider {
-	float: left;
-	width: 100%;
-	height: 3px;
-	background: #fff;
-	background: rgba(255, 255, 255, 0.8);
-}
-
 #registration-template .form-bottom {
 	padding: 25px 25px 30px 25px;
+	background: #eee;
+	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
 	text-align: left;
 }
 
@@ -158,7 +151,7 @@
 }
 
 #registration-template .form-bottom form .input-error {
-	border-color: #66d6c5;
+	border-color: #19b9e7;
 }
 
 
@@ -169,21 +162,24 @@
 @media (min-width: 768px) and (max-width: 991px) {}
 
 @media (max-width: 767px) {
-	#registration-template .inner-bg { padding: 60px 0 110px 0; }
-	#registration-template #registration-template .text { padding-top: 0; padding-bottom: 60px; }
-	#registration-template #registration-template .top-big-link { margin-top: 25px; }
-	#registration-template #registration-template .top-big-link a.btn { margin-top: 10px; }
+
+    #registration-template .inner-bg { padding: 60px 0 110px 0; }
+    #registration-template .top-content .text { padding-top: 0; padding-bottom: 60px; }
+    #registration-template .top-content .top-big-link { margin-top: 25px; }
+    #registration-template .top-content .top-big-link a.btn { margin-top: 10px; }
 
 }
 
 @media (max-width: 415px) {
 
-	#registration-template h1, h2 { font-size: 32px; }
+    #registration-template h1,
+    #registration-template h2 { font-size: 32px; }
 
 }
 
 
 /***** Form elements *****/
+
 
 #registration-template input[type="text"],
 #registration-template input[type="email"],
@@ -194,8 +190,8 @@
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
-    background: #fff;
-    border: 3px solid #fff;
+    background: #f8f8f8;
+    border: 3px solid #ddd;
     font-size: 16px;
     font-weight: 300;
     line-height: 50px;
@@ -223,17 +219,28 @@
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
-#registration-template input[type="text"]:-moz-placeholder, textarea:-moz-placeholder, textarea.form-control:-moz-placeholder { color: #888; }
-#registration-template input[type="text"]:-ms-input-placeholder, textarea:-ms-input-placeholder, textarea.form-control:-ms-input-placeholder { color: #888; }
-#registration-template input[type="text"]::-webkit-input-placeholder, textarea::-webkit-input-placeholder, textarea.form-control::-webkit-input-placeholder { color: #888; }
+#registration-template textarea:-moz-placeholder,
+#registration-template textarea.form-control:-moz-placeholder,
+#registration-template textarea:-ms-input-placeholder,
+#registration-template textarea.form-control:-ms-input-placeholder { color: #888; }
+#registration-template textarea::-webkit-input-placeholder,
+#registration-template textarea.form-control::-webkit-input-placeholder,
+#registration-template input[type="text"]:-moz-placeholder,
+#registration-template input[type="text"]:-ms-input-placeholder,
+#registration-template input[type="text"]::-webkit-input-placeholder { color: #888; }
+#registration-template input[type="email"]:-moz-placeholder,
+#registration-template input[type="email"]:-ms-input-placeholder,
+#registration-template input[type="email"]::-webkit-input-placeholder { color: #888; }
+#registration-template input[type="password"]:-moz-placeholder,
+#registration-template input[type="passowrd"]:-ms-input-placeholder,
+#registration-template input[type="password"]::-webkit-input-placeholder { color: #888; }
 
 #registration-template button.btn {
-    width: 100%;
     height: 50px;
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
-    background: #66d6c5;
+    background: #19b9e7;
     border: 0;
     font-size: 16px;
     font-weight: 300;
@@ -249,6 +256,7 @@
 
 #registration-template button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
 
-#registration-template button.btn:focus { outline: 0; opacity: 0.6; background: #66d6c5; color: #fff; }
+#registration-template button.btn:focus { outline: 0; opacity: 0.6; background: #19b9e7; color: #fff; }
 
-#registration-template button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #66d6c5; color: #fff; }
+#registration-template button.btn:active:focus,
+#registration-template button.btn.active:focus { outline: 0; opacity: 0.6; background: #19b9e7; color: #fff; }
