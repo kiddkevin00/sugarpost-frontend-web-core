@@ -83,7 +83,7 @@ class SignupForm extends BaseComponent {
         <button
           onClick={ this._onClick }
           disabled={ false }
-          className="btn"
+          className="btn btn-block"
           type="button"
         >
           Sign me up!

@@ -18,32 +18,32 @@ class LoginForm extends BaseComponent {
 
   render() {
     return (
-      <form onSubmit={ this._onSubmit }>
+      <form onSubmit={ this._onSubmit } role="form">
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label className="sr-only" htmlFor="form-email">Email</label>
           <FormInput
-            onChange={ this._onChange.bind(this, 'email') }
+            onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.email }
             type="email"
-            placeholder="Email"
+            placeholder="Email..."
             className="form-control"
-            id="email"
+            id="form-email"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label className="sr-only" htmlFor="form-password">Password</label>
           <FormInput
-            onChange={ this._onChange.bind(this, 'password') }
+            onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.password }
             type="password"
-            placeholder="Password"
+            placeholder="Password..."
             className="form-control"
-            id="password"
+            id="form-password"
           />
         </div>
         <button
           disabled={ !this.state.emailIsValid || !this.state.passwordIsValid }
-          className="btn btn-success btn-sm btn-block"
+          className="btn btn-block"
           type="submit"
         >
           Log In

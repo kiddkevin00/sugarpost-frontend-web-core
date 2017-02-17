@@ -1,6 +1,6 @@
 import BaseComponent from '../../common/components/BaseComponent';
-import React from 'react';
 import { Element } from 'react-scroll';
+import React from 'react';
 
 class RegisterApp extends BaseComponent {
 
