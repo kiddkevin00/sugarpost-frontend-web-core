@@ -20,7 +20,7 @@ class PaymentApp extends BaseComponent {
             <p>Fill in the form below to get started:</p>
           </div>
           <div className="form-top-right">
-            <i className="fa fa-pencil" />
+            <img src="/assets/images/sugarpost-logo.png" alt="" />
           </div>
         </div>
         <div className="form-bottom">
