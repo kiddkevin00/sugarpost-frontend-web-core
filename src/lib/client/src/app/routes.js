@@ -1,7 +1,7 @@
 import authStore from '../common/auth/stores/authStore';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import HomeApp from './home/components/HomeApp';
-import ForgotPassword from './forgot-password/components/ForgotPasswordApp';
+import ForgotPasswordApp from './forgot-password/components/ForgotPasswordApp';
 import LoginApp from './login/components/LoginApp';
 import RegisterApp from './register/';
 import SignupApp from './register/signup/components/SignupApp';
@@ -149,13 +149,37 @@ class RootApp extends BaseComponent {
           </LinkContainer>
         </li>
       ), (
-        <LinkContainer key="6" to="/login">
-          <NavItem>Log In</NavItem>
-        </LinkContainer>
+        <li key="6">
+          <LinkContainer to="/login">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="login"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Login
+            </Link>
+          </LinkContainer>
+        </li>
       ), (
-        <LinkContainer key="7" to="/forgot-password">
-          <NavItem>Forgot Password</NavItem>
-        </LinkContainer>
+        <li key="7">
+          <LinkContainer to="/forgot-password">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="forgot-password"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Forgot Password
+            </Link>
+          </LinkContainer>
+        </li>
       ));
     }
 
@@ -219,7 +243,7 @@ const clientRoutes = (
         <Route path="payment" component={ PaymentApp } />
       </Route>
       <Route path="login" component={ LoginApp } />
-      <Route path="forgot-password" component={ ForgotPassword } />
+      <Route path="forgot-password" component={ ForgotPasswordApp } />
       <Route path="profile" component={ ProfileApp } />
       <Route path="memo" component={ MemoApp } />
     </Route>

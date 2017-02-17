@@ -79,22 +79,13 @@ body {
     color: #000;
 }
 
-.scroll .navbar-default .navbar-header .navbar-brand {
-    color: #FBB352;
-}
-
-.scroll .navbar-default .nav > li > a:hover {
-  color: #FBB352;
-}
-
-.scroll .navbar-default .navbar-header .navbar-brand:hover {
-    color: #F05F40;
-}
-
+.scroll .navbar-default .navbar-header .navbar-brand,
+.scroll .navbar-default .nav > li > a:hover,
 .scroll .navbar-default .nav > li > a:focus {
     color: #FBB352;
 }
 
+.scroll .navbar-default .navbar-header .navbar-brand:hover,
 .scroll .navbar-default .navbar-header .navbar-brand:focus {
     color: #F05F40;
 }
@@ -167,9 +158,13 @@ body {
         color: #fff;
     }
 
-    .navbar-default .nav > li > a,
-    .navbar-default .nav > li > a:focus {
+    .navbar-default .nav > li > a {
         color: rgba(255, 255, 255, .7);
+    }
+    .navbar-default .nav > li:nth-child(5) > a:focus,
+    .navbar-default .nav > li:nth-child(6) > a:focus,
+    .navbar-default .nav > li:nth-child(7) > a:focus {
+        color: #FBB352;
     }
 
     .navbar-default .nav > li > a:focus:hover,
