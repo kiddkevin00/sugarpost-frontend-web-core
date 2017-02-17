@@ -15,13 +15,19 @@ const authActionCreator = {
       .then((payloadObj) => {
         const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.data[0] && res.data[0].isSignedUp) {
+        if (res.getNthData(0).success) {
+          dispatcher.dispatch({
+            actionType: authConstants.IS_LOGGED_IN,
+          });
+        } else if (res.getNthData(0).status === 'REQUIRED_FIELDS_NOT_UNIQUE') { // TODO
           dispatcher.dispatch({
             actionType: authConstants.ALREADY_SIGNED_UP,
+            data: res.getNthData(0).detail,
           });
         } else {
           dispatcher.dispatch({
-            actionType: authConstants.IS_LOGGED_IN,
+            actionType: authConstants.SIGNUP_FAIL,
+            data: res.getNthData(0).detail,
           });
         }
       })
@@ -42,7 +48,7 @@ const authActionCreator = {
       .then((payloadObj) => {
         const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.data[0] && res.data[0].isAuthenticated) {
+        if (res.data[0] && res.data[0].success) {
           dispatcher.dispatch({
             actionType: authConstants.IS_LOGGED_IN,
           });
@@ -67,13 +73,13 @@ const authActionCreator = {
       .then((payloadObj) => {
         const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.data[0] && res.data[0].isAuthenticated) {
+        if (res.data[0] && res.data[0].success) {
           dispatcher.dispatch({
-            actionType: authConstants.IS_LOGGED_IN,
+            actionType: authConstants.NOT_LOGGED_IN,
           });
         } else {
           dispatcher.dispatch({
-            actionType: authConstants.NOT_LOGGED_IN,
+            actionType: authConstants.IS_LOGGED_IN,
           });
         }
       })
