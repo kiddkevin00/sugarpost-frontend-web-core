@@ -18,21 +18,21 @@ class ForgotPasswordForm extends BaseComponent {
 
   render() {
     return (
-      <form onSubmit={ this._onSubmit }>
+      <form onSubmit={ this._onSubmit } role="form">
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label className="sr-only" htmlFor="form-email">Email Address</label>
           <FormInput
-            onChange={ this._onChange.bind(this, 'email') }
+            onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.email }
             type="email"
-            placeholder="Email"
+            placeholder="Email address..."
             className="form-control"
-            id="email"
+            id="form-email"
           />
         </div>
         <button
-          disabled={ !this.state.emailIsValid || !this.state.passwordIsValid }
-          className="btn btn-success btn-sm btn-block"
+          disabled={ !this.state.emailIsValid }
+          className="btn btn-block"
           type="submit"
         >
           Reset Password

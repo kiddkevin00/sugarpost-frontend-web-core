@@ -20,7 +20,7 @@ class PaymentForm extends BaseComponent {
     return (
       <form role="form">
         <div className="form-group">
-          <label className="sr-only" htmlFor="form-refer-code">First name</label>
+          <label className="sr-only" htmlFor="form-refer-code">Refer Code</label>
           <FormInput
             onChange={ this._onChange.bind(this, 'referCode') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.referCode }

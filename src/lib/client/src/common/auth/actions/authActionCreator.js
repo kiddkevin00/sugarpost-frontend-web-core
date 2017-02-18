@@ -6,9 +6,9 @@ import authConstants from '../constants/authConstants';
 import constants from '../../constants/';
 
 const authActionCreator = {
-  signup(email, password, firstName, lastName) {
+  signup(email, password, fullName) {
     const url = '/api/auth/signup';
-    const body = { email, password, firstName, lastName };
+    const body = { email, password, fullName };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
     Proxy.post(url, body, headers)

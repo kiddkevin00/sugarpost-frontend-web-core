@@ -9,13 +9,11 @@ class SignupForm extends BaseComponent {
 
     this._bind('_onClick');
     this.state = {
-      firstName: '',
-      lastName: '',
+      fullName: '',
       email: '',
       password: '',
       confirmPassword: '',
-      firstNameIsValid: false,
-      lastNameIsValid: false,
+      fullNameIsValid: false,
       emailIsValid: false,
       passwordIsValid: false,
       confirmPasswordIsValid: false,
@@ -26,29 +24,18 @@ class SignupForm extends BaseComponent {
     return (
       <form role="form">
         <div className="form-group">
-          <label className="sr-only" htmlFor="form-first-name">First name</label>
+          <label className="sr-only" htmlFor="form-full-name">Full Name</label>
           <FormInput
-            onChange={ this._onChange.bind(this, 'firstName') } /* eslint-disable-line react/jsx-no-bind */
-            value={ this.state.firstName }
+            onChange={ this._onChange.bind(this, 'fullName') } /* eslint-disable-line react/jsx-no-bind */
+            value={ this.state.fullName }
             type="text"
-            placeholder="First name..."
+            placeholder="Full name..."
             className="form-control"
-            id="form-first-name"
+            id="form-full-name"
           />
         </div>
         <div className="form-group">
-          <label className="sr-only" htmlFor="form-last-name">Last name</label>
-          <FormInput
-            onChange={ this._onChange.bind(this, 'lastName') } /* eslint-disable-line react/jsx-no-bind */
-            value={ this.state.lastName }
-            type="text"
-            placeholder="Last name..."
-            className="form-control"
-            id="form-last-name"
-          />
-        </div>
-        <div className="form-group">
-          <label className="sr-only" htmlFor="form-email">Email</label>
+          <label className="sr-only" htmlFor="form-email">Email Address</label>
           <FormInput
             onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.email }
@@ -100,8 +87,7 @@ class SignupForm extends BaseComponent {
   }
 
   _onClick(event) {
-    this.props.onSubmit(event, this.state.email, this.state.password, this.state.firstName,
-      this.state.lastName);
+    this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
   }
 
 }

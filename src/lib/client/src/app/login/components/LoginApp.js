@@ -36,7 +36,7 @@ class LoginApp extends BaseComponent {
     return (
       <div id="registration-template">
 
-        <Element name="registration">
+        <Element name="login">
           <div className="inner-bg">
             <div className="container">
               <div className="row">
@@ -57,7 +57,7 @@ class LoginApp extends BaseComponent {
                 <div className="col-sm-5">
                   <div className="form-top">
                     <div className="form-top-left">
-                      <h3>Log In</h3>
+                      <h3>Log in</h3>
                       <p>Fill in the form below to get started:</p>
                     </div>
                     <div className="form-top-right">

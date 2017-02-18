@@ -20,12 +20,12 @@ class LoginForm extends BaseComponent {
     return (
       <form onSubmit={ this._onSubmit } role="form">
         <div className="form-group">
-          <label className="sr-only" htmlFor="form-email">Email</label>
+          <label className="sr-only" htmlFor="form-email">Email Address</label>
           <FormInput
             onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
             value={ this.state.email }
             type="email"
-            placeholder="Email..."
+            placeholder="Email address..."
             className="form-control"
             id="form-email"
           />
