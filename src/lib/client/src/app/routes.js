@@ -6,7 +6,9 @@ import LoginApp from './login/components/LoginApp';
 import RegisterApp from './register/';
 import SignupApp from './register/signup/components/SignupApp';
 import PaymentApp from './register/payment/components/PaymentApp';
-import ProfileApp from './profile/components/ProfileApp';
+import AccountApp from './account/components/AccountApp';
+import VoucherApp from './voucher/components/VoucherApp';
+import ReferralApp from './referral/components/ReferralApp';
 import MemoApp from './memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
 import ScrollDiv from '../common/components/ScrollDiv';
@@ -35,7 +37,7 @@ class RootApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextState.isLoggedIn && (
-      nextContext.router.isActive('/profile') ||
+      nextContext.router.isActive('/account') ||
       nextContext.router.isActive('/register/payment')
     )) {
       this.context.router.push('/login');
@@ -51,16 +53,24 @@ class RootApp extends BaseComponent {
 
     if (this.state.isLoggedIn) {
       tabsShownWhenUserLoggedIn.push((
-        <LinkContainer key="1" to="/profile">
-          <NavItem>Profile</NavItem>
+        <LinkContainer key="1" to="/account">
+          <NavItem>Account</NavItem>
         </LinkContainer>
       ), (
         <LinkContainer key="2" to="/register/payment">
           <NavItem>Payment</NavItem>
         </LinkContainer>
       ), (
+        <LinkContainer key="3" to="/voucher">
+          <NavItem>Voucher</NavItem>
+        </LinkContainer>
+      ), (
+        <LinkContainer key="4" to="/referral">
+          <NavItem>Referral</NavItem>
+        </LinkContainer>
+      ), (
         /* eslint-disable jsx-a11y/no-static-element-interactions */
-        <NavItem key="3">
+        <NavItem key="5">
           <span onClick={ RootApp._onLogout }>
             Log Out
           </span>
@@ -244,7 +254,9 @@ const clientRoutes = (
       </Route>
       <Route path="login" component={ LoginApp } />
       <Route path="forgot-password" component={ ForgotPasswordApp } />
-      <Route path="profile" component={ ProfileApp } />
+      <Route path="account" component={ AccountApp } />
+      <Route path="voucher" component={ VoucherApp } />
+      <Route path="referral" component={ ReferralApp } />
       <Route path="memo" component={ MemoApp } />
     </Route>
   </Router>

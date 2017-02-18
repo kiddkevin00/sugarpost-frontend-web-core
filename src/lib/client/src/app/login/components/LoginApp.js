@@ -16,7 +16,7 @@ class LoginApp extends BaseComponent {
 
   componentDidMount() {
     if (this.state.isLoggedIn) {
-      this.context.router.push('/profile');
+      this.context.router.push('/account');
     }
 
     authStore.addChangeListener(this._onChange);
@@ -28,7 +28,7 @@ class LoginApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextState.isLoggedIn && this.context.router.isActive('/login')) {
-      this.context.router.push('/profile');
+      this.context.router.push('/account');
     }
   }
 

@@ -14,4 +14,4 @@ class Div extends BaseComponent {
 
 }
 
-module.exports = Helpers.Scroll(Div);
+export default Helpers.Scroll(Div);

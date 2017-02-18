@@ -15,7 +15,7 @@ class SignupApp extends BaseComponent {
 
   componentDidMount() {
     if (this.state.isLoggedIn) {
-      this.context.router.push('/profile');
+      this.context.router.push('/account');
     }
 
     authStore.addChangeListener(this._onChange);
