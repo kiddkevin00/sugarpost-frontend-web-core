@@ -73,7 +73,7 @@ class SignupForm extends BaseComponent {
           className="btn btn-block"
           type="button"
         >
-          Sign me up!
+          Sign Me Up!
         </button>
       </form>
     );

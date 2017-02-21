@@ -41,17 +41,16 @@ class LoginApp extends BaseComponent {
             <div className="container">
               <div className="row">
                 <div className="col-sm-7 text">
-                  <h1><strong>Bootstrap</strong> Registration Form</h1>
+                  <h1>Welcome Back...</h1>
                   <div className="description">
                     <p>
-                      This is a free responsive registration form made with Bootstrap.
-                      Download it on <a href="http://azmind.com"><strong>AZMIND</strong></a>,
-                      customize and use it as you like!
+                      For only $19.99 a month, you can get 4 of the city’s trendiest desserts
+                      monthly, e-packages curated by the insight of the most influential food
+                      bloggers and dessert connosieurs! Not only will these e-packages contain
+                      your redemption codes for your desserts, but they will also provide a guide
+                      to where these desserts are located and a little background on each dessert
+                      vendor for your discovery experience.
                     </p>
-                  </div>
-                  <div className="top-big-link">
-                    <a className="btn btn-link-1" href="/register/signup">Button 1</a>
-                    <a className="btn btn-link-2" href="/register/signup">Button 2</a>
                   </div>
                 </div>
                 <div className="col-sm-5">
