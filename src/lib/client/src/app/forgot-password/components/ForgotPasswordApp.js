@@ -1,5 +1,5 @@
 import authStore from '../../../common/auth/stores/authStore';
-import authActionCreator from '../../../common/auth/actions/authActionCreator';
+import forgotPasswordActionCreator from '../actions/forgotPasswordActionCreator';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../common/components/BaseComponent';
 import { Element } from 'react-scroll';
@@ -77,11 +77,11 @@ class ForgotPasswordApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(event, email, password) {
+  static _onSubmit(event, email) {
     // Prevents browser's default navigation (page refresh).
     event.preventDefault();
 
-    //authActionCreator.login(email, password);
+    forgotPasswordActionCreator.forgotPassword(email);
   }
 
 }
