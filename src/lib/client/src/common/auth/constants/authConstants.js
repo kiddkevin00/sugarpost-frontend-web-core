@@ -12,6 +12,8 @@ const authConstants = keyMirror({
   OAUTH_LOGIN_FAIL: null,
 
   LOGOUT_FAIL: null,
+
+  IN_TRANSITION: null,
 });
 
 export default authConstants;

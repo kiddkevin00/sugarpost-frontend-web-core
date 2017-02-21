@@ -14,11 +14,20 @@ class AuthStore extends EventEmitter {
     // All internal store data.
     this[storeContext] = {
       isLoggedIn: false,
+      transitionPath: '',
     };
   }
 
   isLoggedIn() {
     return this[storeContext].isLoggedIn;
+  }
+
+  getTransitionPath() {
+    const transitionPath = this[storeContext].transitionPath;
+
+    this[storeContext].transitionPath = '';
+
+    return transitionPath;
   }
 
   emitChange() {
@@ -41,6 +50,10 @@ class AuthStore extends EventEmitter {
     this[storeContext].isLoggedIn = false;
   }
 
+  _storeTransitionPath(path) {
+    this[storeContext].transitionPath = path;
+  }
+
 }
 
 const authStore = new AuthStore();
@@ -50,6 +63,7 @@ dispatcher.register((action) => {
   console.log(`Action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
 
   const actionType = action.actionType;
+  const data = action.data;
 
   switch (actionType) {
     case authConstants.IS_LOGGED_IN:
@@ -74,6 +88,9 @@ dispatcher.register((action) => {
     case authConstants.LOGOUT_FAIL:
       // TODO
 
+      break;
+    case authConstants.IN_TRANSITION:
+      authStore._storeTransitionPath(data.path);
       break;
     default:
       break;

@@ -14,10 +14,6 @@ class SignupApp extends BaseComponent {
   }
 
   componentDidMount() {
-    if (this.state.isLoggedIn) {
-      this.context.router.push('/account');
-    }
-
     authStore.addChangeListener(this._onChange);
   }
 
@@ -26,8 +22,8 @@ class SignupApp extends BaseComponent {
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (nextState.isLoggedIn && this.context.router.isActive('/register/signup')) {
-      this.context.router.push({
+    if (nextState.isLoggedIn) {
+      nextContext.router.push({
         pathname: '/register/payment',
         query: { email: this.email },
       });

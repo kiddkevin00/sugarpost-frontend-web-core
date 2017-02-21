@@ -1,3 +1,7 @@
+import Proxy from '../common/proxies/proxy';
+import StandardResponseWrapper from '../common/utility/standard-response-wrapper';
+import StandardErrorWrapper from '../common/utility/standard-error-wrapper';
+
 import authStore from '../common/auth/stores/authStore';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import HomeApp from './home/components/HomeApp';
@@ -28,20 +32,20 @@ class RootApp extends BaseComponent {
   }
 
   componentDidMount() {
-    if (!this.state.isLoggedIn) {
-      authActionCreator.authCheck();
-    }
-
     authStore.addChangeListener(this._onChange);
+
+    //if (!this.state.isLoggedIn) {
+    //  authActionCreator.authCheck();
+    //}
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (!nextState.isLoggedIn && (
-      nextContext.router.isActive('/account') ||
-      nextContext.router.isActive('/register/payment')
-    )) {
-      this.context.router.push('/login');
-    }
+    //if (!nextState.isLoggedIn && (
+    //  nextContext.router.isActive('/account') ||
+    //  nextContext.router.isActive('/register/payment')
+    //)) {
+    //  nextContext.router.push('/login');
+    //}
   }
 
   componentWillUnmount() {
@@ -228,6 +232,16 @@ RootApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
+/*
+ * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
+ * the data in the Flux's store.
+ */
+function _getState() {
+  return {
+    isLoggedIn: authStore.isLoggedIn(),
+  };
+}
+
 const clientRoutes = (
   <Router history={ browserHistory }>
     <Route path="/" component={ RootApp }>
@@ -239,21 +253,67 @@ const clientRoutes = (
       <Route path="login" component={ LoginApp } />
       <Route path="forgot-password" component={ ForgotPasswordApp } />
       <Route path="account" component={ AccountApp } />
-      <Route path="voucher" component={ VoucherApp } />
-      <Route path="referral" component={ ReferralApp } />
+      <Route path="voucher" component={ VoucherApp } onEnter={ inTransition } />
+      <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
       <Route path="memo" component={ MemoApp } />
     </Route>
   </Router>
 );
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
- */
-function _getState() {
-  return {
-    isLoggedIn: authStore.isLoggedIn(),
-  };
+function inTransition(nextState, replace) {
+  const url = '/api/auth/check';
+
+  Proxy.get(url)
+    .then((payloadObj) => {
+      if (StandardResponseWrapper.verifyFormat(payloadObj)) {
+        const res = StandardResponseWrapper.deserialize(payloadObj);
+
+        if (res.data[0] && res.data[0].isAuthenticated) {
+          //return dispatcher.dispatch({
+          //  actionType: authConstants.IS_LOGGED_IN,
+          //});
+        }
+
+        const { pathname } = nextState.location;
+        authActionCreator.storeTransitionPath(pathname);
+        replace({ pathname: '/login' });
+
+        //return dispatcher.dispatch({
+        //  actionType: authConstants.NOT_LOGGED_IN,
+        //});
+      } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+        const err = StandardErrorWrapper.deserialize(payloadObj);
+        const firstErr = err.getNthError(0);
+
+        if (firstErr.code === 401) {
+          //return dispatcher.dispatch({
+          //  actionType: authConstants.NOT_LOGGED_IN,
+          //});
+
+          const { pathname } = nextState.location;
+          authActionCreator.storeTransitionPath(pathname);
+          replace({ pathname: '/login' });
+        }
+      }
+      //return dispatcher.dispatch({
+      //  actionType: authConstants.AUTH_CHECK_FAIL,
+      //});
+    })
+    .catch((err) => {
+      //dispatcher.dispatch({
+      //  actionType: authConstants.AUTH_CHECK_FAIL,
+      //  data: err,
+      //});
+    });
+
+
+  //if (!authStore.isLoggedIn()) {
+  //  const { pathname } = nextState.location;
+  //
+  //  authActionCreator.storeTransitionPath(pathname);
+  //
+  //  replace({ pathname: '/login' });
+  //}
 }
 
 export default clientRoutes;

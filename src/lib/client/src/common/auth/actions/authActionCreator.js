@@ -48,7 +48,7 @@ const authActionCreator = {
       .then((payloadObj) => {
         const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.data[0] && res.data[0].success) {
+        if (res.getNthData(0).success) {
           dispatcher.dispatch({
             actionType: authConstants.IS_LOGGED_IN,
           });
@@ -127,6 +127,13 @@ const authActionCreator = {
           data: err,
         });
       });
+  },
+
+  storeTransitionPath(path) {
+    dispatcher.dispatch({
+      actionType: authConstants.IN_TRANSITION,
+      data: { path },
+    });
   },
 };
 

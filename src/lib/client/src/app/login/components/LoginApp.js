@@ -15,21 +15,17 @@ class LoginApp extends BaseComponent {
   }
 
   componentDidMount() {
-    if (this.state.isLoggedIn) {
-      this.context.router.push('/account');
-    }
-
     authStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    if (nextState.isLoggedIn) {
+      nextContext.router.push(authStore.getTransitionPath() || '/account');
+    }
   }
 
   componentWillUnmount() {
     authStore.removeChangeListener(this._onChange);
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.isLoggedIn && this.context.router.isActive('/login')) {
-      this.context.router.push('/account');
-    }
   }
 
   render() {

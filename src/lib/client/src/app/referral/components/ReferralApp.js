@@ -1,3 +1,5 @@
+import authStore from '../../../common/auth/stores/authStore';
+import authActionCreator from '../../../common/auth/actions/authActionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
 
@@ -6,7 +8,26 @@ class ReferralApp extends BaseComponent {
   constructor(props) {
     super(props);
 
+    this._bind('_onChange');
     this.state = _getState();
+  }
+
+  componentDidMount() {
+    authStore.addChangeListener(this._onChange);
+
+    if (!this.state.isLoggedIn) {
+      authActionCreator.authCheck();
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    if (!nextState.isLoggedIn) {
+      nextContext.router.push('/login');
+    }
+  }
+
+  componentWillUnmount() {
+    authStore.removeChangeListener(this._onChange);
   }
 
   render() {
@@ -20,7 +41,7 @@ class ReferralApp extends BaseComponent {
           </div>
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h1>Only logged-in user can see this page!</h1>
+              <h1>Only logged-in user can see this REFERRAL page!</h1>
             </div>
           </div>
         </div>
@@ -28,14 +49,23 @@ class ReferralApp extends BaseComponent {
     );
   }
 
+  _onChange() {
+    this.setState(_getState());
+  }
+
 }
+ReferralApp.contextTypes = {
+  router: React.PropTypes.object.isRequired,
+};
 
 /*
  * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
  * the data in the Flux's store.
  */
 function _getState() {
-  return {};
+  return {
+    isLoggedIn: authStore.isLoggedIn(),
+  };
 }
 
 export default ReferralApp;
