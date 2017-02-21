@@ -65,6 +65,8 @@ class LoginApp extends BaseComponent {
                   </div>
                   <div className="form-bottom">
                     <LoginForm onSubmit={ LoginApp._onSubmit } />
+                    <br />
+                    <a href="/forgot-password" className="center-block text-center">Forgot password?</a>
                   </div>
                 </div>
               </div>

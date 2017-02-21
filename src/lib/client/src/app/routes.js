@@ -174,22 +174,6 @@ class RootApp extends BaseComponent {
             </Link>
           </LinkContainer>
         </li>
-      ), (
-        <li key="7">
-          <LinkContainer to="/forgot-password">
-            <Link
-              activeClass="active"
-              className="page-scroll"
-              to="forgot-password"
-              spy={ true }
-              smooth={ true }
-              duration={ 700 }
-              delay={ 300 }
-            >
-              Forgot Password
-            </Link>
-          </LinkContainer>
-        </li>
       ));
     }
 
