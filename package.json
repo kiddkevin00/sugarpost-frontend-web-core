@@ -11,10 +11,10 @@
     "port": 8088
   },
   "nyc": {
-    "statements": 50.66,
-    "branches": 5.66,
-    "functions": 60.87,
-    "lines": 50.44,
+    "statements": 0,
+    "branches": 0,
+    "functions": 0,
+    "lines": 0,
     "excludes": [],
     "report-dir": "./spec/coverage"
   },
