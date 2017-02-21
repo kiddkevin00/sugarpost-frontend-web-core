@@ -31,7 +31,7 @@ class HomeApp extends BaseComponent {
             <div className="header-content-inner">
               <h1 id="home-heading">SUGARPOST</h1>
               <hr />
-              <p>We are New York City&#39;s premium dessert subscription service!</p>
+              <p>We are New York City&#39;s premium Dessert Subscription Service!</p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">
                 Sign Up Now
               </a>
@@ -60,7 +60,7 @@ class HomeApp extends BaseComponent {
                       deliver our subscribers a selection of unique desserts around New York City!
                     </p>
                     <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
-                      Get Started!
+                      Get Started
                     </a>
                   </div>
                 </div>
@@ -85,8 +85,8 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
                       <h3>Get Codes</h3>
                       <p className="text-muted">
-                        After purchase a monthly subscription, you’ll receive an e-mail with unique
-                        redemption codes during the first week of every month.
+                        After purchasing a monthly subscription, you’ll receive an e-mail with
+                        unique redemption codes during the first week of every month.
                       </p>
                     </div>
                   </div>
@@ -212,7 +212,7 @@ class HomeApp extends BaseComponent {
                     href="/register/signup"
                     className="btn btn-default btn-xl sr-button"
                   >
-                    Sign Up Now!
+                    Sign Up Now
                   </a>
                   <br />
                   <br />
@@ -226,7 +226,7 @@ class HomeApp extends BaseComponent {
               <div className="row no-gutter popup-gallery">
                 <div className="col-lg-12 col-sm-12">
                   <img
-                    src="/assets/images/fun-press.png"
+                    src="/assets/images/press.png"
                     className="img-responsive"
                     alt=""
                   />
@@ -243,8 +243,9 @@ class HomeApp extends BaseComponent {
                     <h2 className="section-heading">Let&#39;s Get In Touch!</h2>
                     <hr className="primary" />
                     <p>
-                      Ready to start your next project with us? That&#39;s great! Give us a call or
-                      send us an email and we will get back to you as soon as possible!
+                      Interested in partnering with us? Inquiries? Questions? Press coverage?
+                      That&#39;s great! We look forward to hearing from you! Send us an e-mail and
+                      we will get back to you as soon as possible!
                     </p>
                   </div>
                   <div className="col-lg-6 col-lg-offset-3 text-center">

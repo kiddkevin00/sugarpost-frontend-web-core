@@ -53,7 +53,7 @@
 }
 
 #home-template .text-faded {
-    color: rgba(255, 255, 255, .7);
+    color: rgba(255, 255, 255, .9);
 }
 
 #home-template section {
@@ -107,7 +107,7 @@
 
 #home-template header .header-content .header-content-inner p {
     font-weight: 300;
-    color: rgba(255, 255, 255, .7);
+    color: rgba(255, 255, 255, .9);
     font-size: 16px;
     margin-bottom: 50px;
 }
