@@ -261,59 +261,7 @@ const clientRoutes = (
 );
 
 function inTransition(nextState, replace) {
-  const url = '/api/auth/check';
-
-  Proxy.get(url)
-    .then((payloadObj) => {
-      if (StandardResponseWrapper.verifyFormat(payloadObj)) {
-        const res = StandardResponseWrapper.deserialize(payloadObj);
-
-        if (res.data[0] && res.data[0].isAuthenticated) {
-          //return dispatcher.dispatch({
-          //  actionType: authConstants.IS_LOGGED_IN,
-          //});
-        }
-
-        const { pathname } = nextState.location;
-        authActionCreator.storeTransitionPath(pathname);
-        replace({ pathname: '/login' });
-
-        //return dispatcher.dispatch({
-        //  actionType: authConstants.NOT_LOGGED_IN,
-        //});
-      } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
-        const err = StandardErrorWrapper.deserialize(payloadObj);
-        const firstErr = err.getNthError(0);
-
-        if (firstErr.code === 401) {
-          //return dispatcher.dispatch({
-          //  actionType: authConstants.NOT_LOGGED_IN,
-          //});
-
-          const { pathname } = nextState.location;
-          authActionCreator.storeTransitionPath(pathname);
-          replace({ pathname: '/login' });
-        }
-      }
-      //return dispatcher.dispatch({
-      //  actionType: authConstants.AUTH_CHECK_FAIL,
-      //});
-    })
-    .catch((err) => {
-      //dispatcher.dispatch({
-      //  actionType: authConstants.AUTH_CHECK_FAIL,
-      //  data: err,
-      //});
-    });
-
-
-  //if (!authStore.isLoggedIn()) {
-  //  const { pathname } = nextState.location;
-  //
-  //  authActionCreator.storeTransitionPath(pathname);
-  //
-  //  replace({ pathname: '/login' });
-  //}
+  authActionCreator.inTransition(nextState, replace);
 }
 
 export default clientRoutes;

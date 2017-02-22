@@ -73,7 +73,7 @@ const authActionCreator = {
       .then((payloadObj) => {
         const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.data[0] && res.data[0].success) {
+        if (res.getNthData(0).success) {
           dispatcher.dispatch({
             actionType: authConstants.NOT_LOGGED_IN,
           });
@@ -99,7 +99,7 @@ const authActionCreator = {
         if (StandardResponseWrapper.verifyFormat(payloadObj)) {
           const res = StandardResponseWrapper.deserialize(payloadObj);
 
-          if (res.data[0] && res.data[0].isAuthenticated) {
+          if (res.getNthData(0).success) {
             return dispatcher.dispatch({
               actionType: authConstants.IS_LOGGED_IN,
             });
@@ -109,9 +109,8 @@ const authActionCreator = {
           });
         } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
           const err = StandardErrorWrapper.deserialize(payloadObj);
-          const firstErr = err.getNthError(0);
 
-          if (firstErr.code === constants.SYSTEM.ERROR_CODES.UNAUTHENTICATED) {
+          if (err.getNthError(0).code === constants.SYSTEM.ERROR_CODES.UNAUTHENTICATED) {
             return dispatcher.dispatch({
               actionType: authConstants.NOT_LOGGED_IN,
             });
@@ -129,11 +128,50 @@ const authActionCreator = {
       });
   },
 
-  storeTransitionPath(path) {
-    dispatcher.dispatch({
-      actionType: authConstants.IN_TRANSITION,
-      data: { path },
-    });
+  inTransition(nextState, replace) {
+    const url = '/api/auth/check';
+
+    Proxy.get(url)
+      .then((payloadObj) => {
+        if (StandardResponseWrapper.verifyFormat(payloadObj)) {
+          const res = StandardResponseWrapper.deserialize(payloadObj);
+
+          if (!res.getNthData(0).success) {
+            const { pathname } = nextState.location;
+
+            dispatcher.dispatch({
+              actionType: authConstants.IN_TRANSITION,
+              data: { path: pathname },
+            });
+            replace({ pathname: '/login' });
+          }
+
+          return;
+        } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+          const err = StandardErrorWrapper.deserialize(payloadObj);
+
+          if (err.getNthError(0).code === constants.SYSTEM.ERROR_CODES.UNAUTHENTICATED) {
+            const { pathname } = nextState.location;
+
+            dispatcher.dispatch({
+              actionType: authConstants.IN_TRANSITION,
+              data: { path: pathname },
+            });
+            replace({ pathname: '/login' });
+          }
+
+          return;
+        }
+        dispatcher.dispatch({
+          actionType: authConstants.AUTH_CHECK_FAIL,
+        });
+      })
+      .catch((err) => {
+        dispatcher.dispatch({
+          actionType: authConstants.AUTH_CHECK_FAIL,
+          data: err,
+        });
+      });
   },
 };
 
