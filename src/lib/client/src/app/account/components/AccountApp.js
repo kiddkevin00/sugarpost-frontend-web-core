@@ -58,11 +58,14 @@ class AccountApp extends BaseComponent {
                     <div className="alert alert-info alert-dismissable">
                       <a className="panel-close close" data-dismiss="alert">×</a>
                       <i className="fa fa-coffee" />
-                      This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                      This is an <strong>.alert</strong>. Use this to show important messages to
+                      the user.
                     </div>
                     <form className="form-horizontal" role="form">
                       <div className="form-group">
-                        <label className="col-lg-3 control-label" htmlFor="form-email">Email :</label>
+                        <label className="col-lg-3 control-label" htmlFor="form-email">
+                          Email :
+                        </label>
                         <div className="col-lg-8">
                           <FormInput
                             onChange={ this._onInputChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
@@ -75,7 +78,9 @@ class AccountApp extends BaseComponent {
                         </div>
                       </div>
                       <div className="form-group">
-                        <label className="col-lg-3 control-label" htmlFor="form-full-name">Full Name :</label>
+                        <label className="col-lg-3 control-label" htmlFor="form-full-name">
+                          Full Name :
+                        </label>
                         <div className="col-lg-8">
                           <FormInput
                             onChange={ this._onInputChange.bind(this, 'fullName') } /* eslint-disable-line react/jsx-no-bind */
@@ -88,7 +93,9 @@ class AccountApp extends BaseComponent {
                         </div>
                       </div>
                       <div className="form-group">
-                        <label className="col-md-3 control-label" htmlFor="form-password">Password :</label>
+                        <label className="col-md-3 control-label" htmlFor="form-password">
+                          Password :
+                        </label>
                         <div className="col-md-8">
                           <FormInput
                             onChange={ this._onInputChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
@@ -101,7 +108,9 @@ class AccountApp extends BaseComponent {
                         </div>
                       </div>
                       <div className="form-group">
-                        <label className="col-md-3 control-label" htmlFor="form-confirm-password">Confirm password :</label>
+                        <label className="col-md-3 control-label" htmlFor="form-confirm-password">
+                          Confirm password :
+                        </label>
                         <div className="col-md-8">
                           <FormInput
                             onChange={ this._onInputChange.bind(this, 'confirmPassword') } /* eslint-disable-line react/jsx-no-bind */
@@ -114,12 +123,21 @@ class AccountApp extends BaseComponent {
                         </div>
                       </div>
                       <div className="form-group">
-                        <label className="col-md-3 control-label"></label>
+                        <label className="col-md-3 control-label" htmlFor="save" />
                         <div className="col-md-4">
-                          <input type="button" className="btn btn-primary btn-block" value="Save Changes" />
+                          <input
+                            type="button"
+                            className="btn btn-primary btn-block"
+                            value="Save Changes"
+                            id="save"
+                          />
                         </div>
                         <div className="col-md-4">
-                          <input type="reset" className="btn btn-default btn-block" value="Cancel" />
+                          <input
+                            type="reset"
+                            className="btn btn-default btn-block"
+                            value="Cancel"
+                          />
                         </div>
                       </div>
                     </form>
@@ -132,27 +150,39 @@ class AccountApp extends BaseComponent {
                 <div className="panel-body">
                   <small>Complete</small>
                   <div className="progress">
-                    <div className="progress-bar progress-bar-success" role="progressbar"
-                         aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"
-                         style={ { width: '72%' } }
+                    <div
+                      className="progress-bar progress-bar-success"
+                      role="progressbar"
+                      aria-valuenow="72"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '72%' } }
                     >
                       <span className="sr-only">72% Complete</span>
                     </div>
                   </div>
                   <small>In Progress</small>
                   <div className="progress">
-                    <div className="progress-bar progress-bar-info" role="progressbar"
-                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
-                         style={ { width: '20%' } }
+                    <div
+                      className="progress-bar progress-bar-info"
+                      role="progressbar"
+                      aria-valuenow="20"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '20%' } }
                     >
                       <span className="sr-only">20% Complete</span>
                     </div>
                   </div>
                   <small>At Risk</small>
                   <div className="progress">
-                    <div className="progress-bar progress-bar-danger" role="progressbar"
-                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                         style={ { width: '80%' } }
+                    <div
+                      className="progress-bar progress-bar-danger"
+                      role="progressbar"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '80%' } }
                     >
                       <span className="sr-only">80% Complete</span>
                     </div>
