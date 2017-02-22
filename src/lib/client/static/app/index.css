@@ -197,3 +197,10 @@ body {
         color: #FBB352;
     }
 }
+
+/***** Placeholder for navigation bar *****/
+
+.header-placeholder-custom {
+    height: 50px;
+    margin-bottom: 70px;
+}

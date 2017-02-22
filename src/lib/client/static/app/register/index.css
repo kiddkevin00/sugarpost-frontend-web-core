@@ -9,9 +9,9 @@
 }
 
 #registration-template .inner-bg {
-    background-image: url("/assets/images/v2_background.png");
     min-height: 100%;
     width: 100%;
+    background-image: url("/assets/images/v2_background.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
