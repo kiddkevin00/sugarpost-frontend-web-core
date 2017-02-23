@@ -2,6 +2,7 @@ import authStore from '../../../common/auth/stores/authStore';
 import authActionCreator from '../../../common/auth/actions/authActionCreator';
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../common/components/BaseComponent';
+import Footer from '../../../common/components/Footer';
 import { Element } from 'react-scroll';
 import React from 'react';
 
@@ -70,6 +71,7 @@ class LoginApp extends BaseComponent {
               </div>
             </div>
           </div>
+          <Footer />
         </Element>
 
       </div>

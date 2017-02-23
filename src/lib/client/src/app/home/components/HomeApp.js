@@ -1,9 +1,9 @@
 import homeStore from '../stores/homeStore';
 import homeActionCreator from '../actions/homeActionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
+import Footer from '../../../common/components/Footer';
 import React from 'react';
 import { Element } from 'react-scroll';
-import Footer from '../../../common/components/Footer';
 
 class HomeApp extends BaseComponent {
 
@@ -261,9 +261,7 @@ class HomeApp extends BaseComponent {
               </div>
             </section>
           </Element>
-
           <Footer />
-
         </Element>
       </div>
     );
