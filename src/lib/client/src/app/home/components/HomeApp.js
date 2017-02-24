@@ -261,8 +261,10 @@ class HomeApp extends BaseComponent {
               </div>
             </section>
           </Element>
-          <Footer />
+
         </Element>
+
+        <Footer />
       </div>
     );
   }

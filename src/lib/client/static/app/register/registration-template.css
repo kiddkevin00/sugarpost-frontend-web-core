@@ -222,6 +222,3 @@
 
 #registration-template button.btn:active:focus,
 #registration-template button.btn.active:focus { outline: 0; opacity: 0.6; background: #19b9e7; color: #fff; }
-#registration-template footer a {
-	color:#FBB352;
-}

@@ -1,5 +1,4 @@
 import BaseComponent from '../../common/components/BaseComponent';
-import Footer from '../../common/components/Footer';
 import { Element } from 'react-scroll';
 import React from 'react';
 
@@ -42,7 +41,6 @@ class RegisterApp extends BaseComponent {
               </div>
             </div>
           </div>
-          <Footer />
         </Element>
 
       </div>
