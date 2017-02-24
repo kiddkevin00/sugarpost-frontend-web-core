@@ -33,7 +33,7 @@ class RegisterApp extends BaseComponent {
                     </ol>
                   </div>
                 </div>
-                <div className="col-sm-5">
+                <div className="col-lg-offset-1 col-lg-4 col-sm-5">
 
                   { this.props.children }
 

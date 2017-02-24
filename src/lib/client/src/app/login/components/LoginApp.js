@@ -49,7 +49,7 @@ class LoginApp extends BaseComponent {
                     </p>
                   </div>
                 </div>
-                <div className="col-sm-5">
+                <div className="col-lg-offset-1 col-lg-4 col-sm-5">
                   <div className="form-top">
                     <div className="form-top-left">
                       <h3>Log in</h3>

@@ -32,7 +32,7 @@ class ReferralApp extends BaseComponent {
 
   render() {
     return (
-      <div id="profile-app">
+      <div id="referral-app">
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
