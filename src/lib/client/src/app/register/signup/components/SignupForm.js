@@ -57,15 +57,7 @@ class SignupForm extends BaseComponent {
           emptyMessage="Empty"
           errorMessage="Unmatched"
         />
-
-        <div className="form-group">
-          <label className="sr-only" htmlFor="form-password">Password</label>
-
-        </div>
-        <div className="form-group">
-          <label className="sr-only" htmlFor="form-confirm-password">Confirm Password</label>
-
-        </div>
+        
         <button
           onClick={ this._onClick }
           disabled={ false }
