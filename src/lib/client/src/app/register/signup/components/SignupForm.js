@@ -7,10 +7,12 @@ class SignupForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onClick', 'validateEmail');
+    this._bind('_onClick');
     this.state = {
       fullName: '',
       email: '',
+      password: '',
+      confirmPassword: '',
     };
   }
 
@@ -19,25 +21,42 @@ class SignupForm extends BaseComponent {
       <form role="form">
         <FormInput
           text="Full Name"
-          ref={(c) => { this.fullName = c; }}
-          validate={ SignupForm.isEmpty }
+          ref={ (formInputObj) => { this.fullName = formInputObj; } }
+          validate={ SignupForm.isNotEmpty }
           value={ this.state.fullName }
           onChange={ this._onChange.bind(this, 'fullName') }
-          emptyMessage="name can't be empty"
+          emptyMessage="Empty"
         />
 
         <FormInput
           text="Email Address"
-          ref={(c) => { this.email = c; } }
-          type="text"
-          validate={ this.validateEmail }
+          ref={ (formInputObj) => { this.email = formInputObj; } }
+          validate={ SignupForm.validateEmail }
           value={ this.state.email }
           onChange={ this._onChange.bind(this, 'email') }
-          errorMessage="Email is invalid"
-          emptyMessage="Email can't be empty"
-          errorVisible={ this.state.showEmailError }
+          emptyMessage="Empty"
+          errorMessage="Invalid"
         />
 
+        <FormInput
+          text="Password"
+          ref={ (formInputObj) => { this.password = formInputObj; } }
+          validate={ SignupForm.isNotEmpty }
+          value={ this.state.password }
+          onChange={ this._onChange.bind(this, 'password') }
+          emptyMessage="Empty"
+          errorMessage="Invalid"
+        />
+
+        <FormInput
+          text="Confirm Password"
+          ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
+          validate={ SignupForm.isNotEmpty }
+          value={ this.state.confirmPassword }
+          onChange={ this._onChange.bind(this, 'confirmPassword') }
+          emptyMessage="Empty"
+          errorMessage="Unmatched"
+        />
 
         <div className="form-group">
           <label className="sr-only" htmlFor="form-password">Password</label>
@@ -61,35 +80,31 @@ class SignupForm extends BaseComponent {
 
   _onChange(field, value) {
     this.setState({
-      [field]: value
+      [field]: value,
     });
   }
 
   _onClick(event) {
-    event.preventDefault();
-    const canProceed = this.state.fullName && this.validateEmail(this.state.email)
-
-    if (canProceed) {
-      // send to on submit
-      // var data = {
-      //   email: this.state.email,
-      //   state: this.state.statesValue
-      // }
+    if (SignupForm.isNotEmpty(this.state.fullName) && SignupForm.validateEmail(this.state.email)) {
+      /// TODO
       //this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
       alert('Thanks.');
     } else {
       this.fullName.isValid();
       this.email.isValid();
+      this.password.isValid();
+      this.confirmPassword.isValid();
     }
   }
 
-  validateEmail(event) {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(event);
+  static isNotEmpty(inputText) {
+    return !!inputText && inputText.length !== 0;
   }
 
-  static isEmpty(value) {
-    return !(!value || value.length === 0)
+  static validateEmail(inputText) {
+    const regExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;;
+
+    return regExp.test(inputText);
   }
 
 }

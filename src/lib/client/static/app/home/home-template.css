@@ -1,9 +1,10 @@
 /**
- * ========================================== BEGIN ============================================
  * Start Bootstrap - Creative v3.3.7+1 (http://startbootstrap.com/template-overviews/creative)
+ * =============================================================================================
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
+
 
 #home-template a {
     -webkit-transition: all .35s;
@@ -80,12 +81,12 @@
 
 #home-template header {
     min-height: auto;
+    background-image: url("/assets/images/v3_background.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
     background-position: center;
-    background-image: url("/assets/images/v3_background.png");
     color: #fff;
 }
 
@@ -370,10 +371,3 @@
     color: #fff;
     background: 0 0;
 }
-
-/**
- * Start Bootstrap - Creative v3.3.7+1 (http://startbootstrap.com/template-overviews/creative)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- * ============================================ END ============================================
- */

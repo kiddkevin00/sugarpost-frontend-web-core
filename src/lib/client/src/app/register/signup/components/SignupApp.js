@@ -53,10 +53,10 @@ class SignupApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  _onSubmit(event, email, password, firstName, lastName) {
+  _onSubmit(event, email, password, fullName) {
     this.email = email && email.trim();
 
-    authActionCreator.signup(this.email, password, firstName, lastName);
+    authActionCreator.signup(this.email, password, fullName);
   }
 
 }

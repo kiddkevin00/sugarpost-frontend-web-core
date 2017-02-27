@@ -8,9 +8,11 @@ class FormInput extends BaseComponent {
 
   constructor(props) {
     super(props);
-    const valid = (props.isValid && props.isValid()) || true;
+
+    this._bind('_onChange', 'handleFocus', 'handleBlur', 'validateInput', 'isValid',
+      'mouseEnterError');
+
     this.state = {
-      valid,
       empty: !props.value,
       focus: false,
       value: props.value,
@@ -18,7 +20,6 @@ class FormInput extends BaseComponent {
       errorMessage: props.emptyMessage,
       validator: props.validator,
       validatorVisible: false,
-      type: props.type,
       minCharacters: props.minCharacters,
       requireCapitals: props.requireCapitals,
       requireNumbers: props.requireNumbers,
@@ -28,11 +29,25 @@ class FormInput extends BaseComponent {
         capitalLetters: false,
         numbers: false,
         words: false,
-        all: false
+        all: false,
       },
-      allValidatorValid: false
+      allValidatorValid: false,
     };
-    this._bind('_onChange', 'handleFocus', 'handleBlur', 'validateInput', 'isValid', 'mouseEnterError');
+  }
+
+  componentWillReceiveProps(newProps) {
+    // Performs update only when new value exists and not empty
+    if (newProps.value) {
+      if (typeof newProps.value === 'undefined' && newProps.value.length > 0) {
+        if (this.props.validate) {
+          this.validateInput(newProps.value);
+        }
+        this.setState({
+          value: newProps.value,
+          empty: FormInput.isEmpty(newProps.value)
+        });
+      }
+    }
   }
 
   render() {
@@ -43,16 +58,17 @@ class FormInput extends BaseComponent {
       input_empty: this.state.empty,
       input_hasValue: !this.state.empty,
       input_focused: this.state.focus,
-      input_unfocused: !this.state.focus
+      input_unfocused: !this.state.focus,
     });
     let validator;
+
     if (this.state.validator) {
       validator = (
         <PasswordValidator
-          ref="passwordValidator"
-          visible={ this.state.validatorVisible}
-          name={ this.props.text}
-          value={ this.state.value}
+          ref={ (passwordValidatorObj) => { this.passwordValidator = passwordValidatorObj; } }
+          visible={ this.state.validatorVisible }
+          name={ this.props.text }
+          value={ this.state.value }
           validData={ this.state.isValidatorValid }
           valid={ this.state.allValidatorValid }
           forbiddenWords={ this.state.forbiddenWords }
@@ -60,14 +76,13 @@ class FormInput extends BaseComponent {
           requireCapitals={ this.props.requireCapitals }
           requireNumbers={ this.props.requireNumbers }
         />
-      )
+      );
     }
 
     return (
-
       <div className={ inputGroupClasses }>
         <label className="input_label" htmlFor={ this.props.text }>
-          <span className="label_text">{this.props.text}</span>
+          <span className="label_text">{ this.props.text }</span>
         </label>
         <input
           placeholder={ this.props.placeholder }
@@ -85,31 +100,16 @@ class FormInput extends BaseComponent {
           errorMessage={ this.state.errorMessage }
         />
 
+        {/* [TODO] Is this necessary? */}
         <div className="validationIcons">
-          <i className="input_error_icon" onMouseEnter={this.mouseEnterError}></i>
-          <i className="input_valid_icon"> </i>
+          <i className="input_error_icon" onMouseEnter={ this.mouseEnterError } />
+          <i className="input_valid_icon" />
         </div>
 
         {validator}
 
       </div>
-
     );
-  }
-
-  componentWillReceiveProps(newProps) {
-    // perform update only when new value exists and not empty
-    if (newProps.value) {
-      if (typeof newProps.value === 'undefined' && newProps.value.length > 0) {
-        if (this.props.validate) {
-          this.validateInput(newProps.value);
-        }
-        this.setState({
-          value: newProps.value,
-          empty: FormInput.isEmpty(newProps.value)
-        });
-      }
-    }
   }
 
   _onChange(event) {
@@ -128,8 +128,8 @@ class FormInput extends BaseComponent {
   }
 
   validateInput(value) {
-   // trigger custom validation method in the parent component
-    if (this.props.validate && this.props.validate(value)){
+   // Triggers custom validation method in the parent component
+    if (this.props.validate && this.props.validate(value)) {
       this.setState({
         valid: true,
         errorVisible: false
@@ -137,7 +137,7 @@ class FormInput extends BaseComponent {
     } else {
       this.setState({
         valid: false,
-        errorMessage: !FormInput.isEmpty(value) ? this.props.errorMessage : this.props.emptyMessage
+        errorMessage: !FormInput.isEmpty(value) ? this.props.errorMessage : this.props.emptyMessage,
       });
     }
   }
@@ -147,7 +147,7 @@ class FormInput extends BaseComponent {
       if (FormInput.isEmpty(this.state.value) || !this.props.validate(this.state.value)) {
         this.setState({
           valid: false,
-          errorVisible: true
+          errorVisible: true,
         });
       }
     }
@@ -157,12 +157,12 @@ class FormInput extends BaseComponent {
   handleFocus() {
     this.setState({
       focus: true,
-      validatorVisible: true
+      validatorVisible: true,
     });
     if (this.props.validator) {
       this.setState({
-        errorVisible: false
-      })
+        errorVisible: false,
+      });
     }
   }
 
@@ -170,28 +170,33 @@ class FormInput extends BaseComponent {
     this.setState({
       focus: false,
       errorVisible: !this.state.valid,
-      validatorVisible: false
+      validatorVisible: false,
     });
   }
 
   mouseEnterError() {
     this.setState({
-      errorVisible: true
+      errorVisible: true,
     });
   }
 
   static isEmpty(value) {
-    return (!value || value.length === 0)
+    return !value || value.length === 0;
   }
 
 }
 FormInput.propTypes = {
   onChange: React.PropTypes.func.isRequired,
-  text: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
   validate: React.PropTypes.func.isRequired,
-  emptyMessage: React.PropTypes.string.isRequired,
-  type: React.PropTypes.string,
+  emptyMessage: React.PropTypes.string,
   errorMessage: React.PropTypes.string,
+  text: React.PropTypes.string,
 };
+FormInput.defaultProps = {
+  emptyMessage: 'Empty',
+  errorMessage: 'Invalid',
+  text: 'Unknown Field',
+};
+
 export default FormInput;
