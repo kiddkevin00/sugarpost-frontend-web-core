@@ -7,65 +7,45 @@ class SignupForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onClick');
+    this._bind('_onClick', 'validateEmail');
     this.state = {
       fullName: '',
       email: '',
-      password: '',
-      confirmPassword: '',
-      fullNameIsValid: false,
-      emailIsValid: false,
-      passwordIsValid: false,
-      confirmPasswordIsValid: false,
     };
   }
 
   render() {
     return (
       <form role="form">
-        <div className="form-group">
-          <label className="sr-only" htmlFor="form-full-name">Full Name</label>
-          <FormInput
-            onChange={ this._onChange.bind(this, 'fullName') } /* eslint-disable-line react/jsx-no-bind */
-            value={ this.state.fullName }
-            type="text"
-            placeholder="Full name..."
-            className="form-control"
-            id="form-full-name"
-          />
-        </div>
-        <div className="form-group">
-          <label className="sr-only" htmlFor="form-email">Email Address</label>
-          <FormInput
-            onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
-            value={ this.state.email }
-            type="email"
-            placeholder="Email address..."
-            className="form-control"
-            id="form-email"
-          />
-        </div>
+        <FormInput
+          text="Full Name"
+          ref={(c) => { this.fullName = c; }}
+          validate={ SignupForm.isEmpty }
+          value={ this.state.fullName }
+          onChange={ this._onChange.bind(this, 'fullName') }
+          emptyMessage="name can't be empty"
+        />
+
+        <FormInput
+          text="Email Address"
+          ref={(c) => { this.email = c; } }
+          type="text"
+          validate={ this.validateEmail }
+          value={ this.state.email }
+          onChange={ this._onChange.bind(this, 'email') }
+          errorMessage="Email is invalid"
+          emptyMessage="Email can't be empty"
+          errorVisible={ this.state.showEmailError }
+        />
+
+
         <div className="form-group">
           <label className="sr-only" htmlFor="form-password">Password</label>
-          <FormInput
-            onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
-            value={ this.state.password }
-            type="password"
-            placeholder="New password..."
-            className="form-control"
-            id="form-password"
-          />
+
         </div>
         <div className="form-group">
           <label className="sr-only" htmlFor="form-confirm-password">Confirm Password</label>
-          <FormInput
-            onChange={ this._onChange.bind(this, 'confirmPassword') } /* eslint-disable-line react/jsx-no-bind */
-            value={ this.state.confirmPassword }
-            type="password"
-            placeholder="Confirm password..."
-            className="form-control"
-            id="form-confirm-password"
-          />
+
         </div>
         <button
           onClick={ this._onClick }
@@ -79,15 +59,37 @@ class SignupForm extends BaseComponent {
     );
   }
 
-  _onChange(field, value, isValid) {
+  _onChange(field, value) {
     this.setState({
-      [field]: value,
-      [`${field}IsValid`]: isValid,
+      [field]: value
     });
   }
 
   _onClick(event) {
-    this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
+    event.preventDefault();
+    const canProceed = this.state.fullName && this.validateEmail(this.state.email)
+
+    if (canProceed) {
+      // send to on submit
+      // var data = {
+      //   email: this.state.email,
+      //   state: this.state.statesValue
+      // }
+      //this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
+      alert('Thanks.');
+    } else {
+      this.fullName.isValid();
+      this.email.isValid();
+    }
+  }
+
+  validateEmail(event) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(event);
+  }
+
+  static isEmpty(value) {
+    return !(!value || value.length === 0)
   }
 
 }
