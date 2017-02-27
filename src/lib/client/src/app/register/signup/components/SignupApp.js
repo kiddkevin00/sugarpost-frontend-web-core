@@ -54,7 +54,7 @@ class SignupApp extends BaseComponent {
   }
 
   _onSubmit(event, email, password, firstName, lastName) {
-    this.email = email;
+    this.email = email && email.trim();
 
     authActionCreator.signup(this.email, password, firstName, lastName);
   }

@@ -44,6 +44,7 @@ class Footer extends BaseComponent {
       </footer>
     );
   }
+
 }
 Footer.popTypes = {
   className: React.PropTypes.string,
