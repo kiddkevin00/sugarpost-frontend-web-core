@@ -1,6 +1,6 @@
 import BaseComponent from './BaseComponent';
 import FormInputError from './FormInputError';
-import PasswordValidator from './PasswordValidator'
+import PasswordValidator from './PasswordValidator';
 import React from 'react';
 import classNames from 'classnames';
 
@@ -44,7 +44,7 @@ class FormInput extends BaseComponent {
         }
         this.setState({
           value: newProps.value,
-          empty: FormInput.isEmpty(newProps.value)
+          empty: FormInput.isEmpty(newProps.value),
         });
       }
     }
@@ -115,7 +115,7 @@ class FormInput extends BaseComponent {
   _onChange(event) {
     this.setState({
       value: event.target.value,
-      empty: FormInput.isEmpty(event.target.value)
+      empty: FormInput.isEmpty(event.target.value),
     });
 
     if (this.props.validate) {
@@ -132,7 +132,7 @@ class FormInput extends BaseComponent {
     if (this.props.validate && this.props.validate(value)) {
       this.setState({
         valid: true,
-        errorVisible: false
+        errorVisible: false,
       });
     } else {
       this.setState({
