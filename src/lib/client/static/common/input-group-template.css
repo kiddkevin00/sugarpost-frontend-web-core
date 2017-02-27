@@ -1,10 +1,4 @@
-.hidden {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0;
-}
-
-.input_group {
+.input_group_template {
   display: block;
   position: relative;
   width: 100%;
@@ -12,12 +6,12 @@
   margin-bottom: 10px;
 }
 @media only screen and (min-width : 0px) and (max-width : 870px) {
-  .input_group {
+  .input_group_template {
     min-height: 64px;
     margin-bottom: 0;
   }
 }
-.input_group label.input_label {
+.input_group_template label.input_label {
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flexbox;
@@ -46,45 +40,45 @@
   cursor: text;
   padding: 0 0 0 15px;
 }
-.input_group label.input_label .label_text {
+.input_group_template label.input_label .label_text {
   font-size: 18px;
   font-weight: 100;
   letter-spacing: .7px;
 }
 @media only screen and (min-width : 0px) and (max-width : 870px) {
-  .input_group label.input_label .label_text {
+  .input_group_template label.input_label .label_text {
     font-size: 16px;
     font-weight: 300;
   }
 }
 @media only screen and (min-width : 0px) and (max-width : 870px) {
-  .input_group label.input_label {
+  .input_group_template label.input_label {
     height: 64px;
   }
 }
-.input_group.input_empty.input_unfocused {
+.input_group_template.input_empty.input_unfocused {
   color: #c1c5cc;
 }
-.input_group.input_focused label.input_label,
-.input_group.input_hasValue label.input_label {
+.input_group_template.input_focused label.input_label,
+.input_group_template.input_hasValue label.input_label {
   height: 46px;
 }
 @media only screen and (min-width : 0px) and (max-width : 870px) {
-  .input_group.input_focused label.input_label,
-  .input_group.input_hasValue label.input_label {
+  .input_group_template.input_focused label.input_label,
+  .input_group_template.input_hasValue label.input_label {
     height: 40px;
   }
 }
-.input_group.input_focused label.input_label .label_text,
-.input_group.input_hasValue label.input_label .label_text {
+.input_group_template.input_focused label.input_label .label_text,
+.input_group_template.input_hasValue label.input_label .label_text {
   color: #b8bdc4;
   letter-spacing: .7px;
   font-size: 11px;
 }
-.input_group.input_unfocused.input_hasValue.input_valid label.input_label {
+.input_group_template.input_unfocused.input_hasValue.input_valid label.input_label {
   color: #b1b0b1;
 }
-.input_group input.input {
+.input_group_template input.input {
   display: block;
   position: relative;
   -webkit-box-shadow: none;
@@ -115,17 +109,17 @@
   height: 70px;
 }
 @media only screen and (min-width : 0px) and (max-width : 870px) {
-  .input_group input.input {
+  .input_group_template input.input {
     font-size: 14px;
     padding: 15px 15px 0 15px;
     height: 64px;
   }
 }
-.input_group input.input:-webkit-autofill {
+.input_group_template input.input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
   color: #cacaca;
 }
-.input_group i {
+.input_group_template i {
   top: 0;
   right: 15px;
   display: -webkit-flex;
@@ -148,11 +142,11 @@
   z-index: 100;
 }
 @media only screen and (min-width : 0px) and (max-width : 870px) {
-  .input_group i {
+  .input_group_template i {
     height: 64px;
   }
 }
-.input_group i svg {
+.input_group_template i svg {
   opacity: 0;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -162,28 +156,28 @@
   width: 20px;
   height: 20px;
 }
-.input_group i.input_error_icon {
+.input_group_template i.input_error_icon {
   z-index: 10;
 }
-.input_group i.input_error_icon path {
+.input_group_template i.input_error_icon path {
   fill: #f16767;
 }
-.input_group i.input_valid_icon {
+.input_group_template i.input_valid_icon {
   z-index: 1;
 }
-.input_group i.input_valid_icon path {
+.input_group_template i.input_valid_icon path {
   fill: #50b87f;
 }
-.input_group.input_error i.input_error_icon svg {
+.input_group_template.input_error i.input_error_icon svg {
   opacity: 1;
 }
-.input_group.input_valid i.input_error_icon {
+.input_group_template.input_valid i.input_error_icon {
   z-index: 1;
 }
-.input_group.input_valid i.input_valid_icon {
+.input_group_template.input_valid i.input_valid_icon {
   z-index: 10;
 }
-.input_group.input_valid.input_hasValue i.input_valid_icon svg {
+.input_group_template.input_valid.input_hasValue i.input_valid_icon svg {
   opacity: 1;
 }
 .error_container {

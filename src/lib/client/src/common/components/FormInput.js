@@ -51,7 +51,7 @@ class FormInput extends BaseComponent {
 
   render() {
     const inputGroupClasses = classNames({
-      input_group: true,
+      input_group_template: true,
       input_valid: this.state.valid,
       input_error: !this.state.valid,
       input_empty: this.state.empty,
