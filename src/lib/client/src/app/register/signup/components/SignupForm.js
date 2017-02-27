@@ -22,7 +22,7 @@ class SignupForm extends BaseComponent {
         <FormInput
           text="Full Name"
           ref={ (formInputObj) => { this.fullName = formInputObj; } }
-          validate={ SignupForm.isNotEmpty }
+          validate={ SignupForm._isNotEmpty }
           value={ this.state.fullName }
           onChange={ this._onChange.bind(this, 'fullName') }
           emptyMessage="Empty"
@@ -31,7 +31,7 @@ class SignupForm extends BaseComponent {
         <FormInput
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
-          validate={ SignupForm.validateEmail }
+          validate={ SignupForm._validateEmail }
           value={ this.state.email }
           onChange={ this._onChange.bind(this, 'email') }
           emptyMessage="Empty"
@@ -41,7 +41,7 @@ class SignupForm extends BaseComponent {
         <FormInput
           text="Password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
-          validate={ SignupForm.isNotEmpty }
+          validate={ SignupForm._isNotEmpty }
           value={ this.state.password }
           onChange={ this._onChange.bind(this, 'password') }
           emptyMessage="Empty"
@@ -51,13 +51,13 @@ class SignupForm extends BaseComponent {
         <FormInput
           text="Confirm Password"
           ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
-          validate={ SignupForm.isNotEmpty }
+          validate={ SignupForm._isNotEmpty }
           value={ this.state.confirmPassword }
           onChange={ this._onChange.bind(this, 'confirmPassword') }
           emptyMessage="Empty"
           errorMessage="Unmatched"
         />
-        
+
         <button
           onClick={ this._onClick }
           disabled={ false }
@@ -77,7 +77,7 @@ class SignupForm extends BaseComponent {
   }
 
   _onClick(event) {
-    if (SignupForm.isNotEmpty(this.state.fullName) && SignupForm.validateEmail(this.state.email)) {
+    if (SignupForm._isNotEmpty(this.state.fullName) && SignupForm.validateEmail(this.state.email)) {
       /// TODO
       //this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
       alert('Thanks.');
@@ -89,11 +89,11 @@ class SignupForm extends BaseComponent {
     }
   }
 
-  static isNotEmpty(inputText) {
+  static _isNotEmpty(inputText) {
     return !!inputText && inputText.length !== 0;
   }
 
-  static validateEmail(inputText) {
+  static _validateEmail(inputText) {
     const regExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     return regExp.test(inputText);

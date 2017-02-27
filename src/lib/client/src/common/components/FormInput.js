@@ -1,5 +1,6 @@
 import BaseComponent from './BaseComponent';
 import FormInputError from './FormInputError';
+import PasswordValidator from './PasswordValidator';
 import React from 'react';
 import classNames from 'classnames';
 
@@ -8,9 +9,8 @@ class FormInput extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', 'handleFocus', 'handleBlur', 'validateInput', 'isValid',
-      'mouseEnterError');
-
+    this._bind('_onChange', '_handleFocus', '_handleBlur', 'validateInput', 'isValid',
+      '_mouseEnterError');
     this.state = {
       empty: !props.value,
       focus: false,
@@ -43,7 +43,7 @@ class FormInput extends BaseComponent {
         }
         this.setState({
           value: newProps.value,
-          empty: FormInput.isEmpty(newProps.value),
+          empty: FormInput._isEmpty(newProps.value),
         });
       }
     }
@@ -89,8 +89,8 @@ class FormInput extends BaseComponent {
           id={ this.props.text }
           value={ this.state.value }
           onChange={ this._onChange }
-          onFocus={ this.handleFocus }
-          onBlur={ this.handleBlur }
+          onFocus={ this._handleFocus }
+          onBlur={ this._handleBlur }
           autoComplete="off"
         />
 
@@ -106,7 +106,7 @@ class FormInput extends BaseComponent {
   _onChange(event) {
     this.setState({
       value: event.target.value,
-      empty: FormInput.isEmpty(event.target.value),
+      empty: FormInput._isEmpty(event.target.value),
     });
 
     if (this.props.validate) {
@@ -128,14 +128,14 @@ class FormInput extends BaseComponent {
     } else {
       this.setState({
         valid: false,
-        errorMessage: !FormInput.isEmpty(value) ? this.props.errorMessage : this.props.emptyMessage,
+        errorMessage: !FormInput._isEmpty(value) ? this.props.errorMessage : this.props.emptyMessage,
       });
     }
   }
 
   isValid() {
     if (this.props.validate) {
-      if (FormInput.isEmpty(this.state.value) || !this.props.validate(this.state.value)) {
+      if (FormInput._isEmpty(this.state.value) || !this.props.validate(this.state.value)) {
         this.setState({
           valid: false,
           errorVisible: true,
@@ -145,7 +145,7 @@ class FormInput extends BaseComponent {
     return this.state.valid;
   }
 
-  handleFocus() {
+  _handleFocus() {
     this.setState({
       focus: true,
       validatorVisible: true,
@@ -157,7 +157,7 @@ class FormInput extends BaseComponent {
     }
   }
 
-  handleBlur() {
+  _handleBlur() {
     this.setState({
       focus: false,
       errorVisible: !this.state.valid,
@@ -165,13 +165,13 @@ class FormInput extends BaseComponent {
     });
   }
 
-  mouseEnterError() {
+  _mouseEnterError() {
     this.setState({
       errorVisible: true,
     });
   }
 
-  static isEmpty(value) {
+  static _isEmpty(value) {
     return !value || value.length === 0;
   }
 
