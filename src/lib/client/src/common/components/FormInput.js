@@ -1,6 +1,5 @@
 import BaseComponent from './BaseComponent';
 import FormInputError from './FormInputError';
-import PasswordValidator from './PasswordValidator';
 import React from 'react';
 import classNames from 'classnames';
 
@@ -99,14 +98,6 @@ class FormInput extends BaseComponent {
           visible={ this.state.errorVisible }
           errorMessage={ this.state.errorMessage }
         />
-
-        {/* [TODO] Is this necessary? */}
-        <div className="validationIcons">
-          <i className="input_error_icon" onMouseEnter={ this.mouseEnterError } />
-          <i className="input_valid_icon" />
-        </div>
-
-        {validator}
 
       </div>
     );
