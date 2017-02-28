@@ -10,28 +10,22 @@ class ForgotPasswordForm extends BaseComponent {
     this._bind('_onChange', '_onSubmit');
     this.state = {
       email: '',
-      password: '',
-      emailIsValid: false,
-      passwordIsValid: false,
     };
   }
 
   render() {
     return (
       <form onSubmit={ this._onSubmit } role="form">
-        <div className="form-group">
-          <label className="sr-only" htmlFor="form-email">Email Address</label>
-          <FormInput
-            onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
-            value={ this.state.email }
-            type="email"
-            placeholder="Email address..."
-            className="form-control"
-            id="form-email"
-          />
-        </div>
+        <FormInput
+          text="Email Address"
+          ref={ (formInputObj) => { this.email = formInputObj; } }
+          validate={ ForgotPasswordForm._validateEmail }
+          value={ this.state.email }
+          onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+          emptyMessage="Empty"
+          errorMessage="Invalid"
+        />
         <button
-          disabled={ !this.state.emailIsValid }
           className="btn btn-block"
           type="submit"
         >
@@ -41,15 +35,24 @@ class ForgotPasswordForm extends BaseComponent {
     );
   }
 
-  _onChange(field, value, isValid) {
+  _onChange(field, value) {
     this.setState({
       [field]: value,
-      [`${field}IsValid`]: isValid,
     });
   }
 
   _onSubmit(event) {
-    this.props.onSubmit(event, this.state.email, this.state.password);
+    if (ForgotPasswordForm._validateEmail(this.state.email)) {
+      this.props.onSubmit(event, this.state.email);
+    } else {
+      this.email.isValid();
+    }
+  }
+  
+  static _validateEmail(inputText) {
+    const regExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return regExp.test(inputText);
   }
 
 }

@@ -60,7 +60,6 @@ class SignupForm extends BaseComponent {
 
         <button
           onClick={ this._onClick }
-          disabled={ false }
           className="btn btn-block"
           type="button"
         >
@@ -77,10 +76,8 @@ class SignupForm extends BaseComponent {
   }
 
   _onClick(event) {
-    if (SignupForm._isNotEmpty(this.state.fullName) && SignupForm.validateEmail(this.state.email)) {
-      /// TODO
-      //this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
-      alert('Thanks.');
+    if (SignupForm._isNotEmpty(this.state.password) && SignupForm._validateEmail(this.state.email)) {
+      this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
     } else {
       this.fullName.isValid();
       this.email.isValid();
