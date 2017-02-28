@@ -12,24 +12,18 @@ class PaymentForm extends BaseComponent {
     this._bind('_onToken');
     this.state = {
       referCode: '',
-      referCodeIsValid: false,
     };
   }
 
   render() {
     return (
       <form role="form">
-        <div className="form-group">
-          <label className="sr-only" htmlFor="form-refer-code">Refer Code</label>
-          <FormInput
-            onChange={ this._onChange.bind(this, 'referCode') } /* eslint-disable-line react/jsx-no-bind */
-            value={ this.state.referCode }
-            type="text"
-            placeholder="Refer code..."
-            className="form-control"
-            id="form-refer-code"
-          />
-        </div>
+        <FormInput
+          text="Refer Code"
+          validate={ PaymentForm._validateCouponCode }
+          value={ this.state.referCode }
+          onChange={ this._onChange.bind(this, 'referCode') } /* eslint-disable-line react/jsx-no-bind */
+        />
         <StripeCheckout
           token={ this._onToken }
           stripeKey="pk_test_jx78Ig5R5FcBYoGcMoTvNnia"
@@ -50,7 +44,6 @@ class PaymentForm extends BaseComponent {
           triggerEvent="onClick"
         >
           <button
-            disabled={ false }
             className="btn btn-block"
             type="button"
           >
@@ -61,26 +54,21 @@ class PaymentForm extends BaseComponent {
     );
   }
 
-  _onChange(field, value, _isValid) {
-    let isValid;
-
-    if (field === 'referCode' && value) {
-      isValid = !!(couponCode.validate(value, {
-        parts: 1,
-        partLen: 5,
-      }));
-    } else {
-      isValid = _isValid;
-    }
-
+  _onChange(field, value) {
     this.setState({
       [field]: value,
-      [`${field}IsValid`]: isValid,
     });
   }
 
   _onToken(token) {
     this.props.onSubmit(token, this.state.referCode);
+  }
+
+  static _validateCouponCode(inputText) {
+    return !!(couponCode.validate(inputText, {
+      parts: 1,
+      partLen: 5,
+    }));
   }
 
 }

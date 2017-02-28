@@ -19,7 +19,7 @@ class ForgotPasswordForm extends BaseComponent {
         <FormInput
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
-          validate={ ForgotPasswordForm._validateEmail }
+          validate={ FormInput.validateEmailField }
           value={ this.state.email }
           onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
           emptyMessage="Empty"
@@ -42,17 +42,11 @@ class ForgotPasswordForm extends BaseComponent {
   }
 
   _onSubmit(event) {
-    if (ForgotPasswordForm._validateEmail(this.state.email)) {
+    if (FormInput.validateEmailField(this.state.email)) {
       this.props.onSubmit(event, this.state.email);
     } else {
       this.email.isValid();
     }
-  }
-  
-  static _validateEmail(inputText) {
-    const regExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    return regExp.test(inputText);
   }
 
 }

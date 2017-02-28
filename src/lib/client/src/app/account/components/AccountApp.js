@@ -15,10 +15,6 @@ class AccountApp extends BaseComponent {
       email: '',
       password: '',
       confirmPassword: '',
-      fullNameIsValid: false,
-      emailIsValid: false,
-      passwordIsValid: false,
-      confirmPasswordIsValid: false,
     };
   }
 
@@ -45,16 +41,16 @@ class AccountApp extends BaseComponent {
       <div id="account-app">
         <div className="container">
           <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div className="col-xs-6">
               <div className="header-placeholder-custom" />
             </div>
           </div>
           <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div className="col-xs-6">
               <div className="panel panel-default">
                 <div className="panel-heading"><h4>Profile</h4></div>
                 <div className="panel-body">
-                  <div className="col-lg-offset-2 col-md-8 personal-info">
+                  <div className="col-lg-offset-1 col-lg-10 col-lg-xs-12 personal-info">
                     <div className="alert alert-info alert-dismissable">
                       <a className="panel-close close" data-dismiss="alert">×</a>
                       <i className="fa fa-coffee" />
@@ -62,77 +58,47 @@ class AccountApp extends BaseComponent {
                       the user.
                     </div>
                     <form className="form-horizontal" role="form">
+                      <FormInput
+                        text="Email Address"
+                        ref={ (formInputObj) => { this.email = formInputObj; } }
+                        validate={ FormInput.validateEmailField }
+                        value={ this.state.email }
+                        onChange={ this._onInputChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+                        emptyMessage="Empty"
+                        errorMessage="Invalid"
+                      />
+                      <FormInput
+                        text="Full Name"
+                        ref={ (formInputObj) => { this.fullName = formInputObj; } }
+                        value={ this.state.fullName }
+                        onChange={ this._onInputChange.bind(this, 'fullName') } /* eslint-disable-line react/jsx-no-bind */
+                        emptyMessage="Empty"
+                      />
+                      <FormInput
+                        text="Password"
+                        ref={ (formInputObj) => { this.password = formInputObj; } }
+                        value={ this.state.password }
+                        onChange={ this._onInputChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
+                        emptyMessage="Empty"
+                        errorMessage="Invalid"
+                      />
+                      <FormInput
+                        text="Confirm Password"
+                        ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
+                        value={ this.state.confirmPassword }
+                        onChange={ this._onInputChange.bind(this, 'confirmPassword') } /* eslint-disable-line react/jsx-no-bind */
+                        emptyMessage="Empty"
+                        errorMessage="Unmatched"
+                      />
                       <div className="form-group">
-                        <label className="col-lg-3 control-label" htmlFor="form-email">
-                          Email :
-                        </label>
-                        <div className="col-lg-8">
-                          <FormInput
-                            onChange={ this._onInputChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
-                            value={ this.state.email }
-                            type="email"
-                            placeholder="Email address..."
-                            className="form-control"
-                            id="form-email"
-                          />
-                        </div>
-                      </div>
-                      <div className="form-group">
-                        <label className="col-lg-3 control-label" htmlFor="form-full-name">
-                          Full Name :
-                        </label>
-                        <div className="col-lg-8">
-                          <FormInput
-                            onChange={ this._onInputChange.bind(this, 'fullName') } /* eslint-disable-line react/jsx-no-bind */
-                            value={ this.state.fullName }
-                            type="text"
-                            placeholder="Full name..."
-                            className="form-control"
-                            id="form-full-name"
-                          />
-                        </div>
-                      </div>
-                      <div className="form-group">
-                        <label className="col-md-3 control-label" htmlFor="form-password">
-                          Password :
-                        </label>
-                        <div className="col-md-8">
-                          <FormInput
-                            onChange={ this._onInputChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
-                            value={ this.state.password }
-                            type="password"
-                            placeholder="New password..."
-                            className="form-control"
-                            id="form-password"
-                          />
-                        </div>
-                      </div>
-                      <div className="form-group">
-                        <label className="col-md-3 control-label" htmlFor="form-confirm-password">
-                          Confirm password :
-                        </label>
-                        <div className="col-md-8">
-                          <FormInput
-                            onChange={ this._onInputChange.bind(this, 'confirmPassword') } /* eslint-disable-line react/jsx-no-bind */
-                            value={ this.state.confirmPassword }
-                            type="password"
-                            placeholder="Confirm password..."
-                            className="form-control"
-                            id="form-confirm-password"
-                          />
-                        </div>
-                      </div>
-                      <div className="form-group">
-                        <label className="col-md-3 control-label" htmlFor="save" />
-                        <div className="col-md-4">
+                        <div className="col-sm-6">
                           <input
                             type="button"
                             className="btn btn-primary btn-block"
                             value="Save Changes"
-                            id="save"
                           />
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-sm-6">
                           <input
                             type="reset"
                             className="btn btn-default btn-block"
@@ -144,9 +110,146 @@ class AccountApp extends BaseComponent {
                   </div>
                 </div>
               </div>
-              <hr />
+
+              <div className="panel panel-default">
+                <div className="panel-heading"><h4>Placeholder 1</h4></div>
+                <div className="panel-body">
+                  <small>Complete</small>
+                  <div className="progress">
+                    <div
+                      className="progress-bar progress-bar-success"
+                      role="progressbar"
+                      aria-valuenow="72"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '72%' } }
+                    >
+                      <span className="sr-only">72% Complete</span>
+                    </div>
+                  </div>
+                  <small>In Progress</small>
+                  <div className="progress">
+                    <div
+                      className="progress-bar progress-bar-info"
+                      role="progressbar"
+                      aria-valuenow="20"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '20%' } }
+                    >
+                      <span className="sr-only">20% Complete</span>
+                    </div>
+                  </div>
+                  <small>At Risk</small>
+                  <div className="progress">
+                    <div
+                      className="progress-bar progress-bar-danger"
+                      role="progressbar"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '80%' } }
+                    >
+                      <span className="sr-only">80% Complete</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-xs-6">
               <div className="panel panel-default">
                 <div className="panel-heading"><h4>Subscription</h4></div>
+                <div className="panel-body">
+                  <small>Complete</small>
+                  <div className="progress">
+                    <div
+                      className="progress-bar progress-bar-success"
+                      role="progressbar"
+                      aria-valuenow="72"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '72%' } }
+                    >
+                      <span className="sr-only">72% Complete</span>
+                    </div>
+                  </div>
+                  <small>In Progress</small>
+                  <div className="progress">
+                    <div
+                      className="progress-bar progress-bar-info"
+                      role="progressbar"
+                      aria-valuenow="20"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '20%' } }
+                    >
+                      <span className="sr-only">20% Complete</span>
+                    </div>
+                  </div>
+                  <small>At Risk</small>
+                  <div className="progress">
+                    <div
+                      className="progress-bar progress-bar-danger"
+                      role="progressbar"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '80%' } }
+                    >
+                      <span className="sr-only">80% Complete</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="panel panel-default">
+                <div className="panel-heading"><h4>Placeholder 2</h4></div>
+                <div className="panel-body">
+                  <small>Complete</small>
+                  <div className="progress">
+                    <div
+                      className="progress-bar progress-bar-success"
+                      role="progressbar"
+                      aria-valuenow="72"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '72%' } }
+                    >
+                      <span className="sr-only">72% Complete</span>
+                    </div>
+                  </div>
+                  <small>In Progress</small>
+                  <div className="progress">
+                    <div
+                      className="progress-bar progress-bar-info"
+                      role="progressbar"
+                      aria-valuenow="20"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '20%' } }
+                    >
+                      <span className="sr-only">20% Complete</span>
+                    </div>
+                  </div>
+                  <small>At Risk</small>
+                  <div className="progress">
+                    <div
+                      className="progress-bar progress-bar-danger"
+                      role="progressbar"
+                      aria-valuenow="80"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      style={ { width: '80%' } }
+                    >
+                      <span className="sr-only">80% Complete</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="panel panel-default">
+                <div className="panel-heading"><h4>Placeholder 3</h4></div>
                 <div className="panel-body">
                   <small>Complete</small>
                   <div className="progress">
@@ -196,10 +299,9 @@ class AccountApp extends BaseComponent {
     );
   }
 
-  _onInputChange(field, value, isValid) {
+  _onInputChange(field, value) {
     this.setState({
       [field]: value,
-      [`${field}IsValid`]: isValid,
     });
   }
 

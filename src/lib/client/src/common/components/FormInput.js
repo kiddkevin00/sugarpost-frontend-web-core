@@ -43,7 +43,7 @@ class FormInput extends BaseComponent {
         }
         this.setState({
           value: newProps.value,
-          empty: FormInput._isEmpty(newProps.value),
+          empty: !newProps.value,
         });
       }
     }
@@ -106,7 +106,7 @@ class FormInput extends BaseComponent {
   _onChange(event) {
     this.setState({
       value: event.target.value,
-      empty: FormInput._isEmpty(event.target.value),
+      empty: !event.target.value,
     });
 
     if (this.props.validate) {
@@ -128,14 +128,14 @@ class FormInput extends BaseComponent {
     } else {
       this.setState({
         valid: false,
-        errorMessage: !FormInput._isEmpty(value) ? this.props.errorMessage : this.props.emptyMessage,
+        errorMessage: value ? this.props.errorMessage : this.props.emptyMessage,
       });
     }
   }
 
   isValid() {
     if (this.props.validate) {
-      if (FormInput._isEmpty(this.state.value) || !this.props.validate(this.state.value)) {
+      if (!this.state.value || !this.props.validate(this.state.value)) {
         this.setState({
           valid: false,
           errorVisible: true,
@@ -171,20 +171,29 @@ class FormInput extends BaseComponent {
     });
   }
 
-  static _isEmpty(value) {
-    return !value || value.length === 0;
+  static validateEmptyField(inputText) {
+    return !!inputText && inputText.trim().length !== 0;
+  }
+
+  static validateEmailField(inputText) {
+    const regExp = new RegExp('^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|' +
+      '(\\".+\\"))@((\\[[0-9]{1,3}.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|' +
+      '(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$');
+
+    return regExp.test(inputText);
   }
 
 }
 FormInput.propTypes = {
   onChange: React.PropTypes.func.isRequired,
   value: React.PropTypes.string.isRequired,
-  validate: React.PropTypes.func.isRequired,
+  validate: React.PropTypes.func,
   emptyMessage: React.PropTypes.string,
   errorMessage: React.PropTypes.string,
   text: React.PropTypes.string,
 };
 FormInput.defaultProps = {
+  validate: FormInput.validateEmptyField,
   emptyMessage: 'Empty',
   errorMessage: 'Invalid',
   text: 'Unknown Field',

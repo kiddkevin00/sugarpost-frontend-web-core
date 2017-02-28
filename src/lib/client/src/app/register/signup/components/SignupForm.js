@@ -22,42 +22,35 @@ class SignupForm extends BaseComponent {
         <FormInput
           text="Full Name"
           ref={ (formInputObj) => { this.fullName = formInputObj; } }
-          validate={ SignupForm._isNotEmpty }
           value={ this.state.fullName }
-          onChange={ this._onChange.bind(this, 'fullName') }
+          onChange={ this._onChange.bind(this, 'fullName') } /* eslint-disable-line react/jsx-no-bind */
           emptyMessage="Empty"
         />
-
         <FormInput
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
-          validate={ SignupForm._validateEmail }
+          validate={ FormInput.validateEmailField }
           value={ this.state.email }
-          onChange={ this._onChange.bind(this, 'email') }
+          onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
           emptyMessage="Empty"
           errorMessage="Invalid"
         />
-
         <FormInput
           text="Password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
-          validate={ SignupForm._isNotEmpty }
           value={ this.state.password }
-          onChange={ this._onChange.bind(this, 'password') }
+          onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
           emptyMessage="Empty"
           errorMessage="Invalid"
         />
-
         <FormInput
           text="Confirm Password"
           ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
-          validate={ SignupForm._isNotEmpty }
           value={ this.state.confirmPassword }
-          onChange={ this._onChange.bind(this, 'confirmPassword') }
+          onChange={ this._onChange.bind(this, 'confirmPassword') } /* eslint-disable-line react/jsx-no-bind */
           emptyMessage="Empty"
           errorMessage="Unmatched"
         />
-
         <button
           onClick={ this._onClick }
           className="btn btn-block"
@@ -76,7 +69,12 @@ class SignupForm extends BaseComponent {
   }
 
   _onClick(event) {
-    if (SignupForm._isNotEmpty(this.state.password) && SignupForm._validateEmail(this.state.email)) {
+    if (
+      FormInput.validateEmptyField(this.state.fullName) &&
+      FormInput.validateEmailField(this.state.email) &&
+      FormInput.validateEmptyField(this.state.password) &&
+      FormInput.validateEmptyField(this.state.confirmPassword)
+    ) {
       this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
     } else {
       this.fullName.isValid();
@@ -84,16 +82,6 @@ class SignupForm extends BaseComponent {
       this.password.isValid();
       this.confirmPassword.isValid();
     }
-  }
-
-  static _isNotEmpty(inputText) {
-    return !!inputText && inputText.length !== 0;
-  }
-
-  static _validateEmail(inputText) {
-    const regExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    return regExp.test(inputText);
   }
 
 }
