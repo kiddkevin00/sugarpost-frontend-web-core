@@ -10,8 +10,11 @@ class FormInput extends BaseComponent {
     super(props);
 
     this._bind('_onChange', '_handleFocus', '_handleBlur', 'validateInput', 'isValid',
-      '_mouseEnterError');
+      '_mouseEnterError', 'checkRules');
+    const valid = (this.props.isValid && this.props.isValid()) || true;
+
     this.state = {
+      valid,
       empty: !props.value,
       focus: false,
       value: props.value,
@@ -19,6 +22,7 @@ class FormInput extends BaseComponent {
       errorMessage: props.emptyMessage,
       validator: props.validator,
       validatorVisible: false,
+      type: this.props.type,
       minCharacters: props.minCharacters,
       requireCapitals: props.requireCapitals,
       requireNumbers: props.requireNumbers,
@@ -92,12 +96,14 @@ class FormInput extends BaseComponent {
           onFocus={ this._handleFocus }
           onBlur={ this._handleBlur }
           autoComplete="off"
+          type={ this.props.type }
         />
 
         <FormInputError
           visible={ this.state.errorVisible }
           errorMessage={ this.state.errorMessage }
         />
+        { validator }
 
       </div>
     );
@@ -109,7 +115,9 @@ class FormInput extends BaseComponent {
       empty: FormInput._isEmpty(event.target.value),
     });
 
-    if (this.props.validate) {
+    if (this.props.validator) {
+      this.checkRules(event.target.value)
+    } else if (this.props.validate) {
       this.validateInput(event.target.value);
     }
 
@@ -131,6 +139,24 @@ class FormInput extends BaseComponent {
         errorMessage: !FormInput._isEmpty(value) ? this.props.errorMessage : this.props.emptyMessage,
       });
     }
+  }
+
+  checkRules(value) {
+    const validData = {
+      minChars: !FormInput._isEmpty(value) ? value.length >= Number(this.state.minCharacters) : false,
+      capitalLetters: !FormInput._isEmpty(value) ? FormInput.countCapitals(value) : false,
+      numbers: !FormInput._isEmpty(value) ? FormInput.countNumbers(value) > 0 : false,
+    }
+
+    const allValid = (validData.minChars
+      && validData.capitalLetters
+      && validData.numbers);
+
+    this.setState({
+      isValidatorValid: validData,
+      allValidatorValid: allValid,
+      valid: allValid
+    })
   }
 
   isValid() {
@@ -165,6 +191,13 @@ class FormInput extends BaseComponent {
     });
   }
 
+  hideError() {
+    this.setState({
+      errorVisible: false,
+      validatorVisible: false
+    });
+  }
+
   _mouseEnterError() {
     this.setState({
       errorVisible: true,
@@ -173,6 +206,15 @@ class FormInput extends BaseComponent {
 
   static _isEmpty(value) {
     return !value || value.length === 0;
+  }
+
+  static countCapitals(value) {
+    const str = value;
+    return str.replace(/[^A-Z]/g, '').length;
+  }
+
+  static countNumbers(value) {
+    return /\d/.test(value);
   }
 
 }

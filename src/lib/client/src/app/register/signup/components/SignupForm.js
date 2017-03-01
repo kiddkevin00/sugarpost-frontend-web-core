@@ -7,7 +7,7 @@ class SignupForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onClick');
+    this._bind('_onClick', 'isConfirmedPassword');
     this.state = {
       fullName: '',
       email: '',
@@ -40,18 +40,22 @@ class SignupForm extends BaseComponent {
 
         <FormInput
           text="Password"
+          type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
           validate={ SignupForm._isNotEmpty }
+          validator="true"
+          minCharacters="8"
+          requireCapitals="1"
+          requireNumbers="1"
           value={ this.state.password }
           onChange={ this._onChange.bind(this, 'password') }
-          emptyMessage="Empty"
-          errorMessage="Invalid"
+          emptyMessage="Password is invalid"
         />
 
         <FormInput
           text="Confirm Password"
-          ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
-          validate={ SignupForm._isNotEmpty }
+          ref={ (formInputObj) => { this.passwordConfirm = formInputObj; } }
+          validate={ this.isConfirmedPassword }
           value={ this.state.confirmPassword }
           onChange={ this._onChange.bind(this, 'confirmPassword') }
           emptyMessage="Empty"
@@ -67,17 +71,27 @@ class SignupForm extends BaseComponent {
           Sign Me Up!
         </button>
       </form>
+
     );
   }
 
   _onChange(field, value) {
+    if (field === 'password') {
+      if (SignupForm._isNotEmpty(this.state.confirmPassword)) {
+        this.passwordConfirm.isValid();
+      }
+      this.passwordConfirm.hideError();
+    }
     this.setState({
       [field]: value,
     });
   }
 
   _onClick(event) {
-    if (SignupForm._isNotEmpty(this.state.fullName) && SignupForm.validateEmail(this.state.email)) {
+    if (SignupForm._isNotEmpty(this.state.fullName)
+        && SignupForm.validateEmail(this.state.email)
+        && this.password.isValid()
+        && this.passwordConfirm.isValid()) {
       /// TODO
       //this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
       alert('Thanks.');
@@ -97,6 +111,10 @@ class SignupForm extends BaseComponent {
     const regExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     return regExp.test(inputText);
+  }
+
+  isConfirmedPassword(value) {
+    return (value === this.state.password)
   }
 
 }
