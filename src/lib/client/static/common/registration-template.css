@@ -153,82 +153,27 @@
 
 /***** Form elements *****/
 
-#registration-template input[type="text"],
-#registration-template input[type="email"],
-#registration-template input[type="password"],
-#registration-template textarea,
-#registration-template textarea.form-control {
-    height: 50px;
-    margin: 0;
-    padding: 0 20px;
-    vertical-align: middle;
-    background: #f8f8f8;
-    border: 3px solid #ddd;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 50px;
-    color: #888;
-    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
-    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
-}
-
-#registration-template textarea,
-#registration-template textarea.form-control {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    line-height: 30px;
-}
-
-#registration-template input[type="text"]:focus,
-#registration-template input[type="email"]:focus,
-#registration-template input[type="password"]:focus,
-#registration-template textarea:focus,
-#registration-template textarea.form-control:focus {
-    outline: 0;
-    background: #fff;
-    border: 3px solid #ccc;
-    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
-}
-
-#registration-template textarea:-moz-placeholder,
-#registration-template textarea.form-control:-moz-placeholder,
-#registration-template textarea:-ms-input-placeholder,
-#registration-template textarea.form-control:-ms-input-placeholder { color: #888; }
-#registration-template textarea::-webkit-input-placeholder,
-#registration-template textarea.form-control::-webkit-input-placeholder,
-#registration-template input[type="text"]:-moz-placeholder,
-#registration-template input[type="text"]:-ms-input-placeholder,
-#registration-template input[type="text"]::-webkit-input-placeholder { color: #888; }
-#registration-template input[type="email"]:-moz-placeholder,
-#registration-template input[type="email"]:-ms-input-placeholder,
-#registration-template input[type="email"]::-webkit-input-placeholder { color: #888; }
-#registration-template input[type="password"]:-moz-placeholder,
-#registration-template input[type="passowrd"]:-ms-input-placeholder,
-#registration-template input[type="password"]::-webkit-input-placeholder { color: #888; }
-
 #registration-template button.btn {
-    height: 50px;
-    margin: 0;
-    padding: 0 20px;
-    vertical-align: middle;
-    background: #FBB352;
-    border: 0;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 50px;
-    color: #fff;
-    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-    text-shadow: none;
-    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
-    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+	height: 50px;
+	margin: 0;
+	padding: 0 20px;
+	vertical-align: middle;
+	background: #FBB352;
+	border: 0;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 50px;
+	color: #fff;
+	-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+	text-shadow: none;
+	-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+	-o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
 
-#registration-template button.btn:hover { opacity: 0.6; color: #fff; }
+#registration-template button.btn:hover { opacity: 0.6; }
 
-#registration-template button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+#registration-template button.btn:active { outline: 0; opacity: 0.6; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
 
-#registration-template button.btn:focus { outline: 0; opacity: 0.6; background: #19b9e7; color: #fff; }
-
+#registration-template button.btn:focus,
 #registration-template button.btn:active:focus,
-#registration-template button.btn.active:focus { outline: 0; opacity: 0.6; background: #19b9e7; color: #fff; }
+#registration-template button.btn.active:focus { outline: 0; opacity: 0.6; }

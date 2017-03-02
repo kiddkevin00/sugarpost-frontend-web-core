@@ -3,15 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 class FormInputError extends BaseComponent {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      message: 'Input is invalid',
-    };
-  }
-
+  
   render() {
     const errorClass = classNames({
       error_container: true,
@@ -21,7 +13,7 @@ class FormInputError extends BaseComponent {
 
     return (
       <div className={ errorClass }>
-        <span>{this.props.errorMessage}</span>
+        <span>{ this.props.errorMessage }</span>
       </div>
     );
   }

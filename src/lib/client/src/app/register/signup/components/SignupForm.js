@@ -7,7 +7,7 @@ class SignupForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onClick');
+    this._bind('_onClick', 'isConfirmPasswordMatched');
     this.state = {
       fullName: '',
       email: '',
@@ -24,7 +24,6 @@ class SignupForm extends BaseComponent {
           ref={ (formInputObj) => { this.fullName = formInputObj; } }
           value={ this.state.fullName }
           onChange={ this._onChange.bind(this, 'fullName') } /* eslint-disable-line react/jsx-no-bind */
-          emptyMessage="Empty"
         />
         <FormInput
           text="Email Address"
@@ -32,23 +31,26 @@ class SignupForm extends BaseComponent {
           validate={ FormInput.validateEmailField }
           value={ this.state.email }
           onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
-          emptyMessage="Empty"
-          errorMessage="Invalid"
         />
         <FormInput
           text="Password"
+          type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
           value={ this.state.password }
           onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
-          emptyMessage="Empty"
-          errorMessage="Invalid"
+          useValidator={ true }
+          minCharacters="8"
+          requireCapitals="1"
+          requireNumbers="1"
+          forbiddenWords={ ['password', 'user', 'username'] }
+          emptyMessage="Invalid"
         />
         <FormInput
           text="Confirm Password"
           ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
+          validate={ this.isConfirmPasswordMatched }
           value={ this.state.confirmPassword }
           onChange={ this._onChange.bind(this, 'confirmPassword') } /* eslint-disable-line react/jsx-no-bind */
-          emptyMessage="Empty"
           errorMessage="Unmatched"
         />
         <button
@@ -59,6 +61,7 @@ class SignupForm extends BaseComponent {
           Sign Me Up!
         </button>
       </form>
+
     );
   }
 
@@ -72,8 +75,8 @@ class SignupForm extends BaseComponent {
     if (
       FormInput.validateEmptyField(this.state.fullName) &&
       FormInput.validateEmailField(this.state.email) &&
-      FormInput.validateEmptyField(this.state.password) &&
-      FormInput.validateEmptyField(this.state.confirmPassword)
+      this.password.isValid() &&
+      this.confirmPassword.isValid()
     ) {
       this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
     } else {
@@ -82,6 +85,10 @@ class SignupForm extends BaseComponent {
       this.password.isValid();
       this.confirmPassword.isValid();
     }
+  }
+
+  isConfirmPasswordMatched(inputText) {
+    return inputText === this.state.password;
   }
 
 }

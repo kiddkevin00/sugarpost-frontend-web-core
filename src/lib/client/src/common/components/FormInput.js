@@ -9,43 +9,45 @@ class FormInput extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', '_handleFocus', '_handleBlur', 'validateInput', 'isValid',
-      '_mouseEnterError');
+    this._bind('_validateInput', '_checkRules', '_onChange', '_handleFocus', '_handleBlur',
+      'isValid');
+
     this.state = {
-      empty: !props.value,
-      focus: false,
       value: props.value,
-      iconsVisible: !props.validator,
+      empty: !props.value,
+      valid: true,
+      focus: false,
       errorMessage: props.emptyMessage,
-      validator: props.validator,
+      useValidator: props.useValidator,
       validatorVisible: false,
+      iconsVisible: !props.useValidator, // TODO
       minCharacters: props.minCharacters,
       requireCapitals: props.requireCapitals,
       requireNumbers: props.requireNumbers,
       forbiddenWords: props.forbiddenWords,
-      isValidatorValid: {
+      allValidatorValid: false,
+      isEachValidatorValid: {
         minChars: false,
         capitalLetters: false,
         numbers: false,
         words: false,
-        all: false,
       },
-      allValidatorValid: false,
     };
   }
 
   componentWillReceiveProps(newProps) {
-    // Performs update only when new value exists and not empty
+    // Performs update only when the new value is not empty.
     if (newProps.value) {
-      if (typeof newProps.value === 'undefined' && newProps.value.length > 0) {
-        if (this.props.validate) {
-          this.validateInput(newProps.value);
-        }
-        this.setState({
-          value: newProps.value,
-          empty: !newProps.value,
-        });
+      if (newProps.useValidator) {
+        this._checkRules(newProps.value);
+      } else {
+        this._validateInput(newProps.value);
       }
+
+      this.setState({
+        value: newProps.value,
+        empty: false,
+      });
     }
   }
 
@@ -61,14 +63,13 @@ class FormInput extends BaseComponent {
     });
     let validator;
 
-    if (this.state.validator) {
+    if (this.state.useValidator) {
       validator = (
         <PasswordValidator
-          ref={ (passwordValidatorObj) => { this.passwordValidator = passwordValidatorObj; } }
           visible={ this.state.validatorVisible }
           name={ this.props.text }
           value={ this.state.value }
-          validData={ this.state.isValidatorValid }
+          validData={ this.state.isEachValidatorValid }
           valid={ this.state.allValidatorValid }
           forbiddenWords={ this.state.forbiddenWords }
           minCharacters={ this.props.minCharacters }
@@ -76,6 +77,8 @@ class FormInput extends BaseComponent {
           requireNumbers={ this.props.requireNumbers }
         />
       );
+    } else {
+      validator = null;
     }
 
     return (
@@ -84,7 +87,6 @@ class FormInput extends BaseComponent {
           <span className="label_text">{ this.props.text }</span>
         </label>
         <input
-          placeholder={ this.props.placeholder }
           className="input"
           id={ this.props.text }
           value={ this.state.value }
@@ -92,57 +94,30 @@ class FormInput extends BaseComponent {
           onFocus={ this._handleFocus }
           onBlur={ this._handleBlur }
           autoComplete="off"
+          type={ this.props.type }
         />
-
         <FormInputError
           visible={ this.state.errorVisible }
           errorMessage={ this.state.errorMessage }
         />
-
+        { validator }
       </div>
     );
   }
 
   _onChange(event) {
+    if (this.props.useValidator) {
+      this._checkRules(event.target.value);
+    } else {
+      this._validateInput(event.target.value);
+    }
+
+    this.props.onChange(event.target.value);
+
     this.setState({
       value: event.target.value,
       empty: !event.target.value,
     });
-
-    if (this.props.validate) {
-      this.validateInput(event.target.value);
-    }
-
-    if (this.props.onChange) {
-      this.props.onChange(event.target.value);
-    }
-  }
-
-  validateInput(value) {
-   // Triggers custom validation method in the parent component
-    if (this.props.validate && this.props.validate(value)) {
-      this.setState({
-        valid: true,
-        errorVisible: false,
-      });
-    } else {
-      this.setState({
-        valid: false,
-        errorMessage: value ? this.props.errorMessage : this.props.emptyMessage,
-      });
-    }
-  }
-
-  isValid() {
-    if (this.props.validate) {
-      if (!this.state.value || !this.props.validate(this.state.value)) {
-        this.setState({
-          valid: false,
-          errorVisible: true,
-        });
-      }
-    }
-    return this.state.valid;
   }
 
   _handleFocus() {
@@ -150,7 +125,8 @@ class FormInput extends BaseComponent {
       focus: true,
       validatorVisible: true,
     });
-    if (this.props.validator) {
+
+    if (this.props.useValidator) {
       this.setState({
         errorVisible: false,
       });
@@ -165,10 +141,71 @@ class FormInput extends BaseComponent {
     });
   }
 
-  _mouseEnterError() {
+  _validateInput(inputText) {
+   // Triggers the custom validation function, passed by the parent component.
+    if (this.props.validate(inputText)) {
+      this.setState({
+        valid: true,
+        errorVisible: false,
+      });
+    } else {
+      this.setState({
+        valid: false,
+        errorMessage: inputText ? this.props.errorMessage : this.props.emptyMessage,
+      });
+    }
+  }
+
+  _checkRules(inputText) {
+    const minCharsCheck = !!inputText && this._checkMinChars(inputText);
+    const capitalLettersCheck = !!inputText && this._checkCaptialLetters(inputText);
+    const numbersCheck = !!inputText && this._checkNumbers(inputText);
+    const wordsCheck = !!inputText && this._checkWords(inputText);
+    const allValidatorValid = minCharsCheck && capitalLettersCheck && numbersCheck && wordsCheck;
+    const isEachValidatorValid = {
+      minChars: minCharsCheck,
+      capitalLetters: capitalLettersCheck,
+      numbers: numbersCheck,
+      words: wordsCheck,
+    };
+
     this.setState({
-      errorVisible: true,
+      allValidatorValid,
+      isEachValidatorValid,
+      valid: allValidatorValid,
     });
+  }
+
+  _checkMinChars(inputText) {
+    return inputText.length >= Number(this.state.minCharacters);
+  }
+
+  _checkCaptialLetters(inputText) {
+    return inputText.replace(/[^A-Z]/g, '').length >= Number(this.state.requireCapitals);
+  }
+
+
+  _checkNumbers(inputText) {
+    return inputText.replace(/[^\d]/g, '').length >= Number(this.state.requireNumbers);
+  }
+
+  _checkWords(inputText) {
+    return this.state.forbiddenWords.indexOf(inputText) < 0;
+  }
+
+  isValid() {
+    let isValid = this.state.valid;
+
+    if (!this.state.value || !this.props.validate(this.state.value)) {
+      isValid = false;
+
+      this.setState({
+        valid: isValid,
+        errorVisible: !isValid,
+      });
+    }
+
+    return isValid;
   }
 
   static validateEmptyField(inputText) {
@@ -188,15 +225,21 @@ FormInput.propTypes = {
   onChange: React.PropTypes.func.isRequired,
   value: React.PropTypes.string.isRequired,
   validate: React.PropTypes.func,
+  useValidator: React.PropTypes.bool,
   emptyMessage: React.PropTypes.string,
   errorMessage: React.PropTypes.string,
+  forbiddenWords: React.PropTypes.arrayOf(React.PropTypes.string),
   text: React.PropTypes.string,
+  type: React.PropTypes.string,
 };
 FormInput.defaultProps = {
   validate: FormInput.validateEmptyField,
+  useValidator: false,
   emptyMessage: 'Empty',
   errorMessage: 'Invalid',
+  forbiddenWords: ['password', 'user'],
   text: 'Unknown Field',
+  type: 'text',
 };
 
 export default FormInput;
