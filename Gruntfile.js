@@ -151,7 +151,11 @@ module.exports = function (grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
       },
       prod: {
-        src: ['src/lib/client/static/assets/**/*.css', 'src/lib/client/static/app/**/*.css'],
+        src: [
+          'src/lib/client/static/assets/**/*.css',
+          'src/lib/client/static/app/**/*.css',
+          'src/lib/client/static/common/**/*.css'
+        ],
         dest: 'dist/css/index-<%= pkg.version %>.css'
       }
     },
