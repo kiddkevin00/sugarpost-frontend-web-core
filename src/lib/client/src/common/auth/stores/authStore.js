@@ -60,8 +60,6 @@ const authStore = new AuthStore();
 
 // The dispatcher registration for the current store component.
 dispatcher.register((action) => {
-  console.log(`Action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
-
   const actionType = action.actionType;
   const data = action.data;
 
@@ -70,27 +68,36 @@ dispatcher.register((action) => {
       authStore._login();
 
       authStore.emitChange();
+
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.NOT_LOGGED_IN:
     case authConstants.AUTH_CHECK_FAIL:
       authStore._logout();
 
       authStore.emitChange();
+
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.ALREADY_SIGNED_UP:
       // TODO
 
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.SIGNUP_FAIL:
       // TODO
 
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.LOGOUT_FAIL:
       // TODO
 
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.IN_TRANSITION:
       authStore._storeTransitionPath(data.path);
+
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     default:
       break;

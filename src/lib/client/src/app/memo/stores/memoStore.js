@@ -82,8 +82,6 @@ const memoStore = new MemoStore();
 
 // The dispatcher registration for the current store component.
 dispatcher.register((action) => {
-  console.log(`Action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
-
   const actionType = action.actionType;
   const id = action.id || 0;
   const isComplete = action.isComplete || false;
@@ -96,6 +94,8 @@ dispatcher.register((action) => {
 
         memoStore.emitChange();
       }
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case memoConstants.TODO_TOGGLE_COMPLETE:
       memoStore._update(id, { isComplete: !isComplete });
@@ -110,16 +110,22 @@ dispatcher.register((action) => {
       }
 
       memoStore.emitChange();
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case memoConstants.TODO_DESTROY:
       memoStore._destroy(id);
 
       memoStore.emitChange();
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case memoConstants.TODO_DESTROY_COMPLETED:
       memoStore._destroyCompleted();
 
       memoStore.emitChange();
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case memoConstants.TODO_UPDATE_TEXT:
       if (text) {
@@ -127,6 +133,8 @@ dispatcher.register((action) => {
 
         memoStore.emitChange();
       }
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     default:
       break;

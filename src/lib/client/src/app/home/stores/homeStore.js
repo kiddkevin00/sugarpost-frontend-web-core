@@ -49,8 +49,6 @@ const homeStore = new HomeStore();
 
 // The dispatcher registration for the current store component.
 dispatcher.register((action) => {
-  console.log(`Action in \`homeStore\`: ${JSON.stringify(action, null, 2)}`);
-
   const actionType = action.actionType;
   const data = action.data;
 
@@ -59,11 +57,15 @@ dispatcher.register((action) => {
       homeStore._subscribeResult('Thank you for signing up! We will keep you posted!', 'text-warning');
 
       homeStore.emitChange();
+
+      console.log(`${actionType} action in \`homeStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case homeConstants.IS_SUBSCRIBED:
       homeStore._subscribeResult('The e-mail address you entered is already in our system!', 'text-danger');
 
       homeStore.emitChange();
+
+      console.log(`${actionType} action in \`homeStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case homeConstants.SUBSCRIBE_FAIL:
       homeStore._subscribeResult('Oops! Something went wrong!  Try again later please!', 'text-danger');
@@ -74,6 +76,7 @@ dispatcher.register((action) => {
         '\n============= ERROR END ============='
       );
 
+      console.log(`${actionType} action in \`homeStore\`: ${JSON.stringify(action, null, 2)}`);
       homeStore.emitChange();
       break;
     default:
