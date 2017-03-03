@@ -23,13 +23,11 @@ class PasswordValidator extends BaseComponent {
       visible: this.props.visible,
       invisible: !this.props.visible,
     });
-    const forbiddenWords = this.state.forbiddenWords.map(function(word, i) {
-      return (
-        <span key={ i } className="bad_word">
-          &quot;{ word }&quot;
-        </span>
-      );
-    });
+    const forbiddenWords = this.state.forbiddenWords.map((word, i) => (
+      <span key={ i } className="bad_word">
+        &quot;{ word }&quot;
+      </span>
+    ));
     let validatorTitle;
 
     if (this.props.valid) {
@@ -58,12 +56,16 @@ class PasswordValidator extends BaseComponent {
 
             <li className={ classNames({ valid: this.props.validData.capitalLetters }) }>
 
-              <span className="error_message">Contains at least {this.state.requireCapitals} capital letter</span>
+              <span className="error_message">
+                Contains at least {this.state.requireCapitals} capital letter
+              </span>
             </li>
 
             <li className={ classNames({ valid: this.props.validData.numbers }) }>
 
-              <span className="error_message">Contains at least {this.state.requireNumbers} number</span>
+              <span className="error_message">
+                Contains at least {this.state.requireNumbers} number
+              </span>
             </li>
             <li className={ classNames({ valid: this.props.validData.words }) }>
 

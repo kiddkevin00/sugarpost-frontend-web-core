@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 class FormInputError extends BaseComponent {
-  
+
   render() {
     const errorClass = classNames({
       error_container: true,
