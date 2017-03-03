@@ -47,6 +47,7 @@ class SignupForm extends BaseComponent {
         />
         <FormInput
           text="Confirm Password"
+          type="password"
           ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
           validate={ this.isConfirmPasswordMatched }
           value={ this.state.confirmPassword }
@@ -73,8 +74,8 @@ class SignupForm extends BaseComponent {
 
   _onClick(event) {
     if (
-      FormInput.validateEmptyField(this.state.fullName) &&
-      FormInput.validateEmailField(this.state.email) &&
+      this.fullName.isValid() &&
+      this.email.isValid() &&
       this.password.isValid() &&
       this.confirmPassword.isValid()
     ) {

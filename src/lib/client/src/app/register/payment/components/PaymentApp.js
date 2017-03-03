@@ -33,6 +33,9 @@ class PaymentApp extends BaseComponent {
   }
 
   render() {
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+
     return (
       <div>
         <div className="form-top">
@@ -48,6 +51,9 @@ class PaymentApp extends BaseComponent {
           <PaymentForm
             onSubmit={ PaymentApp._onSubmit }
             email={ this.props.location.query.email }
+            subscribedMonth={ currentMonth + 1 }
+            regularChargeAmount={ 19.99 }
+            referralChargeAmount={ 17.99 }
           />
         </div>
       </div>

@@ -4,25 +4,32 @@ import StripeCheckout from 'react-stripe-checkout';
 import React from 'react';
 import couponCode from 'coupon-code';
 
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+  'September', 'October', 'November', 'December'];
+
 class PaymentForm extends BaseComponent {
 
   constructor(props) {
     super(props);
 
-    this._bind('_onToken');
+    this._bind('_onClick', '_onToken');
     this.state = {
       referCode: '',
+      charge: this.props.regularChargeAmount,
     };
   }
 
   render() {
+    const chargeStr = window.parseFloat(this.state.charge).toFixed(2);
+
     return (
       <form role="form">
         <FormInput
-          text="Refer Code"
+          text="Refer Code (Optional)"
           validate={ PaymentForm._validateCouponCode }
           value={ this.state.referCode }
           onChange={ this._onChange.bind(this, 'referCode') } /* eslint-disable-line react/jsx-no-bind */
+          emptyMessage="No code?"
         />
         <StripeCheckout
           token={ this._onToken }
@@ -31,7 +38,7 @@ class PaymentForm extends BaseComponent {
           description="Premium subscription service"
           image="/assets/images/sugarpost-logo.png"
           ComponentClass="div"
-          panelLabel="Get Your April Treat"
+          panelLabel={ `Get Your ${monthNames[this.props.subscribedMonth]} Treat $${chargeStr}` }
           amount={ 1999 }
           currency="USD"
           locale="en"
@@ -46,8 +53,9 @@ class PaymentForm extends BaseComponent {
           <button
             className="btn btn-block"
             type="button"
+            onClick={ this._onClick }
           >
-            Get Your April Treat $19.99
+            Get Your { monthNames[this.props.subscribedMonth] } Treat ${ this.state.charge }
           </button>
         </StripeCheckout>
       </form>
@@ -55,9 +63,25 @@ class PaymentForm extends BaseComponent {
   }
 
   _onChange(field, value) {
+    if (PaymentForm._validateCouponCode(value)) {
+      this.setState({
+        charge: this.props.referralChargeAmount,
+      });
+    } else {
+      this.setState({
+        charge: this.props.regularChargeAmount,
+      });
+    }
+
     this.setState({
       [field]: value,
     });
+  }
+
+  _onClick(event) {
+    if (this.state.referCode && !PaymentForm._validateCouponCode(this.state.referCode)) {
+      event.stopPropagation();
+    }
   }
 
   _onToken(token) {
@@ -65,15 +89,28 @@ class PaymentForm extends BaseComponent {
   }
 
   static _validateCouponCode(inputText) {
-    return !!(couponCode.validate(inputText, {
-      parts: 1,
-      partLen: 5,
-    }));
+    try {
+      return !!couponCode.validate(inputText, {
+        parts: 1,
+        partLen: 5,
+      });
+    } catch (err) {
+      return false;
+    }
   }
 
 }
 PaymentForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
+  email: React.PropTypes.string,
+  subscribedMonth: React.PropTypes.number,
+  regularChargeAmount: React.PropTypes.number,
+  referralChargeAmount: React.PropTypes.number,
+};
+PaymentForm.defaultProps = {
+  subscribedMonth: (new Date()).getMonth(),
+  regularChargeAmount: 0,
+  referralChargeAmount: 0,
 };
 
 export default PaymentForm;

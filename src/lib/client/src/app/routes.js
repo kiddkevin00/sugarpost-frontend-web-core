@@ -1,7 +1,3 @@
-import Proxy from '../common/proxies/proxy';
-import StandardResponseWrapper from '../common/utility/standard-response-wrapper';
-import StandardErrorWrapper from '../common/utility/standard-error-wrapper';
-
 import authStore from '../common/auth/stores/authStore';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import HomeApp from './home/components/HomeApp';
@@ -61,7 +57,7 @@ class RootApp extends BaseComponent {
           <NavItem>Account</NavItem>
         </LinkContainer>
       ), (
-        <LinkContainer key="2" to="/register/payment">
+        <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: 'myself@todo.com' } } }>
           <NavItem>Payment</NavItem>
         </LinkContainer>
       ), (

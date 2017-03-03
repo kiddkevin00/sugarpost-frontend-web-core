@@ -23,16 +23,13 @@ class LoginForm extends BaseComponent {
           validate={ FormInput.validateEmailField }
           value={ this.state.email }
           onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
-          emptyMessage="Empty"
-          errorMessage="Invalid"
         />
         <FormInput
           text="Password"
+          type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
           value={ this.state.password }
           onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
-          emptyMessage="Empty"
-          errorMessage="Invalid"
         />
         <button
           className="btn btn-block"
@@ -51,10 +48,7 @@ class LoginForm extends BaseComponent {
   }
 
   _onSubmit(event) {
-    if (
-      FormInput.validateEmailField(this.state.email) &&
-      FormInput.validateEmptyField(this.state.password)
-    ) {
+    if (this.email.isValid() && this.password.isValid()) {
       this.props.onSubmit(event, this.state.email, this.state.password);
     } else {
       this.email.isValid();
