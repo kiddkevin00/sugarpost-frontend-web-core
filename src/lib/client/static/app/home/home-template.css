@@ -1,0 +1,373 @@
+/**
+ * Start Bootstrap - Creative v3.3.7+1 (http://startbootstrap.com/template-overviews/creative)
+ * =============================================================================================
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+
+#home-template a {
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+}
+
+#home-template header,
+#home-template header .header-content {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+#home-template hr {
+    border-color: #FBB352;
+    border-width: 3px;
+    max-width: 50px;
+}
+
+#home-template hr.light {
+    border-color: #fff;
+}
+
+#home-template a {
+    transition: all .35s;
+    color: #FBB352;
+}
+
+#home-template a:focus,
+#home-template a:hover {
+    color: #eb3812;
+}
+
+#home-template p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+#home-template .bg-primary {
+    background-color: #FBB352;
+}
+
+#home-template .bg-dark {
+    background-color: #222;
+    color: #fff;
+}
+
+#home-template .text-faded {
+    color: rgba(255, 255, 255, .9);
+}
+
+#home-template section {
+    padding: 100px 0;
+}
+
+#home-template #portfolio {
+    padding: 100px 0 0 0;
+}
+
+#home-template aside {
+    padding: 50px 0;
+}
+
+#home-template .no-padding {
+    padding: 0;
+}
+
+#home-template .btn-default,
+#home-template .portfolio-box .portfolio-box-caption {
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+}
+
+#home-template header {
+    min-height: auto;
+    background-image: url("/assets/images/v3_background.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+#home-template header .header-content {
+    padding: 100px 15px;
+}
+
+#home-template header .header-content .header-content-inner h1 {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 30px;
+}
+
+#home-template header .header-content .header-content-inner hr {
+    margin: 30px auto;
+}
+
+#home-template header .header-content .header-content-inner p {
+    font-weight: 300;
+    color: rgba(255, 255, 255, .9);
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+@media (min-width: 768px) {
+    #home-template header {
+        min-height: 100%;
+    }
+
+    #home-template header .header-content {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        padding: 0 50px;
+    }
+
+    #home-template header .header-content .header-content-inner {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #home-template header .header-content .header-content-inner h1 {
+        font-size: 50px;
+    }
+
+    #home-template header .header-content .header-content-inner p {
+        font-size: 18px;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+#home-template .section-heading {
+    margin-top: 0;
+}
+
+#home-template .service-box {
+    max-width: 400px;
+    margin: 50px auto 0;
+}
+
+@media (min-width: 992px) {
+    #home-template .service-box {
+        margin: 20px auto 0;
+    }
+}
+
+#home-template .service-box p {
+    margin-bottom: 0;
+}
+
+#home-template .portfolio-box {
+    position: relative;
+    display: block;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+#home-template .portfolio-box .portfolio-box-caption {
+    color: #fff;
+    opacity: 0;
+    display: block;
+    background: #FBB352;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    transition: all .35s;
+}
+
+#home-template .btn-default.active,
+#home-template .btn-default:active,
+#home-template .btn-primary.active,
+#home-template .btn-primary:active,
+#home-template .open > .dropdown-toggle.btn-default,
+#home-template .open > .dropdown-toggle.btn-primary {
+    background-image: none;
+}
+
+#home-template .portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#home-template .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
+#home-template .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+    padding: 0 15px;
+}
+
+#home-template .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#home-template .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+    font-size: 18px;
+}
+
+#home-template .portfolio-box:hover .portfolio-box-caption {
+    opacity: 1;
+}
+
+#home-template .portfolio-box:focus {
+    outline: 0;
+}
+
+@media (min-width: 768px) {
+    #home-template .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+        font-size: 16px;
+    }
+
+    #home-template .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+        font-size: 22px;
+    }
+}
+
+#home-template .call-to-action h2 {
+    margin: 0 auto 20px;
+}
+
+#home-template .text-primary {
+    color: #FBB352;
+}
+
+#home-template .no-gutter > [class*=col-] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+#home-template .btn-default {
+    color: #222;
+    background-color: #fff;
+    border-color: #fff;
+    transition: all .35s;
+}
+
+#home-template .btn-default.active,
+#home-template .btn-default.focus,
+#home-template .btn-default:active,
+#home-template .btn-default:focus,
+#home-template .btn-default:hover,
+#home-template .open > .dropdown-toggle.btn-default {
+    color: #222;
+    background-color: #f2f2f2;
+    border-color: #ededed;
+}
+
+#home-template .btn-default.disabled,
+#home-template .btn-default.disabled.active,
+#home-template .btn-default.disabled.focus,
+#home-template .btn-default.disabled:active,
+#home-template .btn-default.disabled:focus,
+#home-template .btn-default.disabled:hover,
+#home-template .btn-default[disabled],
+#home-template .btn-default[disabled].active,
+#home-template .btn-default[disabled].focus,
+#home-template .btn-default[disabled]:active,
+#home-template .btn-default[disabled]:focus,
+#home-template .btn-default[disabled]:hover,
+#home-template fieldset[disabled] .btn-default,
+#home-template fieldset[disabled] .btn-default.active,
+#home-template fieldset[disabled] .btn-default.focus,
+#home-template fieldset[disabled] .btn-default:active,
+#home-template fieldset[disabled] .btn-default:focus,
+#home-template fieldset[disabled] .btn-default:hover {
+    background-color: #fff;
+    border-color: #fff;
+}
+
+#home-template .btn-default .badge {
+    color: #fff;
+    background-color: #222;
+}
+
+#home-template .btn-primary {
+    color: #fff;
+    background-color: #FBB352;
+    border-color: #FBB352;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
+
+#home-template .btn-primary.active,
+#home-template .btn-primary.focus,
+#home-template .btn-primary:active,
+#home-template .btn-primary:focus,
+#home-template .btn-primary:hover,
+#home-template .open > .dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #ee4b28;
+    border-color: #ed431f;
+}
+
+#home-template .btn-primary.disabled,
+#home-template .btn-primary.disabled.active,
+#home-template .btn-primary.disabled.focus,
+#home-template .btn-primary.disabled:active,
+#home-template .btn-primary.disabled:focus,
+#home-template .btn-primary.disabled:hover,
+#home-template .btn-primary[disabled],
+#home-template .btn-primary[disabled].active,
+#home-template .btn-primary[disabled].focus,
+#home-template .btn-primary[disabled]:active,
+#home-template .btn-primary[disabled]:focus,
+#home-template .btn-primary[disabled]:hover,
+#home-template fieldset[disabled] .btn-primary,
+#home-template fieldset[disabled] .btn-primary.active,
+#home-template fieldset[disabled] .btn-primary.focus,
+#home-template fieldset[disabled] .btn-primary:active,
+#home-template fieldset[disabled] .btn-primary:focus,
+#home-template fieldset[disabled] .btn-primary:hover {
+    background-color: #FBB352;
+    border-color: #FBB352;
+}
+
+#home-template .btn-primary .badge {
+    color: #FBB352;
+    background-color: #fff;
+}
+
+#home-template .btn {
+    border: none;
+    border-radius: 300px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#home-template .btn-xl {
+    padding: 15px 30px;
+}
+
+#home-template ::-moz-selection {
+    color: #fff;
+    text-shadow: none;
+    background: #222;
+}
+
+#home-template ::selection {
+    color: #fff;
+    text-shadow: none;
+    background: #222;
+}
+
+#home-template img::selection {
+    color: #fff;
+    background: 0 0;
+}
+
+#home-template img::-moz-selection {
+    color: #fff;
+    background: 0 0;
+}

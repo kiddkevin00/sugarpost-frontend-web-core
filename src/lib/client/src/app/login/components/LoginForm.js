@@ -11,39 +11,28 @@ class LoginForm extends BaseComponent {
     this.state = {
       email: '',
       password: '',
-      emailIsValid: false,
-      passwordIsValid: false,
     };
   }
 
   render() {
     return (
-      <form onSubmit={ this._onSubmit }>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <FormInput
-            onChange={ this._onChange.bind(this, 'email') }
-            value={ this.state.email }
-            type="email"
-            placeholder="Email"
-            className="form-control"
-            id="email"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <FormInput
-            onChange={ this._onChange.bind(this, 'password') }
-            value={ this.state.password }
-            type="password"
-            placeholder="Password"
-            className="form-control"
-            id="password"
-          />
-        </div>
+      <form onSubmit={ this._onSubmit } role="form">
+        <FormInput
+          text="Email Address"
+          ref={ (formInputObj) => { this.email = formInputObj; } }
+          validate={ FormInput.validateEmailField }
+          value={ this.state.email }
+          onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+        />
+        <FormInput
+          text="Password"
+          type="password"
+          ref={ (formInputObj) => { this.password = formInputObj; } }
+          value={ this.state.password }
+          onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
+        />
         <button
-          disabled={ !this.state.emailIsValid || !this.state.passwordIsValid }
-          className="btn btn-success btn-sm btn-block"
+          className="btn btn-block"
           type="submit"
         >
           Log In
@@ -52,15 +41,19 @@ class LoginForm extends BaseComponent {
     );
   }
 
-  _onChange(field, value, isValid) {
+  _onChange(field, value) {
     this.setState({
       [field]: value,
-      [`${field}IsValid`]: isValid,
     });
   }
 
   _onSubmit(event) {
-    this.props.onSubmit(event, this.state.email, this.state.password);
+    if (this.email.isValid() && this.password.isValid()) {
+      this.props.onSubmit(event, this.state.email, this.state.password);
+    } else {
+      this.email.isValid();
+      this.password.isValid();
+    }
   }
 
 }

@@ -1,4 +1,4 @@
-import AppDispatcher from '../../dispatcher/AppDispatcher';
+import dispatcher from '../../dispatcher/AppDispatcher';
 import authConstants from '../constants/authConstants';
 import EventEmitter from 'events';
 
@@ -14,12 +14,20 @@ class AuthStore extends EventEmitter {
     // All internal store data.
     this[storeContext] = {
       isLoggedIn: false,
-      currentSignupUser: [],
+      transitionPath: '',
     };
   }
 
   isLoggedIn() {
     return this[storeContext].isLoggedIn;
+  }
+
+  getTransitionPath() {
+    const transitionPath = this[storeContext].transitionPath;
+
+    this[storeContext].transitionPath = '';
+
+    return transitionPath;
   }
 
   emitChange() {
@@ -34,34 +42,16 @@ class AuthStore extends EventEmitter {
     this.removeListener(changeEvent, callback);
   }
 
-  _signup(email, password, firstName, lastName) {
-    this[storeContext].currentSignupUser.push({
-      firstName,
-      lastName,
-      email,
-      password,
-    });
+  _login() {
     this[storeContext].isLoggedIn = true;
-  }
-
-  _login(email, password) {
-    if (email === 'admin@admin' && password === 'admin') {
-      this[storeContext].isLoggedIn = true;
-      return;
-    }
-
-    const currentSignupUser = this[storeContext].currentSignupUser;
-
-    for (const signupUser of currentSignupUser) {
-      if (signupUser.email === email && signupUser.password === password) {
-        this[storeContext].isLoggedIn = true;
-        return;
-      }
-    }
   }
 
   _logout() {
     this[storeContext].isLoggedIn = false;
+  }
+
+  _storeTransitionPath(path) {
+    this[storeContext].transitionPath = path;
   }
 
 }
@@ -69,30 +59,38 @@ class AuthStore extends EventEmitter {
 const authStore = new AuthStore();
 
 // The dispatcher registration for the current store component.
-AppDispatcher.register((action) => {
+dispatcher.register((action) => {
   console.log(`Action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
 
   const actionType = action.actionType;
-  const email = action.email;
-  const password = action.password;
-  const firstName = action.firstName;
-  const lastName = action.lastName;
+  const data = action.data;
 
   switch (actionType) {
-    case authConstants.BASIC_LOGIN:
-      authStore._login(email, password);
+    case authConstants.IS_LOGGED_IN:
+      authStore._login();
 
       authStore.emitChange();
       break;
-    case authConstants.BASIC_SIGNUP:
-      authStore._signup(firstName, lastName, email, password);
-
-      authStore.emitChange();
-      break;
-    case authConstants.LOGOUT:
+    case authConstants.NOT_LOGGED_IN:
+    case authConstants.AUTH_CHECK_FAIL:
       authStore._logout();
 
       authStore.emitChange();
+      break;
+    case authConstants.ALREADY_SIGNED_UP:
+      // TODO
+
+      break;
+    case authConstants.SIGNUP_FAIL:
+      // TODO
+
+      break;
+    case authConstants.LOGOUT_FAIL:
+      // TODO
+
+      break;
+    case authConstants.IN_TRANSITION:
+      authStore._storeTransitionPath(data.path);
       break;
     default:
       break;

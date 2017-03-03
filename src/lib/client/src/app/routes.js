@@ -1,14 +1,22 @@
 import authStore from '../common/auth/stores/authStore';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import HomeApp from './home/components/HomeApp';
+import ForgotPasswordApp from './forgot-password/components/ForgotPasswordApp';
 import LoginApp from './login/components/LoginApp';
-import SignupApp from './signup/components/SignupApp';
+import RegisterApp from './register/';
+import SignupApp from './register/signup/components/SignupApp';
+import PaymentApp from './register/payment/components/PaymentApp';
+import AccountApp from './account/components/AccountApp';
+import VoucherApp from './voucher/components/VoucherApp';
+import ReferralApp from './referral/components/ReferralApp';
 import MemoApp from './memo/components/MemoApp';
 import BaseComponent from '../common/components/BaseComponent';
+import ScrollDiv from '../common/components/ScrollDiv';
 import React from 'react';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-scroll';
 
 class RootApp extends BaseComponent {
 
@@ -21,6 +29,19 @@ class RootApp extends BaseComponent {
 
   componentDidMount() {
     authStore.addChangeListener(this._onChange);
+
+    //if (!this.state.isLoggedIn) {
+    //  authActionCreator.authCheck();
+    //}
+  }
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    //if (!nextState.isLoggedIn && (
+    //  nextContext.router.isActive('/account') ||
+    //  nextContext.router.isActive('/register/payment')
+    //)) {
+    //  nextContext.router.push('/login');
+    //}
   }
 
   componentWillUnmount() {
@@ -31,84 +52,159 @@ class RootApp extends BaseComponent {
     const tabsShownWhenUserLoggedIn = [];
 
     if (this.state.isLoggedIn) {
-      /* eslint-disable jsx-a11y/no-static-element-interactions */
-      tabsShownWhenUserLoggedIn.push(
-        <NavItem key="0">
-          <div onClick={ RootApp._onLogout }>
-            Log out
-          </div>
-        </NavItem>
-      );
-      /* eslint-enable */
-    } else {
       tabsShownWhenUserLoggedIn.push((
-        <LinkContainer key="1" to="/signup">
-          <NavItem>Sign Up</NavItem>
+        <LinkContainer key="1" to="/account">
+          <NavItem>Account</NavItem>
         </LinkContainer>
       ), (
-        <LinkContainer key="2" to="/login">
-          <NavItem>Log In</NavItem>
+        <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: 'myself@todo.com' } } }>
+          <NavItem>Payment</NavItem>
         </LinkContainer>
+      ), (
+        <LinkContainer key="3" to="/voucher">
+          <NavItem>Voucher</NavItem>
+        </LinkContainer>
+      ), (
+        <LinkContainer key="4" to="/referral">
+          <NavItem>Referral</NavItem>
+        </LinkContainer>
+      ), (
+        /* eslint-disable jsx-a11y/no-static-element-interactions */
+        <NavItem key="5">
+          <span onClick={ RootApp._onLogout }>
+            Log Out
+          </span>
+        </NavItem>
+        /* eslint-enable */
+      ));
+    } else {
+      tabsShownWhenUserLoggedIn.push((
+        <li key="1">
+          <LinkContainer to="/">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="about"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              About
+            </Link>
+          </LinkContainer>
+        </li>
+      ), (
+        <li key="2">
+          <LinkContainer to="/">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="services"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Services
+            </Link>
+          </LinkContainer>
+        </li>
+      ), (
+        <li key="3">
+          <LinkContainer to="/">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="portfolio"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Featured
+            </Link>
+          </LinkContainer>
+        </li>
+      ), (
+        <li key="4">
+          <LinkContainer to="/">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="contact"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Contact
+            </Link>
+          </LinkContainer>
+        </li>
+      ), (
+        <li key="5">
+          <LinkContainer to="/register/signup">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="registration"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Signup
+            </Link>
+          </LinkContainer>
+        </li>
+      ), (
+        <li key="6">
+          <LinkContainer to="/login">
+            <Link
+              activeClass="active"
+              className="page-scroll"
+              to="login"
+              spy={ true }
+              smooth={ true }
+              duration={ 700 }
+              delay={ 300 }
+            >
+              Login
+            </Link>
+          </LinkContainer>
+        </li>
       ));
     }
 
     return (
-      <div>
-        {/*
-        <Navbar className="navbar-fixed-top header-custom">
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a>©Sugarpost 2016</a>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav className="navbar-right">
-              <LinkContainer to="/home">
-                <NavItem>Home</NavItem>
-              </LinkContainer>
-              { tabsShownWhenUserLoggedIn }
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        */}
+      <div id="root-app">
+        <ScrollDiv
+          activeClass="scroll"
+          className="navbar navbar-default navbar-fixed-top"
+          to="main"
+          spy={ true }
+          smooth={ true }
+        >
+          <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <LinkContainer to="/">
+                  <a className="page-scroll" href="/">Sugarpost</a>
+                </LinkContainer>
+              </Navbar.Brand>
+              <Navbar.Toggle>Menu</Navbar.Toggle>
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <ul className="nav navbar-nav navbar-right">
+                { tabsShownWhenUserLoggedIn }
+              </ul>
+            </Navbar.Collapse>
+          </Navbar>
+        </ScrollDiv>
 
         { this.props.children }
 
-        {/*
-        <div className="footer-hack" />
-        <Navbar className="navbar footer-custom">
-          <Navbar.Header>
-            <Navbar.Brand className="navbar-brand-custom">
-              <a>©Sugarpost 2016</a>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse className="navbar-collapse-custom">
-            <Nav className="navbar-right">
-              <NavItem>
-                // eslint-disable jsx-a11y/no-static-element-interactions, max-len
-                <div
-                  onClick={ RootApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
-                >
-                  <img src="/assets/images/instagram-icon.png" alt="instagram" />
-                </div>
-              </NavItem>
-              <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }>
-                  <img src="/assets/images/facebook-icon.png" alt="facebook" />
-                </div>
-              </NavItem>
-              <NavItem>
-                <div onClick={ RootApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }>
-                  // eslint-enable
-                  <img src="/assets/images/twitter-icon.png" alt="twitter" />
-                </div>
-              </NavItem>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        */}
       </div>
     );
   }
@@ -128,18 +224,9 @@ class RootApp extends BaseComponent {
   }
 
 }
-
-const clientRoutes = (
-  <Router history={ hashHistory }>
-    <Route path="/" component={ RootApp }>
-      <IndexRoute component={ HomeApp } />
-      <Route path="home" component={ HomeApp } />
-      <Route path="memo" component={ MemoApp } />
-      <Route path="signup" component={ SignupApp } />
-      <Route path="login" component={ LoginApp } />
-    </Route>
-  </Router>
-);
+RootApp.contextTypes = {
+  router: React.PropTypes.object.isRequired,
+};
 
 /*
  * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
@@ -149,6 +236,28 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
   };
+}
+
+const clientRoutes = (
+  <Router history={ browserHistory }>
+    <Route path="/" component={ RootApp }>
+      <IndexRoute component={ HomeApp } />
+      <Route path="register" component={ RegisterApp }>
+        <Route path="signup" component={ SignupApp } />
+        <Route path="payment" component={ PaymentApp } />
+      </Route>
+      <Route path="login" component={ LoginApp } />
+      <Route path="forgot-password" component={ ForgotPasswordApp } />
+      <Route path="account" component={ AccountApp } />
+      <Route path="voucher" component={ VoucherApp } onEnter={ inTransition } />
+      <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
+      <Route path="memo" component={ MemoApp } />
+    </Route>
+  </Router>
+);
+
+function inTransition(nextState, replace) {
+  authActionCreator.inTransition(nextState, replace);
 }
 
 export default clientRoutes;
