@@ -184,7 +184,7 @@
   position: absolute;
   opacity: 0;
   top: 0;
-  left: 100%;
+  right: 100%;
   white-space: nowrap;
   line-height: 70px;
   width: auto;
