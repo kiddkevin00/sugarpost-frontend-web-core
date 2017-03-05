@@ -29,7 +29,8 @@ class PaymentForm extends BaseComponent {
           validate={ PaymentForm._validateCouponCode }
           value={ this.state.referCode }
           onChange={ this._onChange.bind(this, 'referCode') } /* eslint-disable-line react/jsx-no-bind */
-          emptyMessage="No code?"
+          errorMessage="Refer code is invalid"
+          emptyMessage="Proceed with no refer code?"
         />
         <StripeCheckout
           token={ this._onToken }

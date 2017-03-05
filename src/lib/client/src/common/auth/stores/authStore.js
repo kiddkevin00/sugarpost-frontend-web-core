@@ -14,12 +14,17 @@ class AuthStore extends EventEmitter {
     // All internal store data.
     this[storeContext] = {
       isLoggedIn: false,
+      user: {},
       transitionPath: '',
     };
   }
 
   isLoggedIn() {
     return this[storeContext].isLoggedIn;
+  }
+
+  getUser() {
+    return this[storeContext].user;
   }
 
   getTransitionPath() {
@@ -42,7 +47,11 @@ class AuthStore extends EventEmitter {
     this.removeListener(changeEvent, callback);
   }
 
-  _login() {
+  _login(user) {
+    if (user) {
+      this[storeContext].user = user;
+    }
+
     this[storeContext].isLoggedIn = true;
   }
 
@@ -65,7 +74,7 @@ dispatcher.register((action) => {
 
   switch (actionType) {
     case authConstants.IS_LOGGED_IN:
-      authStore._login();
+      authStore._login(data && data.user);
 
       authStore.emitChange();
 

@@ -19,5 +19,12 @@ class FormInputError extends BaseComponent {
   }
 
 }
+FormInputError.propTypes = {
+  visible: React.PropTypes.bool.isRequired,
+  errorMessage: React.PropTypes.string,
+};
+FormInputError.defaultProps = {
+  errorMessage: 'Unknown error',
+};
 
 export default FormInputError;
