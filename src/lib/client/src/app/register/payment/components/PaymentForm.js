@@ -52,6 +52,7 @@ class PaymentForm extends BaseComponent {
           triggerEvent="onClick"
         >
           <button
+            disabled={ !PaymentForm._validateCouponCode(this.state.referCode) }
             className="btn btn-block"
             type="button"
             onClick={ this._onClick }
@@ -80,7 +81,7 @@ class PaymentForm extends BaseComponent {
   }
 
   _onClick(event) {
-    if (this.state.referCode && !PaymentForm._validateCouponCode(this.state.referCode)) {
+    if (!PaymentForm._validateCouponCode(this.state.referCode)) {
       event.stopPropagation();
     }
   }
@@ -90,6 +91,10 @@ class PaymentForm extends BaseComponent {
   }
 
   static _validateCouponCode(inputText) {
+    if (inputText.trim().length === 0) {
+      return true;
+    }
+
     try {
       return !!couponCode.validate(inputText, {
         parts: 1,
