@@ -65,7 +65,7 @@ class RootApp extends BaseComponent {
           <NavItem>Voucher</NavItem>
         </LinkContainer>
       ), (
-        <LinkContainer key="4" to="/referral">
+        <LinkContainer key="4" to="/register/referral">
           <NavItem>Referral</NavItem>
         </LinkContainer>
       ), (
@@ -245,12 +245,12 @@ const clientRoutes = (
       <Route path="register" component={ RegisterApp }>
         <Route path="signup" component={ SignupApp } />
         <Route path="payment" component={ PaymentApp } />
+        <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
       </Route>
       <Route path="login" component={ LoginApp } />
       <Route path="forgot-password" component={ ForgotPasswordApp } />
       <Route path="account" component={ AccountApp } />
       <Route path="voucher" component={ VoucherApp } onEnter={ inTransition } />
-      <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
       <Route path="memo" component={ MemoApp } />
     </Route>
   </Router>
