@@ -18,13 +18,9 @@ class FormInput extends BaseComponent {
       valid: true,
       focus: false,
       errorMessage: props.emptyMessage,
-      useValidator: props.useValidator,
-      validatorVisible: false,
-      iconsVisible: !props.useValidator, // TODO
-      minCharacters: props.minCharacters,
-      requireCapitals: props.requireCapitals,
-      requireNumbers: props.requireNumbers,
-      forbiddenWords: props.forbiddenWords,
+      isErrorVisible: false,
+      isValidatorVisible: false,
+      isIconsVisible: !props.useValidator, // TODO
       allValidatorValid: false,
       isEachValidatorValid: {
         minChars: false,
@@ -37,16 +33,21 @@ class FormInput extends BaseComponent {
 
   componentWillReceiveProps(newProps) {
     // Performs update only when the new value is not empty.
-    if (newProps.value) {
-      if (newProps.useValidator) {
-        this._checkRules(newProps.value);
-      } else {
-        this._validateInput(newProps.value);
+    if (typeof newProps.value === 'string') {
+      if (newProps.value.length) {
+        if (newProps.useValidator) {
+          this._checkRules(newProps.value);
+        } else {
+          this._validateInput(newProps.value);
+        }
+
+        this.setState({
+          empty: false,
+        });
       }
 
       this.setState({
         value: newProps.value,
-        empty: false,
       });
     }
   }
@@ -63,15 +64,15 @@ class FormInput extends BaseComponent {
     });
     let validator;
 
-    if (this.state.useValidator) {
+    if (this.props.useValidator) {
       validator = (
         <PasswordValidator
-          visible={ this.state.validatorVisible }
+          visible={ this.state.isValidatorVisible }
           name={ this.props.text }
           value={ this.state.value }
           validData={ this.state.isEachValidatorValid }
           valid={ this.state.allValidatorValid }
-          forbiddenWords={ this.state.forbiddenWords }
+          forbiddenWords={ this.props.forbiddenWords }
           minCharacters={ this.props.minCharacters }
           requireCapitals={ this.props.requireCapitals }
           requireNumbers={ this.props.requireNumbers }
@@ -97,7 +98,7 @@ class FormInput extends BaseComponent {
           type={ this.props.type }
         />
         <FormInputError
-          visible={ this.state.errorVisible }
+          visible={ this.state.isErrorVisible }
           errorMessage={ this.state.errorMessage }
         />
         { validator }
@@ -123,12 +124,12 @@ class FormInput extends BaseComponent {
   _handleFocus() {
     this.setState({
       focus: true,
-      validatorVisible: true,
+      isValidatorVisible: true,
     });
 
     if (this.props.useValidator) {
       this.setState({
-        errorVisible: false,
+        isErrorVisible: false,
       });
     }
   }
@@ -136,8 +137,8 @@ class FormInput extends BaseComponent {
   _handleBlur() {
     this.setState({
       focus: false,
-      errorVisible: !this.state.valid,
-      validatorVisible: false,
+      isErrorVisible: !this.state.valid,
+      isValidatorVisible: false,
     });
   }
 
@@ -146,7 +147,7 @@ class FormInput extends BaseComponent {
     if (this.props.validate(inputText)) {
       this.setState({
         valid: true,
-        errorVisible: false,
+        isErrorVisible: false,
       });
     } else {
       this.setState({
@@ -177,20 +178,20 @@ class FormInput extends BaseComponent {
   }
 
   _checkMinChars(inputText) {
-    return inputText.length >= Number(this.state.minCharacters);
+    return inputText.length >= Number(this.props.minCharacters);
   }
 
   _checkCaptialLetters(inputText) {
-    return inputText.replace(/[^A-Z]/g, '').length >= Number(this.state.requireCapitals);
+    return inputText.replace(/[^A-Z]/g, '').length >= Number(this.props.requireCapitals);
   }
 
 
   _checkNumbers(inputText) {
-    return inputText.replace(/[^\d]/g, '').length >= Number(this.state.requireNumbers);
+    return inputText.replace(/[^\d]/g, '').length >= Number(this.props.requireNumbers);
   }
 
   _checkWords(inputText) {
-    return this.state.forbiddenWords.indexOf(inputText) < 0;
+    return this.props.forbiddenWords.indexOf(inputText) < 0;
   }
 
   isValid() {
@@ -201,7 +202,7 @@ class FormInput extends BaseComponent {
 
       this.setState({
         valid: isValid,
-        errorVisible: !isValid,
+        isErrorVisible: !isValid,
       });
     }
 
@@ -228,6 +229,9 @@ FormInput.propTypes = {
   useValidator: React.PropTypes.bool,
   emptyMessage: React.PropTypes.string,
   errorMessage: React.PropTypes.string,
+  minCharacters: React.PropTypes.number,
+  requireCapitals: React.PropTypes.number,
+  requireNumbers: React.PropTypes.number,
   forbiddenWords: React.PropTypes.arrayOf(React.PropTypes.string),
   text: React.PropTypes.string,
   type: React.PropTypes.string,
@@ -237,6 +241,9 @@ FormInput.defaultProps = {
   useValidator: false,
   emptyMessage: 'Empty',
   errorMessage: 'Invalid',
+  minCharacters: 8,
+  requireCapitals: 1,
+  requireNumbers: 1,
   forbiddenWords: ['password', 'user'],
   text: 'Unknown Field',
   type: 'text',

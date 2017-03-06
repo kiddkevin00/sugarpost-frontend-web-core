@@ -4,27 +4,14 @@ import classNames from 'classnames';
 
 class PasswordValidator extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: null,
-      minCharacters: props.minCharacters,
-      requireCapitals: props.requireCapitals,
-      requireNumbers: props.requireNumbers,
-      forbiddenWords: props.forbiddenWords,
-      name: props.name,
-    };
-  }
-
   render() {
     const validatorClass = classNames({
       password_validator: true,
       visible: this.props.visible,
       invisible: !this.props.visible,
     });
-    const forbiddenWords = this.state.forbiddenWords.map((word, i) => (
-      <span key={ i } className="bad_word">
+    const forbiddenWordSpans = this.props.forbiddenWords.map((word, index) => (
+      <span key={ index } className="bad_word">
         &quot;{ word }&quot;
       </span>
     ));
@@ -51,25 +38,23 @@ class PasswordValidator extends BaseComponent {
           <ul className="rules_list">
             <li className={ classNames({ valid: this.props.validData.minChars }) }>
 
-              <span className="error_message">{this.state.minCharacters} characters minimum</span>
+              <span className="error_message">{ this.props.minCharacters } characters minimum</span>
             </li>
-
             <li className={ classNames({ valid: this.props.validData.capitalLetters }) }>
 
               <span className="error_message">
-                Contains at least {this.state.requireCapitals} capital letter
+                Contains at least { this.props.requireCapitals } capital letter
               </span>
             </li>
-
             <li className={ classNames({ valid: this.props.validData.numbers }) }>
 
               <span className="error_message">
-                Contains at least {this.state.requireNumbers} number
+                Contains at least { this.props.requireNumbers } number
               </span>
             </li>
             <li className={ classNames({ valid: this.props.validData.words }) }>
 
-              <span className="error_message">Can&#39;t be { forbiddenWords }</span>
+              <span className="error_message">Can&#39;t be { forbiddenWordSpans }</span>
             </li>
           </ul>
         </div>
@@ -89,16 +74,16 @@ PasswordValidator.propTypes = {
       words: React.PropTypes.bool.isRequired,
     })
     .isRequired,
-  minCharacters: React.PropTypes.string,
-  requireCapitals: React.PropTypes.string,
-  requireNumbers: React.PropTypes.string,
+  minCharacters: React.PropTypes.number,
+  requireCapitals: React.PropTypes.number,
+  requireNumbers: React.PropTypes.number,
   forbiddenWords: React.PropTypes.arrayOf(React.PropTypes.string),
   name: React.PropTypes.string,
 };
 PasswordValidator.defaultProps = {
-  minCharacters: '8',
-  requireCapitals: '1',
-  requireNumbers: '1',
+  minCharacters: 8,
+  requireCapitals: 1,
+  requireNumbers: 1,
   forbiddenWords: ['password'],
   name: 'Unknown',
 };

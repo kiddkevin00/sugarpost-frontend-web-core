@@ -16,7 +16,7 @@ function setupRoutes(app) {
       name: 'bulletin-board-system-frontend',
       version: 1,
       status: 200,
-      dateStamp: new Date().toString(),
+      dateStamp: (new Date()).toString(),
       hostname: 'host 2',
     },
     dependencies: {
@@ -25,7 +25,7 @@ function setupRoutes(app) {
           name: 'bulletin-board-system-backend',
           version: 1,
           status: 200,
-          dateStamp: new Date().toString(),
+          dateStamp: (new Date()).toString(),
           hostname: 'host 1',
           uptime: 123,
         },

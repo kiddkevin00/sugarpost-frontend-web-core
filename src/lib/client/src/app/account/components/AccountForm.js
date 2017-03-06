@@ -1,24 +1,31 @@
-import FormInput from '../../../../common/components/FormInput';
-import BaseComponent from '../../../../common/components/BaseComponent';
+import FormInput from '../../../common/components/FormInput';
+import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
 
-class SignupForm extends BaseComponent {
+class AccountForm extends BaseComponent {
 
   constructor(props) {
     super(props);
 
-    this._bind('_onClick', 'isConfirmPasswordMatched');
+    this._bind('_onClick', '_onReset', 'isConfirmPasswordMatched');
     this.state = {
-      fullName: '',
-      email: '',
+      fullName: this.props.fullName,
+      email: this.props.email,
       password: '',
       confirmPassword: '',
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      fullName: nextProps.fullName,
+      email: nextProps.email,
+    });
+  }
+
   render() {
     return (
-      <form role="form">
+      <form className="form-horizontal" role="form">
         <FormInput
           text="Full Name"
           ref={ (formInputObj) => { this.fullName = formInputObj; } }
@@ -37,7 +44,7 @@ class SignupForm extends BaseComponent {
           emptyMessage="Email can't be empty"
         />
         <FormInput
-          text="Password"
+          text="New Password"
           type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
           value={ this.state.password }
@@ -50,7 +57,7 @@ class SignupForm extends BaseComponent {
           emptyMessage="Password is invalid"
         />
         <FormInput
-          text="Confirm Password"
+          text="Confirm New Password"
           type="password"
           ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
           validate={ this.isConfirmPasswordMatched }
@@ -59,15 +66,25 @@ class SignupForm extends BaseComponent {
           emptyMessage="Please confirm your password"
           errorMessage="Passwords don't match"
         />
-        <button
-          onClick={ this._onClick }
-          className="btn btn-block"
-          type="button"
-        >
-          Sign Me Up!
-        </button>
+        <div className="form-group">
+          <div className="col-sm-6">
+            <input
+              onClick={ this._onClick }
+              type="button"
+              className="btn btn-primary btn-block"
+              value="Save Changes"
+            />
+          </div>
+          <div className="col-sm-6">
+            <input
+              onClick={ this._onReset }
+              type="reset"
+              className="btn btn-default btn-block"
+              value="Cancel"
+            />
+          </div>
+        </div>
       </form>
-
     );
   }
 
@@ -93,13 +110,28 @@ class SignupForm extends BaseComponent {
     }
   }
 
+  _onReset() {
+    this.setState({
+      fullName: this.props.fullName,
+      email: this.props.email,
+      password: '',
+      confirmPassword: '',
+    });
+  }
+
   isConfirmPasswordMatched(inputText) {
     return inputText === this.state.password;
   }
 
 }
-SignupForm.propTypes = {
+AccountForm.defa = {
   onSubmit: React.PropTypes.func.isRequired,
+  fullName: React.PropTypes.string,
+  email: React.PropTypes.string,
+};
+AccountForm.defaultProps = {
+  fullName: '',
+  email: '',
 };
 
-export default SignupForm;
+export default AccountForm;

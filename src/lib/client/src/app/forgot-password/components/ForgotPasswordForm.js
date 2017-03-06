@@ -22,6 +22,8 @@ class ForgotPasswordForm extends BaseComponent {
           validate={ FormInput.validateEmailField }
           value={ this.state.email }
           onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+          errorMessage="Email is invalid"
+          emptyMessage="Email can't be empty"
         />
         <button
           className="btn btn-block"

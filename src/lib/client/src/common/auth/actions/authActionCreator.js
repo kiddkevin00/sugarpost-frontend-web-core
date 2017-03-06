@@ -19,7 +19,7 @@ const authActionCreator = {
           dispatcher.dispatch({
             actionType: authConstants.IS_LOGGED_IN,
           });
-        } else if (res.getNthData(0).status === 'REQUIRED_FIELDS_NOT_UNIQUE') { // TODO
+        } else if (res.getNthData(0).status === 'REQUIRED_FIELDS_NOT_UNIQUE') {
           dispatcher.dispatch({
             actionType: authConstants.ALREADY_SIGNED_UP,
             data: res.getNthData(0).detail,
@@ -51,6 +51,9 @@ const authActionCreator = {
         if (res.getNthData(0).success) {
           dispatcher.dispatch({
             actionType: authConstants.IS_LOGGED_IN,
+            data: {
+              user: res.getNthData(0).detail,
+            },
           });
         } else {
           dispatcher.dispatch({
@@ -102,6 +105,9 @@ const authActionCreator = {
           if (res.getNthData(0).success) {
             return dispatcher.dispatch({
               actionType: authConstants.IS_LOGGED_IN,
+              data: {
+                user: res.getNthData(0).detail,
+              },
             });
           }
           return dispatcher.dispatch({

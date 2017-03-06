@@ -57,7 +57,7 @@ class RootApp extends BaseComponent {
           <NavItem>Account</NavItem>
         </LinkContainer>
       ), (
-        <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: 'myself@todo.com' } } }>
+        <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: this.state.user.email } } }>
           <NavItem>Payment</NavItem>
         </LinkContainer>
       ), (
@@ -235,6 +235,7 @@ RootApp.contextTypes = {
 function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
+    user: authStore.getUser(),
   };
 }
 
@@ -249,7 +250,7 @@ const clientRoutes = (
       </Route>
       <Route path="login" component={ LoginApp } />
       <Route path="forgot-password" component={ ForgotPasswordApp } />
-      <Route path="account" component={ AccountApp } />
+      <Route path="account" component={ AccountApp } onEnter={ inTransition } />
       <Route path="voucher" component={ VoucherApp } onEnter={ inTransition } />
       <Route path="memo" component={ MemoApp } />
     </Route>

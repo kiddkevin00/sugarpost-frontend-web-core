@@ -23,6 +23,8 @@ class LoginForm extends BaseComponent {
           validate={ FormInput.validateEmailField }
           value={ this.state.email }
           onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+          errorMessage="Email is invalid"
+          emptyMessage="Email can't be empty"
         />
         <FormInput
           text="Password"
@@ -30,6 +32,8 @@ class LoginForm extends BaseComponent {
           ref={ (formInputObj) => { this.password = formInputObj; } }
           value={ this.state.password }
           onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
+          errorMessage="Password is invalid"
+          emptyMessage="Password can't be empty"
         />
         <button
           className="btn btn-block"

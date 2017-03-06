@@ -29,7 +29,8 @@ class PaymentForm extends BaseComponent {
           validate={ PaymentForm._validateCouponCode }
           value={ this.state.referCode }
           onChange={ this._onChange.bind(this, 'referCode') } /* eslint-disable-line react/jsx-no-bind */
-          emptyMessage="No code?"
+          errorMessage="Refer code is invalid"
+          emptyMessage="Proceed with no refer code?"
         />
         <StripeCheckout
           token={ this._onToken }
@@ -51,6 +52,7 @@ class PaymentForm extends BaseComponent {
           triggerEvent="onClick"
         >
           <button
+            disabled={ !PaymentForm._validateCouponCode(this.state.referCode) }
             className="btn btn-block"
             type="button"
             onClick={ this._onClick }
@@ -79,7 +81,7 @@ class PaymentForm extends BaseComponent {
   }
 
   _onClick(event) {
-    if (this.state.referCode && !PaymentForm._validateCouponCode(this.state.referCode)) {
+    if (!PaymentForm._validateCouponCode(this.state.referCode)) {
       event.stopPropagation();
     }
   }
@@ -89,6 +91,10 @@ class PaymentForm extends BaseComponent {
   }
 
   static _validateCouponCode(inputText) {
+    if (inputText.trim().length === 0) {
+      return true;
+    }
+
     try {
       return !!couponCode.validate(inputText, {
         parts: 1,
