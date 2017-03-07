@@ -1,10 +1,9 @@
-#referral-app {
-    min-height: 100%;
-    width: 100%;
-    background-image: url("/assets/images/v4_background.png");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    background-position: center;
+#referral-app li.active>a {
+  background-color: transparent;
+  border: 1px;
+}
+
+#referral-app .thumbnail {
+  margin-top: 20px;
+  border: none;
 }

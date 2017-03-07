@@ -2,6 +2,9 @@ import authStore from '../../../common/auth/stores/authStore';
 import authActionCreator from '../../../common/auth/actions/authActionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
+import ReferralDiv from './ReferralDiv';
+import { Thumbnail, Form, FormGroup } from 'react-bootstrap';
+
 
 class ReferralApp extends BaseComponent {
 
@@ -33,17 +36,21 @@ class ReferralApp extends BaseComponent {
   render() {
     return (
       <div id="referral-app">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <div className="header-placeholder-custom" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h1>Only logged-in user can see this REFERRAL page!</h1>
-            </div>
-          </div>
+        <div className="form-top">
+          <Thumbnail src="/assets/images/sugarpost-logo.png" alt="242x200">
+            <Form horizontal={ true }>
+              <FormGroup controlId="formHorizontalEmail">
+                <span>Your Refer Code: </span>
+                <input type="text" readOnly={ true } placeholder={ this.state.referLink } />
+              </FormGroup>
+              <FormGroup>
+                <ReferralDiv
+                  email={ this.state.userEmail }
+                />
+              </FormGroup>
+            </Form>
+
+          </Thumbnail>
         </div>
       </div>
     );
@@ -65,6 +72,8 @@ ReferralApp.contextTypes = {
 function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
+    userEmail: 'vivi@123.com',
+    referLink: 'vivirefer.wqe'
   };
 }
 
