@@ -67,7 +67,7 @@ class LoginForm extends BaseComponent {
   _onSubmit(event) {
     // Prevents browser's default navigation (page refresh).
     event.preventDefault();
-    
+
     if (this.email.isValid() && this.password.isValid()) {
       this.props.onSubmit(event, this.state.email, this.state.password);
     } else {

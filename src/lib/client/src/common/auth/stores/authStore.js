@@ -106,9 +106,9 @@ dispatcher.register((action) => {
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
-    
+
     case authConstants.ALREADY_SIGNED_UP:
-      authStore._showError('signup', 'That email address is already in use. Please log in.')
+      authStore._showError('signup', 'That email address is already in use. Please log in.');
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);

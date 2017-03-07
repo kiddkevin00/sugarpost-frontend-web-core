@@ -255,7 +255,6 @@ class AccountApp extends BaseComponent {
     const fullName = _fullName && _fullName.trim();
 
     // TODO
-    
   }
 
 }
