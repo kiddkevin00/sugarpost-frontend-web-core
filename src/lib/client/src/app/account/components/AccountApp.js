@@ -182,17 +182,13 @@ class AccountApp extends BaseComponent {
               <div className="panel panel-default">
                 <div className="panel-heading"><h4>Profile</h4></div>
                 <div className="panel-body">
-                  <div className="col-lg-offset-1 col-lg-10 col-lg-xs-12 personal-info">
-                    <div className="alert alert-info alert-dismissable">
-                      <a className="panel-close close" data-dismiss="alert">×</a>
-                      <i className="fa fa-coffee" />
-                      This is an <strong>.alert</strong>. Use this to show important messages to
-                      the user.
-                    </div>
+                  <div className="col-lg-offset-1 col-lg-10 col-lg-xs-12">
                     <AccountForm
                       onSubmit={ AccountApp._onSubmit }
                       fullName={ this.state.user.fullName }
                       email={ this.state.user.email }
+                      isErrorVisible={ this.state.error.isVisible }
+                      errorMsg={ this.state.error.message }
                     />
                   </div>
                 </div>
@@ -259,7 +255,7 @@ class AccountApp extends BaseComponent {
     const fullName = _fullName && _fullName.trim();
 
     // TODO
-
+    
   }
 
 }
@@ -275,6 +271,7 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
     user: authStore.getUser(),
+    error: authStore.getError('account'),
   };
 }
 

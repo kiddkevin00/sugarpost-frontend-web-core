@@ -43,7 +43,11 @@ class SignupApp extends BaseComponent {
           </div>
         </div>
         <div className="form-bottom">
-          <SignupForm onSubmit={ this._onSubmit } />
+          <SignupForm
+            onSubmit={ this._onSubmit }
+            isErrorVisible={ this.state.error.isVisible }
+            errorMsg={ this.state.error.message }
+          />
         </div>
       </div>
     );
@@ -74,6 +78,7 @@ SignupApp.contextTypes = {
 function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
+    error: authStore.getError('signup'),
   };
 }
 

@@ -1,6 +1,7 @@
 import FormInput from '../../../common/components/FormInput';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
+import classNames from 'classnames';
 
 class AccountForm extends BaseComponent {
 
@@ -24,8 +25,20 @@ class AccountForm extends BaseComponent {
   }
 
   render() {
+    const alertBoxClasses = classNames({
+      alert: true,
+      'alert-danger': true,
+      'alert-dismissible': true,
+      collapse: !this.props.isErrorVisible,
+    });
+
     return (
       <form className="form-horizontal" role="form">
+        <div className={ alertBoxClasses } role="alert">
+          <a className="close" data-dismiss="alert">×</a>
+          <i className="fa fa-exclamation-triangle" />
+          &nbsp; { this.props.errorMsg }
+        </div>
         <FormInput
           text="Full Name"
           ref={ (formInputObj) => { this.fullName = formInputObj; } }
@@ -124,14 +137,17 @@ class AccountForm extends BaseComponent {
   }
 
 }
-AccountForm.defa = {
+AccountForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
   fullName: React.PropTypes.string,
   email: React.PropTypes.string,
+  isErrorVisible: React.PropTypes.bool.isRequired,
+  errorMsg: React.PropTypes.string,
 };
 AccountForm.defaultProps = {
   fullName: '',
   email: '',
+  errorMsg: 'Oops! Something went wrong. Please try again.',
 };
 
 export default AccountForm;
