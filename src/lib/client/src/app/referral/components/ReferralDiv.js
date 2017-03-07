@@ -1,11 +1,13 @@
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
 import { ShareButtons, generateShareIcon } from 'react-share';
+import Icon from '../../../common/components/Icon';
 
 
 class ReferralDiv extends BaseComponent {
   constructor(props) {
     super(props);
+    this._bind('_onClick');
     this.state = {
       submitText: 'Send',
     };
@@ -36,10 +38,18 @@ class ReferralDiv extends BaseComponent {
             </TwitterShareButton>
           </li>
           <li>
+            <div onClick={ this._onClick }>
+              <Icon iconType={ 'refer-mail' } />
+            </div>
           </li>
         </ul>
       </div>
     )
+  }
+
+  _onClick() {
+    // this will open mail modal
+    console.log('herere in on click')
   }
 }
 
