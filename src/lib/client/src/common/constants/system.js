@@ -29,7 +29,7 @@ exports.ERROR_NAMES = {
 exports.ERROR_MSG = {
   RESPONSE_OBJ_PARSE_ERROR: 'The response object is not able to deserialize back to an instance of Standard Response Wrapper.',
   ERROR_OBJ_PARSE_ERROR: 'The error object is not able to deserialize back to an instance of Standard Error Wrapper.',
-  PROXY_ERROR: 'An error occurred in HTTP proxy.',
+  PROXY_ERROR: 'An error occurred in HTTP proxy module.',
 };
 
 exports.HTTP_METHODS = {

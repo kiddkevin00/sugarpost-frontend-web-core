@@ -1,6 +1,7 @@
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
+import classNames from 'classnames';
 
 class SignupForm extends BaseComponent {
 
@@ -17,8 +18,20 @@ class SignupForm extends BaseComponent {
   }
 
   render() {
+    const alertBoxClasses = classNames({
+      alert: true,
+      'alert-danger': true,
+      'alert-dismissible': true,
+      collapse: !this.props.isErrorVisible,
+    });
+
     return (
       <form role="form">
+        <div className={ alertBoxClasses } role="alert">
+          <a className="close" data-dismiss="alert">×</a>
+          <i className="fa fa-exclamation-triangle" />
+          &nbsp; { this.props.errorMsg }
+        </div>
         <FormInput
           text="Full Name"
           ref={ (formInputObj) => { this.fullName = formInputObj; } }
@@ -100,6 +113,11 @@ class SignupForm extends BaseComponent {
 }
 SignupForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
+  isErrorVisible: React.PropTypes.bool.isRequired,
+  errorMsg: React.PropTypes.string,
+};
+SignupForm.defaultProps = {
+  errorMsg: 'Oops! Something went wrong. Please try again.',
 };
 
 export default SignupForm;

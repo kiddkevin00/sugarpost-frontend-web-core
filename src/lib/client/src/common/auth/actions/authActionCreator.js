@@ -17,7 +17,10 @@ const authActionCreator = {
 
         if (res.getNthData(0).success) {
           dispatcher.dispatch({
-            actionType: authConstants.IS_LOGGED_IN,
+            actionType: authConstants.SIGNUP_SUCCEED,
+            data: {
+              user: res.getNthData(0).detail,
+            },
           });
         } else if (res.getNthData(0).status === 'REQUIRED_FIELDS_NOT_UNIQUE') {
           dispatcher.dispatch({
@@ -50,14 +53,14 @@ const authActionCreator = {
 
         if (res.getNthData(0).success) {
           dispatcher.dispatch({
-            actionType: authConstants.IS_LOGGED_IN,
+            actionType: authConstants.BASIC_LOGIN_SUCCEED,
             data: {
               user: res.getNthData(0).detail,
             },
           });
         } else {
           dispatcher.dispatch({
-            actionType: authConstants.NOT_LOGGED_IN,
+            actionType: authConstants.BASIC_LOGIN_FAIL,
           });
         }
       })
@@ -78,11 +81,11 @@ const authActionCreator = {
 
         if (res.getNthData(0).success) {
           dispatcher.dispatch({
-            actionType: authConstants.NOT_LOGGED_IN,
+            actionType: authConstants.LOGOUT_SUCCEED,
           });
         } else {
           dispatcher.dispatch({
-            actionType: authConstants.IS_LOGGED_IN,
+            actionType: authConstants.LOGOUT_FAIL,
           });
         }
       })
@@ -164,9 +167,9 @@ const authActionCreator = {
               data: { path: pathname },
             });
             replace({ pathname: '/login' });
-          }
 
-          return;
+            return;
+          }
         }
         dispatcher.dispatch({
           actionType: authConstants.AUTH_CHECK_FAIL,

@@ -60,7 +60,11 @@ class LoginApp extends BaseComponent {
                     </div>
                   </div>
                   <div className="form-bottom">
-                    <LoginForm onSubmit={ LoginApp._onSubmit } />
+                    <LoginForm
+                      onSubmit={ LoginApp._onSubmit }
+                      isErrorVisible={ this.state.error.isVisible }
+                      errorMsg={ this.state.error.message }
+                    />
                     <br />
                     <a href="/forgot-password" className="center-block text-center">
                       Forgot password?
@@ -81,9 +85,6 @@ class LoginApp extends BaseComponent {
   }
 
   static _onSubmit(event, email, password) {
-    // Prevents browser's default navigation (page refresh).
-    event.preventDefault();
-
     authActionCreator.login(email, password);
   }
 
@@ -99,6 +100,7 @@ LoginApp.contextTypes = {
 function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
+    error: authStore.getError('login'),
   };
 }
 
