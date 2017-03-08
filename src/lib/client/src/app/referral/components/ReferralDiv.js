@@ -1,15 +1,16 @@
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
 import { ShareButtons, generateShareIcon } from 'react-share';
+import { Modal } from 'react-bootstrap';
 import Icon from '../../../common/components/Icon';
 
 
 class ReferralDiv extends BaseComponent {
   constructor(props) {
     super(props);
-    this._bind('_onClick');
+    this._bind('_openModal', 'closeModal');
     this.state = {
-      submitText: 'Send',
+      modalIsOpen: false,
     };
   }
 
@@ -19,6 +20,7 @@ class ReferralDiv extends BaseComponent {
     const TwitterIcon = generateShareIcon('twitter');
     const shareUrl = 'https://www.mysugarpost.com/'
     const title = "Here's $2.5 to spend at MYSUGAROPST"
+
     return (
       <div>
         <p>Share my codes with friend's via social media</p>
@@ -38,8 +40,26 @@ class ReferralDiv extends BaseComponent {
             </TwitterShareButton>
           </li>
           <li>
-            <div onClick={ this._onClick }>
-              <Icon iconType={ 'refer-mail' } />
+            <div>
+              <button
+                type="button"
+                className="btn-link"
+                onClick={ this._openModal }
+              ><Icon iconType={ 'refer-mail' } />
+              </button>
+              <div className="static-modal">
+                <Modal show={ this.state.modalIsOpen} onHide={this.closeModal}>
+                  <Modal.Header>
+                    <Modal.Title>Earn Credit for every Friend you refer!</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    One fine body...
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <button className="btn" onClick={this.closeModal}>Close</button>
+                  </Modal.Footer>
+                </Modal>
+              </div>
             </div>
           </li>
         </ul>
@@ -47,9 +67,11 @@ class ReferralDiv extends BaseComponent {
     )
   }
 
-  _onClick() {
-    // this will open mail modal
-    console.log('herere in on click')
+  _openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+  closeModal() {
+    this.setState({ modalIsOpen: false });
   }
 }
 
