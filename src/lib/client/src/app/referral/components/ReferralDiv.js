@@ -22,7 +22,7 @@ class ReferralDiv extends BaseComponent {
     const title = "Here's $2.5 to spend at MYSUGAROPST"
 
     return (
-      <div>
+      <div className="refer-div">
         <p>Share my codes with friend's via social media</p>
         <ul className="list-inline">
           <li>
@@ -43,7 +43,7 @@ class ReferralDiv extends BaseComponent {
             <div>
               <button
                 type="button"
-                className="btn-link"
+                className="btn-link btn-mail-modal"
                 onClick={ this._openModal }
               ><Icon iconType={ 'refer-mail' } />
               </button>
