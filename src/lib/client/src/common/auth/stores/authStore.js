@@ -41,7 +41,13 @@ class AuthStore extends EventEmitter {
   }
 
   getError(type) {
-    return this[storeContext][`${type}Error`];
+    const error = this[storeContext][`${type}Error`];
+
+    if (typeof error.message !== 'string') {
+      error.message = JSON.stringify(error.message, null, 2);
+    }
+
+    return error;
   }
 
   getTransitionPath() {
@@ -65,9 +71,7 @@ class AuthStore extends EventEmitter {
   }
 
   _login(user) {
-    if (user) {
-      this[storeContext].user = user;
-    }
+    this[storeContext].user = user;
 
     this[storeContext].isLoggedIn = true;
     Object.assign(this[storeContext].loginError, { message: defaultErrorMsg, isVisible: false });
@@ -94,8 +98,7 @@ const authStore = new AuthStore();
 // The dispatcher registration for the current store component.
 dispatcher.register((action) => {
   const actionType = action.actionType;
-  const data = typeof action.data === 'object' ?
-    JSON.stringify(action.data, null, 2) : action.data;
+  const data = action.data;
 
   switch (actionType) {
     case authConstants.SIGNUP_SUCCEED:

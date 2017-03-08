@@ -36,17 +36,21 @@ class ReferralApp extends BaseComponent {
     return (
       <div id="referral-app">
         <div className="form-top">
-          <Thumbnail src="/assets/images/sugarpost-logo.png" alt="242x200">
+          <Thumbnail src="/assets/images/sugarpost-logo.png" alt="">
             <Form horizontal={ true }>
-              <FormGroup controlId="formHorizontalEmail">
-                <span>Your Refer Code: </span>
-                <input type="text" readOnly={ true } placeholder={ this.state.referLink } />
-              </FormGroup>
               <FormGroup>
-                <ReferralSection email={ this.state.userEmail } />
+                <span>Your Refer Code: &nbsp;</span>
+                <input type="text" readOnly={ true } placeholder={ this.state.user.referCode } />
+              </FormGroup>
+              <br />
+              <FormGroup>
+                <ReferralSection
+                  myEmail={ this.state.user.email }
+                  myFullName={ this.state.user.fullName }
+                  myReferCode={ this.state.user.referCode }
+                />
               </FormGroup>
             </Form>
-
           </Thumbnail>
         </div>
       </div>
@@ -69,8 +73,7 @@ ReferralApp.contextTypes = {
 function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
-    userEmail: 'vivi@123.com',
-    referLink: 'vivirefer.wqe',
+    user: authStore.getUser(),
   };
 }
 

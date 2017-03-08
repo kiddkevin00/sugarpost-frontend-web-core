@@ -1,9 +1,8 @@
-#referral-app li.active>a {
-  background-color: transparent;
-  border: 1px;
+#referral-app .thumbnail {
+    border: none;
 }
 
-#referral-app .thumbnail {
-  margin-top: 20px;
-  border: none;
+#referral-app .thumbnail img {
+    margin-top: 20px;
+    margin-bottom: 30px;
 }

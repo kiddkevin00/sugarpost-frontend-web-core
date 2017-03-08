@@ -18,6 +18,7 @@ const paymentActionCreator = {
         if (res.getNthData(0).success) {
           dispatcher.dispatch({
             actionType: paymentConstants.PAYMENT_SUCCEED,
+            data: res.getNthData(0).detail,
           });
         } else if (res.getNthData(0).status === 'REFER_CODE_NOT_FOUND') {
           dispatcher.dispatch({

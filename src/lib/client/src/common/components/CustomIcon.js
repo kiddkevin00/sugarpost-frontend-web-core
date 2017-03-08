@@ -4,7 +4,7 @@ import React from 'react';
 class Icon extends BaseComponent {
 
   render() {
-    switch (this.props.iconType) {
+    switch (this.props.type) {
       case 'email':
         return (
           <svg viewBox="-9 -5 50 50" fill="white" width="34" height="34">
@@ -27,10 +27,10 @@ class Icon extends BaseComponent {
         );
     }
   }
-  
+
 }
 Icon.propTypes = {
-  iconType: React.PropTypes.string.isRequired,
+  type: React.PropTypes.string.isRequired,
 };
 
 export default Icon;

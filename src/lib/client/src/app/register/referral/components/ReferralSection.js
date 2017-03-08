@@ -15,12 +15,15 @@ class ReferralSection extends BaseComponent {
     const { FacebookShareButton, TwitterShareButton } = ShareButtons;
     const FacebookIcon = generateShareIcon('facebook');
     const TwitterIcon = generateShareIcon('twitter');
-    const shareUrl = 'https://www.mysugarpost.com/';
-    const title = 'Here\'s $2.5 to spend at MYSUGAROPST';
+    const shareUrl = 'https://www.mysugarpost.com/register/signup';
+    const title = `Your friend ${this.props.myFullName} has given you 10% off discount ` +
+      `for your first monthly dessert treats. To claim your the gift. sign up using ` +
+      `the link: ${shareUrl} and enter the following refer code while paying:\n` +
+      `${this.props.myReferCode}`;
 
     return (
       <div>
-        <p>Share the love with my friends via social media</p>
+        <p className="text-center">Share the love</p>
         <ul className="list-inline">
           <li>
             <FacebookShareButton
@@ -40,7 +43,7 @@ class ReferralSection extends BaseComponent {
           </li>
           <li>
             <div onClick={ this._onClick }>
-              <CustomIcon iconType={ 'email' } />
+              <CustomIcon type="email" />
             </div>
           </li>
         </ul>
@@ -55,7 +58,12 @@ class ReferralSection extends BaseComponent {
 
 }
 ReferralSection.propTypes = {
-  email: React.PropTypes.string,
+  myEmail: React.PropTypes.string.isRequired,
+  myFullName: React.PropTypes.string.isRequired,
+  myReferCode: React.PropTypes.string,
+};
+ReferralSection.defaultProps = {
+  myReferCode: 'N/A (In order start earning referral credits, please subscribe to our service.)',
 };
 
 export default ReferralSection;
