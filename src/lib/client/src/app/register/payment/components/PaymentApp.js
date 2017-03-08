@@ -1,7 +1,7 @@
-import paymentActionCreator from '../actions/paymentActionCreator';
-import PaymentForm from './PaymentForm';
 import authStore from '../../../../common/auth/stores/authStore';
+import paymentActionCreator from '../actions/paymentActionCreator';
 import authActionCreator from '../../../../common/auth/actions/authActionCreator';
+import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 

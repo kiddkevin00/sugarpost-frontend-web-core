@@ -30,7 +30,7 @@ class HomeApp extends BaseComponent {
         <header>
           <div className="header-content">
             <div className="header-content-inner">
-              <h1 id="home-heading">SUGARPOST</h1>
+              <h1>SUGARPOST</h1>
               <hr />
               <p>We are New York City&#39;s premium Dessert Subscription Service!</p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">

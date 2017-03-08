@@ -1,10 +1,9 @@
-import authStore from '../../../common/auth/stores/authStore';
-import authActionCreator from '../../../common/auth/actions/authActionCreator';
-import BaseComponent from '../../../common/components/BaseComponent';
-import React from 'react';
-import ReferralDiv from './ReferralDiv';
+import authStore from '../../../../common/auth/stores/authStore';
+import authActionCreator from '../../../../common/auth/actions/authActionCreator';
+import ReferralSection from './ReferralSection';
+import BaseComponent from '../../../../common/components/BaseComponent';
 import { Thumbnail, Form, FormGroup } from 'react-bootstrap';
-
+import React from 'react';
 
 class ReferralApp extends BaseComponent {
 
@@ -44,9 +43,7 @@ class ReferralApp extends BaseComponent {
                 <input type="text" readOnly={ true } placeholder={ this.state.referLink } />
               </FormGroup>
               <FormGroup>
-                <ReferralDiv
-                  email={ this.state.userEmail }
-                />
+                <ReferralSection email={ this.state.userEmail } />
               </FormGroup>
             </Form>
 
@@ -73,7 +70,7 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
     userEmail: 'vivi@123.com',
-    referLink: 'vivirefer.wqe'
+    referLink: 'vivirefer.wqe',
   };
 }
 

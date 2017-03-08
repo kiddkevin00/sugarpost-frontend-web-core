@@ -5,7 +5,7 @@ class Icon extends BaseComponent {
 
   render() {
     switch (this.props.iconType) {
-      case 'refer-mail':
+      case 'email':
         return (
           <svg viewBox="-9 -5 50 50" fill="white" width="34" height="34">
             <g><circle cx="16" cy="20" r="25" fill="#FBB352" /></g>
@@ -20,16 +20,17 @@ class Icon extends BaseComponent {
               />
             </g>
           </svg>
-        )
+        );
       default:
         return (
           <div />
-        )
+        );
     }
   }
+  
 }
-
 Icon.propTypes = {
   iconType: React.PropTypes.string.isRequired,
 };
+
 export default Icon;
