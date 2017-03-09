@@ -11,10 +11,10 @@
     margin-bottom: 30px;
 }
 
-#referral-app .SocialMediaShareButton {
+#referral-app #share-section .SocialMediaShareButton {
     cursor: pointer;
 }
 
-#referral-app .btn-mail-modal {
+#referral-app #share-section .btn-mail {
     margin-left: -8px;
 }

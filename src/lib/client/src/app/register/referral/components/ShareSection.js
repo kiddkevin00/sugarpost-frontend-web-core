@@ -1,7 +1,8 @@
 import CustomIcon from '../../../../common/components/CustomIcon';
+import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { ShareButtons, generateShareIcon } from 'react-share';
-import { Modal } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import React from 'react';
 
 class ReferralSection extends BaseComponent {
@@ -9,8 +10,9 @@ class ReferralSection extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_openModal', '_closeModal');
+    this._bind('_openModal', '_closeModal', '_onChange', '_sendReferralEmail');
     this.state = {
+      friendEmail: '',
       isModalOpen: false,
     };
   }
@@ -21,8 +23,8 @@ class ReferralSection extends BaseComponent {
     const TwitterIcon = generateShareIcon('twitter');
     const shareUrl = 'https://www.mysugarpost.com/register/signup';
     const title = `Your friend ${this.props.myFullName} has given you 10% off discount ` +
-      `for your first monthly dessert treats. To claim your the gift. sign up using ` +
-      `the link: ${shareUrl} and enter the following refer code while paying:\n` +
+      `for your first monthly dessert treats. To claim your the gift. Sign up now and ` +
+      `enter the following refer code in the payment page:\n` +
       `${this.props.myReferCode}`;
 
     return (
@@ -47,21 +49,38 @@ class ReferralSection extends BaseComponent {
           </li>
           <li>
             <button
-              type="button"
-              className="btn-link btn-mail-modal"
               onClick={ this._openModal }
+              type="button"
+              className="btn-link btn-mail"
             >
               <CustomIcon type={ 'email' } />
             </button>
             <Modal show={ this.state.isModalOpen } onHide={ this._closeModal }>
               <Modal.Header>
-                <Modal.Title>Earn Credit for every Friend you refer!</Modal.Title>
+                <Modal.Title>Earn credit for every friend you refer!</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                One fine body...
+                <Form>
+                  <FormInput
+                    text="Friend's Email Address"
+                    ref={ (formInputObj) => { this.friendEmail = formInputObj; } }
+                    validate={ FormInput.validateEmailField }
+                    value={ this.state.friendEmail }
+                    onChange={ this._onChange } /* eslint-disable-line react/jsx-no-bind */
+                    errorMessage="Email is invalid"
+                    emptyMessage="Email can't be empty"
+                  />
+                </Form>
               </Modal.Body>
               <Modal.Footer>
-                <button className="btn" onClick={ this._closeModal }>Close</button>
+                <button
+                  onClick={ this._sendReferralEmail }
+                  type="click"
+                  className="btn btn-primary"
+                >
+                  Refer Now
+                </button>
+                <button className="btn btn-default" onClick={ this._closeModal }>Close</button>
               </Modal.Footer>
             </Modal>
           </li>
@@ -71,11 +90,29 @@ class ReferralSection extends BaseComponent {
   }
 
   _openModal() {
-    this.setState({ isModalOpen: true });
+    this.setState({
+      isModalOpen: true,
+    });
   }
 
   _closeModal() {
-    this.setState({ isModalOpen: false });
+    this.setState({
+      isModalOpen: false,
+    });
+  }
+
+  _onChange(value) {
+    this.setState({
+      friendEmail: value,
+    });
+  }
+
+  _sendReferralEmail() {
+    if (this.friendEmail.isValid()) {
+      //[TODO] This will create action to send email.
+    } else {
+      this.friendEmail.isValid();
+    }
   }
 
 }
