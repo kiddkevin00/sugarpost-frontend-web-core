@@ -87,6 +87,10 @@ class AuthStore extends EventEmitter {
     this[storeContext].user = {};
   }
 
+  _syncUserInfo(partialNewUserInfo) {
+    Object.assign(this[storeContext].user, partialNewUserInfo);
+  }
+
   _storeTransitionPath(path) {
     this[storeContext].transitionPath = path;
   }
@@ -145,6 +149,11 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
 
+    case authConstants.USER_INFO_SYNC:
+      authStore._syncUserInfo(data.partialNewUserInfo);
+
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
     case authConstants.IN_TRANSITION:
       authStore._storeTransitionPath(data.path);
 

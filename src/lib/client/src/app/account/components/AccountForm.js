@@ -91,7 +91,7 @@ class AccountForm extends BaseComponent {
           <div className="col-sm-6">
             <input
               onClick={ this._onReset }
-              type="reset"
+              type="button"
               className="btn btn-default btn-block"
               value="Cancel"
             />
@@ -145,8 +145,8 @@ AccountForm.propTypes = {
   errorMsg: React.PropTypes.string,
 };
 AccountForm.defaultProps = {
-  fullName: '',
-  email: '',
+  fullName: 'Loading...',
+  email: 'Loading...',
   errorMsg: 'Oops! Something went wrong. Please try again.',
 };
 

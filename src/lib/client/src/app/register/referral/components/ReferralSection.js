@@ -23,7 +23,7 @@ class ReferralSection extends BaseComponent {
 
     return (
       <div>
-        <p className="text-center">Share the love</p>
+        <p>Share the love</p>
         <ul className="list-inline">
           <li>
             <FacebookShareButton
@@ -58,11 +58,13 @@ class ReferralSection extends BaseComponent {
 
 }
 ReferralSection.propTypes = {
-  myEmail: React.PropTypes.string.isRequired,
-  myFullName: React.PropTypes.string.isRequired,
+  myEmail: React.PropTypes.string,
+  myFullName: React.PropTypes.string,
   myReferCode: React.PropTypes.string,
 };
 ReferralSection.defaultProps = {
+  myEmail: 'Loading...',
+  myFullName: 'Loading...',
   myReferCode: 'N/A (In order start earning referral credits, please subscribe to our service.)',
 };
 

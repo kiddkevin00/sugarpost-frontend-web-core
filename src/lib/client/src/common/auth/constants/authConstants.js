@@ -20,6 +20,7 @@ const authConstants = keyMirror({
 
   PROXY_ERROR: null,
 
+  USER_INFO_SYNC: null,
   IN_TRANSITION: null,
 });
 
