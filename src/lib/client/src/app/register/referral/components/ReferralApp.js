@@ -1,6 +1,6 @@
 import authStore from '../../../../common/auth/stores/authStore';
 import authActionCreator from '../../../../common/auth/actions/authActionCreator';
-import ReferralSection from './ReferralSection';
+import ShareSection from './ShareSection';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { Thumbnail, Form, FormGroup } from 'react-bootstrap';
 import React from 'react';
@@ -37,20 +37,34 @@ class ReferralApp extends BaseComponent {
       <div id="referral-app">
         <div className="form-top">
           <Thumbnail src="/assets/images/sugarpost-logo.png" alt="">
-            <Form horizontal={ true }>
-              <FormGroup>
-                <span>Your Refer Code: &nbsp;</span>
-                <input type="text" readOnly={ true } placeholder={ this.state.user.referCode } />
-              </FormGroup>
-              <br />
-              <FormGroup>
-                <ReferralSection
+            <div className="row">
+              <div className="col-xs-12">
+                <h4>YOUR REFERRAL CODE:</h4>
+                <h2>{ this.state.user.referCode || 'N/A' }</h2>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xs-12">
+                <p>Outstanding Sugarpost Credits:</p>
+                <p>{ `$${this.state.user.referralAmount * 2}` }</p>
+              </div>
+            </div>
+            <br />
+            <div className="row">
+              <div className="col-xs-offset-1 col-xs-10">
+                <button className="btn btn-block">REDEEM NOW</button>
+              </div>
+            </div>
+            <br />
+            <div className="row">
+              <div className="col-xs-12">
+                <ShareSection
                   myEmail={ this.state.user.email }
                   myFullName={ this.state.user.fullName }
                   myReferCode={ this.state.user.referCode }
                 />
-              </FormGroup>
-            </Form>
+              </div>
+            </div>
           </Thumbnail>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import CustomIcon from '../../../../common/components/CustomIcon';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { ShareButtons, generateShareIcon } from 'react-share';
+import { Modal } from 'react-bootstrap';
 import React from 'react';
 
 class ReferralSection extends BaseComponent {
@@ -8,7 +9,10 @@ class ReferralSection extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onClick');
+    this._bind('_openModal', '_closeModal');
+    this.state = {
+      isModalOpen: false,
+    };
   }
 
   render() {
@@ -22,7 +26,7 @@ class ReferralSection extends BaseComponent {
       `${this.props.myReferCode}`;
 
     return (
-      <div>
+      <div id="share-section">
         <p>Share the love</p>
         <ul className="list-inline">
           <li>
@@ -42,18 +46,36 @@ class ReferralSection extends BaseComponent {
             </TwitterShareButton>
           </li>
           <li>
-            <div onClick={ this._onClick }>
-              <CustomIcon type="email" />
-            </div>
+            <button
+              type="button"
+              className="btn-link btn-mail-modal"
+              onClick={ this._openModal }
+            >
+              <CustomIcon type={ 'email' } />
+            </button>
+            <Modal show={ this.state.isModalOpen } onHide={ this._closeModal }>
+              <Modal.Header>
+                <Modal.Title>Earn Credit for every Friend you refer!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                One fine body...
+              </Modal.Body>
+              <Modal.Footer>
+                <button className="btn" onClick={ this._closeModal }>Close</button>
+              </Modal.Footer>
+            </Modal>
           </li>
         </ul>
       </div>
     );
   }
 
-  _onClick() {
-    // this will open mail modal
-    console.log('herere in on click');
+  _openModal() {
+    this.setState({ isModalOpen: true });
+  }
+
+  _closeModal() {
+    this.setState({ isModalOpen: false });
   }
 
 }
@@ -65,7 +87,7 @@ ReferralSection.propTypes = {
 ReferralSection.defaultProps = {
   myEmail: 'Loading...',
   myFullName: 'Loading...',
-  myReferCode: 'N/A (In order start earning referral credits, please subscribe to our service.)',
+  myReferCode: 'N/A',
 };
 
 export default ReferralSection;
