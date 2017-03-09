@@ -1,16 +1,18 @@
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
 import { ShareButtons, generateShareIcon } from 'react-share';
-import { Modal } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import Icon from '../../../common/components/Icon';
+import FormInput from '../../../common/components/FormInput';
 
 
 class ReferralDiv extends BaseComponent {
   constructor(props) {
     super(props);
-    this._bind('_openModal', 'closeModal');
+    this._bind('_openModal', 'closeModal', 'handleToEmail', 'sendReferEmail');
     this.state = {
       modalIsOpen: false,
+      friendEmail: '',
     };
   }
 
@@ -48,15 +50,30 @@ class ReferralDiv extends BaseComponent {
               ><Icon iconType={ 'refer-mail' } />
               </button>
               <div className="static-modal">
-                <Modal show={ this.state.modalIsOpen} onHide={this.closeModal}>
+                <Modal show={ this.state.modalIsOpen} onHide={ this.closeModal }>
                   <Modal.Header>
                     <Modal.Title>Earn Credit for every Friend you refer!</Modal.Title>
                   </Modal.Header>
-                  <Modal.Body>
-                    One fine body...
+                  <Modal.Body bsClass="refer-modal">
+                    <Form horizontal={ true }>
+                      <FormInput
+                        text="Friend's Email Address"
+                        ref={ (formInputObj) => { this.friendEmail = formInputObj; } }
+                        validate={ FormInput.validateEmailField }
+                        value={ this.state.friendEmail }
+                        onChange={ this.handleToEmail } /* eslint-disable-line react/jsx-no-bind */
+                        errorMessage="Email is invalid"
+                        emptyMessage="Email can't be empty"
+                      />
+                    </Form>
                   </Modal.Body>
                   <Modal.Footer>
-                    <button className="btn" onClick={this.closeModal}>Close</button>
+                    <button
+                      className="btn btn-primary"
+                      onClick={ this.sendReferEmail }
+                    >Refer
+                    </button>
+                    <button className="btn" onClick={ this.closeModal }>Cancel</button>
                   </Modal.Footer>
                 </Modal>
               </div>
@@ -72,6 +89,14 @@ class ReferralDiv extends BaseComponent {
   }
   closeModal() {
     this.setState({ modalIsOpen: false });
+  }
+  handleToEmail(value) {
+    this.setState({ friendEmail: value });
+  }
+  sendReferEmail() {
+    if (this.friendEmail.isValid()) {
+      //this will create action to send email
+    }
   }
 }
 

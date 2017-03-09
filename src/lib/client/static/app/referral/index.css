@@ -10,3 +10,7 @@
 #referral-app .btn-mail-modal {
   margin-left: -8px;
 }
+
+#referral-app .refer-modal{
+  padding: 0;
+}
