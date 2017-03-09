@@ -1,5 +1,6 @@
 import authStore from '../../../common/auth/stores/authStore';
 import authActionCreator from '../../../common/auth/actions/authActionCreator';
+import SubscriptionSection from './SubscriptionSection';
 import AccountForm from './AccountForm';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
@@ -41,144 +42,15 @@ class AccountApp extends BaseComponent {
             </div>
           </div>
           <div className="row">
-            <div className="col-xs-6">
+            <div className="col-xs-12 col-sm-5">
               <div className="panel panel-default">
                 <div className="panel-heading"><h4>Subscription</h4></div>
                 <div className="panel-body">
-                  <small>Complete</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-success"
-                      role="progressbar"
-                      aria-valuenow="72"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '72%' } }
-                    >
-                      <span className="sr-only">72% Complete</span>
-                    </div>
-                  </div>
-                  <small>In Progress</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-info"
-                      role="progressbar"
-                      aria-valuenow="20"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '20%' } }
-                    >
-                      <span className="sr-only">20% Complete</span>
-                    </div>
-                  </div>
-                  <small>At Risk</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-danger"
-                      role="progressbar"
-                      aria-valuenow="80"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '80%' } }
-                    >
-                      <span className="sr-only">80% Complete</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="panel panel-default">
-                <div className="panel-heading"><h4>Placeholder 2</h4></div>
-                <div className="panel-body">
-                  <small>Complete</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-success"
-                      role="progressbar"
-                      aria-valuenow="72"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '72%' } }
-                    >
-                      <span className="sr-only">72% Complete</span>
-                    </div>
-                  </div>
-                  <small>In Progress</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-info"
-                      role="progressbar"
-                      aria-valuenow="20"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '20%' } }
-                    >
-                      <span className="sr-only">20% Complete</span>
-                    </div>
-                  </div>
-                  <small>At Risk</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-danger"
-                      role="progressbar"
-                      aria-valuenow="80"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '80%' } }
-                    >
-                      <span className="sr-only">80% Complete</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="panel panel-default">
-                <div className="panel-heading"><h4>Placeholder 1</h4></div>
-                <div className="panel-body">
-                  <small>Complete</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-success"
-                      role="progressbar"
-                      aria-valuenow="72"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '72%' } }
-                    >
-                      <span className="sr-only">72% Complete</span>
-                    </div>
-                  </div>
-                  <small>In Progress</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-info"
-                      role="progressbar"
-                      aria-valuenow="20"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '20%' } }
-                    >
-                      <span className="sr-only">20% Complete</span>
-                    </div>
-                  </div>
-                  <small>At Risk</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-danger"
-                      role="progressbar"
-                      aria-valuenow="80"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '80%' } }
-                    >
-                      <span className="sr-only">80% Complete</span>
-                    </div>
-                  </div>
+                  <SubscriptionSection />
                 </div>
               </div>
             </div>
-
-            <div className="col-xs-6">
+            <div className="col-xs-12 col-sm-7">
               <div className="panel panel-default">
                 <div className="panel-heading"><h4>Profile</h4></div>
                 <div className="panel-body">
@@ -190,51 +62,6 @@ class AccountApp extends BaseComponent {
                       isErrorVisible={ this.state.error.isVisible }
                       errorMsg={ this.state.error.message }
                     />
-                  </div>
-                </div>
-              </div>
-
-              <div className="panel panel-default">
-                <div className="panel-heading"><h4>Placeholder 3</h4></div>
-                <div className="panel-body">
-                  <small>Complete</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-success"
-                      role="progressbar"
-                      aria-valuenow="72"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '72%' } }
-                    >
-                      <span className="sr-only">72% Complete</span>
-                    </div>
-                  </div>
-                  <small>In Progress</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-info"
-                      role="progressbar"
-                      aria-valuenow="20"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '20%' } }
-                    >
-                      <span className="sr-only">20% Complete</span>
-                    </div>
-                  </div>
-                  <small>At Risk</small>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-bar-danger"
-                      role="progressbar"
-                      aria-valuenow="80"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                      style={ { width: '80%' } }
-                    >
-                      <span className="sr-only">80% Complete</span>
-                    </div>
                   </div>
                 </div>
               </div>

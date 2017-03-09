@@ -8,7 +8,7 @@ class AccountForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onClick', '_onReset', 'isConfirmPasswordMatched');
+    this._bind('_onSave', '_onReset', 'isConfirmPasswordMatched');
     this.state = {
       fullName: this.props.fullName,
       email: this.props.email,
@@ -53,6 +53,7 @@ class AccountForm extends BaseComponent {
           validate={ FormInput.validateEmailField }
           value={ this.state.email }
           onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+          disabled={ true }
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
         />
@@ -82,7 +83,7 @@ class AccountForm extends BaseComponent {
         <div className="form-group">
           <div className="col-sm-6">
             <input
-              onClick={ this._onClick }
+              onClick={ this._onSave }
               type="button"
               className="btn btn-primary btn-block"
               value="Save Changes"
@@ -107,7 +108,7 @@ class AccountForm extends BaseComponent {
     });
   }
 
-  _onClick(event) {
+  _onSave(event) {
     if (
       this.fullName.isValid() &&
       this.email.isValid() &&

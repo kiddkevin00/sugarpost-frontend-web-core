@@ -96,6 +96,7 @@ class FormInput extends BaseComponent {
           onBlur={ this._handleBlur }
           autoComplete="off"
           type={ this.props.type }
+          disabled={ this.props.disabled }
         />
         <FormInputError
           visible={ this.state.isErrorVisible }
@@ -235,6 +236,7 @@ FormInput.propTypes = {
   forbiddenWords: React.PropTypes.arrayOf(React.PropTypes.string),
   text: React.PropTypes.string,
   type: React.PropTypes.string,
+  disabled: React.PropTypes.bool,
 };
 FormInput.defaultProps = {
   validate: FormInput.validateEmptyField,
@@ -247,6 +249,7 @@ FormInput.defaultProps = {
   forbiddenWords: ['password', 'user'],
   text: 'Unknown Field',
   type: 'text',
+  disabled: false,
 };
 
 export default FormInput;
