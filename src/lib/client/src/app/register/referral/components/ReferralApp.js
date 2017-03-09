@@ -46,7 +46,7 @@ class ReferralApp extends BaseComponent {
             <div className="row">
               <div className="col-xs-12">
                 <p>Outstanding Sugarpost Credits:</p>
-                <p>{ `$${this.state.user.referralAmount * 2}` }</p>
+                <p>{ `$${window.parseFloat(this.state.user.referralAmount * 2.0).toFixed(2)}` }</p>
               </div>
             </div>
             <br />
