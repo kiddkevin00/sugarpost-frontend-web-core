@@ -23,7 +23,7 @@ class ReferralSection extends BaseComponent {
     const TwitterIcon = generateShareIcon('twitter');
     const shareUrl = 'https://www.mysugarpost.com/register/signup';
     const title = `Your friend ${this.props.myFullName} has given you 10% off discount ` +
-      `for your first monthly dessert treats. To claim your the gift. Sign up now and ` +
+      'for your first monthly dessert treats. To claim your the gift. Sign up now and ' +
       `enter the following refer code in the payment page:\n` +
       `${this.props.myReferCode}`;
 
