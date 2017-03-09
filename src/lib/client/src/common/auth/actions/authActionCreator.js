@@ -152,7 +152,7 @@ const authActionCreator = {
               actionType: authConstants.IN_TRANSITION,
               data: { path: pathname },
             });
-            replace({ pathname: '/login' });
+            replace({ pathname: '/register/login' });
           }
 
           return;
@@ -166,7 +166,7 @@ const authActionCreator = {
               actionType: authConstants.IN_TRANSITION,
               data: { path: pathname },
             });
-            replace({ pathname: '/login' });
+            replace({ pathname: '/register/login' });
 
             return;
           }

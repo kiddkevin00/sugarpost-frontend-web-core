@@ -1,6 +1,6 @@
-import Proxy from '../../../common/proxies/proxy';
-import dispatcher from '../../../common/dispatcher/AppDispatcher';
-import StandardResponseWrapper from '../../../common/utility/standard-response-wrapper';
+import Proxy from '../../../../common/proxies/proxy';
+import dispatcher from '../../../../common/dispatcher/AppDispatcher';
+import StandardResponseWrapper from '../../../../common/utility/standard-response-wrapper';
 import constants from '../constants/forgotPasswordConstants';
 
 const forgotPasswordActionCreator = {

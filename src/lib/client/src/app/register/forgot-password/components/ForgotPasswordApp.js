@@ -1,11 +1,10 @@
 import authStore from '../../../../common/auth/stores/authStore';
-import paymentActionCreator from '../actions/paymentActionCreator';
-import authActionCreator from '../../../../common/auth/actions/authActionCreator';
-import PaymentForm from './PaymentForm';
+import forgotPasswordActionCreator from '../actions/forgotPasswordActionCreator';
+import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
-class PaymentApp extends BaseComponent {
+class ForgotPasswordApp extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -17,30 +16,23 @@ class PaymentApp extends BaseComponent {
   componentDidMount() {
     authStore.addChangeListener(this._onChange);
 
-    if (!this.state.isLoggedIn) {
-      authActionCreator.authCheck();
-    }
+    //if (this.state.isLoggedIn) {
+    //  this.context.router.push('/account');
+    //}
   }
 
-  componentWillUpdate(nextProps, nextState, nextContext) {
-    if (!nextState.isLoggedIn) {
-      nextContext.router.push('/register/login');
-    }
-  }
+  componentWillUpdate(nextProps, nextState) {}
 
   componentWillUnmount() {
     authStore.removeChangeListener(this._onChange);
   }
 
   render() {
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-
     return (
-      <div>
+      <div id="eee">
         <div className="form-top">
           <div className="form-top-left">
-            <h3>Pay now</h3>
+            <h3>Forgot password</h3>
             <p>Fill in the form below to get started:</p>
           </div>
           <div className="form-top-right">
@@ -48,13 +40,7 @@ class PaymentApp extends BaseComponent {
           </div>
         </div>
         <div className="form-bottom">
-          <PaymentForm
-            onSubmit={ PaymentApp._onSubmit }
-            email={ this.props.location.query.email }
-            subscribedMonth={ currentMonth + 1 }
-            regularChargeAmount={ 19.99 }
-            referralChargeAmount={ 17.99 }
-          />
+          <ForgotPasswordForm onSubmit={ ForgotPasswordApp._onSubmit } />
         </div>
       </div>
     );
@@ -64,23 +50,26 @@ class PaymentApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(token, referCode) {
-    paymentActionCreator.pay(token, referCode);
+  static _onSubmit(event, email) {
+    // Prevents browser's default navigation (page refresh).
+    event.preventDefault();
+
+    forgotPasswordActionCreator.forgotPassword(email);
   }
 
 }
-PaymentApp.contextTypes = {
+ForgotPasswordApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
 /*
  * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
+ * the data in the Flux store.
  */
 function _getState() {
   return {
-    isLoggedIn: authStore.isLoggedIn(),
+    //isLoggedIn: authStore.isLoggedIn(),
   };
 }
 
-export default PaymentApp;
+export default ForgotPasswordApp;

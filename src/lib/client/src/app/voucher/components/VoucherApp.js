@@ -22,7 +22,7 @@ class VoucherApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextState.isLoggedIn) {
-      nextContext.router.push('/login');
+      nextContext.router.push('/register/login');
     }
   }
 

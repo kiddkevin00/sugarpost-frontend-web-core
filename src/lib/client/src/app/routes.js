@@ -1,8 +1,8 @@
 import authStore from '../common/auth/stores/authStore';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import RegisterApp from './register/';
-import LoginApp from './login/components/LoginApp';
-import ForgotPasswordApp from './forgot-password/components/ForgotPasswordApp';
+import LoginApp from './register/login/components/LoginApp';
+import ForgotPasswordApp from './register/forgot-password/components/ForgotPasswordApp';
 import SignupApp from './register/signup/components/SignupApp';
 import PaymentApp from './register/payment/components/PaymentApp';
 import AccountApp from './account/components/AccountApp';
@@ -160,11 +160,11 @@ class RootApp extends BaseComponent {
         </li>
       ), (
         <li key="6">
-          <LinkContainer to="/login">
+          <LinkContainer to="/register/login">
             <Link
               activeClass="active"
               className="page-scroll"
-              to="login"
+              to="registration"
               spy={ true }
               smooth={ true }
               duration={ 700 }
@@ -244,12 +244,12 @@ const clientRoutes = (
     <Route path="/" component={ RootApp }>
       <IndexRoute component={ HomeApp } />
       <Route path="register" component={ RegisterApp }>
+        <Route path="login" component={ LoginApp } />
         <Route path="signup" component={ SignupApp } />
         <Route path="payment" component={ PaymentApp } />
+        <Route path="forgot-password" component={ ForgotPasswordApp } />
         <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
       </Route>
-      <Route path="login" component={ LoginApp } />
-      <Route path="forgot-password" component={ ForgotPasswordApp } />
       <Route path="account" component={ AccountApp } onEnter={ inTransition } />
       <Route path="voucher" component={ VoucherApp } onEnter={ inTransition } />
       <Route path="memo" component={ MemoApp } />

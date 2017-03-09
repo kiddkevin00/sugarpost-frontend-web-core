@@ -1,5 +1,5 @@
-import FormInput from '../../../common/components/FormInput';
-import BaseComponent from '../../../common/components/BaseComponent';
+import FormInput from '../../../../common/components/FormInput';
+import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
 class ForgotPasswordForm extends BaseComponent {

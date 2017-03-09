@@ -1,7 +1,6 @@
 import FormInput from '../../../common/components/FormInput';
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
-import classNames from 'classnames';
 
 class SubscriptionSection extends BaseComponent {
 
