@@ -1,6 +1,7 @@
 import BaseComponent from './BaseComponent';
 import FormInputError from './FormInputError';
 import PasswordValidator from './PasswordValidator';
+import CustomIcon from './CustomIcon';
 import React from 'react';
 import classNames from 'classnames';
 
@@ -102,6 +103,14 @@ class FormInput extends BaseComponent {
           visible={ this.state.isErrorVisible }
           errorMessage={ this.state.errorMessage }
         />
+        <div className="validationIcons">
+          <i className="input_error_icon">
+            <CustomIcon type="circle_error" />
+          </i>
+          <i className="input_valid_icon">
+            <CustomIcon type="circle_tick" />
+          </i>
+        </div>
         { validator }
       </div>
     );
