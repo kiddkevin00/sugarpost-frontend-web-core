@@ -66,9 +66,15 @@ class PaymentForm extends BaseComponent {
 
   _onChange(field, value) {
     if (PaymentForm._validateCouponCode(value)) {
-      this.setState({
-        charge: this.props.referralChargeAmount,
-      });
+      if (value.trim().length === 0) {
+        this.setState({
+          charge: this.props.regularChargeAmount,
+        });
+      } else {
+        this.setState({
+          charge: this.props.referralChargeAmount,
+        });
+      }
     } else {
       this.setState({
         charge: this.props.regularChargeAmount,
