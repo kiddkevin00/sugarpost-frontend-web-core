@@ -7,8 +7,8 @@ class Icon extends BaseComponent {
     switch (this.props.type) {
       case 'email':
         return (
-          <svg viewBox="-9 -5 50 50" fill="white" width="34" height="34">
-            <g><circle cx="16" cy="20" r="25" fill="#FBB352" /></g>
+          <svg viewBox="-9 -7 50 50" fill="white" width="34" height="34">
+            <g><circle cx="16" cy="18" r="25" fill="#FBB352" /></g>
             <g>
               <path
                 d="M29 4h-26c-1.65 0-3 1.35-3 3v20c0 1.65 1.35 3 3
@@ -32,7 +32,7 @@ class Icon extends BaseComponent {
               5.703z M9.44,12.951h1.621v1.491H9.44V12.951z"
             />
           </svg>
-        )
+        );
       case 'circle_tick':
         return (
           <svg viewBox="0 0 23 23">
@@ -45,7 +45,7 @@ class Icon extends BaseComponent {
               0.5,0,0.7l3.4,3.5c0.1,0.1,0.2,0.1,0.3,0.1S10.3,15.3,10.4,15.2z"
             />
           </svg>
-        )
+        );
       case 'circle_tick_filled':
         return (
           <svg viewBox="0 0 20 20">
@@ -62,7 +62,7 @@ class Icon extends BaseComponent {
               12.9,8.8,12.9,8.7,12.9z"
             />
           </svg>
-        )
+        );
       default:
         return (
           <div />
