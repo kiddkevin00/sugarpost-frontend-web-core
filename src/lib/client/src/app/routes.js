@@ -245,7 +245,7 @@ const clientRoutes = (
       <IndexRoute component={ HomeApp } />
       <Route path="register" component={ RegisterApp }>
         <Route path="login" component={ LoginApp } />
-        <Route path="signup" component={ SignupApp } />
+        <Route path="signup" component={ SignupApp } onEnter={ getQuery } />
         <Route path="payment" component={ PaymentApp } />
         <Route path="forgot-password" component={ ForgotPasswordApp } />
         <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
@@ -256,6 +256,12 @@ const clientRoutes = (
     </Route>
   </Router>
 );
+
+function getQuery(nextState) {
+  if (Object.keys(nextState.location.query).length) {
+    authActionCreator.storeQuery(nextState.location.query);
+  }
+}
 
 function inTransition(nextState, replace) {
   authActionCreator.inTransition(nextState, replace);

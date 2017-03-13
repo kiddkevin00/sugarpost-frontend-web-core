@@ -14,7 +14,7 @@ class PaymentForm extends BaseComponent {
 
     this._bind('_onClick', '_onToken');
     this.state = {
-      referCode: '',
+      referCode: this.props.referCode,
       charge: this.props.regularChargeAmount,
     };
   }
@@ -115,6 +115,7 @@ class PaymentForm extends BaseComponent {
 PaymentForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
   email: React.PropTypes.string,
+  referCode: React.PropTypes.string,
   subscribedMonth: React.PropTypes.number,
   regularChargeAmount: React.PropTypes.number,
   referralChargeAmount: React.PropTypes.number,

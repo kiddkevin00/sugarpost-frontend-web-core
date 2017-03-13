@@ -22,6 +22,7 @@ const authConstants = keyMirror({
 
   USER_INFO_SYNC: null,
   IN_TRANSITION: null,
+  REFER_QUERY: null,
 });
 
 export default authConstants;
