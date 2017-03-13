@@ -52,10 +52,9 @@ class PaymentForm extends BaseComponent {
           triggerEvent="onClick"
         >
           <button
-            disabled={ !PaymentForm._validateCouponCode(this.state.referCode) }
+            onClick={ this._onClick }
             className="btn btn-block"
             type="button"
-            onClick={ this._onClick }
           >
             Get Your { monthNames[this.props.subscribedMonth] } Treat ${ this.state.charge }
           </button>
