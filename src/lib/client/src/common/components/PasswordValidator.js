@@ -1,4 +1,5 @@
 import BaseComponent from './BaseComponent';
+import CustomIcon from './CustomIcon';
 import React from 'react';
 import classNames from 'classnames';
 
@@ -37,23 +38,27 @@ class PasswordValidator extends BaseComponent {
           { validatorTitle }
           <ul className="rules_list">
             <li className={ classNames({ valid: this.props.validData.minChars }) }>
-
+              <i className="icon_valid"> <CustomIcon type="circle_tick_filled" /> </i>
+              <i className="icon_invalid"> <CustomIcon type="circle_error" /> </i>
               <span className="error_message">{ this.props.minCharacters } characters minimum</span>
             </li>
             <li className={ classNames({ valid: this.props.validData.capitalLetters }) }>
-
+              <i className="icon_valid"> <CustomIcon type="circle_tick_filled" /> </i>
+              <i className="icon_invalid"> <CustomIcon type="circle_error" /> </i>
               <span className="error_message">
                 Contains at least { this.props.requireCapitals } capital letter
               </span>
             </li>
             <li className={ classNames({ valid: this.props.validData.numbers }) }>
-
+              <i className="icon_valid"> <CustomIcon type="circle_tick_filled" /> </i>
+              <i className="icon_invalid"> <CustomIcon type="circle_error" /> </i>
               <span className="error_message">
                 Contains at least { this.props.requireNumbers } number
               </span>
             </li>
             <li className={ classNames({ valid: this.props.validData.words }) }>
-
+              <i className="icon_valid"> <CustomIcon type="circle_tick_filled" /> </i>
+              <i className="icon_invalid"> <CustomIcon type="circle_error" /> </i>
               <span className="error_message">Can&#39;t be { forbiddenWordSpans }</span>
             </li>
           </ul>

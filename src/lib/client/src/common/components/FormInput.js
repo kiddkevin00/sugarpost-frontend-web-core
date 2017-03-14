@@ -1,6 +1,7 @@
 import BaseComponent from './BaseComponent';
 import FormInputError from './FormInputError';
 import PasswordValidator from './PasswordValidator';
+import CustomIcon from './CustomIcon';
 import React from 'react';
 import classNames from 'classnames';
 
@@ -21,7 +22,7 @@ class FormInput extends BaseComponent {
       isErrorVisible: false,
       isValidatorVisible: false,
       isIconsVisible: !props.useValidator, // TODO
-      allValidatorValid: false,
+      isAllValidatorValid: false,
       isEachValidatorValid: {
         minChars: false,
         capitalLetters: false,
@@ -71,7 +72,7 @@ class FormInput extends BaseComponent {
           name={ this.props.text }
           value={ this.state.value }
           validData={ this.state.isEachValidatorValid }
-          valid={ this.state.allValidatorValid }
+          valid={ this.state.isAllValidatorValid }
           forbiddenWords={ this.props.forbiddenWords }
           minCharacters={ this.props.minCharacters }
           requireCapitals={ this.props.requireCapitals }
@@ -102,19 +103,27 @@ class FormInput extends BaseComponent {
           visible={ this.state.isErrorVisible }
           errorMessage={ this.state.errorMessage }
         />
+        <div className="validationIcons">
+          <i className="input_error_icon">
+            <CustomIcon type="circle_error" />
+          </i>
+          <i className="input_valid_icon">
+            <CustomIcon type="circle_tick" />
+          </i>
+        </div>
         { validator }
       </div>
     );
   }
 
   _onChange(event) {
+    this.props.onChange(event.target.value);
+
     if (this.props.useValidator) {
       this._checkRules(event.target.value);
     } else {
       this._validateInput(event.target.value);
     }
-
-    this.props.onChange(event.target.value);
 
     this.setState({
       value: event.target.value,
@@ -163,7 +172,7 @@ class FormInput extends BaseComponent {
     const capitalLettersCheck = !!inputText && this._checkCaptialLetters(inputText);
     const numbersCheck = !!inputText && this._checkNumbers(inputText);
     const wordsCheck = !!inputText && this._checkWords(inputText);
-    const allValidatorValid = minCharsCheck && capitalLettersCheck && numbersCheck && wordsCheck;
+    const isAllValidatorValid = minCharsCheck && capitalLettersCheck && numbersCheck && wordsCheck;
     const isEachValidatorValid = {
       minChars: minCharsCheck,
       capitalLetters: capitalLettersCheck,
@@ -172,9 +181,9 @@ class FormInput extends BaseComponent {
     };
 
     this.setState({
-      allValidatorValid,
+      isAllValidatorValid,
       isEachValidatorValid,
-      valid: allValidatorValid,
+      valid: isAllValidatorValid,
     });
   }
 

@@ -5,6 +5,8 @@ import BaseComponent from '../../../../common/components/BaseComponent';
 import { Thumbnail, Form, FormGroup } from 'react-bootstrap';
 import React from 'react';
 
+const refererCredit = 2.5;
+
 class ReferralApp extends BaseComponent {
 
   constructor(props) {
@@ -33,6 +35,9 @@ class ReferralApp extends BaseComponent {
   }
 
   render() {
+    const creditBalanceStr =
+      window.parseFloat(this.state.user.referralAmount * refererCredit).toFixed(2);
+
     return (
       <div id="referral-app">
         <div className="form-top">
@@ -46,7 +51,7 @@ class ReferralApp extends BaseComponent {
             <div className="row">
               <div className="col-xs-12">
                 <p>Outstanding Sugarpost Credits:</p>
-                <p>{ `$${window.parseFloat(this.state.user.referralAmount * 2.0).toFixed(2)}` }</p>
+                <p>{ `$${creditBalanceStr}` }</p>
               </div>
             </div>
             <br />
