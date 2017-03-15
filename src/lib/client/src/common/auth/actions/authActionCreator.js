@@ -137,12 +137,12 @@ const authActionCreator = {
       });
   },
 
-  storeQuery(query) {
-    for (const q in query) {
-      if (q === 'refer_code' && query[q]) {
+  storeParamMap(map) {
+    for (const key in map) {
+      if (key === 'refer_code' && map[key]) {
         dispatcher.dispatch({
-          actionType: authConstants.REFER_QUERY,
-          data: { code: query[q] },
+          actionType: authConstants.STORE_PARAM_MAP,
+          data: { referCode: map[key] },
         });
       }
     }

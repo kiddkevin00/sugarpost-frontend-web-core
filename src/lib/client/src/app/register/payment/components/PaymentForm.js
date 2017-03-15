@@ -113,13 +113,14 @@ class PaymentForm extends BaseComponent {
 }
 PaymentForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
-  email: React.PropTypes.string,
+  email: React.PropTypes.string.isRequired,
   referCode: React.PropTypes.string,
   subscribedMonth: React.PropTypes.number,
   regularChargeAmount: React.PropTypes.number,
   referralChargeAmount: React.PropTypes.number,
 };
 PaymentForm.defaultProps = {
+  referCode: '',
   subscribedMonth: (new Date()).getMonth(),
   regularChargeAmount: 0,
   referralChargeAmount: 0,

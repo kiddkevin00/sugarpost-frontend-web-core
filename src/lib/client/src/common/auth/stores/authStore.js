@@ -100,7 +100,7 @@ class AuthStore extends EventEmitter {
     this[storeContext].transitionPath = path;
   }
 
-  _storeQueryString(code) {
+  _storeReferCode(code) {
     this[storeContext].referCode = code;
   }
 
@@ -168,8 +168,8 @@ dispatcher.register((action) => {
 
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
-    case authConstants.REFER_QUERY:
-      authStore._storeQueryString(data.code);
+    case authConstants.STORE_PARAM_MAP:
+      authStore._storeReferCode(data.referCode);
 
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;

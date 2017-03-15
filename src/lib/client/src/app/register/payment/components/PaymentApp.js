@@ -51,10 +51,10 @@ class PaymentApp extends BaseComponent {
           <PaymentForm
             onSubmit={ PaymentApp._onSubmit }
             email={ this.props.location.query.email }
+            referCode={ this.state.referCode }
             subscribedMonth={ currentMonth + 1 }
             regularChargeAmount={ 19.99 }
             referralChargeAmount={ 17.99 }
-            referCode={ this.state.referCode }
           />
         </div>
       </div>

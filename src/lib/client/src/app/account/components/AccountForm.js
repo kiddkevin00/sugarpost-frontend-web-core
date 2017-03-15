@@ -140,15 +140,15 @@ class AccountForm extends BaseComponent {
 }
 AccountForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
-  fullName: React.PropTypes.string,
-  email: React.PropTypes.string,
   isErrorVisible: React.PropTypes.bool.isRequired,
   errorMsg: React.PropTypes.string,
+  fullName: React.PropTypes.string,
+  email: React.PropTypes.string,
 };
 AccountForm.defaultProps = {
+  errorMsg: 'Oops! Something went wrong. Please try again.',
   fullName: 'Loading...',
   email: 'Loading...',
-  errorMsg: 'Oops! Something went wrong. Please try again.',
 };
 
 export default AccountForm;
