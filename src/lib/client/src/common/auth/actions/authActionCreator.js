@@ -137,17 +137,6 @@ const authActionCreator = {
       });
   },
 
-  storeParamMap(map) {
-    for (const key in map) {
-      if (key === 'refer_code' && map[key]) {
-        dispatcher.dispatch({
-          actionType: authConstants.STORE_PARAM_MAP,
-          data: { referCode: map[key] },
-        });
-      }
-    }
-  },
-
   inTransition(nextState, replace) {
     const url = '/api/auth/check';
 
@@ -192,6 +181,17 @@ const authActionCreator = {
           data: err,
         });
       });
+  },
+
+  storeParamMap(map) {
+    for (const key in map) {
+      if (key === 'refer_code' && map[key]) {
+        dispatcher.dispatch({
+          actionType: authConstants.STORE_PARAM_MAP,
+          data: { referCode: map[key] },
+        });
+      }
+    }
   },
 };
 

@@ -126,7 +126,7 @@ ReferralSection.propTypes = {
 ReferralSection.defaultProps = {
   myEmail: 'Loading...',
   myFullName: 'Loading...',
-  myReferCode: 'N/A',
+  myReferCode: '',
 };
 
 export default ReferralSection;
