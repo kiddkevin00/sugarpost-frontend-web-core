@@ -29,6 +29,7 @@ class AuthStore extends EventEmitter {
         message: defaultErrorMsg,
       },
       transitionPath: '',
+      referCode: '',
     };
   }
 
@@ -56,6 +57,10 @@ class AuthStore extends EventEmitter {
     this[storeContext].transitionPath = '';
 
     return transitionPath;
+  }
+
+  gerReferCode() {
+    return this[storeContext].referCode;
   }
 
   emitChange() {
@@ -93,6 +98,10 @@ class AuthStore extends EventEmitter {
 
   _storeTransitionPath(path) {
     this[storeContext].transitionPath = path;
+  }
+
+  _storeQueryString(code) {
+    this[storeContext].referCode = code;
   }
 
 }
@@ -156,6 +165,11 @@ dispatcher.register((action) => {
       break;
     case authConstants.IN_TRANSITION:
       authStore._storeTransitionPath(data.path);
+
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
+    case authConstants.REFER_QUERY:
+      authStore._storeQueryString(data.code);
 
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;

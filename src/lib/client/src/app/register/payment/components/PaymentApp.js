@@ -54,6 +54,7 @@ class PaymentApp extends BaseComponent {
             subscribedMonth={ currentMonth + 1 }
             regularChargeAmount={ 19.99 }
             referralChargeAmount={ 17.99 }
+            referCode={ this.state.referCode }
           />
         </div>
       </div>
@@ -80,6 +81,7 @@ PaymentApp.contextTypes = {
 function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
+    referCode: authStore.gerReferCode(),
   };
 }
 

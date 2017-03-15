@@ -137,6 +137,17 @@ const authActionCreator = {
       });
   },
 
+  storeQuery(query) {
+    for (const q in query) {
+      if (q === 'refer_code' && query[q]) {
+        dispatcher.dispatch({
+          actionType: authConstants.REFER_QUERY,
+          data: { code: query[q] },
+        });
+      }
+    }
+  },
+
   inTransition(nextState, replace) {
     const url = '/api/auth/check';
 
