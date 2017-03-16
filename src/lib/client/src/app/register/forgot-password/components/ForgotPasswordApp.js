@@ -15,14 +15,8 @@ class ForgotPasswordApp extends BaseComponent {
 
   componentDidMount() {
     authStore.addChangeListener(this._onChange);
-
-    //if (this.state.isLoggedIn) {
-    //  this.context.router.push('/account');
-    //}
   }
-
-  componentWillUpdate(nextProps, nextState) {}
-
+  
   componentWillUnmount() {
     authStore.removeChangeListener(this._onChange);
   }
