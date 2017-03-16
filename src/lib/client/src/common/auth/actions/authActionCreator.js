@@ -22,7 +22,7 @@ const authActionCreator = {
               user: res.getNthData(0).detail,
             },
           });
-        } else if (res.getNthData(0).status === 'REQUIRED_FIELDS_NOT_UNIQUE') {
+        } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
           dispatcher.dispatch({
             actionType: authConstants.ALREADY_SIGNED_UP,
             data: res.getNthData(0).detail,
