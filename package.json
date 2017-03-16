@@ -4,7 +4,9 @@
   "description": "A generic frontend for Single-Page Web Application with a static server.",
   "main": "./src/lib/server/app.js",
   "bin": {
-    "version-bump": "./bin/version-bump.js"
+    "update-test-coverage": "./bin/update-test-coverage.js",
+    "version-bump": "./bin/version-bump.js",
+    "restrict-branches-no-push": "./bin/restrict-branches-no-push.sh"
   },
   "config": {
     "ip": "0.0.0.0",
