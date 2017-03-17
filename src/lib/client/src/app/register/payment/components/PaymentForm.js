@@ -103,7 +103,7 @@ class PaymentForm extends BaseComponent {
     try {
       return !!couponCode.validate(inputText, {
         parts: 1,
-        partLen: 5,
+        partLen: 6,
       });
     } catch (err) {
       return false;
