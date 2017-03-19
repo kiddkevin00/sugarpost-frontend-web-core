@@ -26,10 +26,10 @@ const paymentActionCreator = {
           dispatcher.dispatch({
             actionType: paymentConstants.PAYMENT_SUCCEED,
           });
-        } else if (res.getNthData(0).status === 'REFER_CODE_NOT_FOUND') {
+        } else if (res.getNthData(0).status === 'REFERRAL_CODE_NOT_FOUND') {
           // TODO
           dispatcher.dispatch({
-            actionType: paymentConstants.REFER_CODE_NOT_FOUND,
+            actionType: paymentConstants.REFERRAL_CODE_NOT_FOUND,
             data: res.getNthData(0).detail,
           });
         } else if (res.getNthData(0).status === 'EMAIL_NOT_EXISTED') {
