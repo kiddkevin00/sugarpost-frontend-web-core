@@ -5,6 +5,7 @@ import EventEmitter from 'events';
 const changeEvent = Symbol('change');
 const storeContext = Symbol('loginStoreContext');
 const defaultErrorMsg = 'Oops! Something went wrong. Please try again.';
+const defaultInfoMsg = 'Thank you!';
 
 // A Flux's store.
 class AuthStore extends EventEmitter {
@@ -23,6 +24,10 @@ class AuthStore extends EventEmitter {
       signupError: {
         isVisible: false,
         message: defaultErrorMsg,
+      },
+      forgotPasswordInfo: {
+        isVisible: false,
+        message: defaultInfoMsg,
       },
       accountError: {
         isVisible: false,
@@ -49,6 +54,16 @@ class AuthStore extends EventEmitter {
     }
 
     return error;
+  }
+
+  getInfo(type) {
+    const info = this[storeContext][`${type}Info`];
+
+    if (typeof info.message !== 'string') {
+      info.message = JSON.stringify(info.message, null, 2);
+    }
+
+    return info;
   }
 
   getTransitionPath() {
@@ -81,10 +96,15 @@ class AuthStore extends EventEmitter {
     this[storeContext].isLoggedIn = true;
     Object.assign(this[storeContext].loginError, { message: defaultErrorMsg, isVisible: false });
     Object.assign(this[storeContext].signupError, { message: defaultErrorMsg, isVisible: false });
+    Object.assign(this[storeContext].forgotPasswordInfo, { message: defaultInfoMsg, isVisible: false });
   }
 
   _showError(type, message = defaultErrorMsg) {
     Object.assign(this[storeContext][`${type}Error`], { message, isVisible: true });
+  }
+
+  _showInfo(type, message = defaultInfoMsg) {
+    Object.assign(this[storeContext][`${type}Info`], { message, isVisible: true });
   }
 
   _logout() {
@@ -153,6 +173,19 @@ dispatcher.register((action) => {
       break;
     case authConstants.LOGOUT_FAIL:
       authStore._showError('logout', data || 'Logout fails.');
+
+      authStore.emitChange();
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
+
+    case authConstants.FORGOT_PASSWORD_SUCCEED:
+      authStore._showInfo('forgotPassword', 'If a matching account was found an email was sent to user@email.com to allow you to reset your password.');
+
+      authStore.emitChange();
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
+    case authConstants.FORGOT_PASSWORD_FAIL:
+      authStore._showInfo('forgotPassword', 'If a matching account was found an email was sent to user@email.com to allow you to reset your password.');
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);

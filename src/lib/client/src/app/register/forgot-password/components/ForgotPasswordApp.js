@@ -1,5 +1,5 @@
 import authStore from '../../../../common/auth/stores/authStore';
-import forgotPasswordActionCreator from '../actions/forgotPasswordActionCreator';
+import authActionCreator from '../../../../common/auth/actions/authActionCreator';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
@@ -34,7 +34,11 @@ class ForgotPasswordApp extends BaseComponent {
           </div>
         </div>
         <div className="form-bottom">
-          <ForgotPasswordForm onSubmit={ ForgotPasswordApp._onSubmit } />
+          <ForgotPasswordForm
+            onSubmit={ ForgotPasswordApp._onSubmit }
+            isInfoVisible={ this.state.info.isVisible }
+            infoMsg={ this.state.info.message }
+          />
         </div>
       </div>
     );
@@ -45,10 +49,7 @@ class ForgotPasswordApp extends BaseComponent {
   }
 
   static _onSubmit(event, email) {
-    // Prevents browser's default navigation (page refresh).
-    event.preventDefault();
-
-    forgotPasswordActionCreator.forgotPassword(email);
+    authActionCreator.forgotPassword(email);
   }
 
 }
@@ -62,7 +63,7 @@ ForgotPasswordApp.contextTypes = {
  */
 function _getState() {
   return {
-    //isLoggedIn: authStore.isLoggedIn(),
+    info: authStore.getInfo('forgotPassword'),
   };
 }
 

@@ -18,6 +18,9 @@ const authConstants = keyMirror({
   LOGOUT_SUCCEED: null,
   LOGOUT_FAIL: null,
 
+  FORGOT_PASSWORD_SUCCEED: null,
+  FORGOT_PASSWORD_FAIL: null,
+
   PROXY_ERROR: null,
 
   USER_INFO_SYNC: null,

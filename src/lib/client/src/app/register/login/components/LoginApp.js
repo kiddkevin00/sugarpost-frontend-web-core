@@ -19,7 +19,7 @@ class LoginApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (nextState.isLoggedIn) {
-      nextContext.router.push(authStore.getTransitionPath() || '/account');
+      nextContext.router.push(authStore.getTransitionPath() || '/register/payment');
     }
   }
 

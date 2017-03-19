@@ -97,6 +97,33 @@ const authActionCreator = {
       });
   },
 
+  forgotPassword(email) {
+    const url = '/api/auth/forgot-password';
+    const body = { email };
+    const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
+
+    Proxy.post(url, body, headers)
+      .then((payloadObj) => {
+        const res = StandardResponseWrapper.deserialize(payloadObj);
+
+        if (res.getNthData(0).success) {
+          dispatcher.dispatch({
+            actionType: authConstants.FORGOT_PASSWORD_SUCCEED,
+          });
+        } else {
+          dispatcher.dispatch({
+            actionType: authConstants.FORGOT_PASSWORD_FAIL,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatcher.dispatch({
+          actionType: authConstants.FORGOT_PASSWORD_FAIL,
+          data: err,
+        });
+      });
+  },
+
   authCheck() {
     const url = '/api/auth/check';
 
