@@ -97,8 +97,8 @@ class AuthStore extends EventEmitter {
 
   _login(user) {
     this[storeContext].user = user;
-
     this[storeContext].isLoggedIn = true;
+
     Object.assign(this[storeContext].loginError, { message: defaultErrorMsg, isVisible: false });
     Object.assign(this[storeContext].signupError, { message: defaultErrorMsg, isVisible: false });
     Object.assign(this[storeContext].forgotPasswordInfo, { message: defaultInfoMsg, isVisible: false });
@@ -129,6 +129,13 @@ class AuthStore extends EventEmitter {
     this[storeContext].referCode = code;
   }
 
+  _clearAllAlertBoxes() {
+    Object.assign(this[storeContext].loginError, { message: defaultErrorMsg, isVisible: false });
+    Object.assign(this[storeContext].signupError, { message: defaultErrorMsg, isVisible: false });
+    Object.assign(this[storeContext].forgotPasswordInfo,
+      { message: defaultInfoMsg, isVisible: false });
+  }
+
 }
 
 const authStore = new AuthStore();
@@ -139,6 +146,15 @@ dispatcher.register((action) => {
   const data = action.data;
 
   switch (actionType) {
+    case authConstants.SIGNING_UP:
+    case authConstants.LOGGING_IN:
+    case authConstants.RESETTING_PASSWORD:
+      authStore._clearAllAlertBoxes();
+
+      authStore.emitChange();
+      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
+
     case authConstants.SIGNUP_SUCCEED:
     case authConstants.BASIC_LOGIN_SUCCEED:
     case authConstants.IS_LOGGED_IN:
@@ -176,20 +192,21 @@ dispatcher.register((action) => {
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
+
     case authConstants.LOGOUT_FAIL:
-      authStore._showError('logout', data || 'Logout fails.');
+      alert((data && JSON.stringify(data, null, 2)) || 'Logout fails.');
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
 
-    case authConstants.FORGOT_PASSWORD_SUCCEED:
+    case authConstants.RESET_PASSWORD_SUCCEED:
       authStore._showInfo('forgotPassword', 'If a matching account was found an email was sent to user@email.com to allow you to reset your password.');
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
-    case authConstants.FORGOT_PASSWORD_FAIL:
+    case authConstants.RESET_PASSWORD_FAIL:
       authStore._showInfo('forgotPassword', 'If a matching account was found an email was sent to user@email.com to allow you to reset your password.');
 
       authStore.emitChange();

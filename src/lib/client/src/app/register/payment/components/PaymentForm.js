@@ -3,6 +3,7 @@ import BaseComponent from '../../../../common/components/BaseComponent';
 import StripeCheckout from 'react-stripe-checkout';
 import React from 'react';
 import couponCode from 'coupon-code';
+import classNames from 'classnames';
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
   'September', 'October', 'November', 'December'];
@@ -21,9 +22,31 @@ class PaymentForm extends BaseComponent {
 
   render() {
     const chargeStr = window.parseFloat(this.state.charge).toFixed(2);
+    const alertErrorBoxClasses = classNames({
+      alert: true,
+      'alert-danger': true,
+      'alert-dismissible': true,
+      collapse: !this.props.isErrorVisible,
+    });
+    const alertSuccessBoxClasses = classNames({
+      alert: true,
+      'alert-success': true,
+      'alert-dismissible': true,
+      collapse: !this.props.isInfoVisible,
+    });
 
     return (
       <form role="form">
+        <div className={ alertSuccessBoxClasses } role="alert">
+          <a className="close" data-dismiss="alert">×</a>
+          <i className="fa fa-check-square-o" />
+          &nbsp; { this.props.infoMsg }
+        </div>
+        <div className={ alertErrorBoxClasses } role="alert">
+          <a className="close" data-dismiss="alert">×</a>
+          <i className="fa fa-exclamation-triangle" />
+          &nbsp; { this.props.errorMsg }
+        </div>
         <FormInput
           text="Refer Code (Optional)"
           validate={ PaymentForm._validateCouponCode }

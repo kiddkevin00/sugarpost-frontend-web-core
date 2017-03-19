@@ -20,7 +20,7 @@ const clientRoutes = (
       <Route path="register" component={ RegisterApp }>
         <Route path="login" component={ LoginApp } />
         <Route path="signup" component={ SignupApp } onEnter={ storeParamMap } />
-        <Route path="payment" component={ PaymentApp } />
+        <Route path="payment" component={ PaymentApp } onEnter={ inTransition } />
         <Route path="forgot-password" component={ ForgotPasswordApp } />
         <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
       </Route>

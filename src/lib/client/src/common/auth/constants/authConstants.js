@@ -1,10 +1,12 @@
 import keyMirror from 'keymirror';
 
 const authConstants = keyMirror({
+  SIGNING_UP: null,
   SIGNUP_SUCCEED: null,
   SIGNUP_FAIL: null,
   ALREADY_SIGNED_UP: null,
 
+  LOGGING_IN: null,
   BASIC_LOGIN_SUCCEED: null,
   BASIC_LOGIN_FAIL: null,
 
@@ -18,8 +20,9 @@ const authConstants = keyMirror({
   LOGOUT_SUCCEED: null,
   LOGOUT_FAIL: null,
 
-  FORGOT_PASSWORD_SUCCEED: null,
-  FORGOT_PASSWORD_FAIL: null,
+  RESETTING_PASSWORD: null,
+  RESET_PASSWORD_SUCCEED: null,
+  RESET_PASSWORD_FAIL: null,
 
   PROXY_ERROR: null,
 
