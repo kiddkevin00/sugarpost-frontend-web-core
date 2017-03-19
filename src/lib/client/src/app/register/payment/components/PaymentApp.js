@@ -1,6 +1,7 @@
 import authStore from '../../../../common/auth/stores/authStore';
-import paymentActionCreator from '../actions/paymentActionCreator';
+import paymentStore from '../stores/paymentStore';
 import authActionCreator from '../../../../common/auth/actions/authActionCreator';
+import paymentActionCreator from '../actions/paymentActionCreator';
 import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
@@ -16,6 +17,7 @@ class PaymentApp extends BaseComponent {
 
   componentDidMount() {
     authStore.addChangeListener(this._onChange);
+    paymentStore.addChangeListener(this._onChange);
 
     if (!this.state.isLoggedIn) {
       authActionCreator.authCheck();
@@ -30,6 +32,7 @@ class PaymentApp extends BaseComponent {
 
   componentWillUnmount() {
     authStore.removeChangeListener(this._onChange);
+    paymentStore.removeChangeListener(this._onChange);
   }
 
   render() {
@@ -50,11 +53,15 @@ class PaymentApp extends BaseComponent {
         <div className="form-bottom">
           <PaymentForm
             onSubmit={ PaymentApp._onSubmit }
-            email={ this.props.location.query.email }
+            email={ this.props.location.query.email || '' }
             referCode={ this.state.referCode }
             subscribedMonth={ currentMonth + 1 }
             regularChargeAmount={ 19.99 }
             referralChargeAmount={ 17.99 }
+            isInfoVisible={ this.state.info.isVisible }
+            infoMsg={ this.state.info.message }
+            isErrorVisible={ this.state.error.isVisible }
+            errorMsg={ this.state.error.message }
           />
         </div>
       </div>
@@ -82,6 +89,8 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
     referCode: authStore.gerReferCode(),
+    error: paymentStore.getError(),
+    info: paymentStore.getInfo(),
   };
 }
 

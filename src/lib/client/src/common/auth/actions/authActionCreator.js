@@ -7,6 +7,10 @@ import constants from '../../constants/';
 
 const authActionCreator = {
   signup(email, password, fullName) {
+    dispatcher.dispatch({
+      actionType: authConstants.SIGNING_UP,
+    });
+
     const url = '/api/auth/signup';
     const body = { email, password, fullName };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
@@ -43,6 +47,10 @@ const authActionCreator = {
   },
 
   login(email, password) {
+    dispatcher.dispatch({
+      actionType: authConstants.LOGGING_IN,
+    });
+
     const url = '/api/auth/login';
     const body = { email, password };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
@@ -98,6 +106,10 @@ const authActionCreator = {
   },
 
   forgotPassword(email) {
+    dispatcher.dispatch({
+      actionType: authConstants.RESETTING_PASSWORD,
+    });
+    
     const url = '/api/auth/forgot-password';
     const body = { email };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
@@ -108,17 +120,17 @@ const authActionCreator = {
 
         if (res.getNthData(0).success) {
           dispatcher.dispatch({
-            actionType: authConstants.FORGOT_PASSWORD_SUCCEED,
+            actionType: authConstants.RESET_PASSWORD_SUCCEED,
           });
         } else {
           dispatcher.dispatch({
-            actionType: authConstants.FORGOT_PASSWORD_FAIL,
+            actionType: authConstants.RESET_PASSWORD_FAIL,
           });
         }
       })
       .catch((err) => {
         dispatcher.dispatch({
-          actionType: authConstants.FORGOT_PASSWORD_FAIL,
+          actionType: authConstants.RESET_PASSWORD_FAIL,
           data: err,
         });
       });

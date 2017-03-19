@@ -1,6 +1,7 @@
 import keyMirror from 'keymirror';
 
 const paymentConstants = keyMirror({
+  PAYING: null,
   PAYMENT_SUCCEED: null,
   PAYMENT_FAIL: null,
   REFERRAL_CODE_NOT_FOUND: null,

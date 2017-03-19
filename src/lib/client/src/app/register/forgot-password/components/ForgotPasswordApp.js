@@ -23,7 +23,7 @@ class ForgotPasswordApp extends BaseComponent {
 
   render() {
     return (
-      <div id="eee">
+      <div>
         <div className="form-top">
           <div className="form-top-left">
             <h3>Forgot password</h3>

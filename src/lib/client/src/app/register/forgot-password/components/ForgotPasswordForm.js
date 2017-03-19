@@ -26,7 +26,7 @@ class ForgotPasswordForm extends BaseComponent {
       <form onSubmit={ this._onSubmit } role="form">
         <div className={ alertBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
-          <i className="fa fa-exclamation-triangle" />
+          <i className="fa fa-info-circle" />
           &nbsp; { this.props.infoMsg }
         </div>
         <FormInput
@@ -57,7 +57,7 @@ class ForgotPasswordForm extends BaseComponent {
   _onSubmit(event) {
     // Prevents browser's default navigation (page refresh).
     event.preventDefault();
-    
+
     if (this.email.isValid()) {
       this.props.onSubmit(event, this.state.email);
     } else {

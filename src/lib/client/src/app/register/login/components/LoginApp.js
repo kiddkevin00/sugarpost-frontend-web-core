@@ -19,7 +19,17 @@ class LoginApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (nextState.isLoggedIn) {
-      nextContext.router.push(authStore.getTransitionPath() || '/register/payment');
+      if (authStore.getTransitionPath() === '/register/payment') {
+        nextContext.router.push({
+          pathname: '/register/payment',
+          query: { email: nextState.user.email },
+        });
+      } else {
+        nextContext.router.push(authStore.getTransitionPath() || {
+          pathname: '/register/payment',
+          query: { email: nextState.user.email },
+        });
+      }
     }
   }
 
@@ -74,6 +84,7 @@ LoginApp.contextTypes = {
 function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
+    user: authStore.getUser(),
     error: authStore.getError('login'),
   };
 }

@@ -6,6 +6,10 @@ import authConstants from '../../../../common/auth/constants/authConstants';
 
 const paymentActionCreator = {
   pay(token, referCode) {
+    dispatcher.dispatch({
+      actionType: paymentConstants.PAYING,
+    });
+
     const url = '/api/payment/proceed';
     const body = { referCode, tokenId: token.id, email: token.email };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
@@ -22,30 +26,25 @@ const paymentActionCreator = {
             },
           });
 
-          // TODO
           dispatcher.dispatch({
             actionType: paymentConstants.PAYMENT_SUCCEED,
           });
         } else if (res.getNthData(0).status === 'REFERRAL_CODE_NOT_FOUND') {
-          // TODO
           dispatcher.dispatch({
             actionType: paymentConstants.REFERRAL_CODE_NOT_FOUND,
             data: res.getNthData(0).detail,
           });
-        } else if (res.getNthData(0).status === 'EMAIL_NOT_EXISTED') {
-          // TODO
+        } else if (res.getNthData(0).status === 'PAYER_EMAIL_NOT_EXISTED') {
           dispatcher.dispatch({
             actionType: paymentConstants.EMAIL_NOT_SIGNUP,
             data: res.getNthData(0).detail,
           });
         } else if (res.getNthData(0).status === 'ALREADY_LINK_TO_STRIPE_ACC') {
-          // TODO
           dispatcher.dispatch({
             actionType: paymentConstants.ALREADY_PAY,
             data: res.getNthData(0).detail,
           });
         } else {
-          // TODO
           dispatcher.dispatch({
             actionType: paymentConstants.PAYMENT_FAIL,
             data: res.getNthData(0).detail,
@@ -53,7 +52,6 @@ const paymentActionCreator = {
         }
       })
       .catch((err) => {
-        // TODO
         dispatcher.dispatch({
           actionType: paymentConstants.PAYMENT_FAIL,
           data: err,
