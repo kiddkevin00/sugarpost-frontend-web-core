@@ -35,11 +35,16 @@ class AuthStore extends EventEmitter {
       },
       transitionPath: '',
       referCode: '',
+      isLoading: false
     };
   }
 
   isLoggedIn() {
     return this[storeContext].isLoggedIn;
+  }
+
+  isLoading() {
+    return this[storeContext].isLoading;
   }
 
   getUser() {

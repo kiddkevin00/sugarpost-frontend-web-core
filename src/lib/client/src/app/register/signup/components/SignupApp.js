@@ -31,8 +31,13 @@ class SignupApp extends BaseComponent {
   }
 
   render() {
+    let loader;
+    if (this.state.loading) {
+      loader = <div className="slow-loader" />
+    }
     return (
       <div>
+        { loader }
         <div className="form-top">
           <div className="form-top-left">
             <h3>Sign up now</h3>
@@ -62,7 +67,9 @@ class SignupApp extends BaseComponent {
     const fullName = _fullName && _fullName.trim();
 
     this.email = email && email.trim();
-
+    this.setState({
+      loading: true,
+    });
     authActionCreator.signup(this.email, password, fullName);
   }
 
@@ -79,6 +86,7 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
     error: authStore.getError('signup'),
+    loading: authStore.isLoading(),
   };
 }
 
