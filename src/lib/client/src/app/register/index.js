@@ -16,7 +16,7 @@ class RegisterApp extends BaseComponent {
                   <h1>Welcome...</h1>
                   <div className="description">
                     <p>
-                      For only $19.99 a month, you can get 4 of the city’s trendiest desserts
+                      For only $24.99 a month, you can get 4 of the city’s trendiest desserts
                       monthly, e-packages curated by the insight of the most influential food
                       bloggers and dessert connosieurs! Not only will these e-packages contain
                       your redemption codes for your desserts, but they will also provide a guide

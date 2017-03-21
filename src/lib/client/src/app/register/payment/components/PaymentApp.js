@@ -60,8 +60,8 @@ class PaymentApp extends BaseComponent {
             errorMsg={ this.state.error.message }
             referCode={ this.state.referCode }
             subscribedMonth={ currentMonth + 1 }
-            regularChargeAmount={ 19.99 }
-            referralChargeAmount={ 17.99 }
+            regularChargeAmount={ 24.99 }
+            referralChargeAmount={ 22.99 }
           />
         </div>
       </div>
