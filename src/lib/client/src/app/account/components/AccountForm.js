@@ -25,7 +25,13 @@ class AccountForm extends BaseComponent {
   }
 
   render() {
-    const alertBoxClasses = classNames({
+    const alertSuccessBoxClasses = classNames({
+      alert: true,
+      'alert-success': true,
+      'alert-dismissible': true,
+      collapse: !this.props.isInfoVisible,
+    });
+    const alertErrorBoxClasses = classNames({
       alert: true,
       'alert-danger': true,
       'alert-dismissible': true,
@@ -34,7 +40,12 @@ class AccountForm extends BaseComponent {
 
     return (
       <form className="form-horizontal" role="form">
-        <div className={ alertBoxClasses } role="alert">
+        <div className={ alertSuccessBoxClasses } role="alert">
+          <a className="close" data-dismiss="alert">×</a>
+          <i className="fa fa-check-square-o" />
+          &nbsp; { this.props.infoMsg }
+        </div>
+        <div className={ alertErrorBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-exclamation-triangle" />
           &nbsp; { this.props.errorMsg }
@@ -140,12 +151,15 @@ class AccountForm extends BaseComponent {
 }
 AccountForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
+  isInfoVisible: React.PropTypes.bool.isRequired,
   isErrorVisible: React.PropTypes.bool.isRequired,
+  infoMsg: React.PropTypes.string,
   errorMsg: React.PropTypes.string,
   fullName: React.PropTypes.string,
   email: React.PropTypes.string,
 };
 AccountForm.defaultProps = {
+  infoMsg: 'Request has been completed.',
   errorMsg: 'Oops! Something went wrong. Please try again.',
   fullName: 'Loading...',
   email: 'Loading...',

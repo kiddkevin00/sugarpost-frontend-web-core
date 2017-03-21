@@ -48,7 +48,9 @@ class ForgotPasswordApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(event, email) {
+  static _onSubmit(event, _email) {
+    const email = _email && _email.trim() && _email.toLowerCase();
+
     authActionCreator.forgotPassword(email);
   }
 

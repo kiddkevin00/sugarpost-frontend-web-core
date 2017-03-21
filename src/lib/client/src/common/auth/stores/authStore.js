@@ -3,9 +3,9 @@ import authConstants from '../constants/authConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
-const storeContext = Symbol('loginStoreContext');
+const storeContext = Symbol('authStoreContext');
 const defaultErrorMsg = 'Oops! Something went wrong. Please try again.';
-const defaultInfoMsg = 'Thank you!';
+const defaultInfoMsg = 'Request has been completed.';
 
 // A Flux's store.
 class AuthStore extends EventEmitter {

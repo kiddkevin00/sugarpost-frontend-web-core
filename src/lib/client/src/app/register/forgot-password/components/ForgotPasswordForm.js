@@ -72,7 +72,7 @@ ForgotPasswordForm.propTypes = {
   infoMsg: React.PropTypes.string,
 };
 ForgotPasswordForm.defaultProps = {
-  infoMsg: 'Oops! Something went wrong. Please try again.',
+  infoMsg: 'Request has been completed.',
 };
 
 export default ForgotPasswordForm;

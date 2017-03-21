@@ -3,7 +3,7 @@ import homeConstants from '../constants/homeConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
-const storeContext = Symbol('auth-store-context');
+const storeContext = Symbol('homeStoreContext');
 
 // A Flux's store.
 class HomeStore extends EventEmitter {

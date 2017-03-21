@@ -6,7 +6,7 @@ const changeEvent = Symbol('change');
 const storeContext = Symbol('paymentStoreContext');
 
 const defaultErrorMsg = 'Oops! Something went wrong. Please try again.';
-const defaultInfoMsg = 'Thank you!';
+const defaultInfoMsg = 'Request has been completed.';
 
 // A Flux's store.
 class PaymentStore extends EventEmitter {
@@ -88,7 +88,6 @@ dispatcher.register((action) => {
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
-
     case paymentConstants.PAYMENT_SUCCEED:
       paymentStore._showInfo('Thank you! We have received your payment.');
 

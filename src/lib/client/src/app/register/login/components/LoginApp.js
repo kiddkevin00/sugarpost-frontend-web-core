@@ -68,7 +68,10 @@ class LoginApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(event, email, password) {
+  static _onSubmit(event, _email, _password) {
+    const email = _email && _email.trim() && _email.toLowerCase();
+    const password = _password && _password.trim();
+
     authActionCreator.login(email, password);
   }
 

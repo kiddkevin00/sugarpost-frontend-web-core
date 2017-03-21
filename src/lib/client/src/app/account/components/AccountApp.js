@@ -1,5 +1,7 @@
 import authStore from '../../../common/auth/stores/authStore';
+import accountStore from '../stores/accountStore';
 import authActionCreator from '../../../common/auth/actions/authActionCreator';
+import accountActionCreator from '../actions/accountActionCreator';
 import SubscriptionSection from './SubscriptionSection';
 import AccountForm from './AccountForm';
 import BaseComponent from '../../../common/components/BaseComponent';
@@ -16,6 +18,7 @@ class AccountApp extends BaseComponent {
 
   componentDidMount() {
     authStore.addChangeListener(this._onChange);
+    accountStore.addChangeListener(this._onChange);
 
     if (!this.state.isLoggedIn) {
       authActionCreator.authCheck();
@@ -30,6 +33,7 @@ class AccountApp extends BaseComponent {
 
   componentWillUnmount() {
     authStore.removeChangeListener(this._onChange);
+    accountStore.removeChangeListener(this._onChange);
   }
 
   render() {
@@ -57,10 +61,12 @@ class AccountApp extends BaseComponent {
                   <div className="col-lg-offset-1 col-lg-10 col-lg-xs-12">
                     <AccountForm
                       onSubmit={ AccountApp._onSubmit }
+                      isInfoVisible={ this.state.info.isVisible }
+                      isErrorVisible={ this.state.error.isVisible }
+                      infoMsg={ this.state.info.message }
+                      errorMsg={ this.state.error.message }
                       fullName={ this.state.user.fullName }
                       email={ this.state.user.email }
-                      isErrorVisible={ this.state.error.isVisible }
-                      errorMsg={ this.state.error.message }
                     />
                   </div>
                 </div>
@@ -76,12 +82,11 @@ class AccountApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(event, _email, _password, _fullName) {
-    const email = _email && _email.trim();
+  static _onSubmit(event, email, _password, _fullName) {
     const password = _password && _password.trim();
     const fullName = _fullName && _fullName.trim();
 
-    // TODO
+    accountActionCreator.updateProfile(email, password, fullName);
   }
 
 }
@@ -97,7 +102,8 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
     user: authStore.getUser(),
-    error: authStore.getError('account'),
+    info: accountStore.getInfo(),
+    error: accountStore.getError(),
   };
 }
 

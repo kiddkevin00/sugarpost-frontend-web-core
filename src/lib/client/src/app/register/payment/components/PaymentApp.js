@@ -54,14 +54,14 @@ class PaymentApp extends BaseComponent {
           <PaymentForm
             onSubmit={ PaymentApp._onSubmit }
             email={ this.props.location.query.email || '' }
+            isInfoVisible={ this.state.info.isVisible }
+            isErrorVisible={ this.state.error.isVisible }
+            infoMsg={ this.state.info.message }
+            errorMsg={ this.state.error.message }
             referCode={ this.state.referCode }
             subscribedMonth={ currentMonth + 1 }
             regularChargeAmount={ 19.99 }
             referralChargeAmount={ 17.99 }
-            isInfoVisible={ this.state.info.isVisible }
-            infoMsg={ this.state.info.message }
-            isErrorVisible={ this.state.error.isVisible }
-            errorMsg={ this.state.error.message }
           />
         </div>
       </div>

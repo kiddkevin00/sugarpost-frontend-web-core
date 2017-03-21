@@ -22,17 +22,17 @@ class PaymentForm extends BaseComponent {
 
   render() {
     const chargeStr = window.parseFloat(this.state.charge).toFixed(2);
-    const alertErrorBoxClasses = classNames({
-      alert: true,
-      'alert-danger': true,
-      'alert-dismissible': true,
-      collapse: !this.props.isErrorVisible,
-    });
     const alertSuccessBoxClasses = classNames({
       alert: true,
       'alert-success': true,
       'alert-dismissible': true,
       collapse: !this.props.isInfoVisible,
+    });
+    const alertErrorBoxClasses = classNames({
+      alert: true,
+      'alert-danger': true,
+      'alert-dismissible': true,
+      collapse: !this.props.isErrorVisible,
     });
 
     return (
@@ -137,12 +137,18 @@ class PaymentForm extends BaseComponent {
 PaymentForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
   email: React.PropTypes.string.isRequired,
+  isInfoVisible: React.PropTypes.bool.isRequired,
+  isErrorVisible: React.PropTypes.bool.isRequired,
+  infoMsg: React.PropTypes.string,
+  errorMsg: React.PropTypes.string,
   referCode: React.PropTypes.string,
   subscribedMonth: React.PropTypes.number,
   regularChargeAmount: React.PropTypes.number,
   referralChargeAmount: React.PropTypes.number,
 };
 PaymentForm.defaultProps = {
+  infoMsg: 'Request has been completed.',
+  errorMsg: 'Oops! Something went wrong. Please try again.',
   referCode: '',
   subscribedMonth: (new Date()).getMonth(),
   regularChargeAmount: 0,
