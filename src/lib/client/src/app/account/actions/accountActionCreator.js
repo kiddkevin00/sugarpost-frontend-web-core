@@ -1,5 +1,5 @@
-import Proxy from '../../../common/proxies/proxy';
-import dispatcher from '../../../common/dispatcher/AppDispatcher';
+import Proxy from '../../../common/proxies/HttpProxy';
+import dispatcher from '../../../common/dispatcher/appDispatcher';
 import StandardResponseWrapper from '../../../common/utility/standard-response-wrapper';
 import accountConstants from '../constants/accountConstants';
 import authConstants from '../../../common/auth/constants/authConstants';
@@ -13,9 +13,8 @@ const accountActionCreator = {
     const url = '/api/user/info';
     const body = { password, fullName };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
-    const query = { email };
 
-    Proxy.put(url, body, headers, query)
+    Proxy.put(url, body, headers)
       .then((payloadObj) => {
         const res = StandardResponseWrapper.deserialize(payloadObj);
 

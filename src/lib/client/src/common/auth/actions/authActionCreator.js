@@ -1,5 +1,5 @@
-import dispatcher from '../../dispatcher/AppDispatcher';
-import Proxy from '../../../common/proxies/proxy';
+import dispatcher from '../../dispatcher/appDispatcher';
+import Proxy from '../../proxies/HttpProxy';
 import StandardResponseWrapper from '../../utility/standard-response-wrapper';
 import StandardErrorWrapper from '../../utility/standard-error-wrapper';
 import authConstants from '../constants/authConstants';

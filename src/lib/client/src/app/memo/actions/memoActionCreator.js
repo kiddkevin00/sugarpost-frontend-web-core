@@ -1,4 +1,4 @@
-import dispatcher from '../../../common/dispatcher/AppDispatcher';
+import dispatcher from '../../../common/dispatcher/appDispatcher';
 import memoConstants from '../constants/memoConstants';
 
 const memoActionCreator = {

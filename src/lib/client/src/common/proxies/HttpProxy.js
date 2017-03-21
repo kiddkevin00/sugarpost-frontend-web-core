@@ -30,10 +30,10 @@ class HttpRequest {
 
 }
 
-class Proxy {
+class HttpProxy {
 
   static get(_url, queryStringObj = {}, headers = {}) {
-    const url = Proxy._getFullUrl(_url, queryStringObj);
+    const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
       method: constants.SYSTEM.HTTP_METHODS.GET,
@@ -46,7 +46,7 @@ class Proxy {
   }
 
   static post(_url, body = {}, headers = {}, queryStringObj = {}) {
-    const url = Proxy._getFullUrl(_url, queryStringObj);
+    const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
       body: JSON.stringify(body),
@@ -59,7 +59,7 @@ class Proxy {
   }
 
   static put(_url, body = {}, headers = {}, queryStringObj = {}) {
-    const url = Proxy._getFullUrl(_url, queryStringObj);
+    const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
       body: JSON.stringify(body),
@@ -72,7 +72,7 @@ class Proxy {
   }
 
   static delete(_url, body = {}, headers = {}, queryStringObj = {}) {
-    const url = Proxy._getFullUrl(_url, queryStringObj);
+    const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
       body: JSON.stringify(body),
@@ -98,7 +98,7 @@ class Proxy {
     }
 
     if (Object.keys(queryStringObj).length) {
-      fullUrl += `?${Proxy._parseQueryStringOBj(queryStringObj)}`;
+      fullUrl += `?${HttpProxy._parseQueryStringOBj(queryStringObj)}`;
     }
 
     return fullUrl;
@@ -114,4 +114,4 @@ class Proxy {
 
 }
 
-module.exports = Proxy;
+module.exports = HttpProxy;

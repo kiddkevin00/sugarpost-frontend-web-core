@@ -1,4 +1,4 @@
-import dispatcher from '../../../common/dispatcher/AppDispatcher';
+import dispatcher from '../../../common/dispatcher/appDispatcher';
 import accountConstants from '../constants/accountConstants';
 import EventEmitter from 'events';
 

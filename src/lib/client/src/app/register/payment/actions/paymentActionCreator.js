@@ -1,5 +1,5 @@
-import Proxy from '../../../../common/proxies/proxy';
-import dispatcher from '../../../../common/dispatcher/AppDispatcher';
+import Proxy from '../../../../common/proxies/HttpProxy';
+import dispatcher from '../../../../common/dispatcher/appDispatcher';
 import StandardResponseWrapper from '../../../../common/utility/standard-response-wrapper';
 import paymentConstants from '../constants/paymentConstants';
 import authConstants from '../../../../common/auth/constants/authConstants';

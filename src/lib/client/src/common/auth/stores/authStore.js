@@ -1,4 +1,4 @@
-import dispatcher from '../../dispatcher/AppDispatcher';
+import dispatcher from '../../dispatcher/appDispatcher';
 import authConstants from '../constants/authConstants';
 import EventEmitter from 'events';
 
