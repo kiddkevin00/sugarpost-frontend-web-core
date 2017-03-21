@@ -136,6 +136,10 @@ class AuthStore extends EventEmitter {
       { message: defaultInfoMsg, isVisible: false });
   }
 
+  _updateLoading() {
+    this[storeContext].isLoading = !this[storeContext].isLoading;
+  }
+
 }
 
 const authStore = new AuthStore();
@@ -150,6 +154,7 @@ dispatcher.register((action) => {
     case authConstants.LOGGING_IN:
     case authConstants.RESETTING_PASSWORD:
       authStore._clearAllAlertBoxes();
+      authStore._updateLoading();
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -159,6 +164,7 @@ dispatcher.register((action) => {
     case authConstants.BASIC_LOGIN_SUCCEED:
     case authConstants.IS_LOGGED_IN:
       authStore._login(data.user);
+      authStore._updateLoading();
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -166,12 +172,14 @@ dispatcher.register((action) => {
 
     case authConstants.ALREADY_SIGNED_UP:
       authStore._showError('signup', 'That email address is already in use. Please log in.');
+      authStore._updateLoading();
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.SIGNUP_FAIL:
       authStore._showError('signup', data);
+      authStore._updateLoading();
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);

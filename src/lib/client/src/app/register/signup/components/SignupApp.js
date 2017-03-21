@@ -67,9 +67,6 @@ class SignupApp extends BaseComponent {
     const fullName = _fullName && _fullName.trim();
 
     this.email = email && email.trim();
-    this.setState({
-      loading: true,
-    });
     authActionCreator.signup(this.email, password, fullName);
   }
 
