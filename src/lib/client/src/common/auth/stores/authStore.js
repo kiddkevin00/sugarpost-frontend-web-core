@@ -96,7 +96,8 @@ class AuthStore extends EventEmitter {
 
     Object.assign(this[storeContext].loginError, { message: defaultErrorMsg, isVisible: false });
     Object.assign(this[storeContext].signupError, { message: defaultErrorMsg, isVisible: false });
-    Object.assign(this[storeContext].forgotPasswordInfo, { message: defaultInfoMsg, isVisible: false });
+    Object.assign(this[storeContext].forgotPasswordInfo,
+      { message: defaultInfoMsg, isVisible: false });
   }
 
   _showError(type, message = defaultErrorMsg) {

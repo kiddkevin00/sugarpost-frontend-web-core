@@ -109,7 +109,7 @@ const authActionCreator = {
     dispatcher.dispatch({
       actionType: authConstants.RESETTING_PASSWORD,
     });
-    
+
     const url = '/api/auth/forgot-password';
     const body = { email };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
