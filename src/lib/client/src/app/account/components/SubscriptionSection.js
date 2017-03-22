@@ -85,7 +85,7 @@ class SubscriptionSection extends BaseComponent {
   }
 
   _onUpdatePayment(event) {
-
+    this.props.onUpdatePayment(event);
   }
 
   _onUnsubscribe(event) {

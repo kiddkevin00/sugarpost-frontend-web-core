@@ -47,7 +47,7 @@ class AuthStore extends EventEmitter {
   }
 
   getError(type) {
-    return this[storeContext][`${type}Error`];;
+    return this[storeContext][`${type}Error`];
   }
 
   getInfo(type) {

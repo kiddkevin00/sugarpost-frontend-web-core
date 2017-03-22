@@ -8,18 +8,7 @@ class HomeApp extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange');
     this.state = _getState();
-  }
-
-  componentDidMount() {
-    homeStore.addChangeListener(this._onChange);
-  }
-
-  componentWillReceiveProps(nextProps) {}
-
-  componentWillUnmount() {
-    homeStore.removeChangeListener(this._onChange);
   }
 
   render() {
@@ -265,23 +254,6 @@ class HomeApp extends BaseComponent {
         <Footer />
       </div>
     );
-  }
-
-  _onChange() {
-    this.setState(_getState());
-  }
-
-  static _onSubmit(event, email) {
-    // Prevents browser's default behavior (page refresh).
-    event.preventDefault();
-
-    homeActionCreator.subscribe(email);
-  }
-
-  static _onLink(url) {
-    const win = window.open(url, '_blank');
-
-    win.focus();
   }
 
 }

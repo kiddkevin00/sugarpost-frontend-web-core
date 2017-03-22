@@ -93,8 +93,10 @@ class AccountStore extends EventEmitter {
   }
 
   _clearAlertBoxesForSubscription() {
-    Object.assign(this[storeContext].subscriptionInfo, { message: defaultInfoMsg, isVisible: false });
-    Object.assign(this[storeContext].subscriptionError, { message: defaultErrorMsg, isVisible: false });
+    Object.assign(this[storeContext].subscriptionInfo,
+     { message: defaultInfoMsg, isVisible: false });
+    Object.assign(this[storeContext].subscriptionError,
+      { message: defaultErrorMsg, isVisible: false });
   }
 
   _showInfoForSubscription(_message = defaultInfoMsg) {
@@ -149,7 +151,7 @@ dispatcher.register((action) => {
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
-    
+
     case accountConstants.CANCELLING_SUBSCRIPTION:
       accountStore._clearAlertBoxesForSubscription();
 
@@ -167,6 +169,7 @@ dispatcher.register((action) => {
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
     default:
       break;
   }

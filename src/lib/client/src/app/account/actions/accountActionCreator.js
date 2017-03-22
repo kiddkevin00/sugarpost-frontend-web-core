@@ -77,7 +77,7 @@ const accountActionCreator = {
           data: err,
         });
       });
-  }
+  },
 };
 
 export default accountActionCreator;
