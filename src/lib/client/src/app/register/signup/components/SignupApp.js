@@ -48,6 +48,14 @@ class SignupApp extends BaseComponent {
             isErrorVisible={ this.state.error.isVisible }
             errorMsg={ this.state.error.message }
           />
+          <div className="row">
+            <div className="col-xs-offset-1 col-xs-10">
+              <br />
+              <p className="text-center">
+                By signing up, you agree to our <a>Terms</a> & <a>Privacy Policy</a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     );

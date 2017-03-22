@@ -16,12 +16,11 @@ class RegisterApp extends BaseComponent {
                   <h1>Welcome...</h1>
                   <div className="description">
                     <p>
-                      For only $24.99 a month, you can get 4 of the city’s trendiest desserts
-                      monthly, e-packages curated by the insight of the most influential food
-                      bloggers and dessert connosieurs! Not only will these e-packages contain
-                      your redemption codes for your desserts, but they will also provide a guide
-                      to where these desserts are located and a little background on each dessert
-                      vendor for your discovery experience.
+                      For only $24.99 a month, you will receive e-packages curated
+                      by the insight of influential food bloggers and dessert connoisseurs! Within
+                      your e-package, you will find a little background on each featured dessert
+                      vendor and your redemption codes which can claim in-store desserts or
+                      Sugarpost exclusives.
                     </p>
                   </div>
                   <div className="top-big-link">
