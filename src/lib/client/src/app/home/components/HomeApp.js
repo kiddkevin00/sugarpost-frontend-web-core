@@ -134,65 +134,17 @@ class HomeApp extends BaseComponent {
                 <div className="row no-gutter popup-gallery">
                   <div className="col-lg-3 col-sm-6">
                     {/* eslint-disable max-len */}
-                    <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                      <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                      <div className="portfolio-box-caption">
-                        <div className="portfolio-box-caption-content">
-                          <div className="project-category text-faded">
-                            Category
-                          </div>
-                          <div className="project-name">
-                            Project Name
-                          </div>
-                        </div>
-                      </div>
-                    </a>
+                    <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
                   </div>
                   <div className="col-lg-3 col-sm-6">
-                    <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                      <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                      <div className="portfolio-box-caption">
-                        <div className="portfolio-box-caption-content">
-                          <div className="project-category text-faded">
-                            Category
-                          </div>
-                          <div className="project-name">
-                            Project Name
-                          </div>
-                        </div>
-                      </div>
-                    </a>
+                    <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
                   </div>
                   <div className="col-lg-3 col-sm-6">
-                    <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                      <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                      <div className="portfolio-box-caption">
-                        <div className="portfolio-box-caption-content">
-                          <div className="project-category text-faded">
-                            Category
-                          </div>
-                          <div className="project-name">
-                            Project Name
-                          </div>
-                        </div>
-                      </div>
-                    </a>
+                    <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
                   </div>
                   <div className="col-lg-3 col-sm-6">
-                    <a href="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="portfolio-box">
-                      <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
-                      {/* eslint-enable max-len */}
-                      <div className="portfolio-box-caption">
-                        <div className="portfolio-box-caption-content">
-                          <div className="project-category text-faded">
-                            Category
-                          </div>
-                          <div className="project-name">
-                            Project Name
-                          </div>
-                        </div>
-                      </div>
-                    </a>
+                    <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                    {/* eslint-enable max-len */}
                   </div>
                 </div>
               </div>
