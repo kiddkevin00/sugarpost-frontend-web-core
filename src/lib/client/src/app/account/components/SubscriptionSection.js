@@ -94,10 +94,13 @@ class SubscriptionSection extends BaseComponent {
 
 }
 SubscriptionSection.propTypes = {
+  onUnsubscribe: React.PropTypes.func.isRequired,
+  onUpdatePayment: React.PropTypes.func.isRequired,
   isInfoVisible: React.PropTypes.bool.isRequired,
   isErrorVisible: React.PropTypes.bool.isRequired,
   infoMsg: React.PropTypes.string,
   errorMsg: React.PropTypes.string,
+  status: React.PropTypes.string,
 };
 SubscriptionSection.defaultProps = {
   infoMsg: 'Request has been completed.',

@@ -53,11 +53,11 @@ class AccountApp extends BaseComponent {
                   <SubscriptionSection
                     onUnsubscribe={ AccountApp._onCancelSubscription }
                     onUpdatePayment={ AccountApp._onUpdatePayment }
+                    isInfoVisible={ this.state.subscriptionInfo.isVisible }
+                    isErrorVisible={ this.state.subscriptionError.isVisible }
+                    infoMsg={ this.state.subscriptionInfo.message }
+                    errorMsg={ this.state.subscriptionError.message }
                     status={ this.state.user.type }
-                    isInfoVisible={ this.state.profileInfo.isVisible }
-                    isErrorVisible={ this.state.profileError.isVisible }
-                    infoMsg={ this.state.profileInfo.message }
-                    errorMsg={ this.state.profileError.message }
                   />
                 </div>
               </div>
@@ -69,10 +69,10 @@ class AccountApp extends BaseComponent {
                   <div className="col-lg-offset-1 col-lg-10 col-lg-xs-12">
                     <AccountForm
                       onSubmit={ AccountApp._onUpdateProfile }
-                      isInfoVisible={ this.state.subscriptionInfo.isVisible }
-                      isErrorVisible={ this.state.subscriptionError.isVisible }
-                      infoMsg={ this.state.subscriptionInfo.message }
-                      errorMsg={ this.state.subscriptionError.message }
+                      isInfoVisible={ this.state.profileInfo.isVisible }
+                      isErrorVisible={ this.state.profileError.isVisible }
+                      infoMsg={ this.state.profileInfo.message }
+                      errorMsg={ this.state.profileError.message }
                       fullName={ this.state.user.fullName }
                       email={ this.state.user.email }
                     />
@@ -91,7 +91,7 @@ class AccountApp extends BaseComponent {
   }
 
   static _onUpdatePayment() {
-    
+
   }
 
   static _onCancelSubscription() {
@@ -120,8 +120,8 @@ function _getState() {
     user: authStore.getUser(),
     profileInfo: accountStore.getInfoForProfile(),
     profileError: accountStore.getErrorForProfile(),
-    subscriptionInfo: accountStore.getInfoForProfile(),
-    subscriptionError: accountStore.getErrorForProfile(),
+    subscriptionInfo: accountStore.getInfoForSubscription(),
+    subscriptionError: accountStore.getErrorForSubscription(),
   };
 }
 

@@ -92,7 +92,7 @@ class AuthStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(message, null, 2);
+      message = JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -104,7 +104,7 @@ class AuthStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(message, null, 2);
+      message = JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }

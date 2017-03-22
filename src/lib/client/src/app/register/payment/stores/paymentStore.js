@@ -56,7 +56,7 @@ class PaymentStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(message, null, 2);
+      message = JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -68,7 +68,7 @@ class PaymentStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(message, null, 2);
+      message = JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
