@@ -11,6 +11,12 @@ class HomeApp extends BaseComponent {
     this.state = _getState();
   }
 
+  componentDidMount() {}
+
+  componentWillReceiveProps(nextProps) {}
+
+  componentWillUnmount() {}
+
   render() {
     return (
       <div id="home-template">
