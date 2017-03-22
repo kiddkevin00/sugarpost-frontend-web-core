@@ -50,15 +50,18 @@ class AccountApp extends BaseComponent {
               <div className="panel panel-default">
                 <div className="panel-heading"><h4>Subscription</h4></div>
                 <div className="panel-body">
-                  <SubscriptionSection
-                    onUnsubscribe={ AccountApp._onCancelSubscription }
-                    onUpdatePayment={ AccountApp._onUpdatePayment }
-                    isInfoVisible={ this.state.subscriptionInfo.isVisible }
-                    isErrorVisible={ this.state.subscriptionError.isVisible }
-                    infoMsg={ this.state.subscriptionInfo.message }
-                    errorMsg={ this.state.subscriptionError.message }
-                    status={ this.state.user.type }
-                  />
+                  <div className="col-lg-xs-12">
+                    <SubscriptionSection
+                      onUnsubscribe={ AccountApp._onCancelSubscription }
+                      onUpdatePayment={ AccountApp._onUpdatePayment }
+                      isInfoVisible={ this.state.subscriptionInfo.isVisible }
+                      isErrorVisible={ this.state.subscriptionError.isVisible }
+                      infoMsg={ this.state.subscriptionInfo.message }
+                      errorMsg={ this.state.subscriptionError.message }
+                      status={ this.state.user.type }
+                    />
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                  </div>
                 </div>
               </div>
             </div>

@@ -5,9 +5,6 @@ import React from 'react';
 import couponCode from 'coupon-code';
 import classNames from 'classnames';
 
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-  'September', 'October', 'November', 'December'];
-
 class PaymentForm extends BaseComponent {
 
   constructor(props) {
@@ -62,7 +59,7 @@ class PaymentForm extends BaseComponent {
           description="Premium subscription service"
           image="/assets/images/sugarpost-logo.png"
           ComponentClass="div"
-          panelLabel={ `Get Your ${monthNames[this.props.subscribedMonth]} Treat $${chargeStr}` }
+          panelLabel={ `Get Your ${this.props.subscribedMonth} Treat $${chargeStr}` }
           amount={ 1999 }
           currency="USD"
           locale="en"
@@ -79,7 +76,7 @@ class PaymentForm extends BaseComponent {
             className="btn btn-block"
             type="button"
           >
-            Get Your { monthNames[this.props.subscribedMonth] } Treat ${ this.state.charge }
+            Get Your { this.props.subscribedMonth } Treat ${ this.state.charge }
           </button>
         </StripeCheckout>
       </form>
@@ -150,7 +147,7 @@ PaymentForm.defaultProps = {
   infoMsg: 'Request has been completed.',
   errorMsg: 'Oops! Something went wrong. Please try again.',
   referCode: '',
-  subscribedMonth: (new Date()).getMonth(),
+  subscribedMonth: 'Unknown',
   regularChargeAmount: 0,
   referralChargeAmount: 0,
 };

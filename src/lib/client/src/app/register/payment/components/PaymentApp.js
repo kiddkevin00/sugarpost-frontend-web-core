@@ -6,6 +6,9 @@ import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+  'September', 'October', 'November', 'December'];
+
 class PaymentApp extends BaseComponent {
 
   constructor(props) {
@@ -38,13 +41,20 @@ class PaymentApp extends BaseComponent {
   render() {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDate();
+    let monthNameToSubscribe;
+    if (currentDay <= 25) {
+      monthNameToSubscribe = monthNames[currentMonth + 1];
+    } else {
+      monthNameToSubscribe = monthNames[currentMonth + 2];
+    }
 
     return (
       <div>
         <div className="form-top">
           <div className="form-top-left">
             <h3>Pay now</h3>
-            <p>Fill in the form below to get started:</p>
+            <p>Secure your { monthNameToSubscribe } e-package now:</p>
           </div>
           <div className="form-top-right">
             <img src="/assets/images/sugarpost-logo.png" alt="" />
@@ -59,7 +69,7 @@ class PaymentApp extends BaseComponent {
             infoMsg={ this.state.info.message }
             errorMsg={ this.state.error.message }
             referCode={ this.state.referCode }
-            subscribedMonth={ currentMonth + 1 }
+            subscribedMonth={ monthNameToSubscribe }
             regularChargeAmount={ 24.99 }
             referralChargeAmount={ 22.99 }
           />

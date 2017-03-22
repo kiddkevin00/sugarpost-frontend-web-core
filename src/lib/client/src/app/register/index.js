@@ -13,7 +13,7 @@ class RegisterApp extends BaseComponent {
             <div className="container">
               <div className="row">
                 <div className="col-sm-7 text">
-                  <h1>Welcome...</h1>
+                  <h1>Welcome</h1>
                   <div className="description">
                     <p>
                       For only $24.99 a month, you will receive e-packages curated
@@ -26,7 +26,7 @@ class RegisterApp extends BaseComponent {
                   <div className="top-big-link">
                     <ol>
                       <li>Sign up to the right and become a paid subscriber.</li>
-                      <li>Receive your redemption codes during the first week of every month.</li>
+                      <li>Receive your redemption codes during the first day of every month.</li>
                       <li>Visit the dessert shops.</li>
                       <li>Redeem your desserts and enjoy!</li>
                     </ol>

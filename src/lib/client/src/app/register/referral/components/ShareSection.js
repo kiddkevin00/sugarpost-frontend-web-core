@@ -30,7 +30,7 @@ class ReferralSection extends BaseComponent {
 
     return (
       <div id="share-section">
-        <p>Share the love</p>
+        <p>Share with friends</p>
         <ul className="list-inline">
           <li>
             <FacebookShareButton
