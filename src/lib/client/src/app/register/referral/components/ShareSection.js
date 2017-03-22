@@ -23,10 +23,12 @@ class ReferralSection extends BaseComponent {
     const TwitterIcon = generateShareIcon('twitter');
     const shareUrl = 'https://www.mysugarpost.com/register/signup?' +
       `refer_code=${this.props.myReferCode}`;
-    const title = 'Here\'s 10% discount at Sugarpost';
-    const description = `Your friend ${this.props.myFullName} has given you 10% off discount ` +
-      'for your first monthly dessert treats. To claim your the gift. Sign up now and ' +
-      `enter the following refer code in the payment page: ${this.props.myReferCode}\n\n`;
+    const facebookTitle = '10% Discount Off Your First Sugarpost Subscription';
+    const facebookDescription = 'Here is a 10% discount off your first month of Sugarpost’s ' +
+      'premium dessert subscription service! To claim your discount, sign up now and enter the ' +
+      `following referral code on the payment page: ${this.props.myReferCode}`;
+    const twitterDescription = 'Get 10% off your first month’s subscription with @mysugarpost.' +
+      'Claim this offer now:\n';
 
     return (
       <div id="share-section">
@@ -35,8 +37,8 @@ class ReferralSection extends BaseComponent {
           <li>
             <FacebookShareButton
               url={ shareUrl }
-              title={ title }
-              description={ description }
+              title={ facebookTitle }
+              description={ facebookDescription }
             >
               <FacebookIcon size={ 34 } round={ true } />
             </FacebookShareButton>
@@ -44,7 +46,7 @@ class ReferralSection extends BaseComponent {
           <li>
             <TwitterShareButton
               url={ shareUrl }
-              title={ description }
+              title={ twitterDescription }
             >
               <TwitterIcon size={ 34 } round={ true } />
             </TwitterShareButton>
