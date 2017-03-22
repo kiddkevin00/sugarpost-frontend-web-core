@@ -50,7 +50,15 @@ class AccountApp extends BaseComponent {
               <div className="panel panel-default">
                 <div className="panel-heading"><h4>Subscription</h4></div>
                 <div className="panel-body">
-                  <SubscriptionSection />
+                  <SubscriptionSection
+                    onUnsubscribe={ AccountApp._onCancelSubscription }
+                    onUpdatePayment={ AccountApp._onUpdatePayment }
+                    status={ this.state.user.type }
+                    isInfoVisible={ this.state.profileInfo.isVisible }
+                    isErrorVisible={ this.state.profileError.isVisible }
+                    infoMsg={ this.state.profileInfo.message }
+                    errorMsg={ this.state.profileError.message }
+                  />
                 </div>
               </div>
             </div>
@@ -60,11 +68,11 @@ class AccountApp extends BaseComponent {
                 <div className="panel-body">
                   <div className="col-lg-offset-1 col-lg-10 col-lg-xs-12">
                     <AccountForm
-                      onSubmit={ AccountApp._onSubmit }
-                      isInfoVisible={ this.state.info.isVisible }
-                      isErrorVisible={ this.state.error.isVisible }
-                      infoMsg={ this.state.info.message }
-                      errorMsg={ this.state.error.message }
+                      onSubmit={ AccountApp._onUpdateProfile }
+                      isInfoVisible={ this.state.subscriptionInfo.isVisible }
+                      isErrorVisible={ this.state.subscriptionError.isVisible }
+                      infoMsg={ this.state.subscriptionInfo.message }
+                      errorMsg={ this.state.subscriptionError.message }
                       fullName={ this.state.user.fullName }
                       email={ this.state.user.email }
                     />
@@ -82,7 +90,15 @@ class AccountApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(event, email, _password, _fullName) {
+  static _onUpdatePayment() {
+    
+  }
+
+  static _onCancelSubscription() {
+    accountActionCreator.cancelSubscription();
+  }
+
+  static _onUpdateProfile(event, email, _password, _fullName) {
     const password = _password && _password.trim();
     const fullName = _fullName && _fullName.trim();
 
@@ -102,8 +118,10 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
     user: authStore.getUser(),
-    info: accountStore.getInfo(),
-    error: accountStore.getError(),
+    profileInfo: accountStore.getInfoForProfile(),
+    profileError: accountStore.getErrorForProfile(),
+    subscriptionInfo: accountStore.getInfoForProfile(),
+    subscriptionError: accountStore.getErrorForProfile(),
   };
 }
 

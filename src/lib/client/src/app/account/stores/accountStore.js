@@ -16,35 +16,39 @@ class AccountStore extends EventEmitter {
 
     // All internal store data.
     this[storeContext] = {
-      error: {
+      profileInfo: {
         isVisible: false,
         message: defaultInfoMsg,
       },
-      info: {
+      profileError: {
+        isVisible: false,
+        message: defaultInfoMsg,
+      },
+      subscriptionInfo: {
+        isVisible: false,
+        message: defaultInfoMsg,
+      },
+      subscriptionError: {
         isVisible: false,
         message: defaultInfoMsg,
       },
     };
   }
 
-  getError() {
-    const error = this[storeContext].error;
-
-    if (typeof error.message !== 'string') {
-      error.message = JSON.stringify(error.message, null, 2);
-    }
-
-    return error;
+  getInfoForProfile() {
+    return this[storeContext].profileInfo;
   }
 
-  getInfo() {
-    const info = this[storeContext].info;
+  getErrorForProfile() {
+    return this[storeContext].profileError;
+  }
 
-    if (typeof info.message !== 'string') {
-      info.message = JSON.stringify(info.message, null, 2);
-    }
+  getInfoForSubscription() {
+    return this[storeContext].subscriptionInfo;
+  }
 
-    return info;
+  getErrorForSubscription() {
+    return this[storeContext].subscriptionError;
   }
 
   emitChange() {
@@ -59,17 +63,62 @@ class AccountStore extends EventEmitter {
     this.removeListener(changeEvent, callback);
   }
 
-  _clearAllAlertBoxes() {
-    Object.assign(this[storeContext].info, { message: defaultInfoMsg, isVisible: false });
-    Object.assign(this[storeContext].error, { message: defaultErrorMsg, isVisible: false });
+  _clearAlertBoxesForProfile() {
+    Object.assign(this[storeContext].profileInfo, { message: defaultInfoMsg, isVisible: false });
+    Object.assign(this[storeContext].profileError, { message: defaultErrorMsg, isVisible: false });
   }
 
-  _showError(message = defaultErrorMsg) {
-    Object.assign(this[storeContext].error, { message, isVisible: true });
+  _showInfoForProfile(_message = defaultInfoMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(message, null, 2);
+    } else {
+      message = _message;
+    }
+
+    Object.assign(this[storeContext].profileInfo, { message, isVisible: true });
   }
 
-  _showInfo(message = defaultInfoMsg) {
-    Object.assign(this[storeContext].info, { message, isVisible: true });
+  _showErrorForProfile(_message = defaultErrorMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(message, null, 2);
+    } else {
+      message = _message;
+    }
+
+    Object.assign(this[storeContext].profileError, { message, isVisible: true });
+  }
+
+  _clearAlertBoxesForSubscription() {
+    Object.assign(this[storeContext].subscriptionInfo, { message: defaultInfoMsg, isVisible: false });
+    Object.assign(this[storeContext].subscriptionError, { message: defaultErrorMsg, isVisible: false });
+  }
+
+  _showInfoForSubscription(_message = defaultInfoMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(message, null, 2);
+    } else {
+      message = _message;
+    }
+
+    Object.assign(this[storeContext].subscriptionInfo, { message, isVisible: true });
+  }
+
+  _showErrorForSubscription(_message = defaultErrorMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(message, null, 2);
+    } else {
+      message = _message;
+    }
+
+    Object.assign(this[storeContext].subscriptionError, { message, isVisible: true });
   }
 
 }
@@ -83,23 +132,41 @@ dispatcher.register((action) => {
 
   switch (actionType) {
     case accountConstants.UPDATING_PROFILE:
-      accountStore._clearAllAlertBoxes();
+      accountStore._clearAlertBoxesForProfile();
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.UPDATE_PROFILE_SUCCEED:
-      accountStore._showInfo('Your profile has been updated.');
+      accountStore._showInfoForProfile('Your profile has been updated.');
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.UPDATE_PROFILE_FAIL:
-      accountStore._showError(data || 'Profile update fails.');
+      accountStore._showErrorForProfile(data || 'Profile update fails.');
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
+    
+    case accountConstants.CANCELLING_SUBSCRIPTION:
+      accountStore._clearAlertBoxesForSubscription();
+
+      accountStore.emitChange();
+      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
+    case accountConstants.CANCEL_SUBSCRIPTION_SUCCEED:
+      accountStore._showInfoForSubscription('Your subscription has been cancelled.');
+
+      accountStore.emitChange();
+      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
+    case accountConstants.CANCEL_SUBSCRIPTION_FAIL:
+      accountStore._showErrorForSubscription(data || 'Subscription cancellation fails.');
+
+      accountStore.emitChange();
+      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
     default:
       break;
   }

@@ -9,7 +9,6 @@ import AccountApp from './account/components/AccountApp';
 import VoucherApp from './voucher/components/VoucherApp';
 import ReferralApp from './register/referral/components/ReferralApp';
 import HomeApp from './home/components/HomeApp';
-import MemoApp from './memo/components/MemoApp';
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
@@ -26,7 +25,6 @@ const clientRoutes = (
       </Route>
       <Route path="account" component={ AccountApp } onEnter={ inTransition } />
       <Route path="voucher" component={ VoucherApp } onEnter={ inTransition } />
-      <Route path="memo" component={ MemoApp } />
     </Route>
   </Router>
 );

@@ -41,8 +41,43 @@ const accountActionCreator = {
           data: err,
         });
       });
-
   },
+
+  cancelSubscription() {
+    dispatcher.dispatch({
+      actionType: accountConstants.CANCELLING_SUBSCRIPTION,
+    });
+
+    const url = '/api/subscription/unsubscribe';
+
+    Proxy.post(url)
+      .then((payloadObj) => {
+        const res = StandardResponseWrapper.deserialize(payloadObj);
+
+        if (res.getNthData(0).success) {
+          dispatcher.dispatch({
+            actionType: authConstants.USER_INFO_SYNC,
+            data: {
+              partialNewUserInfo: { type: 'cancelled' },
+            },
+          });
+
+          dispatcher.dispatch({
+            actionType: accountConstants.CANCEL_SUBSCRIPTION_SUCCEED,
+          });
+        } else {
+          dispatcher.dispatch({
+            actionType: accountConstants.CANCEL_SUBSCRIPTION_FAIL,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatcher.dispatch({
+          actionType: accountConstants.CANCEL_SUBSCRIPTION_FAIL,
+          data: err,
+        });
+      });
+  }
 };
 
 export default accountActionCreator;

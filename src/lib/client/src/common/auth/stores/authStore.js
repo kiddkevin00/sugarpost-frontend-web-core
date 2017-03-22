@@ -47,23 +47,11 @@ class AuthStore extends EventEmitter {
   }
 
   getError(type) {
-    const error = this[storeContext][`${type}Error`];
-
-    if (typeof error.message !== 'string') {
-      error.message = JSON.stringify(error.message, null, 2);
-    }
-
-    return error;
+    return this[storeContext][`${type}Error`];;
   }
 
   getInfo(type) {
-    const info = this[storeContext][`${type}Info`];
-
-    if (typeof info.message !== 'string') {
-      info.message = JSON.stringify(info.message, null, 2);
-    }
-
-    return info;
+    return this[storeContext][`${type}Info`];
   }
 
   getTransitionPath() {
@@ -100,11 +88,27 @@ class AuthStore extends EventEmitter {
       { message: defaultInfoMsg, isVisible: false });
   }
 
-  _showError(type, message = defaultErrorMsg) {
+  _showError(type, _message = defaultErrorMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(message, null, 2);
+    } else {
+      message = _message;
+    }
+
     Object.assign(this[storeContext][`${type}Error`], { message, isVisible: true });
   }
 
-  _showInfo(type, message = defaultInfoMsg) {
+  _showInfo(type, _message = defaultInfoMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(message, null, 2);
+    } else {
+      message = _message;
+    }
+
     Object.assign(this[storeContext][`${type}Info`], { message, isVisible: true });
   }
 

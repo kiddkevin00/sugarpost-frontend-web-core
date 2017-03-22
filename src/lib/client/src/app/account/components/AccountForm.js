@@ -10,8 +10,9 @@ class AccountForm extends BaseComponent {
 
     this._bind('_onSave', '_onReset', 'isConfirmPasswordMatched');
     this.state = {
-      fullName: this.props.fullName,
-      email: this.props.email,
+      fullName: props.fullName,
+      email: props.email,
+      oldPassword: '',
       password: '',
       confirmPassword: '',
     };
@@ -69,6 +70,15 @@ class AccountForm extends BaseComponent {
           emptyMessage="Email can't be empty"
         />
         <FormInput
+          text="Old Password"
+          type="password"
+          ref={ (formInputObj) => { this.oldPassword = formInputObj; } }
+          value={ this.state.oldPassword }
+          onChange={ this._onChange.bind(this, 'oldPassword') } /* eslint-disable-line react/jsx-no-bind */
+          errorMessage="Password is invalid"
+          emptyMessage="Password can't be empty"
+        />
+        <FormInput
           text="New Password"
           type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
@@ -123,6 +133,7 @@ class AccountForm extends BaseComponent {
     if (
       this.fullName.isValid() &&
       this.email.isValid() &&
+      this.oldPassword.isValid() &&
       this.password.isValid() &&
       this.confirmPassword.isValid()
     ) {
@@ -130,15 +141,17 @@ class AccountForm extends BaseComponent {
     } else {
       this.fullName.isValid();
       this.email.isValid();
+      this.oldPassword.isValid();
       this.password.isValid();
       this.confirmPassword.isValid();
     }
   }
 
-  _onReset() {
+  _onReset(event) {
     this.setState({
       fullName: this.props.fullName,
       email: this.props.email,
+      oldPassword: '',
       password: '',
       confirmPassword: '',
     });

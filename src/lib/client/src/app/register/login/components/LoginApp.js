@@ -19,16 +19,26 @@ class LoginApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (nextState.isLoggedIn) {
-      if (authStore.getTransitionPath() === '/register/payment') {
-        nextContext.router.push({
-          pathname: '/register/payment',
-          query: { email: nextState.user.email },
-        });
+      const transitionPath = authStore.getTransitionPath();
+      const paymentRoute = {
+        pathname: '/register/payment',
+        query: { email: nextState.user.email },
+      };
+      const accountRoute = {
+        pathname: '/account',
+      };
+      const referralRoute = {
+        pathname: '/referral',
+      };
+
+      if (transitionPath === '/register/payment') {
+        nextContext.router.push(paymentRoute);
+      } else if (nextState.user.type === 'paid') {
+        nextContext.router.push(transitionPath || accountRoute);
+      } else if (nextState.user.type === 'influencer') {
+        nextContext.router.push(transitionPath || referralRoute);
       } else {
-        nextContext.router.push(authStore.getTransitionPath() || {
-          pathname: '/register/payment',
-          query: { email: nextState.user.email },
-        });
+        nextContext.router.push(transitionPath || paymentRoute);
       }
     }
   }

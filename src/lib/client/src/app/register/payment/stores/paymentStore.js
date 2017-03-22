@@ -28,23 +28,11 @@ class PaymentStore extends EventEmitter {
   }
 
   getError() {
-    const error = this[storeContext].error;
-
-    if (typeof error.message !== 'string') {
-      error.message = JSON.stringify(error.message, null, 2);
-    }
-
-    return error;
+    return this[storeContext].error;
   }
 
   getInfo() {
-    const info = this[storeContext].info;
-
-    if (typeof info.message !== 'string') {
-      info.message = JSON.stringify(info.message, null, 2);
-    }
-
-    return info;
+    return this[storeContext].info;
   }
 
   emitChange() {
@@ -64,11 +52,27 @@ class PaymentStore extends EventEmitter {
     Object.assign(this[storeContext].error, { message: defaultErrorMsg, isVisible: false });
   }
 
-  _showError(message = defaultErrorMsg) {
+  _showError(_message = defaultErrorMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(message, null, 2);
+    } else {
+      message = _message;
+    }
+
     Object.assign(this[storeContext].error, { message, isVisible: true });
   }
 
-  _showInfo(message = defaultInfoMsg) {
+  _showInfo(_message = defaultInfoMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(message, null, 2);
+    } else {
+      message = _message;
+    }
+
     Object.assign(this[storeContext].info, { message, isVisible: true });
   }
 
