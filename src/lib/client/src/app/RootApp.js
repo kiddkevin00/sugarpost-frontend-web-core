@@ -26,131 +26,161 @@ class RootApp extends BaseComponent {
 
   render() {
     const tabsShownWhenUserLoggedIn = [];
+    const accountTab = (
+      <LinkContainer key="1" to="/account">
+        <NavItem>Account</NavItem>
+      </LinkContainer>
+    );
+    const paymentTab = (
+      <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: this.state.user.email } } }>
+        <NavItem>Payment</NavItem>
+      </LinkContainer>
+    );
+    const voucherTab = (
+      <LinkContainer key="3" to="/voucher">
+        <NavItem>Voucher</NavItem>
+      </LinkContainer>
+    );
+    const referralTab = (
+      <LinkContainer key="4" to="/register/referral">
+        <NavItem>Referral</NavItem>
+      </LinkContainer>
+    );
+    const logoutTab = (
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
+      <NavItem key="5">
+        <span onClick={ RootApp._onLogout }>
+          Log Out
+        </span>
+      </NavItem>
+      /* eslint-enable */
+    );
+    const aboutTab = (
+      <li key="1">
+        <LinkContainer to="/">
+          <Link
+            activeClass="active"
+            className="page-scroll"
+            to="about"
+            spy={ true }
+            smooth={ true }
+            duration={ 700 }
+            delay={ 300 }
+          >
+            About
+          </Link>
+        </LinkContainer>
+      </li>
+    );
+    const servicesTab = (
+      <li key="2">
+        <LinkContainer to="/">
+          <Link
+            activeClass="active"
+            className="page-scroll"
+            to="services"
+            spy={ true }
+            smooth={ true }
+            duration={ 700 }
+            delay={ 300 }
+          >
+            Services
+          </Link>
+        </LinkContainer>
+      </li>
+    );
+    const portfolioTab = (
+      <li key="3">
+        <LinkContainer to="/">
+          <Link
+            activeClass="active"
+            className="page-scroll"
+            to="portfolio"
+            spy={ true }
+            smooth={ true }
+            duration={ 700 }
+            delay={ 300 }
+          >
+            Featured
+          </Link>
+        </LinkContainer>
+      </li>
+    );
+    const contactTab = (
+      <li key="4">
+        <LinkContainer to="/">
+          <Link
+            activeClass="active"
+            className="page-scroll"
+            to="contact"
+            spy={ true }
+            smooth={ true }
+            duration={ 700 }
+            delay={ 300 }
+          >
+            Contact
+          </Link>
+        </LinkContainer>
+      </li>
+    );
+    const signupTab = (
+      <li key="5">
+        <LinkContainer to="/register/signup">
+          <Link
+            activeClass="active"
+            className="page-scroll"
+            to="registration"
+            spy={ true }
+            smooth={ true }
+            duration={ 700 }
+            delay={ 300 }
+          >
+            Signup
+          </Link>
+        </LinkContainer>
+      </li>
+    );
+    const loginTab = (
+      <li key="6">
+        <LinkContainer to="/register/login">
+          <Link
+            activeClass="active"
+            className="page-scroll"
+            to="registration"
+            spy={ true }
+            smooth={ true }
+            duration={ 700 }
+            delay={ 300 }
+          >
+            Login
+          </Link>
+        </LinkContainer>
+      </li>
+    );
 
     if (this.state.isLoggedIn) {
-      tabsShownWhenUserLoggedIn.push((
-        <LinkContainer key="1" to="/account">
-          <NavItem>Account</NavItem>
-        </LinkContainer>
-      ), (
-        <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: this.state.user.email } } }>
-          <NavItem>Payment</NavItem>
-        </LinkContainer>
-      ), (
-        <LinkContainer key="3" to="/voucher">
-          <NavItem>Voucher</NavItem>
-        </LinkContainer>
-      ), (
-        <LinkContainer key="4" to="/register/referral">
-          <NavItem>Referral</NavItem>
-        </LinkContainer>
-      ), (
-        /* eslint-disable jsx-a11y/no-static-element-interactions */
-        <NavItem key="5">
-          <span onClick={ RootApp._onLogout }>
-            Log Out
-          </span>
-        </NavItem>
-        /* eslint-enable */
-      ));
+      switch (this.state.user.type) {
+        case 'unpaid':
+        case 'cancelled':
+          tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, logoutTab);
+          break;
+        case 'paid':
+        case 'influencer':
+          tabsShownWhenUserLoggedIn.push(accountTab, voucherTab, referralTab, logoutTab);
+          break;
+        case 'vendor':
+          tabsShownWhenUserLoggedIn.push(accountTab, logoutTab);
+          break;
+        case 'admin':
+          tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,
+            logoutTab);
+          break;
+        default:
+          break;
+      }
     } else {
-      tabsShownWhenUserLoggedIn.push((
-        <li key="1">
-          <LinkContainer to="/">
-            <Link
-              activeClass="active"
-              className="page-scroll"
-              to="about"
-              spy={ true }
-              smooth={ true }
-              duration={ 700 }
-              delay={ 300 }
-            >
-              About
-            </Link>
-          </LinkContainer>
-        </li>
-      ), (
-        <li key="2">
-          <LinkContainer to="/">
-            <Link
-              activeClass="active"
-              className="page-scroll"
-              to="services"
-              spy={ true }
-              smooth={ true }
-              duration={ 700 }
-              delay={ 300 }
-            >
-              Services
-            </Link>
-          </LinkContainer>
-        </li>
-      ), (
-        <li key="3">
-          <LinkContainer to="/">
-            <Link
-              activeClass="active"
-              className="page-scroll"
-              to="portfolio"
-              spy={ true }
-              smooth={ true }
-              duration={ 700 }
-              delay={ 300 }
-            >
-              Featured
-            </Link>
-          </LinkContainer>
-        </li>
-      ), (
-        <li key="4">
-          <LinkContainer to="/">
-            <Link
-              activeClass="active"
-              className="page-scroll"
-              to="contact"
-              spy={ true }
-              smooth={ true }
-              duration={ 700 }
-              delay={ 300 }
-            >
-              Contact
-            </Link>
-          </LinkContainer>
-        </li>
-      ), (
-        <li key="5">
-          <LinkContainer to="/register/signup">
-            <Link
-              activeClass="active"
-              className="page-scroll"
-              to="registration"
-              spy={ true }
-              smooth={ true }
-              duration={ 700 }
-              delay={ 300 }
-            >
-              Signup
-            </Link>
-          </LinkContainer>
-        </li>
-      ), (
-        <li key="6">
-          <LinkContainer to="/register/login">
-            <Link
-              activeClass="active"
-              className="page-scroll"
-              to="registration"
-              spy={ true }
-              smooth={ true }
-              duration={ 700 }
-              delay={ 300 }
-            >
-              Login
-            </Link>
-          </LinkContainer>
-        </li>
-      ));
+      tabsShownWhenUserLoggedIn.push(aboutTab, servicesTab, portfolioTab, contactTab, signupTab,
+        loginTab);
     }
 
     return (
