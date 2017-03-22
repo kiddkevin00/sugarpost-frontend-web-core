@@ -25,7 +25,7 @@ class HomeApp extends BaseComponent {
             <div className="header-content-inner">
               <h1>SUGARPOST</h1>
               <hr />
-              <p>We are New York City&#39;s Premium Dessert Subscription Service!</p>
+              <p>New York City&#39;s Premium Dessert Subscription Service!</p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">
                 Sign Up Now
               </a>
@@ -52,6 +52,9 @@ class HomeApp extends BaseComponent {
                       ranging from frozen treats to baked goods. We have scoured the internet and
                       attained insight from various food bloggers and dessert connoisseurs to
                       deliver our subscribers a selection of unique desserts around New York City!
+                      Within each Sugarpost e-package, subscribers will find a little background on
+                      each featured dessert vendor, and their redemption codes which can claim
+                      in-store desserts or Sugarpost exclusives.
                     </p>
                     <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
                       Get Started
@@ -86,11 +89,11 @@ class HomeApp extends BaseComponent {
                   </div>
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
-                      <i className="fa fa-4x fa-child text-primary sr-icons" />
+                      <i className="fa fa-4x fa-map-marker text-primary sr-icons" />
                       <h3>Go Venture</h3>
                       <p className="text-muted">
                         Visit all of the locations on your curated list of destination dessert
-                        spots. Your e-package will have a little color on each vendor as well.
+                        spots. Your e-package will have a little background on each vendor as well.
                       </p>
                     </div>
                   </div>
@@ -100,18 +103,17 @@ class HomeApp extends BaseComponent {
                       <h3>Claim Desserts</h3>
                       <p className="text-muted">
                         Present your redemption codes at the participating locations to claim your
-                        treats. Take a photo, put it on social media, and enjoy.
+                        treats. Take a photo, put it on social media, and eat up!.
                       </p>
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
                       <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
-                      <h3>Share The Love</h3>
+                      <h3>Share It</h3>
                       <p className="text-muted">
                         Eat up! If you enjoyed your experience, refer a friend for credit towards
-                        your next e-package. If enough friends sign up, you’ll even get a month
-                        free!
+                        your next e-package. If enough friends sign up, you’ll get a month free!
                       </p>
                     </div>
                   </div>
@@ -125,7 +127,7 @@ class HomeApp extends BaseComponent {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 text-center">
-                    <h2 className="section-heading">Feature Products</h2>
+                    <h2 className="section-heading">Featured Products</h2>
                     <hr className="primary" />
                   </div>
                 </div>
