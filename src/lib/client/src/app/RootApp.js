@@ -168,7 +168,8 @@ class RootApp extends BaseComponent {
           tabsShownWhenUserLoggedIn.push(accountTab, voucherTab, referralTab, logoutTab);
           break;
         case 'influencer':
-          tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab, logoutTab);
+          tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,
+            logoutTab);
           break;
         case 'vendor':
           tabsShownWhenUserLoggedIn.push(accountTab, logoutTab);
