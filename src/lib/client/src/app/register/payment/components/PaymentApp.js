@@ -4,6 +4,7 @@ import authActionCreator from '../../../../common/auth/actions/authActionCreator
 import paymentActionCreator from '../actions/paymentActionCreator';
 import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import constants from '../../../../common/constants/';
 import React from 'react';
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
@@ -30,6 +31,8 @@ class PaymentApp extends BaseComponent {
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextState.isLoggedIn) {
       nextContext.router.push('/register/login');
+    } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.PAID) {
+      nextContext.router.push('/account');
     }
   }
 
@@ -98,6 +101,7 @@ PaymentApp.contextTypes = {
 function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
+    user: authStore.getUser(),
     referCode: authStore.gerReferCode(),
     error: paymentStore.getError(),
     info: paymentStore.getInfo(),

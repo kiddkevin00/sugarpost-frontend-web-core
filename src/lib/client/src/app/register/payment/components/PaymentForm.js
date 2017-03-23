@@ -139,7 +139,7 @@ PaymentForm.propTypes = {
   infoMsg: React.PropTypes.string,
   errorMsg: React.PropTypes.string,
   referCode: React.PropTypes.string,
-  subscribedMonth: React.PropTypes.number,
+  subscribedMonth: React.PropTypes.string,
   regularChargeAmount: React.PropTypes.number,
   referralChargeAmount: React.PropTypes.number,
 };
