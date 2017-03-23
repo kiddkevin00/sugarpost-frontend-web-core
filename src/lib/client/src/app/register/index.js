@@ -19,14 +19,14 @@ class RegisterApp extends BaseComponent {
                       For only $24.99 a month, you will receive e-packages curated
                       by the insight of influential food bloggers and dessert connoisseurs! Within
                       your e-package, you will find a little background on each featured dessert
-                      vendor and your redemption codes which can claim in-store desserts or
-                      Sugarpost exclusives.
+                      vendor and your voucher which can claim in-store desserts or Sugarpost
+                      exclusives.
                     </p>
                   </div>
                   <div className="top-big-link">
                     <ol>
                       <li>Sign up to the right and become a paid subscriber.</li>
-                      <li>Receive your redemption codes during the first day of every month.</li>
+                      <li>Receive your voucher during the first day of every month.</li>
                       <li>Visit the dessert shops.</li>
                       <li>Redeem your desserts and enjoy!</li>
                     </ol>

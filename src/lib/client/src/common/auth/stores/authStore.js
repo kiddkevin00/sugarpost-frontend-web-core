@@ -201,13 +201,13 @@ dispatcher.register((action) => {
       break;
 
     case authConstants.RESET_PASSWORD_SUCCEED:
-      authStore._showInfo('forgotPassword', 'If a matching account was found an email was sent to user@email.com to allow you to reset your password.');
+      authStore._showInfo('forgotPassword', 'If a matching account was found, an email was sent to allow you to reset your password.');
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.RESET_PASSWORD_FAIL:
-      authStore._showInfo('forgotPassword', 'If a matching account was found an email was sent to user@email.com to allow you to reset your password.');
+      authStore._showInfo('forgotPassword', 'If a matching account was found, an email was sent to allow you to reset your password.');
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);

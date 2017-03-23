@@ -27,7 +27,7 @@ class ForgotPasswordApp extends BaseComponent {
         <div className="form-top">
           <div className="form-top-left">
             <h3>Forgot password</h3>
-            <p>Fill in the form below to get started:</p>
+            <p>Type in your email address below:</p>
           </div>
           <div className="form-top-right">
             <img src="/assets/images/sugarpost-logo.png" alt="" />

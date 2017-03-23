@@ -41,7 +41,7 @@ class VoucherApp extends BaseComponent {
           </div>
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h1 className="text-center" style={ { color: 'white' } }>Thank you for subscribing! Your codes will be available on May 1s, 2017.</h1>
+              <h1 className="text-center" style={ { color: 'white' } }>Thank you for subscribing! Your voucher will be available on May 1st, 2017.</h1>
             </div>
           </div>
         </div>

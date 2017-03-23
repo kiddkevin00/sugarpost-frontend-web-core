@@ -27,12 +27,12 @@ class ReferralSection extends BaseComponent {
     const facebookDescription = 'Here is a 10% discount off your first month of Sugarpost’s ' +
       'premium dessert subscription service! To claim your discount, sign up now and enter the ' +
       `following referral code on the payment page: ${this.props.myReferCode}`;
-    const twitterDescription = 'Get 10% off your first month’s subscription with @mysugarpost.' +
+    const twitterDescription = 'Get 10% off your first month\'s subscription with @mysugarpost. ' +
       'Claim this offer now:\n';
 
     return (
       <div id="share-section">
-        <p>Share with friends</p>
+        <p>Share with Friends</p>
         <ul className="list-inline">
           <li>
             <FacebookShareButton

@@ -2,6 +2,7 @@ import authStore from '../../../../common/auth/stores/authStore';
 import authActionCreator from '../../../../common/auth/actions/authActionCreator';
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import constants from '../../../../common/constants/';
 import React from 'react';
 
 class LoginApp extends BaseComponent {
@@ -33,9 +34,9 @@ class LoginApp extends BaseComponent {
 
       if (transitionPath === '/register/payment') {
         nextContext.router.push(paymentRoute);
-      } else if (nextState.user.type === 'paid') {
+      } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.PAID) {
         nextContext.router.push(transitionPath || accountRoute);
-      } else if (nextState.user.type === 'influencer') {
+      } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.INFLUENCER) {
         nextContext.router.push(transitionPath || referralRoute);
       } else {
         nextContext.router.push(transitionPath || paymentRoute);

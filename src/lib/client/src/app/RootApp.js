@@ -2,6 +2,7 @@ import authStore from '../common/auth/stores/authStore';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import ScrollDiv from '../common/components/ScrollDiv';
 import BaseComponent from '../common/components/BaseComponent';
+import constants from '../common/constants/';
 import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -160,21 +161,21 @@ class RootApp extends BaseComponent {
 
     if (this.state.isLoggedIn) {
       switch (this.state.user.type) {
-        case 'unpaid':
-        case 'cancelled':
+        case constants.SYSTEM.USER_TYPES.UNPAID:
+        case constants.SYSTEM.USER_TYPES.CANCELLED:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, logoutTab);
           break;
-        case 'paid':
+        case constants.SYSTEM.USER_TYPES.PAID:
           tabsShownWhenUserLoggedIn.push(accountTab, voucherTab, referralTab, logoutTab);
           break;
-        case 'influencer':
+        case constants.SYSTEM.USER_TYPES.INFLUENCER:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,
             logoutTab);
           break;
-        case 'vendor':
+        case constants.SYSTEM.USER_TYPES.VENDOR:
           tabsShownWhenUserLoggedIn.push(accountTab, logoutTab);
           break;
-        case 'admin':
+        case constants.SYSTEM.USER_TYPES.ADMIN:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,
             logoutTab);
           break;

@@ -53,8 +53,8 @@ class HomeApp extends BaseComponent {
                       attained insight from various food bloggers and dessert connoisseurs to
                       deliver our subscribers a selection of unique desserts around New York City!
                       Within each Sugarpost e-package, subscribers will find a little background on
-                      each featured dessert vendor, and their redemption codes which can claim
-                      in-store desserts or Sugarpost exclusives.
+                      each featured dessert vendor, and their voucher which can claim in-store
+                      desserts or Sugarpost exclusives.
                     </p>
                     <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
                       Get Started
@@ -82,8 +82,8 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
                       <h3>Get Codes</h3>
                       <p className="text-muted">
-                        After purchasing a monthly subscription, you’ll receive an e-mail with
-                        unique redemption codes during the first week of every month.
+                        After purchasing a monthly subscription, you’ll receive an e-mail with a
+                        voucher during the first week of every month.
                       </p>
                     </div>
                   </div>
@@ -102,8 +102,8 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-shopping-basket text-primary sr-icons" />
                       <h3>Claim Desserts</h3>
                       <p className="text-muted">
-                        Present your redemption codes at the participating locations to claim your
-                        treats. Take a photo, put it on social media, and eat up!.
+                        Present your voucher at the participating locations to claim your treats.
+                        Take a photo, put it on social media, and eat up!
                       </p>
                     </div>
                   </div>
@@ -112,7 +112,7 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
                       <h3>Share It</h3>
                       <p className="text-muted">
-                        Eat up! If you enjoyed your experience, refer a friend for credit towards
+                        If you enjoyed your experience, refer a friend for credit towards
                         your next e-package. If enough friends sign up, you’ll get a month free!
                       </p>
                     </div>
@@ -170,10 +170,10 @@ class HomeApp extends BaseComponent {
           </Element>
           <aside className="bg-darker">
             <div className="container text-center">
-              <div className="">
+              <div>
                 <h2>Featured On</h2>
                 <hr className="primary" />
-                <h4>coming soon...</h4>
+                <h4>Coming Soon...</h4>
               </div>
             </div>
           </aside>
