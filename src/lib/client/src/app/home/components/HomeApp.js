@@ -168,21 +168,15 @@ class HomeApp extends BaseComponent {
               </div>
             </aside>
           </Element>
-
-          <section className="no-padding" id="press">
-            <div className="container-fluid">
-              <div className="row no-gutter popup-gallery">
-                <div className="col-lg-12 col-sm-12">
-                  <img
-                    src="/assets/images/press.png"
-                    className="img-responsive"
-                    alt=""
-                  />
-                </div>
+          <aside className="bg-darker">
+            <div className="container text-center">
+              <div className="">
+                <h2>Featured On</h2>
+                <hr className="primary" />
+                <h4>coming soon...</h4>
               </div>
             </div>
-          </section>
-
+          </aside>
           <Element name="contact">
             <section id="contact">
               <div className="container">

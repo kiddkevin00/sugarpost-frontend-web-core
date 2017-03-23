@@ -53,6 +53,11 @@
     color: #fff;
 }
 
+#home-template .bg-darker {
+    background-color: black;
+    color: #fff;
+}
+
 #home-template .text-faded {
     color: rgba(255, 255, 255, .9);
 }
