@@ -28,7 +28,7 @@ class ReferralSection extends BaseComponent {
       'premium dessert subscription service! To claim your discount, sign up now and enter the ' +
       `following referral code on the payment page: ${this.props.myReferCode}`;
     const twitterDescription = 'Get 10% off your first month\'s subscription with @mysugarpost. ' +
-      'Claim this offer now:\n';
+      'Claim this offer now:';
 
     return (
       <div id="share-section">

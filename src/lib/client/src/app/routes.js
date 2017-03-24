@@ -24,7 +24,7 @@ const clientRoutes = (
         <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
       </Route>
       <Route path="account" component={ AccountApp } onEnter={ inTransition } />
-      <Route path="voucher" component={ VoucherApp } onEnter={ inTransition } />
+      <Route path="vouchers" component={ VoucherApp } onEnter={ inTransition } />
     </Route>
   </Router>
 );

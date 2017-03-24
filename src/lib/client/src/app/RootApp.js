@@ -38,8 +38,8 @@ class RootApp extends BaseComponent {
       </LinkContainer>
     );
     const voucherTab = (
-      <LinkContainer key="3" to="/voucher">
-        <NavItem>Voucher</NavItem>
+      <LinkContainer key="3" to="/vouchers">
+        <NavItem>Vouchers</NavItem>
       </LinkContainer>
     );
     const referralTab = (

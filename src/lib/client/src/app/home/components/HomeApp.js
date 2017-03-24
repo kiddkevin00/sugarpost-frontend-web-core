@@ -25,7 +25,11 @@ class HomeApp extends BaseComponent {
             <div className="header-content-inner">
               <h1>SUGARPOST</h1>
               <hr />
-              <p>New York City&#39;s Premium Dessert Subscription Service!</p>
+              <p>
+                Discover hidden gems to the city’s trendiest desserts! Subscribe and receive an
+                e-package which will contain four vouchers that can claim in-store desserts or
+                Sugarpost exclusives from four different featured dessert vendors every month!
+              </p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">
                 Sign Up Now
               </a>
@@ -48,13 +52,11 @@ class HomeApp extends BaseComponent {
                     <hr className="light" />
                     <p className="text-faded">
                       Sugarpost is a New York based online monthly premium subscription service
-                      that provides its customers with e-packages of trendy and innovative desserts
-                      ranging from frozen treats to baked goods. We have scoured the internet and
-                      attained insight from various food bloggers and dessert connoisseurs to
-                      deliver our subscribers a selection of unique desserts around New York City!
-                      Within each Sugarpost e-package, subscribers will find a little background on
-                      each featured dessert vendor, and their voucher which can claim in-store
-                      desserts or Sugarpost exclusives.
+                      that provides its subscribers with e-packages of trendy and innovative
+                      desserts. These e-packages have
+                      been assembled by our curators who have scoured the internet, and attained
+                      insight from various food bloggers and dessert connoisseurs, to provide our
+                      subscribers with the best dessert discovery experience.
                     </p>
                     <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
                       Get Started
@@ -82,8 +84,8 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
                       <h3>Get Codes</h3>
                       <p className="text-muted">
-                        After purchasing a monthly subscription, you’ll receive an e-mail with a
-                        voucher during the first week of every month.
+                        After purchasing a monthly subscription, you’ll receive an e-mail with
+                        vouchers during the first week of every month.
                       </p>
                     </div>
                   </div>
@@ -102,7 +104,7 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-shopping-basket text-primary sr-icons" />
                       <h3>Claim Desserts</h3>
                       <p className="text-muted">
-                        Present your voucher at the participating locations to claim your treats.
+                        Present your vouchers at the participating locations to claim your treats.
                         Take a photo, put it on social media, and eat up!
                       </p>
                     </div>
@@ -127,7 +129,7 @@ class HomeApp extends BaseComponent {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 text-center">
-                    <h2 className="section-heading">Featured Products</h2>
+                    <h2 className="section-heading">Past Featured Products</h2>
                     <hr className="primary" />
                   </div>
                 </div>
@@ -136,16 +138,16 @@ class HomeApp extends BaseComponent {
                 <div className="row no-gutter popup-gallery">
                   <div className="col-lg-3 col-sm-6">
                     {/* eslint-disable max-len */}
-                    <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                    <img src="/assets/images/eggloo.jpg" className="img-responsive" alt="" />
                   </div>
                   <div className="col-lg-3 col-sm-6">
-                    <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                    <img src="/assets/images/shavedice-with-blur.jpg" className="img-responsive" alt="" />
                   </div>
                   <div className="col-lg-3 col-sm-6">
-                    <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                    <img src="/assets/images/cupcake-with-blur.jpg" className="img-responsive" alt="" />
                   </div>
                   <div className="col-lg-3 col-sm-6">
-                    <img src="http://www.musicinmovement.com/blog/wp-content/uploads/2017/01/StockSnap_QFLIGL7A3M.jpg" className="img-responsive" alt="" />
+                    <img src="/assets/images/ringding-with-blur.jpg" className="img-responsive" alt="" />
                     {/* eslint-enable max-len */}
                   </div>
                 </div>
