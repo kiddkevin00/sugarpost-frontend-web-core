@@ -23,8 +23,6 @@ const promises = [];
 const updateFilePaths = [
   'dist/index2.html',
   'src/lib/client/static/index2.html',
-  'src/lib/client/src/app/login/components/LoginApp.js',
-  'src/lib/client/src/app/register/signup/components/SignupApp.js',
 ];
 
 
