@@ -123,7 +123,7 @@ module.exports = function (grunt) {
     },
     // Empties folders to start fresh.
     clean: {
-      dev: ['src/lib/client/static/app/index-*.js'], // [TODO]
+      dev: ['src/lib/client/static/app/index-*.js'],
       test: ['spec/'],
       prod: ['src/lib/client/static/app/index-*.js', 'dist/css/', 'dist/js/', 'dist/lib/', 'dist/assets']
     },
@@ -151,7 +151,11 @@ module.exports = function (grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
       },
       prod: {
-        src: ['src/lib/client/static/assets/**/*.css', 'src/lib/client/static/app/**/*.css'],
+        src: [
+          'src/lib/client/static/assets/**/*.css',
+          'src/lib/client/static/common/**/*.css',
+          'src/lib/client/static/app/**/*.css',
+        ],
         dest: 'dist/css/index-<%= pkg.version %>.css'
       }
     },
@@ -188,6 +192,20 @@ module.exports = function (grunt) {
           {
             cwd: 'src/',
             src: ['lib/client/static/*.png', 'lib/client/static/*.ico'],
+            dest: 'dist/',
+            filter: 'isFile',
+            expand: true
+          },
+          {
+            cwd: 'src/lib/client/static/assets/libraries/font-awesome',
+            src: ['fonts/*'],
+            dest: 'dist/',
+            filter: 'isFile',
+            expand: true
+          },
+          {
+            cwd: 'src/lib/client/static/assets/libraries/bootstrap',
+            src: ['fonts/*'],
             dest: 'dist/',
             filter: 'isFile',
             expand: true

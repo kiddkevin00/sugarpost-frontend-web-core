@@ -1,4 +1,4 @@
-import AppDispatcher from '../../../common/dispatcher/AppDispatcher';
+import dispatcher from '../../../common/dispatcher/appDispatcher';
 import memoConstants from '../constants/memoConstants';
 import EventEmitter from 'events';
 
@@ -81,9 +81,7 @@ class MemoStore extends EventEmitter {
 const memoStore = new MemoStore();
 
 // The dispatcher registration for the current store component.
-AppDispatcher.register((action) => {
-  console.log(`Action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
-
+dispatcher.register((action) => {
   const actionType = action.actionType;
   const id = action.id || 0;
   const isComplete = action.isComplete || false;
@@ -96,6 +94,8 @@ AppDispatcher.register((action) => {
 
         memoStore.emitChange();
       }
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case memoConstants.TODO_TOGGLE_COMPLETE:
       memoStore._update(id, { isComplete: !isComplete });
@@ -110,16 +110,22 @@ AppDispatcher.register((action) => {
       }
 
       memoStore.emitChange();
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case memoConstants.TODO_DESTROY:
       memoStore._destroy(id);
 
       memoStore.emitChange();
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case memoConstants.TODO_DESTROY_COMPLETED:
       memoStore._destroyCompleted();
 
       memoStore.emitChange();
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case memoConstants.TODO_UPDATE_TEXT:
       if (text) {
@@ -127,6 +133,8 @@ AppDispatcher.register((action) => {
 
         memoStore.emitChange();
       }
+
+      console.log(`${actionType} action in \`memoStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     default:
       break;

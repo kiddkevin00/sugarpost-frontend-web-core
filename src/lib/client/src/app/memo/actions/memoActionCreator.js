@@ -1,9 +1,9 @@
-import AppDispatcher from '../../../common/dispatcher/AppDispatcher';
+import dispatcher from '../../../common/dispatcher/appDispatcher';
 import memoConstants from '../constants/memoConstants';
 
 const memoActionCreator = {
   create(text) {
-    AppDispatcher.dispatch({
+    dispatcher.dispatch({
       text,
       actionType: memoConstants.TODO_CREATE,
     });
@@ -13,7 +13,7 @@ const memoActionCreator = {
     const id = todo.id;
     const isComplete = todo.isComplete;
 
-    AppDispatcher.dispatch({
+    dispatcher.dispatch({
       id,
       isComplete,
       actionType: memoConstants.TODO_TOGGLE_COMPLETE,
@@ -21,20 +21,20 @@ const memoActionCreator = {
   },
 
   toggleCompleteAll() {
-    AppDispatcher.dispatch({
+    dispatcher.dispatch({
       actionType: memoConstants.TODO_TOGGLE_COMPLETE_ALL,
     });
   },
 
   destroy(id) {
-    AppDispatcher.dispatch({
+    dispatcher.dispatch({
       id,
       actionType: memoConstants.TODO_DESTROY,
     });
   },
 
   updateText(id, text) {
-    AppDispatcher.dispatch({
+    dispatcher.dispatch({
       id,
       text,
       actionType: memoConstants.TODO_UPDATE_TEXT,
@@ -42,7 +42,7 @@ const memoActionCreator = {
   },
 
   destroyCompleted() {
-    AppDispatcher.dispatch({
+    dispatcher.dispatch({
       actionType: memoConstants.TODO_DESTROY_COMPLETED,
     });
   },

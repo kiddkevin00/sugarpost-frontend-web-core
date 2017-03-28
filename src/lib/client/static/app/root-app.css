@@ -1,0 +1,212 @@
+/***** Global setting *****/
+
+@font-face {
+    font-family: nexa-light;
+    src: url("/assets/fonts/nexa-light.otf");
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url("/assets/fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: nexa-bold;
+    src: url("/assets/fonts/nexa-bold.otf");
+}
+
+@font-face {
+    font-family: trajan-pro-bold;
+    src: url("/assets/fonts/trajan-pro-bold.ttf");
+}
+
+@font-face {
+    font-family: trajan-pro-regular;
+    src: url("/assets/fonts/trajan-pro-regular.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-bold;
+    src: url("/assets/fonts/sfuitext-bold.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-semibold;
+    src: url("/assets/fonts/sfuitext-semibold.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-medium;
+    src: url("/assets/fonts/sfuitext-medium.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-regular;
+    src: url("/assets/fonts/sfuitext-regular.ttf");
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+/***** For full background image *****/
+
+#react-main-container {
+    width: 100%;
+    height: 100%;
+}
+
+#root-app {
+    width: 100%;
+    height: 100%;
+}
+
+
+/***** For navigation bar scrolling effect *****/
+
+.scroll {
+  background-color: #fff !important;
+}
+
+.scroll .navbar-default .nav > li > a {
+    color: #000;
+}
+
+.scroll .navbar-default .navbar-header .navbar-brand,
+.scroll .navbar-default .nav > li > a:hover,
+.scroll .navbar-default .nav > li > a:focus {
+    color: #FBB352;
+}
+
+.scroll .navbar-default .navbar-header .navbar-brand:hover,
+.scroll .navbar-default .navbar-header .navbar-brand:focus {
+    color: #eb3812;
+}
+
+
+/***** Navigation bar - http://startbootstrap.com/template-overviews/creative *****/
+
+.navbar-default {
+    background-color: #fff;
+    border-color: rgba(34, 34, 34, .05);
+    transition: all .35s;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+}
+
+.navbar-default .navbar-header .navbar-brand {
+    color: #FBB352;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.navbar-default .navbar-header .navbar-brand:focus,
+.navbar-default .navbar-header .navbar-brand:hover {
+    color: #eb3812;
+}
+
+.navbar-default .navbar-header .navbar-toggle {
+    font-weight: 700;
+    font-size: 12px;
+    color: #222;
+    text-transform: uppercase;
+}
+
+.navbar-default .nav > li > a,
+.navbar-default .nav > li > a:focus {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 13px;
+    color: #222;
+}
+
+.navbar-default .nav > li > a:focus:hover,
+.navbar-default .nav > li > a:hover {
+    color: #FBB352;
+}
+
+.navbar-default .nav > li.active > a,
+.navbar-default .nav > li.active > a:focus {
+    color: #FBB352 !important;
+    background-color: transparent;
+}
+
+.navbar-default .nav > li.active > a:focus:hover,
+.navbar-default .nav > li.active > a:hover {
+    background-color: transparent;
+}
+
+.navbar-default .nav > li > a > span {
+    margin: -15px;
+    padding: 15px;
+}
+
+@media (min-width: 768px) {
+    .navbar-default {
+        background-color: transparent;
+        border-color: rgba(255, 255, 255, .3);
+    }
+
+    .navbar-default .navbar-header .navbar-brand {
+        color: rgba(255, 255, 255, .7);
+    }
+
+    .navbar-default .navbar-header .navbar-brand:focus,
+    .navbar-default .navbar-header .navbar-brand:hover {
+        color: #fff;
+    }
+
+    .navbar-default .nav > li > a {
+        color: rgba(255, 255, 255, .7);
+    }
+    .navbar-default .nav > li:nth-child(5) > a:focus,
+    .navbar-default .nav > li:nth-child(6) > a:focus,
+    .navbar-default .nav > li:nth-child(7) > a:focus {
+        color: #FBB352;
+    }
+
+    .navbar-default .nav > li > a:focus:hover,
+    .navbar-default .nav > li > a:hover {
+        color: #fff;
+    }
+
+    .navbar-default.affix {
+        background-color: #fff;
+        border-color: rgba(34, 34, 34, .05);
+    }
+
+    .navbar-default.affix .navbar-header .navbar-brand {
+        color: #FBB352;
+        font-size: 14px;
+    }
+
+    .navbar-default.affix .navbar-header .navbar-brand:focus,
+    .navbar-default.affix .navbar-header .navbar-brand:hover {
+        color: #eb3812;
+    }
+
+    .navbar-default.affix .nav > li > a,
+    .navbar-default.affix .nav > li > a:focus {
+        color: #222;
+    }
+
+    .navbar-default.affix .nav > li > a:focus:hover,
+    .navbar-default.affix .nav > li > a:hover {
+        color: #FBB352;
+    }
+}
+
+
+/***** Placeholder for navigation bar *****/
+
+.header-placeholder-custom {
+    height: 50px;
+    margin-bottom: 70px;
+}

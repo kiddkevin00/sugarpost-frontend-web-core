@@ -1,0 +1,179 @@
+/**
+ * Registration (http://azmind.com/demo/bootstrap-registration-forms/form-1/index.html)
+ * ===========================================================================================
+ * Licensed:
+ * You can use these registration form templates in personal and commercial projects, but you
+ * can’t sell or distribute them directly, “as is”. If you plan to use them, a link to this
+ * page or any form of spreading the word will be much appreciated.
+ */
+
+
+/***** Global setting *****/
+
+#registration-template {
+	font-size: 16px;
+	font-weight: 300;
+	color: #888;
+	line-height: 30px;
+	text-align: left;
+}
+
+#registration-template strong { font-weight: 500; }
+
+#registration-template a,
+#registration-template a:hover,
+#registration-template a:focus {
+	color: #19b9e7;
+	text-decoration: none;
+	-o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+#registration-template h1,
+#registration-template h2 {
+	margin-top: 10px;
+	font-size: 38px;
+	font-weight: 100;
+	color: #555;
+	line-height: 50px;
+}
+
+#registration-template h3 {
+	font-size: 22px;
+	font-weight: 300;
+	color: #555;
+	line-height: 30px;
+}
+
+#registration-template img { max-width: 100%; }
+
+#registration-template .medium-paragraph {
+	font-size: 18px;
+	line-height: 32px;
+}
+
+#registration-template .blue { color: #19b9e7; }
+
+#registration-template::-moz-selection { background: #19b9e7; color: #fff; text-shadow: none; }
+#registration-template::selection { background: #19b9e7; color: #fff; text-shadow: none; }
+
+
+/***** Content *****/
+
+#registration-template .inner-bg {
+	padding: 120px 0 170px 0;
+}
+
+#registration-template .text {
+	padding-top: 120px;
+	color: #fff;
+}
+
+#registration-template .text h1 { color: #fff; }
+
+#registration-template .description {
+	margin: 20px 0 10px 0;
+}
+
+#registration-template .description p { opacity: 0.8; }
+
+#registration-template .description a {
+	color: #fff;
+}
+#registration-template .description a:hover,
+#registration-template .description a:focus { border-bottom: 1px dotted #fff; }
+
+#registration-template .top-big-link {
+	margin-top: 35px;
+	color: #fff;
+}
+
+#registration-template .form-top {
+	overflow: hidden;
+	padding: 0 25px 15px 25px;
+	background: #fff;
+	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+	text-align: left;
+}
+
+#registration-template .form-top-left {
+	float: left;
+	width: 75%;
+	padding-top: 25px;
+}
+
+#registration-template .form-top-left h3 { margin-top: 0; }
+
+#registration-template .form-top-right {
+	float: left;
+	width: 25%;
+	padding-top: 5px;
+	font-size: 66px;
+	color: #ddd;
+	line-height: 100px;
+	text-align: right;
+}
+
+#registration-template .form-bottom {
+	padding: 25px 25px 30px 25px;
+	background: #eee;
+	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+	text-align: left;
+}
+
+#registration-template .form-bottom form textarea {
+	height: 100px;
+}
+
+#registration-template .form-bottom form .input-error {
+	border-color: #19b9e7;
+}
+
+
+/***** Media queries *****/
+
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+@media (min-width: 768px) and (max-width: 991px) {}
+
+@media (max-width: 767px) {
+
+    #registration-template .inner-bg { padding: 60px 0 110px 0; }
+    #registration-template .text { padding-top: 0; padding-bottom: 60px; }
+    #registration-template .top-big-link { margin-top: 25px; }
+
+}
+
+@media (max-width: 415px) {
+
+    #registration-template h1,
+    #registration-template h2 { font-size: 32px; }
+
+}
+
+
+/***** Form elements *****/
+
+#registration-template button.btn {
+	height: 50px;
+	margin: 0;
+	padding: 0 20px;
+	vertical-align: middle;
+	background: #FBB352;
+	border: 0;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 50px;
+	color: #fff;
+	-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+	text-shadow: none;
+	-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+	-o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+#registration-template button.btn:hover { opacity: 0.6; }
+
+#registration-template button.btn:active { outline: 0; opacity: 0.6; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+
+#registration-template button.btn:focus,
+#registration-template button.btn:active:focus,
+#registration-template button.btn.active:focus { outline: 0; opacity: 0.6; }

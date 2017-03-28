@@ -1,0 +1,10 @@
+#voucher-app {
+    min-height: 100%;
+    width: 100%;
+    background-image: url("/assets/images/v1_background.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+}

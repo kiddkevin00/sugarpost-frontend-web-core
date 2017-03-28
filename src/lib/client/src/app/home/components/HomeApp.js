@@ -1,170 +1,217 @@
-import homeStore from '../stores/homeStore';
-import homeActionCreator from '../actions/homeActionCreator';
-import SubscribeForm from './SubscribeForm';
 import BaseComponent from '../../../common/components/BaseComponent';
+import Footer from '../../../common/components/Footer';
 import React from 'react';
+import { Element } from 'react-scroll';
 
 class HomeApp extends BaseComponent {
 
   constructor(props) {
     super(props);
 
-    this._bind('_onChange');
     this.state = _getState();
   }
 
-  componentDidMount() {
-    homeStore.addChangeListener(this._onChange);
-  }
+  componentDidMount() {}
 
-  componentWillUnmount() {
-    homeStore.removeChangeListener(this._onChange);
-  }
+  componentWillReceiveProps(nextProps) {}
+
+  componentWillUnmount() {}
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="jumbotron jumbotron-custom">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h1 className="headline-custom">SUGARPOST</h1>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h2 className="sub-headline-custom">
-                    Premium subscription service to a sweet adventure
-                  </h2>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div className="lines-break-custom" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <p className="subscribe-text">
-                    For exclusive offers and updates on the launch, please subscribe by entering
-                    your e-mail below.
-                  </p>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <SubscribeForm onSubmit={ HomeApp._onSubmit } />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-7">
-                  <p className={ `${this.state.subscribeFeedbackCssClass} subscribe-fb-custom` }>
-                    { this.state.subscribeFeedbackTxt }
-                  </p>
-                </div>
-              </div>
-              <div className="row mobile-icon-row-custom">
-                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                  {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-                  <img
-                    onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
-                    className="icon-custom"
-                    src="/assets/images/instagram-icon.png"
-                    alt="instagram"
-                  />
-                </div>
-                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-                  <img
-                    onClick={ HomeApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }
-                    className="icon-custom"
-                    src="/assets/images/facebook-icon.png"
-                    alt="facebook"
-                  />
-                </div>
-                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-                  <img
-                    onClick={ HomeApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }
-                    className="icon-custom"
-                    src="/assets/images/twitter-icon.png"
-                    alt="twitter"
-                  />
-                  {/* eslint-enable */}
-                </div>
-              </div>
+      <div id="home-template">
+        <header>
+          <div className="header-content">
+            <div className="header-content-inner">
+              <h1>SUGARPOST</h1>
+              <hr />
+              <p>
+                Discover hidden gems to the city’s trendiest desserts! Subscribe and receive an
+                e-package which will contain four vouchers that can claim in-store desserts or
+                <b><i>&nbsp;Sugarpost exclusives&nbsp;</i></b>
+                from
+                <b><i>&nbsp;four different featured dessert vendors every month!&nbsp;</i></b>
+              </p>
+              <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">
+                Sign Up Now
+              </a>
+              <br />
+              <a href="/#about" className="btn btn-circle page-scroll">
+                <i className="fa fa-angle-double-down animated" />
+              </a>
             </div>
           </div>
-        </div>
-        <div className="container-custom">
-          <div className="row">
-            <div className="col-xs-12 col-sm-9 col-md-8 col-lg-10 text-left">
-              <h3 className="about-us-custom">
-                Sugarpost is a New York based online monthly premium subscription service that
-                provides its customers with e-packages of trendy and innovative desserts ranging
-                from frozen treats to baked goods. We have scoured the internet and attained
-                insight from various food bloggers and dessert connoisseurs to deliver our
-                subscribers a selection of unique desserts around New York City!
-              </h3>
+        </header>
+
+        <Element name="main">
+
+          <Element name="about">
+            <section className="bg-primary" id="about">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 className="section-heading">Got a sweet tooth? We&#39;ve got the cure!</h2>
+                    <hr className="light" />
+                    <p className="text-faded">
+                      Sugarpost is a New York based online monthly premium subscription service
+                      that provides its subscribers with e-packages of trendy and innovative
+                      desserts. These e-packages have
+                      been assembled by our curators who have scoured the internet, and attained
+                      insight from various food bloggers and dessert connoisseurs, to provide our
+                      subscribers with the best dessert discovery experience.
+                    </p>
+                    <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
+                      Get Started
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </Element>
+
+          <Element name="services">
+            <section id="services">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12 text-center">
+                    <h2 className="section-heading">How It Works</h2>
+                    <hr className="primary" />
+                  </div>
+                </div>
+              </div>
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-3 col-md-6 text-center">
+                    <div className="service-box">
+                      <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
+                      <h3>Get Codes</h3>
+                      <p className="text-muted">
+                        After purchasing a monthly subscription, you’ll receive an e-mail with
+                        vouchers during the first week of every month.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 text-center">
+                    <div className="service-box">
+                      <i className="fa fa-4x fa-map-marker text-primary sr-icons" />
+                      <h3>Go Venture</h3>
+                      <p className="text-muted">
+                        Visit all of the locations on your curated list of destination dessert
+                        spots. Your e-package will have a little background on each vendor as well.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 text-center">
+                    <div className="service-box">
+                      <i className="fa fa-4x fa-shopping-basket text-primary sr-icons" />
+                      <h3>Claim Desserts</h3>
+                      <p className="text-muted">
+                        Present your vouchers at the participating locations to claim your treats.
+                        Take a photo, put it on social media, and eat up!
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 text-center">
+                    <div className="service-box">
+                      <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
+                      <h3>Share It</h3>
+                      <p className="text-muted">
+                        If you enjoyed your experience, refer a friend for credit towards
+                        your next e-package. If enough friends sign up, you’ll get a month free!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </Element>
+
+          <Element name="portfolio">
+            <section id="portfolio">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12 text-center">
+                    <h2 className="section-heading">Past Featured Products</h2>
+                    <hr className="primary" />
+                  </div>
+                </div>
+              </div>
+              <div className="container-fluid">
+                <div className="row no-gutter popup-gallery">
+                  <div className="col-lg-3 col-sm-6">
+                    {/* eslint-disable max-len */}
+                    <img src="/assets/images/eggloo.jpg" className="img-responsive" alt="" />
+                  </div>
+                  <div className="col-lg-3 col-sm-6">
+                    <img src="/assets/images/shavedice-with-blur.jpg" className="img-responsive" alt="" />
+                  </div>
+                  <div className="col-lg-3 col-sm-6">
+                    <img src="/assets/images/cupcake-with-blur.jpg" className="img-responsive" alt="" />
+                  </div>
+                  <div className="col-lg-3 col-sm-6">
+                    <img src="/assets/images/ringding-with-blur.jpg" className="img-responsive" alt="" />
+                    {/* eslint-enable max-len */}
+                  </div>
+                </div>
+              </div>
+            </section>
+            <aside className="bg-dark">
+              <div className="container text-center">
+                <div className="call-to-action">
+                  <br />
+                  <h2>Can&#39;t Wait?</h2>
+                  <a
+                    href="/register/signup"
+                    className="btn btn-default btn-xl sr-button"
+                  >
+                    Sign Up Now
+                  </a>
+                  <br />
+                  <br />
+                </div>
+              </div>
+            </aside>
+          </Element>
+          <aside className="bg-darker">
+            <div className="container text-center">
+              <div>
+                <h2>Featured On</h2>
+                <hr className="primary" />
+                <h4>Coming Soon...</h4>
+              </div>
             </div>
-            <div
-              className="col-xs-offset-8 col-sm-offset-0 col-md-offset-1 col-lg-offset-0
-                col-xs-4 col-sm-3 col-md-3 col-lg-2"
-            >
-              <img
-                className="logo-custom"
-                src="/assets/images/sugarpost-logo.png"
-                alt="SUGARPOST"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-              {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-              <img
-                onClick={ HomeApp._onLink.bind(null, 'https://www.instagram.com/mysugarpost/') }
-                className="icon-custom"
-                src="/assets/images/instagram-icon.png"
-                alt="instagram"
-              />
-            </div>
-            <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-              <img
-                onClick={ HomeApp._onLink.bind(null, 'https://www.facebook.com/mysugarpost') }
-                className="icon-custom"
-                src="/assets/images/facebook-icon.png"
-                alt="facebook"
-              />
-            </div>
-            <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 icon-move-left-custom">
-              <img
-                onClick={ HomeApp._onLink.bind(null, 'https://twitter.com/mysugarpost') }
-                className="icon-custom"
-                src="/assets/images/twitter-icon.png"
-                alt="twitter"
-              />
-              {/* eslint-enable */}
-            </div>
-          </div>
-        </div>
+          </aside>
+          <Element name="contact">
+            <section id="contact">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 className="section-heading">Let&#39;s Get In Touch!</h2>
+                    <hr className="primary" />
+                    <p>
+                      Interested in partnering with us? Inquiries? Questions? Press coverage?
+                      That&#39;s great! We look forward to hearing from you! Send us an e-mail and
+                      we will get back to you as soon as possible!
+                    </p>
+                  </div>
+                  <div className="col-lg-6 col-lg-offset-3 text-center">
+                    <i className="fa fa-envelope-o fa-3x sr-contact" />
+                    <p>
+                      <a href="mailto:administrator@mysugarpost.com">
+                        administrator@mysugarpost.com
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </Element>
+
+        </Element>
+
+        <Footer />
       </div>
     );
-  }
-
-  _onChange() {
-    this.setState(_getState());
-  }
-
-  static _onSubmit(event, email) {
-    // Prevents browser's default navigation (page refresh).
-    event.preventDefault();
-
-    homeActionCreator.subscribe(email);
-  }
-
-  static _onLink(url) {
-    const win = window.open(url, '_blank');
-
-    win.focus();
   }
 
 }
@@ -174,10 +221,7 @@ class HomeApp extends BaseComponent {
  * the data in the Flux's store.
  */
 function _getState() {
-  return {
-    subscribeFeedbackTxt: homeStore.getSubscribeFeedbackTxt(),
-    subscribeFeedbackCssClass: homeStore.getSubscribeFeedbackCssClass(),
-  };
+  return {};
 }
 
 export default HomeApp;
