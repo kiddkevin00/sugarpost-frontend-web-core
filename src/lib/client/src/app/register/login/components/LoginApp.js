@@ -50,26 +50,48 @@ class LoginApp extends BaseComponent {
 
   render() {
     return (
-      <div>
-        <div className="form-top">
-          <div className="form-top-left">
-            <h3>Log in</h3>
-            <p>Fill in the form below to access your account:</p>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-7 text">
+            <h1>Claim Your Desserts Today</h1>
+            <div className="description">
+              <p>
+                The Sugarpost team is glad you are back! Log in to change your account settings,
+                view, email, or print your vouchers from your purchased e-package, or get your
+                referral code to share with your friends.  Not a paying subscriber yet? If you
+                already have an account, log in to start your subscription today!
+              </p>
+            </div>
+            <div className="top-big-link">
+              <ol>
+                <li>Learn more about this month’s featured vendors.</li>
+                <li>View your vouchers and claim your desserts.</li>
+                <li>Refer and earn credits.</li>
+              </ol>
+            </div>
           </div>
-          <div className="form-top-right">
-            <img src="/assets/images/sugarpost-logo.png" alt="" />
+          <div className="col-lg-offset-1 col-lg-4 col-sm-5">
+            <div className="form-top">
+              <div className="form-top-left">
+                <h3>Log in</h3>
+                <p>Fill in the form below to access your account:</p>
+              </div>
+              <div className="form-top-right">
+                <img src="/assets/images/sugarpost-logo.png" alt="" />
+              </div>
+            </div>
+            <div className="form-bottom">
+              <LoginForm
+                onSubmit={ LoginApp._onSubmit }
+                isErrorVisible={ this.state.error.isVisible }
+                errorMsg={ this.state.error.message }
+              />
+              <br />
+              <a href="/register/forgot-password" className="center-block text-center">
+                Forgot password?
+              </a>
+            </div>
           </div>
-        </div>
-        <div className="form-bottom">
-          <LoginForm
-            onSubmit={ LoginApp._onSubmit }
-            isErrorVisible={ this.state.error.isVisible }
-            errorMsg={ this.state.error.message }
-          />
-          <br />
-          <a href="/register/forgot-password" className="center-block text-center">
-            Forgot password?
-          </a>
         </div>
       </div>
     );

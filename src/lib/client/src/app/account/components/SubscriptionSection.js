@@ -1,5 +1,6 @@
 import FormInput from '../../../common/components/FormInput';
 import BaseComponent from '../../../common/components/BaseComponent';
+import constants from '../../../common/constants/';
 import React from 'react';
 import classNames from 'classnames';
 
@@ -74,6 +75,7 @@ class SubscriptionSection extends BaseComponent {
           <div className="col-sm-12">
             <input
               onClick={ this._onUnsubscribe }
+              disabled={ this.state.subscriptionStatus !== constants.SYSTEM.USER_TYPES.PAID }
               type="button"
               className="btn btn-link"
               value="Cancel Subscription"

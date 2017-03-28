@@ -28,7 +28,9 @@ class HomeApp extends BaseComponent {
               <p>
                 Discover hidden gems to the city’s trendiest desserts! Subscribe and receive an
                 e-package which will contain four vouchers that can claim in-store desserts or
-                Sugarpost exclusives from four different featured dessert vendors every month!
+                <b><i>&nbsp;Sugarpost exclusives&nbsp;</i></b>
+                from
+                <b><i>&nbsp;four different featured dessert vendors every month!&nbsp;</i></b>
               </p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">
                 Sign Up Now

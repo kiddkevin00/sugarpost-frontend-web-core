@@ -34,7 +34,6 @@ function storeParamMap(nextState) {
     authActionCreator.storeParamMap(nextState.location.query);
   }
 }
-
 function inTransition(nextState, replace) {
   authActionCreator.inTransition(nextState, replace);
 }

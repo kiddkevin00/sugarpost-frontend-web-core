@@ -4,7 +4,6 @@ import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
 const storeContext = Symbol('accountStoreContext');
-
 const defaultErrorMsg = 'Oops! Something went wrong. Please try again.';
 const defaultInfoMsg = 'Request has been completed.';
 
@@ -165,7 +164,7 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.CANCEL_SUBSCRIPTION_FAIL:
-      accountStore._showErrorForSubscription(data || 'Subscription cancellation fails.');
+      accountStore._showErrorForSubscription(data || 'You haven\'t paid for the subscription yet.');
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);

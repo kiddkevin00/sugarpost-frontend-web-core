@@ -53,29 +53,41 @@ class PaymentApp extends BaseComponent {
     }
 
     return (
-      <div>
-        <div className="form-top">
-          <div className="form-top-left">
-            <h3>Pay now</h3>
-            <p>Secure your { monthNameToSubscribe } e-package now:</p>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-7 text">
+            <h1>Start Your Adventure Today</h1>
+            <div className="top-big-link">
+              <ol>
+                <li>Learn more about this month’s featured vendors.</li>
+                <li>View your vouchers and claim your desserts.</li>
+                <li>Refer your friends and earn credits toward your next package.</li>
+              </ol>
+            </div>
           </div>
-          <div className="form-top-right">
-            <img src="/assets/images/sugarpost-logo.png" alt="" />
+          <div className="col-lg-offset-1 col-lg-4 col-sm-5">
+            <div className="form-top">
+              <div className="form-top-left">
+                <h3>Pay now</h3>
+                <p>Secure your { monthNameToSubscribe } e-package now:</p>
+              </div>
+              <div className="form-top-right">
+                <img src="/assets/images/sugarpost-logo.png" alt="" />
+              </div>
+            </div>
+            <div className="form-bottom">
+              <PaymentForm
+                onSubmit={ PaymentApp._onSubmit }
+                email={ this.props.location.query.email || '' }
+                isInfoVisible={ this.state.info.isVisible }
+                isErrorVisible={ this.state.error.isVisible }
+                infoMsg={ this.state.info.message }
+                errorMsg={ this.state.error.message }
+                referralCode={ this.state.referralCode }
+                subscribedMonth={ monthNameToSubscribe }
+              />
+            </div>
           </div>
-        </div>
-        <div className="form-bottom">
-          <PaymentForm
-            onSubmit={ PaymentApp._onSubmit }
-            email={ this.props.location.query.email || '' }
-            isInfoVisible={ this.state.info.isVisible }
-            isErrorVisible={ this.state.error.isVisible }
-            infoMsg={ this.state.info.message }
-            errorMsg={ this.state.error.message }
-            referCode={ this.state.referCode }
-            subscribedMonth={ monthNameToSubscribe }
-            regularChargeAmount={ 24.99 }
-            referralChargeAmount={ 22.99 }
-          />
         </div>
       </div>
     );
@@ -85,8 +97,8 @@ class PaymentApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onSubmit(token, referCode) {
-    paymentActionCreator.pay(token, referCode);
+  static _onSubmit(token, referralCode) {
+    paymentActionCreator.pay(token, referralCode);
   }
 
 }
@@ -102,9 +114,9 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
     user: authStore.getUser(),
-    referCode: authStore.gerReferCode(),
-    error: paymentStore.getError(),
+    referralCode: authStore.gerReferralCode(),
     info: paymentStore.getInfo(),
+    error: paymentStore.getError(),
   };
 }
 

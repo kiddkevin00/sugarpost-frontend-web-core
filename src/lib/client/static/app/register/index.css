@@ -8,7 +8,7 @@
     width: 100%;
 }
 
-#registration-template .inner-bg {
+#registration-template > div > .inner-bg {
     min-height: 100%;
     width: 100%;
     background-image: url("/assets/images/v2_background.png");

@@ -12,13 +12,12 @@ class PaymentForm extends BaseComponent {
 
     this._bind('_onClick', '_onToken');
     this.state = {
-      referCode: this.props.referCode,
-      charge: this.props.regularChargeAmount,
+      referralCode: this.props.referralCode,
+      isReferralCodeValid: false,
     };
   }
 
   render() {
-    const chargeStr = window.parseFloat(this.state.charge).toFixed(2);
     const alertSuccessBoxClasses = classNames({
       alert: true,
       'alert-success': true,
@@ -31,6 +30,8 @@ class PaymentForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
+    const buttonEndingText = this.state.isReferralCodeValid ?
+      ' With 10% Off' : '';
 
     return (
       <form role="form">
@@ -44,13 +45,22 @@ class PaymentForm extends BaseComponent {
           <i className="fa fa-exclamation-triangle" />
           &nbsp; { this.props.errorMsg }
         </div>
+        <div className="text-center">
+          <h1><b>$24.99</b></h1>
+          <span>+</span>
+          <br />
+          <span>Tax</span>
+        </div>
+        <br />
+        <div>
+          Do you have an referral code?
+        </div>
         <FormInput
-          text="Refer Code (Optional)"
+          text="Optional"
           validate={ PaymentForm._validateCouponCode }
-          value={ this.state.referCode }
-          onChange={ this._onChange.bind(this, 'referCode') } /* eslint-disable-line react/jsx-no-bind */
-          errorMessage="Refer code is invalid"
-          emptyMessage="Proceed with no refer code?"
+          value={ this.state.referralCode }
+          onChange={ this._onChange.bind(this, 'referralCode') } /* eslint-disable-line react/jsx-no-bind */
+          errorMessage="Referral code is invalid"
         />
         <StripeCheckout
           token={ this._onToken }
@@ -59,24 +69,24 @@ class PaymentForm extends BaseComponent {
           description="Premium subscription service"
           image="/assets/images/sugarpost-logo.png"
           ComponentClass="div"
-          panelLabel={ `Get Your ${this.props.subscribedMonth} Treat $${chargeStr}` }
-          amount={ 1999 }
+          panelLabel={ `Get Your ${this.props.subscribedMonth} Treat!` }
           currency="USD"
           locale="en"
           email={ this.props.email }
-          billingAddress={ false }
+          billingAddress={ false } /* Toggles to `true` when go live */
+          zipCode={ false } /* Toggles to `true` when go live */
           alipay={ false }
           bitcoin={ false }
-          allowRememberMe={ false }
           reconfigureOnUpdate={ false }
           triggerEvent="onClick"
+          allowRememberMe={ false } /* Toggles to `true` when go live */
         >
           <button
             onClick={ this._onClick }
             className="btn btn-block"
             type="button"
           >
-            Get Your { this.props.subscribedMonth } Treat ${ this.state.charge }
+            Checkout{ buttonEndingText } Now
           </button>
         </StripeCheckout>
       </form>
@@ -87,16 +97,16 @@ class PaymentForm extends BaseComponent {
     if (PaymentForm._validateCouponCode(value)) {
       if (value.trim().length === 0) {
         this.setState({
-          charge: this.props.regularChargeAmount,
+          isReferralCodeValid: false,
         });
       } else {
         this.setState({
-          charge: this.props.referralChargeAmount,
+          isReferralCodeValid: true,
         });
       }
     } else {
       this.setState({
-        charge: this.props.regularChargeAmount,
+        isReferralCodeValid: false,
       });
     }
 
@@ -106,13 +116,13 @@ class PaymentForm extends BaseComponent {
   }
 
   _onClick(event) {
-    if (!PaymentForm._validateCouponCode(this.state.referCode)) {
+    if (!PaymentForm._validateCouponCode(this.state.referralCode)) {
       event.stopPropagation();
     }
   }
 
   _onToken(token) {
-    this.props.onSubmit(token, this.state.referCode);
+    this.props.onSubmit(token, this.state.referralCode);
   }
 
   static _validateCouponCode(inputText) {
@@ -138,18 +148,14 @@ PaymentForm.propTypes = {
   isErrorVisible: React.PropTypes.bool.isRequired,
   infoMsg: React.PropTypes.string,
   errorMsg: React.PropTypes.string,
-  referCode: React.PropTypes.string,
+  referralCode: React.PropTypes.string,
   subscribedMonth: React.PropTypes.string,
-  regularChargeAmount: React.PropTypes.number,
-  referralChargeAmount: React.PropTypes.number,
 };
 PaymentForm.defaultProps = {
   infoMsg: 'Request has been completed.',
   errorMsg: 'Oops! Something went wrong. Please try again.',
-  referCode: '',
+  referralCode: '',
   subscribedMonth: 'Unknown',
-  regularChargeAmount: 0,
-  referralChargeAmount: 0,
 };
 
 export default PaymentForm;

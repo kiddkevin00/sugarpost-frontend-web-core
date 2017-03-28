@@ -34,7 +34,7 @@ class AuthStore extends EventEmitter {
         message: defaultErrorMsg,
       },
       transitionPath: '',
-      referCode: '',
+      referralCode: '',
     };
   }
 
@@ -62,8 +62,8 @@ class AuthStore extends EventEmitter {
     return transitionPath;
   }
 
-  gerReferCode() {
-    return this[storeContext].referCode;
+  gerReferralCode() {
+    return this[storeContext].referralCode;
   }
 
   emitChange() {
@@ -125,8 +125,8 @@ class AuthStore extends EventEmitter {
     this[storeContext].transitionPath = path;
   }
 
-  _storeReferCode(code) {
-    this[storeContext].referCode = code;
+  _storeReferralCode(code) {
+    this[storeContext].referralCode = code;
   }
 
   _clearAllAlertBoxes() {
@@ -224,7 +224,7 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.STORE_PARAM_MAP:
-      authStore._storeReferCode(data.referCode);
+      authStore._storeReferralCode(data.referralCode);
 
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;

@@ -1,6 +1,7 @@
 import authStore from '../../../common/auth/stores/authStore';
 import authActionCreator from '../../../common/auth/actions/authActionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
+import constants from '../../../common/constants/';
 import React from 'react';
 
 class VoucherApp extends BaseComponent {
@@ -23,6 +24,14 @@ class VoucherApp extends BaseComponent {
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextState.isLoggedIn) {
       nextContext.router.push('/register/login');
+    } else if (
+      nextState.user.type === constants.SYSTEM.USER_TYPES.UNPAID ||
+      nextState.user.type === constants.SYSTEM.USER_TYPES.CANCELLED
+    ) {
+      nextContext.router.push({
+        pathname: '/register/payment',
+        query: { email: nextState.user.email },
+      });
     }
   }
 
@@ -35,12 +44,12 @@ class VoucherApp extends BaseComponent {
       <div id="voucher-app">
         <div className="container">
           <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div className="col-xs-12">
               <div className="header-placeholder-custom" />
             </div>
           </div>
           <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div className="col-xs-12">
               <h1 className="text-center" style={ { color: 'white' } }>Thank you for subscribing! Your vouchers will be available on May 1st, 2017.</h1>
             </div>
           </div>
@@ -65,6 +74,7 @@ VoucherApp.contextTypes = {
 function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
+    user: authStore.getUser(),
   };
 }
 

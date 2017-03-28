@@ -1,14 +1,14 @@
 import dispatcher from '../../../../common/dispatcher/appDispatcher';
-import paymentConstants from '../constants/paymentConstants';
+import referralConstants from '../constants/referralConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
-const storeContext = Symbol('paymentStoreContext');
+const storeContext = Symbol('referralStoreContext');
 const defaultErrorMsg = 'Oops! Something went wrong. Please try again.';
 const defaultInfoMsg = 'Request has been completed.';
 
 // A Flux's store.
-class PaymentStore extends EventEmitter {
+class ReferralStore extends EventEmitter {
 
   constructor() {
     super();
@@ -77,7 +77,7 @@ class PaymentStore extends EventEmitter {
 
 }
 
-const paymentStore = new PaymentStore();
+const referralStore = new ReferralStore();
 
 // The dispatcher registration for the current store component.
 dispatcher.register((action) => {
@@ -85,45 +85,28 @@ dispatcher.register((action) => {
   const data = action.data;
 
   switch (actionType) {
-    case paymentConstants.PAYING:
-      paymentStore._clearAllAlertBoxes();
+    case referralConstants.OPENING_MODAL:
+    case referralConstants.SENDING_EMAIL_TO_REFERRAL:
+      referralStore._clearAllAlertBoxes();
 
-      paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      referralStore.emitChange();
+      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
-    case paymentConstants.PAYMENT_SUCCEED:
-      paymentStore._showInfo('Thank you! We have received your payment.');
+    case referralConstants.SEND_EMAIL_TO_REFERRAL_SUCCEED:
+      referralStore._showInfo('Referral email sent!');
 
-      paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      referralStore.emitChange();
+      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
-    case paymentConstants.ALREADY_PAID:
-      paymentStore._showError('Our record shows that you have already paid for the subscription.');
+    case referralConstants.SEND_EMAIL_TO_REFERRAL_FAIL:
+      referralStore._showError(data || 'Sending email fails. Please try again.');
 
-      paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
-      break;
-    case paymentConstants.ALREADY_USED_REFERRAL_CODE:
-      paymentStore._showError('The referral code can only be used once. Please try again without the referral code.');
-
-      paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
-      break;
-    case paymentConstants.REFERRAL_CODE_NOT_FOUND:
-      paymentStore._showError('The referral code you entered is invalid. Please try another one or proceed without refer code.');
-
-      paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
-      break;
-    case paymentConstants.PAYMENT_FAIL:
-      paymentStore._showError(data || 'Proceeding payment fails. Please try again.');
-
-      paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      referralStore.emitChange();
+      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     default:
       break;
   }
 });
 
-export default paymentStore;
+export default referralStore;

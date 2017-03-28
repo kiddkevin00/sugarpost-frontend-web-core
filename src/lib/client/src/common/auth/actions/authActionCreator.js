@@ -227,7 +227,7 @@ const authActionCreator = {
       if (key === 'refer_code' && map[key]) {
         dispatcher.dispatch({
           actionType: authConstants.STORE_PARAM_MAP,
-          data: { referCode: map[key] },
+          data: { referralCode: map[key] },
         });
       }
     }

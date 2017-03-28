@@ -32,28 +32,51 @@ class SignupApp extends BaseComponent {
 
   render() {
     return (
-      <div>
-        <div className="form-top">
-          <div className="form-top-left">
-            <h3>Sign up now</h3>
-            <p>Fill in the form below to get started:</p>
-          </div>
-          <div className="form-top-right">
-            <img src="/assets/images/sugarpost-logo.png" alt="" />
-          </div>
-        </div>
-        <div className="form-bottom">
-          <SignupForm
-            onSubmit={ this._onSubmit }
-            isErrorVisible={ this.state.error.isVisible }
-            errorMsg={ this.state.error.message }
-          />
-          <div className="row">
-            <div className="col-xs-offset-1 col-xs-10">
-              <br />
-              <p className="text-center">
-                By signing up, you agree to our <a>Terms</a> & <a>Privacy Policy</a>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-7 text">
+            <h1>Adventure Awaits You</h1>
+            <div className="description">
+              <p>
+                For only $24.99 a month, you will receive e-packages curated by the insight of
+                influential food bloggers and dessert connoisseurs! Within your e-package, you
+                will find a little background on each featured dessert vendor and your vouchers
+                which can claim in-store desserts or Sugarpost exclusives.
               </p>
+            </div>
+            <div className="top-big-link">
+              <ol>
+                <li>Sign up to the right and become a paid subscriber.</li>
+                <li>Receive four vouchers during the first day of every month.</li>
+                <li>Visit the dessert shops.</li>
+                <li>Redeem desserts and enjoy!</li>
+              </ol>
+            </div>
+          </div>
+          <div className="col-lg-offset-1 col-lg-4 col-sm-5">
+            <div className="form-top">
+              <div className="form-top-left">
+                <h3>Sign up now</h3>
+                <p>Fill in the form below to get started:</p>
+              </div>
+              <div className="form-top-right">
+                <img src="/assets/images/sugarpost-logo.png" alt="" />
+              </div>
+            </div>
+            <div className="form-bottom">
+              <SignupForm
+                onSubmit={ this._onSubmit }
+                isErrorVisible={ this.state.error.isVisible }
+                errorMsg={ this.state.error.message }
+              />
+              <div className="row">
+                <div className="col-xs-offset-1 col-xs-10">
+                  <br />
+                  <p className="text-center">
+                    By signing up, you agree to our <a>Terms</a> & <a>Privacy Policy</a>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
