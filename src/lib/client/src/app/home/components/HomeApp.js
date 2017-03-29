@@ -26,7 +26,7 @@ class HomeApp extends BaseComponent {
               <h1>SUGARPOST</h1>
               <hr />
               <p>
-                Discover hidden gems to the city’s trendiest desserts! Subscribe and receive an
+                Discover hidden gems to the city&#39;s trendiest desserts! Subscribe and receive an
                 e-package which will contain four vouchers that can claim in-store desserts or
                 <b><i>&nbsp;Sugarpost exclusives&nbsp;</i></b>
                 from
@@ -86,7 +86,7 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
                       <h3>Get Codes</h3>
                       <p className="text-muted">
-                        After purchasing a monthly subscription, you’ll receive an e-mail with
+                        After purchasing a monthly subscription, you&#39;ll receive an email with
                         vouchers during the first week of every month.
                       </p>
                     </div>
@@ -117,7 +117,7 @@ class HomeApp extends BaseComponent {
                       <h3>Share It</h3>
                       <p className="text-muted">
                         If you enjoyed your experience, refer a friend for credit towards
-                        your next e-package. If enough friends sign up, you’ll get a month free!
+                        your next e-package. If enough friends sign up, you&#39;ll get a month free!
                       </p>
                     </div>
                   </div>
@@ -190,7 +190,7 @@ class HomeApp extends BaseComponent {
                     <hr className="primary" />
                     <p>
                       Interested in partnering with us? Inquiries? Questions? Press coverage?
-                      That&#39;s great! We look forward to hearing from you! Send us an e-mail and
+                      That&#39;s great! We look forward to hearing from you! Send us an email and
                       we will get back to you as soon as possible!
                     </p>
                   </div>

@@ -1,14 +1,16 @@
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import RootApp from './RootApp';
+import HomeApp from './home/components/HomeApp';
 import RegisterApp from './register/';
 import LoginApp from './register/login/components/LoginApp';
-import ForgotPasswordApp from './register/forgot-password/components/ForgotPasswordApp';
 import SignupApp from './register/signup/components/SignupApp';
 import PaymentApp from './register/payment/components/PaymentApp';
+import ForgotPasswordApp from './register/forgot-password/components/ForgotPasswordApp';
+import ReferralApp from './register/referral/components/ReferralApp';
+import PrivacyPolicyApp from './privacy-policy/components/PrivacyPolicyApp';
+import TermsOfUse from './terms-of-use/components/TermsOfUseApp';
 import AccountApp from './account/components/AccountApp';
 import VoucherApp from './voucher/components/VoucherApp';
-import ReferralApp from './register/referral/components/ReferralApp';
-import HomeApp from './home/components/HomeApp';
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
@@ -23,6 +25,8 @@ const clientRoutes = (
         <Route path="forgot-password" component={ ForgotPasswordApp } />
         <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
       </Route>
+      <Route path="privacy-policy" component={ PrivacyPolicyApp } />
+      <Route path="terms-of-use" component={ TermsOfUse } />
       <Route path="account" component={ AccountApp } onEnter={ inTransition } />
       <Route path="vouchers" component={ VoucherApp } onEnter={ inTransition } />
     </Route>

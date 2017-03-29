@@ -73,7 +73,10 @@ class SignupApp extends BaseComponent {
                 <div className="col-xs-offset-1 col-xs-10">
                   <br />
                   <p className="text-center">
-                    By signing up, you agree to our <a>Terms</a> & <a>Privacy Policy</a>
+                    By signing up, you agree to our
+                    <a href="/terms-of-use">&nbsp;Terms&nbsp;</a>
+                    &
+                    <a href="/privacy-policy">&nbsp;Privacy Policy&nbsp;</a>
                   </p>
                 </div>
               </div>
