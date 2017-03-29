@@ -122,9 +122,9 @@ class PrivacyPolicyApp extends BaseComponent {
                 companies, please follow the following links:&nbsp;
                 <u>http://networkadvertising.org/managing/opt_out.asp</u>,&nbsp;
                 <u>http://preferences-mgr.truste.com/</u>,&nbsp;
-                or <u>http://www.aboutads.info/choices/</u>. Please contact us if you would like to know
-                the identity of the third- party advertising companies we are currently using to
-                serve ads.
+                or <u>http://www.aboutads.info/choices/</u>. Please contact us if you would like to
+                know the identity of the third- party advertising companies we are currently using
+                to serve ads.
               </p>
               <p>
                 We may allow advertisers to choose the characteristics of users who will see their
