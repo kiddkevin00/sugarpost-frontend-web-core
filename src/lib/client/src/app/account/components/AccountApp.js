@@ -41,7 +41,7 @@ class AccountApp extends BaseComponent {
       <div id="account-app">
         <div className="container">
           <div className="row">
-            <div className="col-xs-6">
+            <div className="col-xs-12">
               <div className="header-placeholder-custom" />
             </div>
           </div>

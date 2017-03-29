@@ -180,6 +180,7 @@ class RootApp extends BaseComponent {
             logoutTab);
           break;
         default:
+          tabsShownWhenUserLoggedIn.push(logoutTab);
           break;
       }
     } else {

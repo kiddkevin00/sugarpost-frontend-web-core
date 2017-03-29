@@ -56,10 +56,10 @@ class LoginApp extends BaseComponent {
             <h1>Claim Your Desserts Today</h1>
             <div className="description">
               <p>
-                The Sugarpost team is glad you are back! Log in to change your account settings,
-                view, email, or print your vouchers from your purchased e-package, or get your
-                referral code to share with your friends.  Not a paying subscriber yet? If you
-                already have an account, log in to start your subscription today!
+                Log in to change your account settings, view, email, or print your vouchers from
+                your purchased e-package, or get your referral code to share with your friends. Not
+                a paying subscriber yet? If you already have an account, log in to start your
+                subscription today!
               </p>
             </div>
             <div className="top-big-link">

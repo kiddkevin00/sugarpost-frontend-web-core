@@ -59,7 +59,7 @@ class ReferralApp extends BaseComponent {
             <div className="description">
               <p>
                 Did you enjoy your Sugarpost subscription service? Share the service with your
-                friends by clicking the Facebook, Twitter, or E-mail buttons on the right. Should
+                friends by clicking the Facebook, Twitter, or Email buttons on the right. Should
                 you want to tell your friends outside these platforms, feel free to send them your
                 referral code so they can get a 10% discount off their first month with Sugarpost!
                 Sugarpost has an amazing referral program! For each friend that subscribes to our
