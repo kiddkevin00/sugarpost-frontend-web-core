@@ -47,15 +47,6 @@ class RootApp extends BaseComponent {
         <NavItem>Referral</NavItem>
       </LinkContainer>
     );
-    const logoutTab = (
-      /* eslint-disable jsx-a11y/no-static-element-interactions */
-      <NavItem key="5">
-        <span onClick={ RootApp._onLogout }>
-          Log Out
-        </span>
-      </NavItem>
-      /* eslint-enable */
-    );
     const aboutTab = (
       <li key="1">
         <LinkContainer to="/">
@@ -157,6 +148,15 @@ class RootApp extends BaseComponent {
           </Link>
         </LinkContainer>
       </li>
+    );
+    const logoutTab = (
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
+      <NavItem key="5">
+        <span onClick={ RootApp._onLogout }>
+          Logout
+        </span>
+      </NavItem>
+      /* eslint-enable */
     );
 
     if (this.state.isLoggedIn) {
