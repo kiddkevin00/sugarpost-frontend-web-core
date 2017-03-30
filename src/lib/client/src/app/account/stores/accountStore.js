@@ -145,7 +145,7 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.UPDATE_PROFILE_FAIL:
-      accountStore._showErrorForProfile(data || 'Profile update fails.');
+      accountStore._showErrorForProfile(data || 'The original password is incorrect.');
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);

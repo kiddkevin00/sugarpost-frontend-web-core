@@ -101,11 +101,12 @@ class AccountApp extends BaseComponent {
     accountActionCreator.cancelSubscription();
   }
 
-  static _onUpdateProfile(event, email, _password, _fullName) {
+  static _onUpdateProfile(event, _password, _newPassword, _fullName) {
     const password = _password && _password.trim();
+    const newPassword = _newPassword && _newPassword.trim();
     const fullName = _fullName && _fullName.trim();
 
-    accountActionCreator.updateProfile(email, password, fullName);
+    accountActionCreator.updateProfile(password, newPassword, fullName);
   }
 
 }
