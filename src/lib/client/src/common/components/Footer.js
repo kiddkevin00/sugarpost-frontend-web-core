@@ -35,8 +35,8 @@ class Footer extends BaseComponent {
             </div>
             <div className="col-md-4">
               <ul className="list-inline quicklinks">
-                <li><a href="">Privacy Policy&nbsp;</a></li>
-                <li><a href="">&nbsp;Terms of Use</a></li>
+                <li><a href="/privacy-policy">Privacy Policy&nbsp;</a></li>
+                <li><a href="/terms-of-use">&nbsp;Terms of Use</a></li>
               </ul>
             </div>
           </div>

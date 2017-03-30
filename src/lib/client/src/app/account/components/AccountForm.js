@@ -8,13 +8,13 @@ class AccountForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onSave', '_onReset', 'isConfirmPasswordMatched');
+    this._bind('_onSave', '_onReset', 'isConfirmNewPasswordMatched');
     this.state = {
       fullName: props.fullName,
       email: props.email,
-      oldPassword: '',
       password: '',
-      confirmPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
     };
   }
 
@@ -72,33 +72,33 @@ class AccountForm extends BaseComponent {
         <FormInput
           text="Old Password"
           type="password"
-          ref={ (formInputObj) => { this.oldPassword = formInputObj; } }
-          value={ this.state.oldPassword }
-          onChange={ this._onChange.bind(this, 'oldPassword') } /* eslint-disable-line react/jsx-no-bind */
-          errorMessage="Password is invalid"
-          emptyMessage="Password can't be empty"
+          ref={ (formInputObj) => { this.password = formInputObj; } }
+          value={ this.state.password }
+          onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
+          errorMessage="Old password is invalid"
+          emptyMessage="Old password can't be empty"
         />
         <FormInput
           text="New Password"
           type="password"
-          ref={ (formInputObj) => { this.password = formInputObj; } }
-          value={ this.state.password }
-          onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
+          ref={ (formInputObj) => { this.newPassword = formInputObj; } }
+          value={ this.state.newPassword }
+          onChange={ this._onChange.bind(this, 'newPassword') } /* eslint-disable-line react/jsx-no-bind */
           useValidator={ true }
           minCharacters={ 8 }
           requireCapitals={ 1 }
           requireNumbers={ 1 }
           forbiddenWords={ ['password', 'user', 'username'] }
-          emptyMessage="Password is invalid"
+          emptyMessage="New password is invalid"
         />
         <FormInput
           text="Confirm New Password"
           type="password"
-          ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
-          validate={ this.isConfirmPasswordMatched }
-          value={ this.state.confirmPassword }
-          onChange={ this._onChange.bind(this, 'confirmPassword') } /* eslint-disable-line react/jsx-no-bind */
-          emptyMessage="Please confirm your password"
+          ref={ (formInputObj) => { this.confirmNewPassword = formInputObj; } }
+          validate={ this.isConfirmNewPasswordMatched }
+          value={ this.state.confirmNewPassword }
+          onChange={ this._onChange.bind(this, 'confirmNewPassword') } /* eslint-disable-line react/jsx-no-bind */
+          emptyMessage="Please confirm your new password"
           errorMessage="Passwords don't match"
         />
         <div className="form-group">
@@ -133,17 +133,17 @@ class AccountForm extends BaseComponent {
     if (
       this.fullName.isValid() &&
       this.email.isValid() &&
-      this.oldPassword.isValid() &&
       this.password.isValid() &&
-      this.confirmPassword.isValid()
+      this.newPassword.isValid() &&
+      this.confirmNewPassword.isValid()
     ) {
-      this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
+      this.props.onSubmit(event, this.state.password, this.state.newPassword, this.state.fullName);
     } else {
       this.fullName.isValid();
       this.email.isValid();
-      this.oldPassword.isValid();
       this.password.isValid();
-      this.confirmPassword.isValid();
+      this.newPassword.isValid();
+      this.confirmNewPassword.isValid();
     }
   }
 
@@ -151,14 +151,14 @@ class AccountForm extends BaseComponent {
     this.setState({
       fullName: this.props.fullName,
       email: this.props.email,
-      oldPassword: '',
       password: '',
-      confirmPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
     });
   }
 
-  isConfirmPasswordMatched(inputText) {
-    return inputText === this.state.password;
+  isConfirmNewPasswordMatched(inputText) {
+    return inputText === this.state.newPassword;
   }
 
 }

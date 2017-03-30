@@ -5,13 +5,13 @@ import accountConstants from '../constants/accountConstants';
 import authConstants from '../../../common/auth/constants/authConstants';
 
 const accountActionCreator = {
-  updateProfile(email, password, fullName) {
+  updateProfile(password, newPassword, fullName) {
     dispatcher.dispatch({
       actionType: accountConstants.UPDATING_PROFILE,
     });
 
     const url = '/api/user/info';
-    const body = { password, fullName };
+    const body = { password, newPassword, fullName };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
     Proxy.put(url, body, headers)
