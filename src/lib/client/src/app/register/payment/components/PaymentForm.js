@@ -68,7 +68,7 @@ class PaymentForm extends BaseComponent {
         />
         <StripeCheckout
           token={ this._onToken }
-          stripeKey="pk_live_CTOKgbale5B5kr0C6KA3o9kd"
+          stripeKey="pk_test_jx78Ig5R5FcBYoGcMoTvNnia"
           name="Sugarpost"
           description="Premium Subscription Service"
           image="/assets/images/sugarpost-logo.png"

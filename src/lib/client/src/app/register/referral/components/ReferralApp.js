@@ -17,7 +17,7 @@ class ReferralApp extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', '_onRedeem');
+    this._bind('_onChange');
     this.state = _getState();
   }
 
@@ -64,7 +64,7 @@ class ReferralApp extends BaseComponent {
     const creditBalance = this.state.user.referralAmount * refererCredit;
     const creditBalanceStr = window.parseFloat(creditBalance).toFixed(2);
     const isNotRedeemable = creditBalance < redeemableAmount ||
-      this.state.user.type === constants.SYSTEM.USER_TYPES.INFLUENCER
+      this.state.user.type === constants.SYSTEM.USER_TYPES.INFLUENCER;
     let loader;
 
     if (this.state.isLoading) {
@@ -129,7 +129,7 @@ class ReferralApp extends BaseComponent {
                 <div className="row">
                   <div className="col-xs-offset-1 col-xs-10">
                     <button
-                      onClick={ this._onRedeem }
+                      onClick={ ReferralApp._onRedeem }
                       disabled={ isNotRedeemable }
                       className="btn btn-block"
                       type="button"
@@ -164,7 +164,7 @@ class ReferralApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  _onRedeem() {
+  static _onRedeem() {
     referralActionCreator.redeemCredits();
   }
 
