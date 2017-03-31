@@ -29,7 +29,7 @@ class LoginApp extends BaseComponent {
         pathname: '/account',
       };
       const referralRoute = {
-        pathname: '/referral',
+        pathname: '/register/referral',
       };
 
       if (transitionPath === '/register/payment') {
