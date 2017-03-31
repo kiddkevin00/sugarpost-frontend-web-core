@@ -30,8 +30,8 @@ class PaymentForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
-    const buttonEndingText = this.state.isReferralCodeValid ?
-      ' With 10% Off' : '';
+    const showDiscountStr = this.state.isReferralCodeValid ? '10% Off Included' : '\u00A0';
+    const totalCost = this.state.isReferralCodeValid ? '$24.50' : '$27.22';
 
     return (
       <form role="form">
@@ -52,8 +52,8 @@ class PaymentForm extends BaseComponent {
           <br />
           <span>Tax</span>
           <p>___________</p>
-          <h3>$24.50</h3>
-          <h4><i>10% Off Included</i></h4>
+          <h3>{ totalCost }</h3>
+          <h4><i>{ showDiscountStr }</i></h4>
         </div>
         <br />
         <div>
@@ -90,7 +90,7 @@ class PaymentForm extends BaseComponent {
             className="btn btn-block"
             type="button"
           >
-            Checkout{ buttonEndingText } Now
+            Checkout Now
           </button>
         </StripeCheckout>
       </form>

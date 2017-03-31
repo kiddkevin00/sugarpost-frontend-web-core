@@ -116,14 +116,14 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.ALREADY_USED_REFERRAL_CODE:
-      paymentStore._showError('The referral code can only be used once. Please try again without the referral code.');
+      paymentStore._showError('Your transaction has not been processed because your account is no longer eligible for the 10% discount.');
       paymentStore._setLoadingStatus(false);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.REFERRAL_CODE_NOT_FOUND:
-      paymentStore._showError('The referral code you entered is invalid. Please try another one or proceed without refer code.');
+      paymentStore._showError('Your transaction has not been processed because the referral code you entered is invalid.');
       paymentStore._setLoadingStatus(false);
 
       paymentStore.emitChange();
