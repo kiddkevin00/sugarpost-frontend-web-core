@@ -32,8 +32,7 @@ class ReferralApp extends BaseComponent {
     if (!nextState.isLoggedIn) {
       nextContext.router.push('/register/login');
     } else if (
-      nextState.user.type === constants.SYSTEM.USER_TYPES.UNPAID ||
-      nextState.user.type === constants.SYSTEM.USER_TYPES.CANCELLED
+      nextState.user.type === constants.SYSTEM.USER_TYPES.UNPAID
     ) {
       nextContext.router.push({
         pathname: '/register/payment',
@@ -55,16 +54,20 @@ class ReferralApp extends BaseComponent {
       <div id="referral-app" className="container">
         <div className="row">
           <div className="col-sm-7 text">
-            <h1>Start Your Adventure Today</h1>
+            <h1>Sugarpost Referral Program</h1>
             <div className="description">
               <p>
                 Did you enjoy your Sugarpost subscription service? Share the service with your
                 friends by clicking the Facebook, Twitter, or Email buttons on the right. Should
                 you want to tell your friends outside these platforms, feel free to send them your
-                referral code so they can get a 10% discount off their first month with Sugarpost!
-                Sugarpost has an amazing referral program! For each friend that subscribes to our
-                monthly service using your referral code, we will add $2.50 to your Sugarpost
-                credits. Invite 10 friends and use your outstanding credits for a month free!
+                referral code so they can get a <b><i>10% discount off their first month&nbsp;</i></b>
+                with Sugarpost!
+              </p>
+              <p>
+                Sugarpost has an amazing referral program! For each friend that
+                subscribes to our monthly service using your referral code, we will add $2.50
+                to your Sugarpost credits.
+                <b><i>&nbsp;Invite ten friends to use your outstanding credits to get next month&#39;s e-package free!</i></b>
               </p>
             </div>
           </div>

@@ -26,7 +26,7 @@ class HomeApp extends BaseComponent {
               <h1>SUGARPOST</h1>
               <hr />
               <p>
-                Discover hidden gems to the city&#39;s trendiest desserts! Subscribe and receive an
+                Discover hidden gems to Manhattan&#39;s trendiest desserts! Subscribe and receive an
                 e-package which will contain four vouchers that can claim in-store desserts or
                 <b><i>&nbsp;Sugarpost exclusives&nbsp;</i></b>
                 from
@@ -53,15 +53,10 @@ class HomeApp extends BaseComponent {
                     <h2 className="section-heading">Got a sweet tooth? We&#39;ve got the cure!</h2>
                     <hr className="light" />
                     <p className="text-faded">
-                      Sugarpost is a New York based online monthly premium subscription service
-                      that provides its subscribers with e-packages of trendy and innovative
-                      desserts. These e-packages have
-                      been assembled by our curators who have scoured the internet, and attained
-                      insight from various food bloggers and dessert connoisseurs, to provide our
-                      subscribers with the best dessert discovery experience.
+                      We are a New York based online monthly premium subscription service that provides you with e-packages of trendy and innovative desserts.  These e-packages have been assembled by our curators who have scoured the internet and attained insight from influential foodies to dessert connoisseurs, providing you with the city's best dessert discovery experience!
                     </p>
                     <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
-                      Get Started
+                      Learn More
                     </a>
                   </div>
                 </div>
@@ -84,40 +79,36 @@ class HomeApp extends BaseComponent {
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
                       <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
-                      <h3>Get Codes</h3>
+                      <h3>Subscribe</h3>
                       <p className="text-muted">
-                        After purchasing a monthly subscription, you&#39;ll receive an email with
-                        vouchers during the first week of every month.
+                        After purchasing a monthly subscription, you will receive an email with vouchers during the first day of the every month.
                       </p>
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
                       <i className="fa fa-4x fa-map-marker text-primary sr-icons" />
-                      <h3>Go Venture</h3>
+                      <h3>Discover</h3>
                       <p className="text-muted">
-                        Visit all of the locations on your curated list of destination dessert
-                        spots. Your e-package will have a little background on each vendor as well.
+                        Venture out to all of the locations we&#39;ve hand-picked for you.  We even included a little background on each featured dessert vendor.
                       </p>
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
                       <i className="fa fa-4x fa-shopping-basket text-primary sr-icons" />
-                      <h3>Claim Desserts</h3>
+                      <h3>Enjoy</h3>
                       <p className="text-muted">
-                        Present your vouchers at the participating locations to claim your treats.
-                        Take a photo, put it on social media, and eat up!
+                        Present your vouchers at the participating locations to claim your in-store or Sugarpost exclusive desserts - snap it, share it, and enjoy it!
                       </p>
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
                       <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
-                      <h3>Share It</h3>
+                      <h3>Share</h3>
                       <p className="text-muted">
-                        If you enjoyed your experience, refer a friend for credit towards
-                        your next e-package. If enough friends sign up, you&#39;ll get a month free!
+                        Refer your friends and earn credits. If enough friends sign up, you will get a month free!
                       </p>
                     </div>
                   </div>
@@ -131,7 +122,7 @@ class HomeApp extends BaseComponent {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 text-center">
-                    <h2 className="section-heading">Past Featured Products</h2>
+                    <h2 className="section-heading">Upcoming Featured Vendors</h2>
                     <hr className="primary" />
                   </div>
                 </div>
@@ -159,12 +150,12 @@ class HomeApp extends BaseComponent {
               <div className="container text-center">
                 <div className="call-to-action">
                   <br />
-                  <h2>Can&#39;t Wait?</h2>
+                  <h2>Reveal The Mystery Desserts Above</h2>
                   <a
                     href="/register/signup"
                     className="btn btn-default btn-xl sr-button"
                   >
-                    Sign Up Now
+                    Unlock Now
                   </a>
                   <br />
                   <br />
@@ -172,7 +163,7 @@ class HomeApp extends BaseComponent {
               </div>
             </aside>
           </Element>
-          <aside className="bg-darker">
+          {/* <aside className="bg-darker">
             <div className="container text-center">
               <div>
                 <h2>Featured On</h2>
@@ -180,7 +171,7 @@ class HomeApp extends BaseComponent {
                 <h4>Coming Soon...</h4>
               </div>
             </div>
-          </aside>
+          </aside> */}
           <Element name="contact">
             <section id="contact">
               <div className="container">

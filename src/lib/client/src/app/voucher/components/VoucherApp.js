@@ -25,8 +25,7 @@ class VoucherApp extends BaseComponent {
     if (!nextState.isLoggedIn) {
       nextContext.router.push('/register/login');
     } else if (
-      nextState.user.type === constants.SYSTEM.USER_TYPES.UNPAID ||
-      nextState.user.type === constants.SYSTEM.USER_TYPES.CANCELLED
+      nextState.user.type === constants.SYSTEM.USER_TYPES.UNPAID
     ) {
       nextContext.router.push({
         pathname: '/register/payment',
@@ -50,7 +49,10 @@ class VoucherApp extends BaseComponent {
           </div>
           <div className="row">
             <div className="col-xs-12">
-              <h1 className="text-center" style={ { color: 'white' } }>Thank you for subscribing! Your vouchers will be available on May 1st, 2017.</h1>
+              <h1 className="text-center" style={ { color: 'white' } }>
+                Thank you for subscribing! Your vouchers will be available on May 1st, 2017
+                (vouchers will expire at the end of May).
+              </h1>
             </div>
           </div>
         </div>

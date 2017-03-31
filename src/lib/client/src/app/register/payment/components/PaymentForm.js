@@ -46,10 +46,14 @@ class PaymentForm extends BaseComponent {
           &nbsp; { this.props.errorMsg }
         </div>
         <div className="text-center">
+          <h4><u>Monthly Subscription</u></h4>
           <h1><b>$24.99</b></h1>
           <span>+</span>
           <br />
           <span>Tax</span>
+          <p>___________</p>
+          <h3>$24.50</h3>
+          <h4><i>10% Off Included</i></h4>
         </div>
         <br />
         <div>
@@ -64,17 +68,17 @@ class PaymentForm extends BaseComponent {
         />
         <StripeCheckout
           token={ this._onToken }
-          stripeKey="pk_test_jx78Ig5R5FcBYoGcMoTvNnia"
-          name="Sugarpost LLC"
-          description="Premium subscription service"
+          stripeKey="pk_live_CTOKgbale5B5kr0C6KA3o9kd"
+          name="Sugarpost"
+          description="Premium Subscription Service"
           image="/assets/images/sugarpost-logo.png"
           ComponentClass="div"
-          panelLabel={ `Get Your ${this.props.subscribedMonth} Treat!` }
+          panelLabel={ `Get Your ${this.props.subscribedMonth} E-Package!` }
           currency="USD"
           locale="en"
           email={ this.props.email }
           billingAddress={ false } /* Toggles to `true` when go live */
-          zipCode={ false } /* Toggles to `true` when go live */
+          zipCode={ true } /* Toggles to `true` when go live */
           alipay={ false }
           bitcoin={ false }
           reconfigureOnUpdate={ false }

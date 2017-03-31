@@ -17,6 +17,7 @@ class AuthStore extends EventEmitter {
     this[storeContext] = {
       isLoggedIn: false,
       user: {},
+      isLoading: false,
       loginError: {
         isVisible: false,
         message: defaultErrorMsg,
@@ -44,6 +45,10 @@ class AuthStore extends EventEmitter {
 
   getUser() {
     return this[storeContext].user;
+  }
+
+  isLoading() {
+    return this[storeContext].isLoading;
   }
 
   getError(type) {
@@ -88,6 +93,14 @@ class AuthStore extends EventEmitter {
       { message: defaultInfoMsg, isVisible: false });
   }
 
+  _syncUserInfo(partialNewUserInfo) {
+    Object.assign(this[storeContext].user, partialNewUserInfo);
+  }
+
+  _setLoadingStatus(status) {
+    this[storeContext].isLoading = status;
+  }
+
   _showError(type, _message = defaultErrorMsg) {
     let message;
 
@@ -112,21 +125,17 @@ class AuthStore extends EventEmitter {
     Object.assign(this[storeContext][`${type}Info`], { message, isVisible: true });
   }
 
-  _logout() {
-    this[storeContext].isLoggedIn = false;
-    this[storeContext].user = {};
-  }
-
-  _syncUserInfo(partialNewUserInfo) {
-    Object.assign(this[storeContext].user, partialNewUserInfo);
-  }
-
   _storeTransitionPath(path) {
     this[storeContext].transitionPath = path;
   }
 
   _storeReferralCode(code) {
     this[storeContext].referralCode = code;
+  }
+
+  _logout() {
+    this[storeContext].isLoggedIn = false;
+    this[storeContext].user = {};
   }
 
   _clearAllAlertBoxes() {
@@ -149,6 +158,7 @@ dispatcher.register((action) => {
     case authConstants.SIGNING_UP:
     case authConstants.LOGGING_IN:
     case authConstants.RESETTING_PASSWORD:
+      authStore._setLoadingStatus(true);
       authStore._clearAllAlertBoxes();
 
       authStore.emitChange();
@@ -159,6 +169,7 @@ dispatcher.register((action) => {
     case authConstants.BASIC_LOGIN_SUCCEED:
     case authConstants.IS_LOGGED_IN:
       authStore._login(data.user);
+      authStore._setLoadingStatus(false);
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -166,12 +177,14 @@ dispatcher.register((action) => {
 
     case authConstants.ALREADY_SIGNED_UP:
       authStore._showError('signup', 'That email address is already in use. Please log in.');
+      authStore._setLoadingStatus(false);
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.SIGNUP_FAIL:
       authStore._showError('signup', data);
+      authStore._setLoadingStatus(false);
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -179,6 +192,7 @@ dispatcher.register((action) => {
 
     case authConstants.BASIC_LOGIN_FAIL:
       authStore._showError('login', data || 'The username or password is incorrect.');
+      authStore._setLoadingStatus(false);
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -202,12 +216,14 @@ dispatcher.register((action) => {
 
     case authConstants.RESET_PASSWORD_SUCCEED:
       authStore._showInfo('forgotPassword', 'If a matching account was found, an email was sent to allow you to reset your password.');
+      authStore._setLoadingStatus(false);
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.RESET_PASSWORD_FAIL:
       authStore._showInfo('forgotPassword', 'If a matching account was found, an email was sent to allow you to reset your password.');
+      authStore._setLoadingStatus(false);
 
       authStore.emitChange();
       console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);

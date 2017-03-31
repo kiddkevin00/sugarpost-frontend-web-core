@@ -3,6 +3,7 @@ import dispatcher from '../../../common/dispatcher/appDispatcher';
 import StandardResponseWrapper from '../../../common/utility/standard-response-wrapper';
 import accountConstants from '../constants/accountConstants';
 import authConstants from '../../../common/auth/constants/authConstants';
+import constants from '../../../common/constants/';
 
 const accountActionCreator = {
   updateProfile(password, newPassword, fullName) {
@@ -58,7 +59,7 @@ const accountActionCreator = {
           dispatcher.dispatch({
             actionType: authConstants.USER_INFO_SYNC,
             data: {
-              partialNewUserInfo: { type: 'cancelled' },
+              partialNewUserInfo: { type: constants.SYSTEM.USER_TYPES.CANCELLED },
             },
           });
 

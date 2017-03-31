@@ -47,15 +47,6 @@ class RootApp extends BaseComponent {
         <NavItem>Referral</NavItem>
       </LinkContainer>
     );
-    const logoutTab = (
-      /* eslint-disable jsx-a11y/no-static-element-interactions */
-      <NavItem key="5">
-        <span onClick={ RootApp._onLogout }>
-          Log Out
-        </span>
-      </NavItem>
-      /* eslint-enable */
-    );
     const aboutTab = (
       <li key="1">
         <LinkContainer to="/">
@@ -158,15 +149,27 @@ class RootApp extends BaseComponent {
         </LinkContainer>
       </li>
     );
+    const logoutTab = (
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
+      <NavItem key="5">
+        <span onClick={ RootApp._onLogout }>
+          Logout
+        </span>
+      </NavItem>
+      /* eslint-enable */
+    );
 
     if (this.state.isLoggedIn) {
       switch (this.state.user.type) {
         case constants.SYSTEM.USER_TYPES.UNPAID:
-        case constants.SYSTEM.USER_TYPES.CANCELLED:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, logoutTab);
           break;
         case constants.SYSTEM.USER_TYPES.PAID:
           tabsShownWhenUserLoggedIn.push(accountTab, voucherTab, referralTab, logoutTab);
+          break;
+        case constants.SYSTEM.USER_TYPES.CANCELLED:
+          tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,
+            logoutTab);
           break;
         case constants.SYSTEM.USER_TYPES.INFLUENCER:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,
