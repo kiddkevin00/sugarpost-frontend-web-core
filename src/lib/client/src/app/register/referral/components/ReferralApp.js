@@ -60,14 +60,18 @@ class ReferralApp extends BaseComponent {
                 Did you enjoy your Sugarpost subscription service? Share the service with your
                 friends by clicking the Facebook, Twitter, or Email buttons on the right. Should
                 you want to tell your friends outside these platforms, feel free to send them your
-                referral code so they can get a <b><i>10% discount off their first month&nbsp;</i></b>
+                referral code so they can get a
+                <b><i>&nbsp;10% discount off their first month&nbsp;</i></b>
                 with Sugarpost!
               </p>
               <p>
-                Sugarpost has an amazing referral program! For each friend that
-                subscribes to our monthly service using your referral code, we will add $2.50
-                to your Sugarpost credits.
-                <b><i>&nbsp;Invite ten friends to use your outstanding credits to get next month&#39;s e-package free!</i></b>
+                Sugarpost has an amazing referral program! For each friend that subscribes to our
+                monthly service using your referral code, we will add $2.50 to your Sugarpost
+                credits.
+                <b><i>
+                  &nbsp;Invite ten friends to use your outstanding credits to get next month&#39;s
+                  e-package free!
+                </i></b>
               </p>
             </div>
           </div>
