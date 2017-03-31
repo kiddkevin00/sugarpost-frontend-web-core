@@ -94,6 +94,13 @@ dispatcher.register((action) => {
   const data = action.data;
 
   switch (actionType) {
+    case referralConstants.LAND_PAGE:
+      referralStore._clearAllAlertBoxes();
+
+      referralStore.emitChange();
+      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
+
     case referralConstants.REDEEMING_CREDITS:
     case referralConstants.SENDING_EMAIL_TO_REFERRAL:
       referralStore._setLoadingStatus(true);

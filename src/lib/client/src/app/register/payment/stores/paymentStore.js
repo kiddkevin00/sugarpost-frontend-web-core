@@ -94,6 +94,13 @@ dispatcher.register((action) => {
   const data = action.data;
 
   switch (actionType) {
+    case paymentConstants.LAND_PAGE:
+      paymentStore._clearAllAlertBoxes();
+
+      paymentStore.emitChange();
+      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
+
     case paymentConstants.PAYING:
       paymentStore._setLoadingStatus(true);
       paymentStore._clearAllAlertBoxes();
