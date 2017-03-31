@@ -60,7 +60,7 @@ class SignupForm extends BaseComponent {
           requireCapitals={ 1 }
           requireNumbers={ 1 }
           forbiddenWords={ ['password', 'user', 'username'] }
-          emptyMessage="Password is invalid"
+          emptyMessage={ window.innerWidth > 870 ? 'Password is invalid' : '8+ chars, 1+ uppers, 1+ numbers' }
         />
         <FormInput
           text="Confirm Password"

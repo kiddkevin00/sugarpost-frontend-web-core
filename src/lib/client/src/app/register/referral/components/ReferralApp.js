@@ -1,11 +1,13 @@
 import authStore from '../../../../common/auth/stores/authStore';
 import referralStore from '../stores/referralStore';
 import authActionCreator from '../../../../common/auth/actions/authActionCreator';
+import referralActionCreator from '../actions/referralActionCreator';
 import ShareSection from './ShareSection';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
 import { Thumbnail } from 'react-bootstrap';
 import React from 'react';
+import classNames from 'classnames';
 
 const refererCredit = 2.5;
 const redeemableAmount = 25;
@@ -47,8 +49,31 @@ class ReferralApp extends BaseComponent {
   }
 
   render() {
+    const alertSuccessBoxClasses = classNames({
+      alert: true,
+      'alert-success': true,
+      'alert-dismissible': true,
+      collapse: !this.state.info.isVisible,
+    });
+    const alertErrorBoxClasses = classNames({
+      alert: true,
+      'alert-danger': true,
+      'alert-dismissible': true,
+      collapse: !this.state.error.isVisible,
+    });
     const creditBalance = this.state.user.referralAmount * refererCredit;
     const creditBalanceStr = window.parseFloat(creditBalance).toFixed(2);
+    const isNotRedeemable = creditBalance < redeemableAmount ||
+      this.state.user.type === constants.SYSTEM.USER_TYPES.INFLUENCER;
+    let loader;
+
+    if (this.state.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
 
     return (
       <div id="referral-app" className="container">
@@ -78,6 +103,16 @@ class ReferralApp extends BaseComponent {
           <div className="col-lg-offset-1 col-lg-4 col-sm-5">
             <div className="form-top">
               <Thumbnail src="/assets/images/sugarpost-logo.png" alt="">
+                <div className={ alertSuccessBoxClasses } role="alert">
+                  <a className="close" data-dismiss="alert">×</a>
+                  <i className="fa fa-check-square-o" />
+                  &nbsp; { this.state.info.message }
+                </div>
+                <div className={ alertErrorBoxClasses } role="alert">
+                  <a className="close" data-dismiss="alert">×</a>
+                  <i className="fa fa-exclamation-triangle" />
+                  &nbsp; { this.state.error.message }
+                </div>
                 <div className="row">
                   <div className="col-xs-12">
                     <h4>YOUR REFERRAL CODE:</h4>
@@ -94,7 +129,8 @@ class ReferralApp extends BaseComponent {
                 <div className="row">
                   <div className="col-xs-offset-1 col-xs-10">
                     <button
-                      disabled={ creditBalance < redeemableAmount }
+                      onClick={ ReferralApp._onRedeem }
+                      disabled={ isNotRedeemable }
                       className="btn btn-block"
                       type="button"
                     >
@@ -105,6 +141,7 @@ class ReferralApp extends BaseComponent {
                 <br />
                 <div className="row">
                   <div className="col-xs-12">
+                    { loader }
                     <ShareSection
                       myFullName={ this.state.user.fullName }
                       myReferralCode={ this.state.user.referralCode }
@@ -127,6 +164,10 @@ class ReferralApp extends BaseComponent {
     this.setState(_getState());
   }
 
+  static _onRedeem() {
+    referralActionCreator.redeemCredits();
+  }
+
 }
 ReferralApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
@@ -142,6 +183,7 @@ function _getState() {
     user: authStore.getUser(),
     info: referralStore.getInfo(),
     error: referralStore.getError(),
+    isLoading: referralStore.isLoading(),
   };
 }
 

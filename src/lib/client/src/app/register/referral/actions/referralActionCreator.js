@@ -2,11 +2,54 @@ import Proxy from '../../../../common/proxies/HttpProxy';
 import dispatcher from '../../../../common/dispatcher/appDispatcher';
 import StandardResponseWrapper from '../../../../common/utility/standard-response-wrapper';
 import referralConstants from '../constants/referralConstants';
+import authConstants from '../../../../common/auth/constants/authConstants';
 
 const referralActionCreator = {
+  redeemCredits() {
+    dispatcher.dispatch({
+      actionType: referralConstants.REDEEMING_CREDITS,
+    });
+
+    const url = '/api/referral/redeem';
+
+    Proxy.post(url)
+      .then((payloadObj) => {
+        const res = StandardResponseWrapper.deserialize(payloadObj);
+
+        if (res.getNthData(0).success) {
+          dispatcher.dispatch({
+            actionType: authConstants.USER_INFO_SYNC,
+            data: {
+              partialNewUserInfo: res.getNthData(0).detail,
+            },
+          });
+
+          dispatcher.dispatch({
+            actionType: referralConstants.REDEEM_CREDITS_SUCCEED,
+          });
+        } else {
+          dispatcher.dispatch({
+            actionType: referralConstants.REDEEM_CREDITS_FAIL,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatcher.dispatch({
+          actionType: referralConstants.REDEEM_CREDITS_FAIL,
+          data: err,
+        });
+      });
+  },
+
   openModal() {
     dispatcher.dispatch({
       actionType: referralConstants.OPENING_MODAL,
+    });
+  },
+
+  closeModal() {
+    dispatcher.dispatch({
+      actionType: referralConstants.CLOSING_MODAL,
     });
   },
 
