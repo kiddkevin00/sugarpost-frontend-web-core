@@ -60,7 +60,7 @@ class AccountApp extends BaseComponent {
                       errorMsg={ this.state.subscriptionError.message }
                       status={ this.state.user.type }
                     />
-                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                   </div>
                 </div>
               </div>

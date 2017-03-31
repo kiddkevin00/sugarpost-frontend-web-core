@@ -46,11 +46,6 @@ class ReferralStore extends EventEmitter {
     this.removeListener(changeEvent, callback);
   }
 
-  _clearAllAlertBoxes() {
-    Object.assign(this[storeContext].info, { message: defaultInfoMsg, isVisible: false });
-    Object.assign(this[storeContext].error, { message: defaultErrorMsg, isVisible: false });
-  }
-
   _showError(_message = defaultErrorMsg) {
     let message;
 
@@ -73,6 +68,11 @@ class ReferralStore extends EventEmitter {
     }
 
     Object.assign(this[storeContext].info, { message, isVisible: true });
+  }
+
+  _clearAllAlertBoxes() {
+    Object.assign(this[storeContext].info, { message: defaultInfoMsg, isVisible: false });
+    Object.assign(this[storeContext].error, { message: defaultErrorMsg, isVisible: false });
   }
 
 }

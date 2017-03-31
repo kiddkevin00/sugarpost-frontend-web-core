@@ -162,11 +162,14 @@ class RootApp extends BaseComponent {
     if (this.state.isLoggedIn) {
       switch (this.state.user.type) {
         case constants.SYSTEM.USER_TYPES.UNPAID:
-        case constants.SYSTEM.USER_TYPES.CANCELLED:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, logoutTab);
           break;
         case constants.SYSTEM.USER_TYPES.PAID:
           tabsShownWhenUserLoggedIn.push(accountTab, voucherTab, referralTab, logoutTab);
+          break;
+        case constants.SYSTEM.USER_TYPES.CANCELLED:
+          tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,
+            logoutTab);
           break;
         case constants.SYSTEM.USER_TYPES.INFLUENCER:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,

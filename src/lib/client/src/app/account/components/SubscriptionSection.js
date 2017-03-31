@@ -61,7 +61,7 @@ class SubscriptionSection extends BaseComponent {
           onChange={ () => {} }
           disabled={ true }
         />
-        <div className="form-group">
+        {/* <div className="form-group">
           <div className="col-sm-12">
             <input
               onClick={ this._onUpdatePayment }
@@ -70,7 +70,7 @@ class SubscriptionSection extends BaseComponent {
               value="Update Payment Method"
             />
           </div>
-        </div>
+        </div> */}
         <div className="form-group">
           <div className="col-sm-12">
             <input

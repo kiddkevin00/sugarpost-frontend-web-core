@@ -22,26 +22,28 @@ class ForgotPasswordApp extends BaseComponent {
   }
 
   render() {
+    let loader;
+
+    if (this.state.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
+
     return (
       <div className="container">
         <div className="row">
           <div className="col-sm-7 text">
-            <h1>Start Your Adventure Today</h1>
-            {/* <div className="description">
-             <p>
-             For only $24.99 a month, you will receive e-packages curated
-             by the insight of influential food bloggers and dessert connoisseurs! Within
-             your e-package, you will find a little background on each featured dessert
-             vendor and your vouchers which can claim in-store desserts or Sugarpost
-             exclusives.
-             </p>
-             </div> */}
-            <div className="top-big-link">
-              <ol>
-                <li>Learn more about this month’s featured vendors.</li>
-                <li>View your vouchers and claim your desserts.</li>
-                <li>Refer your friends and earn credits toward your next package.</li>
-              </ol>
+            <h1>Claim Your Desserts Today</h1>
+            <div className="description">
+              <p>
+                Log in to change your account settings, view, email, or print your vouchers from
+                your purchased e-package, or get your referral code to share with your friends. Not
+                a paying subscriber yet? If you already have an account, log in to start your
+                subscription today!
+              </p>
             </div>
           </div>
           <div className="col-lg-offset-1 col-lg-4 col-sm-5">
@@ -55,6 +57,7 @@ class ForgotPasswordApp extends BaseComponent {
               </div>
             </div>
             <div className="form-bottom">
+              { loader }
               <ForgotPasswordForm
                 onSubmit={ ForgotPasswordApp._onSubmit }
                 isInfoVisible={ this.state.info.isVisible }
@@ -89,6 +92,7 @@ ForgotPasswordApp.contextTypes = {
 function _getState() {
   return {
     info: authStore.getInfo('forgotPassword'),
+    isLoading: authStore.isLoading(),
   };
 }
 

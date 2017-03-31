@@ -16,12 +16,14 @@
     color: white;
     background: transparent;
 }
+
 #home-template .btn-circle:hover,
 #home-template .btn-circle:focus {
     outline: none;
     color: white;
     background: rgba(255, 255, 255, 0.1);
 }
+
 #home-template .btn-circle i.animated {
     -webkit-transition-property: -webkit-transform;
     -webkit-transition-duration: 1s;
@@ -31,6 +33,7 @@
     -webkit-animation: pulsate 1.3s cubic-bezier(.25,.46,.45,.94);
     -webkit-animation-iteration-count: infinite;
 }
+
 #home-template .btn-circle:hover i.animated {
     -webkit-animation-name: pulse;
     -moz-animation-name: pulse;

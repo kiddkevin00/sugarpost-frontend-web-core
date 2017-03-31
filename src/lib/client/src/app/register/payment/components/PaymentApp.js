@@ -45,7 +45,17 @@ class PaymentApp extends BaseComponent {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const currentDay = currentDate.getDate();
+    let loader;
     let monthNameToSubscribe;
+
+    if (this.state.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
+
     if (currentDay <= 25) {
       monthNameToSubscribe = monthNames[currentMonth + 1];
     } else {
@@ -57,11 +67,20 @@ class PaymentApp extends BaseComponent {
         <div className="row">
           <div className="col-sm-7 text">
             <h1>Start Your Adventure Today</h1>
+            <div className="description">
+              <p>
+                For only $24.99 a month, you will receive e-packages curated by the insight of
+                influential food bloggers and dessert connoisseurs! Within your e-package, you
+                will find a little background on each featured dessert vendor and your vouchers
+                which can claim in-store desserts or Sugarpost exclusives.
+              </p>
+            </div>
             <div className="top-big-link">
               <ol>
-                <li>Learn more about this month’s featured vendors.</li>
-                <li>View your vouchers and claim your desserts.</li>
-                <li>Refer your friends and earn credits toward your next package.</li>
+                <li>Sign up to the right and become a paid subscriber.</li>
+                <li>Receive four vouchers during the first day of every month.</li>
+                <li>Visit the dessert shops.</li>
+                <li>Redeem desserts and enjoy!</li>
               </ol>
             </div>
           </div>
@@ -76,6 +95,7 @@ class PaymentApp extends BaseComponent {
               </div>
             </div>
             <div className="form-bottom">
+              { loader }
               <PaymentForm
                 onSubmit={ PaymentApp._onSubmit }
                 email={ this.props.location.query.email || '' }
@@ -117,6 +137,7 @@ function _getState() {
     referralCode: authStore.gerReferralCode(),
     info: paymentStore.getInfo(),
     error: paymentStore.getError(),
+    isLoading: paymentStore.isLoading(),
   };
 }
 

@@ -15,6 +15,7 @@ class PaymentStore extends EventEmitter {
 
     // All internal store data.
     this[storeContext] = {
+      isLoading: false,
       error: {
         isVisible: false,
         message: defaultErrorMsg,
@@ -24,6 +25,10 @@ class PaymentStore extends EventEmitter {
         message: defaultInfoMsg,
       },
     };
+  }
+
+  isLoading() {
+    return this[storeContext].isLoading;
   }
 
   getError() {
@@ -46,9 +51,8 @@ class PaymentStore extends EventEmitter {
     this.removeListener(changeEvent, callback);
   }
 
-  _clearAllAlertBoxes() {
-    Object.assign(this[storeContext].info, { message: defaultInfoMsg, isVisible: false });
-    Object.assign(this[storeContext].error, { message: defaultErrorMsg, isVisible: false });
+  _setLoadingStatus(status) {
+    this[storeContext].isLoading = status;
   }
 
   _showError(_message = defaultErrorMsg) {
@@ -75,6 +79,11 @@ class PaymentStore extends EventEmitter {
     Object.assign(this[storeContext].info, { message, isVisible: true });
   }
 
+  _clearAllAlertBoxes() {
+    Object.assign(this[storeContext].info, { message: defaultInfoMsg, isVisible: false });
+    Object.assign(this[storeContext].error, { message: defaultErrorMsg, isVisible: false });
+  }
+
 }
 
 const paymentStore = new PaymentStore();
@@ -86,6 +95,7 @@ dispatcher.register((action) => {
 
   switch (actionType) {
     case paymentConstants.PAYING:
+      paymentStore._setLoadingStatus(true);
       paymentStore._clearAllAlertBoxes();
 
       paymentStore.emitChange();
@@ -93,30 +103,35 @@ dispatcher.register((action) => {
       break;
     case paymentConstants.PAYMENT_SUCCEED:
       paymentStore._showInfo('Thank you! We have received your payment.');
+      paymentStore._setLoadingStatus(false);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.ALREADY_PAID:
       paymentStore._showError('Our record shows that you have already paid for the subscription.');
+      paymentStore._setLoadingStatus(false);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.ALREADY_USED_REFERRAL_CODE:
       paymentStore._showError('The referral code can only be used once. Please try again without the referral code.');
+      paymentStore._setLoadingStatus(false);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.REFERRAL_CODE_NOT_FOUND:
       paymentStore._showError('The referral code you entered is invalid. Please try another one or proceed without refer code.');
+      paymentStore._setLoadingStatus(false);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.PAYMENT_FAIL:
       paymentStore._showError(data || 'Proceeding payment fails. Please try again.');
+      paymentStore._setLoadingStatus(false);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);

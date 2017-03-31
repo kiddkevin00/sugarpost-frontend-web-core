@@ -49,6 +49,16 @@ class LoginApp extends BaseComponent {
   }
 
   render() {
+    let loader;
+
+    if (this.state.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
+
     return (
       <div className="container">
         <div className="row">
@@ -81,6 +91,7 @@ class LoginApp extends BaseComponent {
               </div>
             </div>
             <div className="form-bottom">
+              { loader }
               <LoginForm
                 onSubmit={ LoginApp._onSubmit }
                 isErrorVisible={ this.state.error.isVisible }
@@ -122,6 +133,7 @@ function _getState() {
     isLoggedIn: authStore.isLoggedIn(),
     user: authStore.getUser(),
     error: authStore.getError('login'),
+    isLoading: authStore.isLoading(),
   };
 }
 

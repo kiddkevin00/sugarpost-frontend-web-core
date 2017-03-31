@@ -31,8 +31,19 @@ class SignupApp extends BaseComponent {
   }
 
   render() {
+    let loader;
+
+    if (this.state.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
+
     return (
       <div className="container">
+        { loader }
         <div className="row">
           <div className="col-sm-7 text">
             <h1>Adventure Awaits You</h1>
@@ -113,6 +124,7 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
     error: authStore.getError('signup'),
+    isLoading: authStore.isLoading(),
   };
 }
 
