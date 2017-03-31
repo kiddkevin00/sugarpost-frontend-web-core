@@ -132,6 +132,14 @@ dispatcher.register((action) => {
   const data = action.data;
 
   switch (actionType) {
+    case accountConstants.LAND_PAGE:
+      accountStore._clearAlertBoxesForProfile();
+      accountStore._clearAlertBoxesForSubscription();
+
+      accountStore.emitChange();
+      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      break;
+
     case accountConstants.UPDATING_PROFILE:
       accountStore._clearAlertBoxesForProfile();
 

@@ -6,6 +6,12 @@ import authConstants from '../../../common/auth/constants/authConstants';
 import constants from '../../../common/constants/';
 
 const accountActionCreator = {
+  landPage() {
+    dispatcher.dispatch({
+      actionType: accountConstants.LAND_PAGE,
+    });
+  },
+
   updateProfile(password, newPassword, fullName) {
     dispatcher.dispatch({
       actionType: accountConstants.UPDATING_PROFILE,

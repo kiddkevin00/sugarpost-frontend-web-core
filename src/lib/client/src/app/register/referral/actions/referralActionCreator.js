@@ -5,6 +5,12 @@ import referralConstants from '../constants/referralConstants';
 import authConstants from '../../../../common/auth/constants/authConstants';
 
 const referralActionCreator = {
+  landPage() {
+    dispatcher.dispatch({
+      actionType: referralConstants.LAND_PAGE,
+    });
+  },
+  
   redeemCredits() {
     dispatcher.dispatch({
       actionType: referralConstants.REDEEMING_CREDITS,

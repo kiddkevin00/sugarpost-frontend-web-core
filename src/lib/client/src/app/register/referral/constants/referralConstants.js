@@ -1,6 +1,8 @@
 import keyMirror from 'keymirror';
 
 const referralConstants = keyMirror({
+  LAND_PAGE: null,
+
   REDEEMING_CREDITS: null,
   REDEEM_CREDITS_SUCCEED: null,
   REDEEM_CREDITS_FAIL: null,
