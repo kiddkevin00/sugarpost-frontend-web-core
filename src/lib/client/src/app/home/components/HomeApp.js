@@ -53,7 +53,11 @@ class HomeApp extends BaseComponent {
                     <h2 className="section-heading">Got a sweet tooth? We&#39;ve got the cure!</h2>
                     <hr className="light" />
                     <p className="text-faded">
-                      We are a New York based online monthly premium subscription service that provides you with e-packages of trendy and innovative desserts.  These e-packages have been assembled by our curators who have scoured the internet and attained insight from influential foodies to dessert connoisseurs, providing you with the city's best dessert discovery experience!
+                      We are a New York based online monthly premium subscription service that
+                      provides you with e-packages of trendy and innovative desserts. These
+                      e-packages have been assembled by our curators who have scoured the internet
+                      and attained insight from influential foodies to dessert connoisseurs,
+                      providing you with the city&#39;s best dessert discovery experience!
                     </p>
                     <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
                       Learn More
@@ -81,7 +85,8 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
                       <h3>Subscribe</h3>
                       <p className="text-muted">
-                        After purchasing a monthly subscription, you will receive an email with vouchers during the first day of the every month.
+                        After purchasing a monthly subscription, you will receive an email with
+                        vouchers during the first day of the every month.
                       </p>
                     </div>
                   </div>
@@ -90,7 +95,8 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-map-marker text-primary sr-icons" />
                       <h3>Discover</h3>
                       <p className="text-muted">
-                        Venture out to all of the locations we&#39;ve hand-picked for you.  We even included a little background on each featured dessert vendor.
+                        Venture out to all of the locations we&#39;ve hand-picked for you. We even
+                        included a little background on each featured dessert vendor.
                       </p>
                     </div>
                   </div>
@@ -99,7 +105,8 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-shopping-basket text-primary sr-icons" />
                       <h3>Enjoy</h3>
                       <p className="text-muted">
-                        Present your vouchers at the participating locations to claim your in-store or Sugarpost exclusive desserts - snap it, share it, and enjoy it!
+                        Present your vouchers at the participating locations to claim your in-store
+                        or Sugarpost exclusive desserts - snap it, share it, and enjoy it!
                       </p>
                     </div>
                   </div>
@@ -108,7 +115,8 @@ class HomeApp extends BaseComponent {
                       <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
                       <h3>Share</h3>
                       <p className="text-muted">
-                        Refer your friends and earn credits. If enough friends sign up, you will get a month free!
+                        Refer your friends and earn credits. If enough friends sign up, you will get
+                        a month free!
                       </p>
                     </div>
                   </div>
@@ -164,14 +172,14 @@ class HomeApp extends BaseComponent {
             </aside>
           </Element>
           {/* <aside className="bg-darker">
-            <div className="container text-center">
-              <div>
-                <h2>Featured On</h2>
-                <hr className="primary" />
-                <h4>Coming Soon...</h4>
-              </div>
-            </div>
-          </aside> */}
+           <div className="container text-center">
+           <div>
+           <h2>Featured On</h2>
+           <hr className="primary" />
+           <h4>Coming Soon...</h4>
+           </div>
+           </div>
+           </aside> */}
           <Element name="contact">
             <section id="contact">
               <div className="container">
