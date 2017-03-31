@@ -2,7 +2,7 @@ import keyMirror from 'keymirror';
 
 const paymentConstants = keyMirror({
   LAND_PAGE: null,
-  
+
   PAYING: null,
   PAYMENT_SUCCEED: null,
   PAYMENT_FAIL: null,
