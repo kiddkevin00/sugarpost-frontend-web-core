@@ -147,6 +147,8 @@ class ShareSection extends BaseComponent {
   }
 
   _closeModal() {
+    referralActionCreator.closeModal();
+
     this.setState({
       isModalOpen: false,
     });
