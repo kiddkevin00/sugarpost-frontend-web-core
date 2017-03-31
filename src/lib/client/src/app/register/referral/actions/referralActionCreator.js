@@ -10,7 +10,7 @@ const referralActionCreator = {
       actionType: referralConstants.LAND_PAGE,
     });
   },
-  
+
   redeemCredits() {
     dispatcher.dispatch({
       actionType: referralConstants.REDEEMING_CREDITS,

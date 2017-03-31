@@ -10,7 +10,7 @@ const paymentActionCreator = {
       actionType: paymentConstants.LAND_PAGE,
     });
   },
-  
+
   pay(token, referralCode) {
     dispatcher.dispatch({
       actionType: paymentConstants.PAYING,

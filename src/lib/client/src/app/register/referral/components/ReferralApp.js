@@ -45,7 +45,7 @@ class ReferralApp extends BaseComponent {
 
   componentWillUnmount() {
     referralActionCreator.landPage();
-    
+
     authStore.removeChangeListener(this._onChange);
     referralStore.removeChangeListener(this._onChange);
   }
