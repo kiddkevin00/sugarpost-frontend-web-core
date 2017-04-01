@@ -26,22 +26,26 @@ const authActionCreator = {
         const res = StandardResponseWrapper.deserialize(payloadObj);
 
         if (res.getNthData(0).success) {
+          const userInfo = res.getNthData(0).detail;
+
           dispatcher.dispatch({
             actionType: authConstants.SIGNUP_SUCCEED,
             data: {
-              user: res.getNthData(0).detail,
+              user: userInfo,
             },
           });
 
-          const user = res.getNthData(0).detail;
-          let fullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
+          if (win) {
+            let fullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
 
-          if (Object.keys(user).length) {
-            fullUrl += `?${this._parseQueryStringOBj(user)}`;
+            if (Object.keys(userInfo).length) {
+              fullUrl += `?${this._parseQueryStringOBj(userInfo)}`;
+            }
+
+            win.location = fullUrl;
+            setTimeout(() => win.close(), 0);
           }
 
-          win.location = fullUrl;
-          //win.close();
         } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
           dispatcher.dispatch({
             actionType: authConstants.ALREADY_SIGNED_UP,

@@ -105,9 +105,17 @@ class SignupApp extends BaseComponent {
   _onSubmit(event, email, _password, _fullName) {
     const password = _password && _password.trim();
     const fullName = _fullName && _fullName.trim();
-    const win = window.open();
+    let win;
 
     this.email = email && email.trim() && email.toLowerCase();
+
+    if (
+      /^((?!chrome|android).)*safari/i.test(navigator.userAgent) ||
+      navigator.vendor ==  'Apple Computer, Inc.' ||
+      Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
+    ) {
+      win = window.open();
+    }
 
     authActionCreator.signup(this.email, password, fullName, win);
   }
