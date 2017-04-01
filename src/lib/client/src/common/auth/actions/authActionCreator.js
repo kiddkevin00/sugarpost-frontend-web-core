@@ -194,10 +194,6 @@ const authActionCreator = {
             const { pathname } = nextState.location;
 
             dispatcher.dispatch({
-              actionType: authConstants.LAND_PAGE,
-            });
-
-            dispatcher.dispatch({
               actionType: authConstants.IN_TRANSITION,
               data: { path: pathname },
             });
