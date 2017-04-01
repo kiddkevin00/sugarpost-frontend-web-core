@@ -83,7 +83,9 @@ const authActionCreator = {
           const emailObj = { email: userInfo.email };
           const redirectBackToFullUrl =
             `${window.location.origin}/register/payment?${this._parseQueryStringOBj(emailObj)}`;
-          let redirectToFullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
+          let local = 'http://127.0.0.1:8087'
+          let remote = 'https://bulletin-board-system.herokuapp.com';
+          let redirectToFullUrl = `${remote}/api/auth/token`;
 
           if (
             /^((?!chrome|android).)*safari/i.test(window.navigator.userAgent) ||
@@ -96,12 +98,11 @@ const authActionCreator = {
 
             //window.open(redirectToFullUrl, '_self');
 
-            window.setTimeout(() => {
-              //history.back();
-              window.open(redirectBackToFullUrl, '_self');
-              window.top.location.href = redirectBackToFullUrl;
-            }, 10);
-
+            //window.setTimeout(() => {
+            //  //history.back();
+            //  window.open(redirectBackToFullUrl, '_self');
+            //  window.top.location.href = redirectBackToFullUrl;
+            //}, 10);
 
             window.location.href = redirectToFullUrl;
 
