@@ -12,14 +12,14 @@ class SubscriptionSection extends BaseComponent {
     this._bind('_onUpdatePayment', '_onUnsubscribe');
     this.state = {
       subscriptionStatus: props.status,
-      paymentMethod: 'VISA ending in 1234',
+      creditCardLast4: props.creditCardLast4,
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       subscriptionStatus: nextProps.status,
-
+      creditCardLast4: nextProps.creditCardLast4,
     });
   }
 
@@ -57,11 +57,12 @@ class SubscriptionSection extends BaseComponent {
         />
         <FormInput
           text="Payment Method"
-          value={ this.state.paymentMethod }
+          value={ this.state.creditCardLast4 || 'N/A' }
           onChange={ () => {} }
           disabled={ true }
         />
-        {/* <div className="form-group">
+        {/*
+        <div className="form-group">
           <div className="col-sm-12">
             <input
               onClick={ this._onUpdatePayment }
@@ -70,7 +71,8 @@ class SubscriptionSection extends BaseComponent {
               value="Update Payment Method"
             />
           </div>
-        </div> */}
+        </div>
+        */}
         <div className="form-group">
           <div className="col-sm-12">
             <input
@@ -103,11 +105,13 @@ SubscriptionSection.propTypes = {
   infoMsg: React.PropTypes.string,
   errorMsg: React.PropTypes.string,
   status: React.PropTypes.string,
+  creditCardLast4: React.PropTypes.string,
 };
 SubscriptionSection.defaultProps = {
   infoMsg: 'Request has been completed.',
   errorMsg: 'Oops! Something went wrong. Please try again.',
   status: 'Loading...',
+  creditCardLast4: 'Loading...',
 };
 
 export default SubscriptionSection;

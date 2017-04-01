@@ -11,7 +11,7 @@ const paymentActionCreator = {
     });
 
     const url = '/api/payment/proceed';
-    const body = { referralCode, tokenId: token.id, email: token.email };
+    const body = { referralCode, tokenId: token.id, ccLast4: token.card.last4, email: token.email };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
     Proxy.post(url, body, headers)
