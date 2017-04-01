@@ -86,16 +86,21 @@ const authActionCreator = {
           let redirectToFullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
 
           if (
-            /^((?!chrome|android).)*safari/i.test(navigator.userAgent) ||
-            navigator.vendor === 'Apple Computer, Inc.' ||
+            /^((?!chrome|android).)*safari/i.test(window.navigator.userAgent) ||
+            window.navigator.vendor === 'Apple Computer, Inc.' ||
             Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
           ) {
             if (Object.keys(userInfo).length) {
               redirectToFullUrl += `?${this._parseQueryStringOBj(userInfo)}`;
             }
 
-            window.open(redirectToFullUrl, '_self');
-            setTimeout(() => window.open(redirectBackToFullUrl, '_self'), 10);
+            //window.open(redirectToFullUrl, '_self');
+            window.location.href = redirectToFullUrl;
+            window.setTimeout(() => {
+              //history.back();
+              //window.open(redirectBackToFullUrl, '_self');
+              window.location.href = redirectBackToFullUrl;
+            }, 1000);
           } else {
             dispatcher.dispatch({
               actionType: authConstants.BASIC_LOGIN_SUCCEED,
