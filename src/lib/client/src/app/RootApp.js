@@ -187,8 +187,12 @@ class RootApp extends BaseComponent {
           break;
       }
     } else {
-      tabsShownWhenUserLoggedIn.push(aboutTab, servicesTab, portfolioTab, contactTab, signupTab,
-        loginTab);
+      if (window.innerWidth < 768) {
+        tabsShownWhenUserLoggedIn.push(aboutTab, signupTab, loginTab);
+      } else {
+        tabsShownWhenUserLoggedIn.push(aboutTab, servicesTab, portfolioTab, contactTab, signupTab,
+          loginTab);
+      }
     }
 
     return (
