@@ -167,7 +167,7 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.CANCEL_SUBSCRIPTION_SUCCEED:
-      accountStore._showInfoForSubscription('Your subscription has been cancelled. Your voucher will remain available until the end of current cycle.');
+      accountStore._showInfoForSubscription('Your subscription has been cancelled. Your vouchers will remain available until the end of current cycle.');
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);

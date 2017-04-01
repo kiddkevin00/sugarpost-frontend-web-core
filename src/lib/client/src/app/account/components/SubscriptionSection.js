@@ -57,7 +57,7 @@ class SubscriptionSection extends BaseComponent {
         />
         <FormInput
           text="Payment Method"
-          value={ this.state.creditCardLast4 || 'N/A' }
+          value={ this.state.creditCardLast4 !== 'N/A' ? `Card Ending in ${this.state.creditCardLast4}` : 'N/A' }
           onChange={ () => {} }
           disabled={ true }
         />
@@ -111,7 +111,7 @@ SubscriptionSection.defaultProps = {
   infoMsg: 'Request has been completed.',
   errorMsg: 'Oops! Something went wrong. Please try again.',
   status: 'Loading...',
-  creditCardLast4: 'Loading...',
+  creditCardLast4: 'N/A',
 };
 
 export default SubscriptionSection;
