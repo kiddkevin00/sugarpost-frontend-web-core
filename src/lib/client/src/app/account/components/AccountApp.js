@@ -59,6 +59,7 @@ class AccountApp extends BaseComponent {
                       infoMsg={ this.state.subscriptionInfo.message }
                       errorMsg={ this.state.subscriptionError.message }
                       status={ this.state.user.type }
+                      creditCardLast4={ this.state.user.creditCardLast4 }
                     />
                     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                   </div>
