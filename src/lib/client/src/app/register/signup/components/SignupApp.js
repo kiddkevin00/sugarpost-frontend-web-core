@@ -105,10 +105,11 @@ class SignupApp extends BaseComponent {
   _onSubmit(event, email, _password, _fullName) {
     const password = _password && _password.trim();
     const fullName = _fullName && _fullName.trim();
+    const win = window.open();
 
     this.email = email && email.trim() && email.toLowerCase();
 
-    authActionCreator.signup(this.email, password, fullName);
+    authActionCreator.signup(this.email, password, fullName, win);
   }
 
 }

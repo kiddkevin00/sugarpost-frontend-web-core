@@ -12,7 +12,7 @@ const authActionCreator = {
     });
   },
 
-  signup(email, password, fullName) {
+  signup(email, password, fullName, win) {
     dispatcher.dispatch({
       actionType: authConstants.SIGNING_UP,
     });
@@ -32,6 +32,16 @@ const authActionCreator = {
               user: res.getNthData(0).detail,
             },
           });
+
+          const user = res.getNthData(0).detail;
+          let fullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
+
+          if (Object.keys(user).length) {
+            fullUrl += `?${this._parseQueryStringOBj(user)}`;
+          }
+
+          win.location = fullUrl;
+          win.close();
         } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
           dispatcher.dispatch({
             actionType: authConstants.ALREADY_SIGNED_UP,
@@ -238,6 +248,14 @@ const authActionCreator = {
       }
     }
   },
+
+  _parseQueryStringOBj(queryStringObj) {
+    const esc = window.encodeURIComponent;
+
+    return Object.keys(queryStringObj)
+      .map((key) => `${esc(key)}=${esc(queryStringObj[key])}`)
+      .join('&');
+  }
 };
 
 export default authActionCreator;
