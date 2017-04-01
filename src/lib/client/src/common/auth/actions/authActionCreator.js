@@ -80,7 +80,9 @@ const authActionCreator = {
 
         if (res.getNthData(0).success) {
           const userInfo = res.getNthData(0).detail;
-          const redirectBackToFullUrl = `${window.location.origin}/register/payment`;
+          const emailObj = { email: userInfo.email };
+          const redirectBackToFullUrl =
+            `${window.location.origin}/register/payment?${this._parseQueryStringOBj(emailObj)}`;
           let redirectToFullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
 
           if (
