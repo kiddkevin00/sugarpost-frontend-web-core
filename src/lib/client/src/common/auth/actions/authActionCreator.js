@@ -41,7 +41,7 @@ const authActionCreator = {
           }
 
           win.location = fullUrl;
-          win.close();
+          //win.close();
         } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
           dispatcher.dispatch({
             actionType: authConstants.ALREADY_SIGNED_UP,
