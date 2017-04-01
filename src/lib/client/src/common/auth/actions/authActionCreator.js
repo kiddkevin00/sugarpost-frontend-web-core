@@ -80,32 +80,28 @@ const authActionCreator = {
 
         if (res.getNthData(0).success) {
           const userInfo = res.getNthData(0).detail;
-          const emailObj = { email: userInfo.email };
-          const redirectBackToFullUrl =
-            `${window.location.origin}/register/payment?${this._parseQueryStringOBj(emailObj)}`;
-          let local = 'http://127.0.0.1:8087'
-          let remote = 'https://bulletin-board-system.herokuapp.com';
-          let redirectToFullUrl = `${remote}/api/auth/token`;
 
           if (
             /^((?!chrome|android).)*safari/i.test(window.navigator.userAgent) ||
             window.navigator.vendor === 'Apple Computer, Inc.' ||
             Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
           ) {
-            if (Object.keys(userInfo).length) {
-              redirectToFullUrl += `?${this._parseQueryStringOBj(userInfo)}`;
+            const _origin = window.location.origin;
+            let origin;
+
+            if (_origin.indexOf('8088') >= 0) {
+              origin = _origin.replace('8088', '8087');
+            } else {
+              origin = 'https://bulletin-board-system.herokuapp.com';
             }
 
-            //window.open(redirectToFullUrl, '_self');
+            let fullUrl = `${origin}/api/auth/token`;
 
-            //window.setTimeout(() => {
-            //  //history.back();
-            //  window.open(redirectBackToFullUrl, '_self');
-            //  window.top.location.href = redirectBackToFullUrl;
-            //}, 10);
+            if (Object.keys(userInfo).length) {
+              fullUrl += `?${this._parseQueryStringOBj(userInfo)}`;
+            }
 
-            window.location.href = redirectToFullUrl;
-
+            window.open(fullUrl, '_self');
           } else {
             dispatcher.dispatch({
               actionType: authConstants.BASIC_LOGIN_SUCCEED,
