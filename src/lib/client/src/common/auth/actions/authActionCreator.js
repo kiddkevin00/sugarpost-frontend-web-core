@@ -65,7 +65,7 @@ const authActionCreator = {
       });
   },
 
-  login(email, password, win) {
+  login(email, password) {
     dispatcher.dispatch({
       actionType: authConstants.LOGGING_IN,
     });
@@ -80,24 +80,28 @@ const authActionCreator = {
 
         if (res.getNthData(0).success) {
           const userInfo = res.getNthData(0).detail;
+          const redirectBackToFullUrl = `${window.location.origin}/register/payment`;
+          let redirectToFullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
 
-          if (win) {
-            let fullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
-
+          if (
+            /^((?!chrome|android).)*safari/i.test(navigator.userAgent) ||
+            navigator.vendor === 'Apple Computer, Inc.' ||
+            Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
+          ) {
             if (Object.keys(userInfo).length) {
-              fullUrl += `?${this._parseQueryStringOBj(userInfo)}`;
+              redirectToFullUrl += `?${this._parseQueryStringOBj(userInfo)}`;
             }
 
-            win.location = fullUrl;
-            setTimeout(() => win.close(), 0);
+            window.open(redirectToFullUrl, '_self');
+            window.open(redirectBackToFullUrl, '_self');
+          } else {
+            dispatcher.dispatch({
+              actionType: authConstants.BASIC_LOGIN_SUCCEED,
+              data: {
+                user: userInfo,
+              },
+            });
           }
-
-          dispatcher.dispatch({
-            actionType: authConstants.BASIC_LOGIN_SUCCEED,
-            data: {
-              user: userInfo,
-            },
-          });
         } else {
           dispatcher.dispatch({
             actionType: authConstants.BASIC_LOGIN_FAIL,
