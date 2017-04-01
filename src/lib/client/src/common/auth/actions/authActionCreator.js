@@ -95,14 +95,15 @@ const authActionCreator = {
             }
 
             //window.open(redirectToFullUrl, '_self');
-            window.location.href = redirectToFullUrl;
+
             window.setTimeout(() => {
               //history.back();
               //window.open(redirectBackToFullUrl, '_self');
               window.top.location.href = redirectBackToFullUrl;
-
-              console.log(11111)
             }, 10);
+
+            window.location.href = redirectToFullUrl;
+
           } else {
             dispatcher.dispatch({
               actionType: authConstants.BASIC_LOGIN_SUCCEED,
