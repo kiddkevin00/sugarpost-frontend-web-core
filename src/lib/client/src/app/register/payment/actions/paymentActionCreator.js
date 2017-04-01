@@ -5,12 +5,6 @@ import paymentConstants from '../constants/paymentConstants';
 import authConstants from '../../../../common/auth/constants/authConstants';
 
 const paymentActionCreator = {
-  landPage() {
-    dispatcher.dispatch({
-      actionType: paymentConstants.LAND_PAGE,
-    });
-  },
-
   pay(token, referralCode) {
     dispatcher.dispatch({
       actionType: paymentConstants.PAYING,

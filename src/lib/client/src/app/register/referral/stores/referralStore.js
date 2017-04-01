@@ -1,5 +1,6 @@
 import dispatcher from '../../../../common/dispatcher/appDispatcher';
 import referralConstants from '../constants/referralConstants';
+import authConstants from '../../../../common/auth/constants/authConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
@@ -94,7 +95,7 @@ dispatcher.register((action) => {
   const data = action.data;
 
   switch (actionType) {
-    case referralConstants.LAND_PAGE:
+    case authConstants.LAND_PAGE:
       referralStore._clearAllAlertBoxes();
 
       referralStore.emitChange();

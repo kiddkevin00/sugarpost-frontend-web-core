@@ -37,8 +37,6 @@ class PaymentApp extends BaseComponent {
   }
 
   componentWillUnmount() {
-    paymentActionCreator.landPage();
-
     authStore.removeChangeListener(this._onChange);
     paymentStore.removeChangeListener(this._onChange);
   }

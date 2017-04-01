@@ -1,5 +1,6 @@
 import dispatcher from '../../../../common/dispatcher/appDispatcher';
 import paymentConstants from '../constants/paymentConstants';
+import authConstants from '../../../../common/auth/constants/authConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
@@ -94,7 +95,7 @@ dispatcher.register((action) => {
   const data = action.data;
 
   switch (actionType) {
-    case paymentConstants.LAND_PAGE:
+    case authConstants.LAND_PAGE:
       paymentStore._clearAllAlertBoxes();
 
       paymentStore.emitChange();

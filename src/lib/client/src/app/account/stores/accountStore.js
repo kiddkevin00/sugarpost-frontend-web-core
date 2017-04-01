@@ -1,5 +1,6 @@
 import dispatcher from '../../../common/dispatcher/appDispatcher';
 import accountConstants from '../constants/accountConstants';
+import authConstants from '../../../common/auth/constants/authConstants';
 import EventEmitter from 'events';
 
 const changeEvent = Symbol('change');
@@ -132,7 +133,7 @@ dispatcher.register((action) => {
   const data = action.data;
 
   switch (actionType) {
-    case accountConstants.LAND_PAGE:
+    case authConstants.LAND_PAGE:
       accountStore._clearAlertBoxesForProfile();
       accountStore._clearAlertBoxesForSubscription();
 

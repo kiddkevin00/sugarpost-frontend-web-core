@@ -32,8 +32,6 @@ class AccountApp extends BaseComponent {
   }
 
   componentWillUnmount() {
-    accountActionCreator.landPage();
-
     authStore.removeChangeListener(this._onChange);
     accountStore.removeChangeListener(this._onChange);
   }
