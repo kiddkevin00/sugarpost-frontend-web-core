@@ -32,7 +32,7 @@ const authActionCreator = {
             let fullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
 
             if (Object.keys(userInfo).length) {
-              fullUrl += `?${this._parseQueryStringOBj(userInfo)}`;
+              fullUrl += `?${this._parseQueryStringObj(userInfo)}`;
             }
 
             win.location = fullUrl;
@@ -88,6 +88,8 @@ const authActionCreator = {
           ) {
             const _origin = window.location.origin;
             let origin;
+            let fullUrl;
+            let callbackUrlPath;
 
             if (_origin.indexOf('8088') >= 0) {
               origin = _origin.replace('8088', '8087');
@@ -95,10 +97,29 @@ const authActionCreator = {
               origin = 'https://bulletin-board-system.herokuapp.com';
             }
 
-            let fullUrl = `${origin}/api/auth/token`;
+            fullUrl = `${origin}/api/auth/token`;
+
+            switch (userInfo.type) {
+              case constants.SYSTEM.USER_TYPES.PAID:
+                callbackUrlPath = '/account';
+                break;
+              case constants.SYSTEM.USER_TYPES.INFLUENCER:
+                callbackUrlPath = '/register/referral';
+                break;
+              case constants.SYSTEM.USER_TYPES.VENDOR:
+                callbackUrlPath = '/account';
+                break;
+              default:
+                callbackUrlPath = '/register/payment';
+                break;
+            }
 
             if (Object.keys(userInfo).length) {
-              fullUrl += `?${this._parseQueryStringOBj(userInfo)}`;
+              const queryStringObj = Object.assign({}, userInfo, {
+                callback_url: `${_origin}${callbackUrlPath}?email=${userInfo.email}`,
+              });
+
+              fullUrl += `?${this._parseQueryStringObj(queryStringObj)}`;
             }
 
             window.open(fullUrl, '_self');
@@ -277,7 +298,7 @@ const authActionCreator = {
     }
   },
 
-  _parseQueryStringOBj(queryStringObj) {
+  _parseQueryStringObj(queryStringObj) {
     const esc = window.encodeURIComponent;
 
     return Object.keys(queryStringObj)
