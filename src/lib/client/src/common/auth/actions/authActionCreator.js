@@ -6,6 +6,12 @@ import authConstants from '../constants/authConstants';
 import constants from '../../constants/';
 
 const authActionCreator = {
+  landPage() {
+    dispatcher.dispatch({
+      actionType: authConstants.LAND_PAGE,
+    });
+  },
+
   signup(email, password, fullName) {
     dispatcher.dispatch({
       actionType: authConstants.SIGNING_UP,
@@ -181,6 +187,10 @@ const authActionCreator = {
 
     Proxy.get(url)
       .then((payloadObj) => {
+        dispatcher.dispatch({
+          actionType: authConstants.LAND_PAGE,
+        });
+
         if (StandardResponseWrapper.verifyFormat(payloadObj)) {
           const res = StandardResponseWrapper.deserialize(payloadObj);
 

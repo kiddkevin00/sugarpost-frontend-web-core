@@ -1,6 +1,8 @@
 import keyMirror from 'keymirror';
 
 const authConstants = keyMirror({
+  LAND_PAGE: null,
+
   SIGNING_UP: null,
   SIGNUP_SUCCEED: null,
   SIGNUP_FAIL: null,
