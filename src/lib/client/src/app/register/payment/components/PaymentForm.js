@@ -92,6 +92,9 @@ class PaymentForm extends BaseComponent {
           >
             Checkout Now
           </button>
+          <div className="text-center">
+            <h6><i>Charge for { this.props.subscribedMonth }&#39;s e-package is final.</i></h6>
+          </div>
         </StripeCheckout>
       </form>
     );
