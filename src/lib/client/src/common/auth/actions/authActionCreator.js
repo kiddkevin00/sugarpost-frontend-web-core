@@ -98,9 +98,10 @@ const authActionCreator = {
 
             window.setTimeout(() => {
               //history.back();
-              //window.open(redirectBackToFullUrl, '_self');
+              window.open(redirectBackToFullUrl, '_self');
               window.top.location.href = redirectBackToFullUrl;
             }, 10);
+
 
             window.location.href = redirectToFullUrl;
 
