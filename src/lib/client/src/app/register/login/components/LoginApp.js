@@ -115,8 +115,17 @@ class LoginApp extends BaseComponent {
   static _onSubmit(event, _email, _password) {
     const email = _email && _email.trim() && _email.toLowerCase();
     const password = _password && _password.trim();
+    let win;
 
-    authActionCreator.login(email, password);
+    if (
+      /^((?!chrome|android).)*safari/i.test(navigator.userAgent) ||
+      navigator.vendor === 'Apple Computer, Inc.' ||
+      Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
+    ) {
+      win = window.open();
+    }
+
+    authActionCreator.login(email, password, win);
   }
 
 }

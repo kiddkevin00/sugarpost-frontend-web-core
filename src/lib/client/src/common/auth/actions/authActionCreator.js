@@ -28,13 +28,6 @@ const authActionCreator = {
         if (res.getNthData(0).success) {
           const userInfo = res.getNthData(0).detail;
 
-          dispatcher.dispatch({
-            actionType: authConstants.SIGNUP_SUCCEED,
-            data: {
-              user: userInfo,
-            },
-          });
-
           if (win) {
             let fullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
 
@@ -46,6 +39,12 @@ const authActionCreator = {
             setTimeout(() => win.close(), 0);
           }
 
+          dispatcher.dispatch({
+            actionType: authConstants.SIGNUP_SUCCEED,
+            data: {
+              user: userInfo,
+            },
+          });
         } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
           dispatcher.dispatch({
             actionType: authConstants.ALREADY_SIGNED_UP,
@@ -66,7 +65,7 @@ const authActionCreator = {
       });
   },
 
-  login(email, password) {
+  login(email, password, win) {
     dispatcher.dispatch({
       actionType: authConstants.LOGGING_IN,
     });
@@ -80,10 +79,23 @@ const authActionCreator = {
         const res = StandardResponseWrapper.deserialize(payloadObj);
 
         if (res.getNthData(0).success) {
+          const userInfo = res.getNthData(0).detail;
+
+          if (win) {
+            let fullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
+
+            if (Object.keys(userInfo).length) {
+              fullUrl += `?${this._parseQueryStringOBj(userInfo)}`;
+            }
+
+            win.location = fullUrl;
+            setTimeout(() => win.close(), 0);
+          }
+
           dispatcher.dispatch({
             actionType: authConstants.BASIC_LOGIN_SUCCEED,
             data: {
-              user: res.getNthData(0).detail,
+              user: userInfo,
             },
           });
         } else {

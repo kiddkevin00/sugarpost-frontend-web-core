@@ -111,7 +111,7 @@ class SignupApp extends BaseComponent {
 
     if (
       /^((?!chrome|android).)*safari/i.test(navigator.userAgent) ||
-      navigator.vendor ==  'Apple Computer, Inc.' ||
+      navigator.vendor === 'Apple Computer, Inc.' ||
       Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
     ) {
       win = window.open();
