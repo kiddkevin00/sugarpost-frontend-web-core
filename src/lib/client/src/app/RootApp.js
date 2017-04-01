@@ -176,7 +176,7 @@ class RootApp extends BaseComponent {
             logoutTab);
           break;
         case constants.SYSTEM.USER_TYPES.VENDOR:
-          tabsShownWhenUserLoggedIn.push(logoutTab);
+          tabsShownWhenUserLoggedIn.push(accountTab, logoutTab);
           break;
         case constants.SYSTEM.USER_TYPES.ADMIN:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,

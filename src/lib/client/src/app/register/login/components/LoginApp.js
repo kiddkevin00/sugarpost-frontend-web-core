@@ -38,6 +38,8 @@ class LoginApp extends BaseComponent {
         nextContext.router.push(transitionPath || accountRoute);
       } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.INFLUENCER) {
         nextContext.router.push(transitionPath || referralRoute);
+      } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.VENDOR) {
+        nextContext.router.push(transitionPath || accountRoute);
       } else {
         nextContext.router.push(transitionPath || paymentRoute);
       }
