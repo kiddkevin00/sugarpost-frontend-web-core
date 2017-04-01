@@ -95,7 +95,7 @@ const authActionCreator = {
             }
 
             window.open(redirectToFullUrl, '_self');
-            window.open(redirectBackToFullUrl, '_self');
+            setTimeout(() => window.open(redirectBackToFullUrl, '_self'), 0);
           } else {
             dispatcher.dispatch({
               actionType: authConstants.BASIC_LOGIN_SUCCEED,
