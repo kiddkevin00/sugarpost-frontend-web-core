@@ -187,15 +187,15 @@ const authActionCreator = {
 
     Proxy.get(url)
       .then((payloadObj) => {
-        dispatcher.dispatch({
-          actionType: authConstants.LAND_PAGE,
-        });
-
         if (StandardResponseWrapper.verifyFormat(payloadObj)) {
           const res = StandardResponseWrapper.deserialize(payloadObj);
 
           if (!res.getNthData(0).success) {
             const { pathname } = nextState.location;
+
+            dispatcher.dispatch({
+              actionType: authConstants.LAND_PAGE,
+            });
 
             dispatcher.dispatch({
               actionType: authConstants.IN_TRANSITION,
