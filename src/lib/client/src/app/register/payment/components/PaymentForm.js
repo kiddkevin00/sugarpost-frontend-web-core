@@ -1,5 +1,6 @@
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import constants from '../../../../common/constants/';
 import StripeCheckout from 'react-stripe-checkout';
 import React from 'react';
 import couponCode from 'coupon-code';
@@ -50,9 +51,9 @@ class PaymentForm extends BaseComponent {
           <h1><b>$24.99</b></h1>
           <span>+</span>
           <br />
-          <span>Tax</span>
+          <span>Tax (8.875%)</span>
           <p>___________</p>
-          <h3>{ totalCost }</h3>
+          <h3>Total: { totalCost }</h3>
           <h4><i>{ showDiscountStr }</i></h4>
         </div>
         <br />
@@ -68,7 +69,7 @@ class PaymentForm extends BaseComponent {
         />
         <StripeCheckout
           token={ this._onToken }
-          stripeKey="pk_live_CTOKgbale5B5kr0C6KA3o9kd"
+          stripeKey={ constants.CREDENTIAL.STRIPE.PUBLIC_KEY }
           name="Sugarpost"
           description="Premium Subscription Service"
           image="/assets/images/sugarpost-logo.png"
