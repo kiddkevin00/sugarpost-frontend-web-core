@@ -1,20 +1,24 @@
 const routes = require('../client/src/app/routes');
+const packageJson = require('../../../package.json');
+const Router = require('react-router');
 const ReactDOMServer = require('react-dom/server');
 const React = require('react');
-const Router = require('react-router');
 const path = require('path');
 
+const serverStartTimestamp = new Date();
+const containerId = process.env.HOSTNAME;
+
 function setupRoutes(app) {
-  // [TODO]
   app.get('/ping', (req, res) => res.json({
-    'uptime(s)': 456,
-    hostname: 'host 2',
+    uptimeInSec: ((new Date()).getTime() - serverStartTimestamp.getTime()) / 1000,
+    hostname: containerId || 'N/A',
   }));
+  // [TODO]
   app.get('/health', (req, res) => res.json({
-    version: 0,
+    version: packageJson.version,
     self: {
       name: 'bulletin-board-system-frontend',
-      version: 1,
+      version: packageJson.version,
       status: 200,
       dateStamp: (new Date()).toString(),
       hostname: 'host 2',

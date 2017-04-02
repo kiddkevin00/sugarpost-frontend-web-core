@@ -1,5 +1,5 @@
 {
-  "name": "bulletin-board-system-frontend",
+  "name": "sugarpost-frontend-web-core",
   "version": "2.4.1",
   "description": "A generic frontend for Single-Page Web Application with a static server.",
   "main": "./src/lib/server/app.js",
