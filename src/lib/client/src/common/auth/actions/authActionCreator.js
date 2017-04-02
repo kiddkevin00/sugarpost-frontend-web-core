@@ -322,7 +322,7 @@ const authActionCreator = {
     return Object.keys(queryStringObj)
       .map((key) => `${esc(key)}=${esc(queryStringObj[key])}`)
       .join('&');
-  }
+  },
 };
 
 export default authActionCreator;
