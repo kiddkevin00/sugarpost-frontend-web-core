@@ -1,4 +1,5 @@
 const routes = require('../client/src/app/routes');
+const constants = require('../client/src/common/constants/');
 const packageJson = require('../../../package.json');
 const Router = require('react-router');
 const ReactDOMServer = require('react-dom/server');
@@ -13,31 +14,24 @@ function setupRoutes(app) {
     uptimeInSec: ((new Date()).getTime() - serverStartTimestamp.getTime()) / 1000,
     hostname: containerId || 'N/A',
   }));
-  // [TODO]
   app.get('/health', (req, res) => res.json({
     version: packageJson.version,
     self: {
-      name: 'bulletin-board-system-frontend',
+      name: packageJson.name,
       version: packageJson.version,
-      status: 200,
-      dateStamp: (new Date()).toString(),
-      hostname: 'host 2',
+      status: constants.SYSTEM.HTTP_STATUS_CODES.OK,
+      serverDateStamp: (new Date()).toString(),
+      hostname: containerId,
     },
     dependencies: {
       http: [
         {
-          name: 'bulletin-board-system-backend',
-          version: 1,
-          status: 200,
-          dateStamp: (new Date()).toString(),
-          hostname: 'host 1',
-          uptime: 123,
+          name: constants.SYSTEM.SOURCES.SUGARPOST_BACKEND_CORE,
+          version: '1.x',
         },
       ],
     },
   }));
-
-  //app.use('/auth', require('./auth'));
 
   // All not-found API endpoints should return an custom 404 page.
   app.route('/:url(app|assets)/*')
