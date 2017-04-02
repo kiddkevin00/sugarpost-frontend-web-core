@@ -31,7 +31,7 @@ class PaymentForm extends BaseComponent {
       collapse: !this.props.isErrorVisible,
     });
     const showDiscountStr = this.state.isReferralCodeValid ? '10% Off Included' : '\u00A0';
-    const totalCost = this.state.isReferralCodeValid ? '$24.50' : '$27.22';
+    const totalCost = this.state.isReferralCodeValid ? '$24.49' : '$27.21';
 
     return (
       <form role="form">
@@ -92,6 +92,9 @@ class PaymentForm extends BaseComponent {
           >
             Checkout Now
           </button>
+          <div className="text-center">
+            <h6><i>Charge for { this.props.subscribedMonth }&#39;s e-package is final.</i></h6>
+          </div>
         </StripeCheckout>
       </form>
     );

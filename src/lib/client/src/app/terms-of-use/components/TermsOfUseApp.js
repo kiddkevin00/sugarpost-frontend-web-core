@@ -17,13 +17,14 @@ class TermsOfUseApp extends BaseComponent {
 
   render() {
     return (
-      <div id="privacy-policy-app">
+      <div id="terms-of-use-app">
         <div className="container">
           <div className="row">
             <div className="col-xc-12">
               <br />
               <br />
               <br />
+              <h3><b>SUGARPOST</b></h3>
               <h4><b>TERMS OF USE AGREEMENT</b></h4>
               <p>
                 This Terms of Use Agreement (“Agreement”) constitutes a legally binding agreement

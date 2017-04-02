@@ -176,7 +176,7 @@ class RootApp extends BaseComponent {
             logoutTab);
           break;
         case constants.SYSTEM.USER_TYPES.VENDOR:
-          tabsShownWhenUserLoggedIn.push(logoutTab);
+          tabsShownWhenUserLoggedIn.push(accountTab, logoutTab);
           break;
         case constants.SYSTEM.USER_TYPES.ADMIN:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, voucherTab, referralTab,
@@ -186,6 +186,8 @@ class RootApp extends BaseComponent {
           tabsShownWhenUserLoggedIn.push(logoutTab);
           break;
       }
+    } else if (window.innerWidth < 768) {
+      tabsShownWhenUserLoggedIn.push(aboutTab, signupTab, loginTab);
     } else {
       tabsShownWhenUserLoggedIn.push(aboutTab, servicesTab, portfolioTab, contactTab, signupTab,
         loginTab);

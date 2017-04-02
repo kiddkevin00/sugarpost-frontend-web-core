@@ -113,12 +113,22 @@ dispatcher.register((action) => {
       paymentStore._showInfo('Thank you! We have received your payment.');
       paymentStore._setLoadingStatus(false);
 
+      window.setTimeout(() => {
+        paymentStore._clearAllAlertBoxes();
+        paymentStore.emitChange();
+      }, 3000);
+
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.ALREADY_PAID:
       paymentStore._showError('Our record shows that you have already paid for the subscription.');
       paymentStore._setLoadingStatus(false);
+
+      window.setTimeout(() => {
+        paymentStore._clearAllAlertBoxes();
+        paymentStore.emitChange();
+      }, 3000);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -127,6 +137,11 @@ dispatcher.register((action) => {
       paymentStore._showError('Your transaction has not been processed because your account is no longer eligible for the 10% discount.');
       paymentStore._setLoadingStatus(false);
 
+      window.setTimeout(() => {
+        paymentStore._clearAllAlertBoxes();
+        paymentStore.emitChange();
+      }, 3000);
+
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
@@ -134,12 +149,22 @@ dispatcher.register((action) => {
       paymentStore._showError('Your transaction has not been processed because the referral code you entered is invalid.');
       paymentStore._setLoadingStatus(false);
 
+      window.setTimeout(() => {
+        paymentStore._clearAllAlertBoxes();
+        paymentStore.emitChange();
+      }, 3000);
+
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.PAYMENT_FAIL:
       paymentStore._showError(data || 'Proceeding payment fails. Please try again.');
       paymentStore._setLoadingStatus(false);
+
+      window.setTimeout(() => {
+        paymentStore._clearAllAlertBoxes();
+        paymentStore.emitChange();
+      }, 3000);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);

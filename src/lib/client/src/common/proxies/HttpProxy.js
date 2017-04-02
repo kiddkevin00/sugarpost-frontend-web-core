@@ -98,13 +98,13 @@ class HttpProxy {
     }
 
     if (Object.keys(queryStringObj).length) {
-      fullUrl += `?${HttpProxy._parseQueryStringOBj(queryStringObj)}`;
+      fullUrl += `?${HttpProxy._parseQueryStringObj(queryStringObj)}`;
     }
 
     return fullUrl;
   }
 
-  static _parseQueryStringOBj(queryStringObj) {
+  static _parseQueryStringObj(queryStringObj) {
     const esc = window.encodeURIComponent;
 
     return Object.keys(queryStringObj)

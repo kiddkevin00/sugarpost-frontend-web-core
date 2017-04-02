@@ -17,12 +17,15 @@ class PrivacyPolicyApp extends BaseComponent {
 
   render() {
     return (
-      <div id="terms-of-use-app">
+      <div id="privacy-policy-app">
         <div className="container">
           <div className="row">
             <div className="col-xc-12">
               <br />
               <br />
+              <br />
+              <h2><b>SUGARPOST</b></h2>
+              <h3><b>PRIVACY POLICY</b></h3>
               <br />
               <h4><b>GENERAL</b></h4>
               <p>

@@ -102,6 +102,7 @@ class ReferralApp extends BaseComponent {
           </div>
           <div className="col-lg-offset-1 col-lg-4 col-sm-5">
             <div className="form-top">
+              { loader }
               <Thumbnail src="/assets/images/sugarpost-logo.png" alt="">
                 <div className={ alertSuccessBoxClasses } role="alert">
                   <a className="close" data-dismiss="alert">×</a>
@@ -141,7 +142,6 @@ class ReferralApp extends BaseComponent {
                 <br />
                 <div className="row">
                   <div className="col-xs-12">
-                    { loader }
                     <ShareSection
                       myFullName={ this.state.user.fullName }
                       myReferralCode={ this.state.user.referralCode }
