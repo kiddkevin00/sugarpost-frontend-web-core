@@ -123,10 +123,10 @@ function _getState() {
   return {
     isLoggedIn: authStore.isLoggedIn(),
     user: authStore.getUser(),
-    profileInfo: accountStore.getInfoForProfile(),
-    profileError: accountStore.getErrorForProfile(),
-    subscriptionInfo: accountStore.getInfoForSubscription(),
-    subscriptionError: accountStore.getErrorForSubscription(),
+    profileInfo: accountStore.getInfo('profile'),
+    profileError: accountStore.getError('profile'),
+    subscriptionInfo: accountStore.getInfo('subscription'),
+    subscriptionError: accountStore.getError('subscription'),
   };
 }
 

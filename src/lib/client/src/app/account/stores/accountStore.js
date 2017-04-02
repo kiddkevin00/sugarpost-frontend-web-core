@@ -16,6 +16,7 @@ class AccountStore extends EventEmitter {
 
     // All internal store data.
     this[storeContext] = {
+      isLoading: false,
       profileInfo: {
         isVisible: false,
         message: defaultInfoMsg,
@@ -35,20 +36,12 @@ class AccountStore extends EventEmitter {
     };
   }
 
-  getInfoForProfile() {
-    return this[storeContext].profileInfo;
+  getInfo(type) {
+    return this[storeContext][`${type}Info`];
   }
 
-  getErrorForProfile() {
-    return this[storeContext].profileError;
-  }
-
-  getInfoForSubscription() {
-    return this[storeContext].subscriptionInfo;
-  }
-
-  getErrorForSubscription() {
-    return this[storeContext].subscriptionError;
+  getError(type) {
+    return this[storeContext][`${type}Error`];
   }
 
   emitChange() {
@@ -63,64 +56,44 @@ class AccountStore extends EventEmitter {
     this.removeListener(changeEvent, callback);
   }
 
+  _setLoadingStatus(status) {
+    this[storeContext].isLoading = status;
+  }
+
+  _showInfo(type, _message = defaultInfoMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(_message, null, 2);
+    } else {
+      message = _message;
+    }
+
+    Object.assign(this[storeContext][`${type}Info`], { message, isVisible: true });
+  }
+
+  _showError(type, _message = defaultErrorMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(_message, null, 2);
+    } else {
+      message = _message;
+    }
+
+    Object.assign(this[storeContext][`${type}Error`], { message, isVisible: true });
+  }
+
   _clearAlertBoxesForProfile() {
     Object.assign(this[storeContext].profileInfo, { message: defaultInfoMsg, isVisible: false });
     Object.assign(this[storeContext].profileError, { message: defaultErrorMsg, isVisible: false });
   }
 
-  _showInfoForProfile(_message = defaultInfoMsg) {
-    let message;
-
-    if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
-    } else {
-      message = _message;
-    }
-
-    Object.assign(this[storeContext].profileInfo, { message, isVisible: true });
-  }
-
-  _showErrorForProfile(_message = defaultErrorMsg) {
-    let message;
-
-    if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
-    } else {
-      message = _message;
-    }
-
-    Object.assign(this[storeContext].profileError, { message, isVisible: true });
-  }
-
   _clearAlertBoxesForSubscription() {
     Object.assign(this[storeContext].subscriptionInfo,
-     { message: defaultInfoMsg, isVisible: false });
+      { message: defaultInfoMsg, isVisible: false });
     Object.assign(this[storeContext].subscriptionError,
       { message: defaultErrorMsg, isVisible: false });
-  }
-
-  _showInfoForSubscription(_message = defaultInfoMsg) {
-    let message;
-
-    if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
-    } else {
-      message = _message;
-    }
-
-    Object.assign(this[storeContext].subscriptionInfo, { message, isVisible: true });
-  }
-
-  _showErrorForSubscription(_message = defaultErrorMsg) {
-    let message;
-
-    if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
-    } else {
-      message = _message;
-    }
-
-    Object.assign(this[storeContext].subscriptionError, { message, isVisible: true });
   }
 
 }
@@ -148,7 +121,7 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.UPDATE_PROFILE_SUCCEED:
-      accountStore._showInfoForProfile('Your profile has been updated.');
+      accountStore._showInfo('profile', 'Your profile has been updated.');
 
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForProfile();
@@ -159,7 +132,7 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.UPDATE_PROFILE_FAIL:
-      accountStore._showErrorForProfile(data || 'The original password is incorrect.');
+      accountStore._showError('profile', data || 'The original password is incorrect.');
 
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForProfile();
@@ -177,7 +150,7 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.CANCEL_SUBSCRIPTION_SUCCEED:
-      accountStore._showInfoForSubscription('Your subscription has been cancelled. Your vouchers will remain available until the end of current cycle.');
+      accountStore._showInfo('subscription', 'Your subscription has been cancelled. Your vouchers will remain available until the end of current cycle.');
 
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForSubscription();
@@ -188,7 +161,7 @@ dispatcher.register((action) => {
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.CANCEL_SUBSCRIPTION_FAIL:
-      accountStore._showErrorForSubscription(data || 'You haven\'t paid for the subscription yet.');
+      accountStore._showError('subscription', data || 'You haven\'t paid for the subscription yet.');
 
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForSubscription();

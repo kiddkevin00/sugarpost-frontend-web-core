@@ -51,12 +51,12 @@ class AuthStore extends EventEmitter {
     return this[storeContext].isLoading;
   }
 
-  getError(type) {
-    return this[storeContext][`${type}Error`];
-  }
-
   getInfo(type) {
     return this[storeContext][`${type}Info`];
+  }
+
+  getError(type) {
+    return this[storeContext][`${type}Error`];
   }
 
   getTransitionPath() {
@@ -101,18 +101,6 @@ class AuthStore extends EventEmitter {
     this[storeContext].isLoading = status;
   }
 
-  _showError(type, _message = defaultErrorMsg) {
-    let message;
-
-    if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
-    } else {
-      message = _message;
-    }
-
-    Object.assign(this[storeContext][`${type}Error`], { message, isVisible: true });
-  }
-
   _showInfo(type, _message = defaultInfoMsg) {
     let message;
 
@@ -123,6 +111,18 @@ class AuthStore extends EventEmitter {
     }
 
     Object.assign(this[storeContext][`${type}Info`], { message, isVisible: true });
+  }
+
+  _showError(type, _message = defaultErrorMsg) {
+    let message;
+
+    if (typeof _message !== 'string') {
+      message = JSON.stringify(_message, null, 2);
+    } else {
+      message = _message;
+    }
+
+    Object.assign(this[storeContext][`${type}Error`], { message, isVisible: true });
   }
 
   _storeTransitionPath(path) {
