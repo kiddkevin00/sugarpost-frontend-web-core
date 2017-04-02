@@ -150,11 +150,21 @@ dispatcher.register((action) => {
     case accountConstants.UPDATE_PROFILE_SUCCEED:
       accountStore._showInfoForProfile('Your profile has been updated.');
 
+      window.setTimeout(() => {
+        accountStore._clearAlertBoxesForProfile();
+        accountStore.emitChange();
+      }, 3000);
+
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.UPDATE_PROFILE_FAIL:
       accountStore._showErrorForProfile(data || 'The original password is incorrect.');
+
+      window.setTimeout(() => {
+        accountStore._clearAlertBoxesForProfile();
+        accountStore.emitChange();
+      }, 3000);
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -169,11 +179,21 @@ dispatcher.register((action) => {
     case accountConstants.CANCEL_SUBSCRIPTION_SUCCEED:
       accountStore._showInfoForSubscription('Your subscription has been cancelled. Your vouchers will remain available until the end of current cycle.');
 
+      window.setTimeout(() => {
+        accountStore._clearAlertBoxesForSubscription();
+        accountStore.emitChange();
+      }, 3000);
+
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.CANCEL_SUBSCRIPTION_FAIL:
       accountStore._showErrorForSubscription(data || 'You haven\'t paid for the subscription yet.');
+
+      window.setTimeout(() => {
+        accountStore._clearAlertBoxesForSubscription();
+        accountStore.emitChange();
+      }, 3000);
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);

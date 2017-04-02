@@ -114,12 +114,22 @@ dispatcher.register((action) => {
       referralStore._showInfo('You have redeemed your next free e-package successfully.');
       referralStore._setLoadingStatus(false);
 
+      window.setTimeout(() => {
+        referralStore._clearAllAlertBoxes();
+        referralStore.emitChange();
+      }, 3000);
+
       referralStore.emitChange();
       console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case referralConstants.REDEEM_CREDITS_FAIL:
       referralStore._showError(data || 'Something went wrong while redeeming. Please try again.');
       referralStore._setLoadingStatus(false);
+
+      window.setTimeout(() => {
+        referralStore._clearAllAlertBoxes();
+        referralStore.emitChange();
+      }, 3000);
 
       referralStore.emitChange();
       console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -136,12 +146,22 @@ dispatcher.register((action) => {
       referralStore._showInfo('Referral email has sent out successfully.');
       referralStore._setLoadingStatus(false);
 
+      window.setTimeout(() => {
+        referralStore._clearAllAlertBoxes();
+        referralStore.emitChange();
+      }, 3000);
+
       referralStore.emitChange();
       console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
     case referralConstants.SEND_EMAIL_TO_REFERRAL_FAIL:
       referralStore._showError(data || 'Something went wrong while sending referral email. Please try again.');
       referralStore._setLoadingStatus(false);
+
+      window.setTimeout(() => {
+        referralStore._clearAllAlertBoxes();
+        referralStore.emitChange();
+      }, 3000);
 
       referralStore.emitChange();
       console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
