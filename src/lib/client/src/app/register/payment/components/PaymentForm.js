@@ -68,7 +68,7 @@ class PaymentForm extends BaseComponent {
         />
         <StripeCheckout
           token={ this._onToken }
-          stripeKey="pk_test_jx78Ig5R5FcBYoGcMoTvNnia"
+          stripeKey="pk_live_CTOKgbale5B5kr0C6KA3o9kd"
           name="Sugarpost"
           description="Premium Subscription Service"
           image="/assets/images/sugarpost-logo.png"
@@ -77,13 +77,13 @@ class PaymentForm extends BaseComponent {
           currency="USD"
           locale="en"
           email={ this.props.email }
-          billingAddress={ false } /* Toggles to `true` when go live */
-          zipCode={ true } /* Toggles to `true` when go live */
+          billingAddress={ true }
+          zipCode={ true }
           alipay={ false }
           bitcoin={ false }
           reconfigureOnUpdate={ false }
           triggerEvent="onClick"
-          allowRememberMe={ false } /* Toggles to `true` when go live */
+          allowRememberMe={ false }
         >
           <button
             onClick={ this._onClick }

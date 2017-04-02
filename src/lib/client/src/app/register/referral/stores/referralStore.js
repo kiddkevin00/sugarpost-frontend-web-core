@@ -117,7 +117,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         referralStore._clearAllAlertBoxes();
         referralStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       referralStore.emitChange();
       console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -129,7 +129,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         referralStore._clearAllAlertBoxes();
         referralStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       referralStore.emitChange();
       console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -149,7 +149,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         referralStore._clearAllAlertBoxes();
         referralStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       referralStore.emitChange();
       console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -161,7 +161,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         referralStore._clearAllAlertBoxes();
         referralStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       referralStore.emitChange();
       console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);

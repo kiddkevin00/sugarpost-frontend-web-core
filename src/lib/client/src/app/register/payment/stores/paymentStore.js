@@ -116,7 +116,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         paymentStore._clearAllAlertBoxes();
         paymentStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -128,7 +128,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         paymentStore._clearAllAlertBoxes();
         paymentStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -140,7 +140,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         paymentStore._clearAllAlertBoxes();
         paymentStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -152,7 +152,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         paymentStore._clearAllAlertBoxes();
         paymentStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -164,7 +164,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         paymentStore._clearAllAlertBoxes();
         paymentStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);

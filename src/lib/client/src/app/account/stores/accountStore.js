@@ -132,7 +132,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForProfile();
         accountStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -144,7 +144,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForProfile();
         accountStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -164,7 +164,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForSubscription();
         accountStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
@@ -176,7 +176,7 @@ dispatcher.register((action) => {
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForSubscription();
         accountStore.emitChange();
-      }, 3000);
+      }, 10000);
 
       accountStore.emitChange();
       console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
