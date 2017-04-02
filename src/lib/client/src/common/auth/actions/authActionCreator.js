@@ -110,13 +110,13 @@ const authActionCreator = {
                 callbackUrlPath = '/account';
                 break;
               default:
-                callbackUrlPath = '/register/payment';
+                callbackUrlPath = `/register/payment?email=${userInfo.email}`;
                 break;
             }
 
             if (Object.keys(userInfo).length) {
               const queryStringObj = Object.assign({}, userInfo, {
-                callback_url: `${_origin}${callbackUrlPath}?email=${userInfo.email}`,
+                callback_url: `${_origin}${callbackUrlPath}`,
               });
 
               fullUrl += `?${this._parseQueryStringObj(queryStringObj)}`;
