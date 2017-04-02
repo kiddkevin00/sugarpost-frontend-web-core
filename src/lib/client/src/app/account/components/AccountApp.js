@@ -12,7 +12,7 @@ class AccountApp extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange');
+    this._bind('_onChange', '_onCancelSubscription');
     this.state = _getState();
   }
 
@@ -63,7 +63,7 @@ class AccountApp extends BaseComponent {
                 <div className="panel-body">
                   <div className="col-lg-xs-12">
                     <SubscriptionSection
-                      onUnsubscribe={ AccountApp._onCancelSubscription }
+                      onUnsubscribe={ this._onCancelSubscription }
                       onUpdatePayment={ AccountApp._onUpdatePayment }
                       isInfoVisible={ this.state.subscriptionInfo.isVisible }
                       isErrorVisible={ this.state.subscriptionError.isVisible }
@@ -105,12 +105,12 @@ class AccountApp extends BaseComponent {
     this.setState(_getState());
   }
 
-  static _onUpdatePayment() {
-
+  _onCancelSubscription() {
+    accountActionCreator.cancelSubscription(this.context.router, this.state.user.email);
   }
 
-  static _onCancelSubscription() {
-    accountActionCreator.cancelSubscription();
+  static _onUpdatePayment() {
+
   }
 
   static _onUpdateProfile(event, _password, _newPassword, _fullName) {

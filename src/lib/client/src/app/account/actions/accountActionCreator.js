@@ -44,7 +44,7 @@ const accountActionCreator = {
       });
   },
 
-  cancelSubscription() {
+  cancelSubscription(router, email) {
     dispatcher.dispatch({
       actionType: accountConstants.CANCELLING_SUBSCRIPTION,
     });
@@ -65,6 +65,11 @@ const accountActionCreator = {
 
           dispatcher.dispatch({
             actionType: accountConstants.CANCEL_SUBSCRIPTION_SUCCEED,
+          });
+
+          router.push({
+            pathname: '/register/payment',
+            query: { email },
           });
         } else {
           dispatcher.dispatch({
