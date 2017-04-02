@@ -12,7 +12,7 @@ const authActionCreator = {
     });
   },
 
-  signup(email, password, fullName, win) {
+  signup(email, password, fullName) {
     dispatcher.dispatch({
       actionType: authConstants.SIGNING_UP,
     });
@@ -28,23 +28,41 @@ const authActionCreator = {
         if (res.getNthData(0).success) {
           const userInfo = res.getNthData(0).detail;
 
-          if (win) {
-            let fullUrl = 'https://bulletin-board-system.herokuapp.com/api/auth/token';
+          if (
+            /^((?!chrome|android).)*safari/i.test(window.navigator.userAgent) ||
+            window.navigator.vendor === 'Apple Computer, Inc.' ||
+            Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
+          ) {
+            const callbackUrlPath = `/register/payment?email=${userInfo.email}`;
+            const _origin = window.location.origin;
+            let origin;
+            let fullUrl;
 
-            if (Object.keys(userInfo).length) {
-              fullUrl += `?${this._parseQueryStringObj(userInfo)}`;
+            if (_origin.indexOf('8088') >= 0) {
+              origin = _origin.replace('8088', '8087');
+            } else {
+              origin = 'https://bulletin-board-system.herokuapp.com';
             }
 
-            win.location = fullUrl;
-            setTimeout(() => win.close(), 0);
-          }
+            fullUrl = `${origin}/api/auth/token`;
 
-          dispatcher.dispatch({
-            actionType: authConstants.SIGNUP_SUCCEED,
-            data: {
-              user: userInfo,
-            },
-          });
+            if (Object.keys(userInfo).length) {
+              const queryStringObj = Object.assign({}, userInfo, {
+                callback_url: `${_origin}${callbackUrlPath}`,
+              });
+
+              fullUrl += `?${this._parseQueryStringObj(queryStringObj)}`;
+            }
+
+            window.open(fullUrl, '_self');
+          } else {
+            dispatcher.dispatch({
+              actionType: authConstants.SIGNUP_SUCCEED,
+              data: {
+                user: userInfo,
+              },
+            });
+          }
         } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
           dispatcher.dispatch({
             actionType: authConstants.ALREADY_SIGNED_UP,
