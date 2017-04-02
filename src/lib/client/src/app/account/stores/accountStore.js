@@ -36,6 +36,10 @@ class AccountStore extends EventEmitter {
     };
   }
 
+  isLoading() {
+    return this[storeContext].isLoading;
+  }
+
   getInfo(type) {
     return this[storeContext][`${type}Info`];
   }
@@ -115,6 +119,7 @@ dispatcher.register((action) => {
       break;
 
     case accountConstants.UPDATING_PROFILE:
+      accountStore._setLoadingStatus(true);
       accountStore._clearAlertBoxesForProfile();
 
       accountStore.emitChange();
@@ -122,6 +127,7 @@ dispatcher.register((action) => {
       break;
     case accountConstants.UPDATE_PROFILE_SUCCEED:
       accountStore._showInfo('profile', 'Your profile has been updated.');
+      accountStore._setLoadingStatus(false);
 
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForProfile();
@@ -133,6 +139,7 @@ dispatcher.register((action) => {
       break;
     case accountConstants.UPDATE_PROFILE_FAIL:
       accountStore._showError('profile', data || 'The original password is incorrect.');
+      accountStore._setLoadingStatus(false);
 
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForProfile();
@@ -144,6 +151,7 @@ dispatcher.register((action) => {
       break;
 
     case accountConstants.CANCELLING_SUBSCRIPTION:
+      accountStore._setLoadingStatus(true);
       accountStore._clearAlertBoxesForSubscription();
 
       accountStore.emitChange();
@@ -151,6 +159,7 @@ dispatcher.register((action) => {
       break;
     case accountConstants.CANCEL_SUBSCRIPTION_SUCCEED:
       accountStore._showInfo('subscription', 'Your subscription has been cancelled. Your vouchers will remain available until the end of current cycle.');
+      accountStore._setLoadingStatus(false);
 
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForSubscription();
@@ -162,6 +171,7 @@ dispatcher.register((action) => {
       break;
     case accountConstants.CANCEL_SUBSCRIPTION_FAIL:
       accountStore._showError('subscription', data || 'You haven\'t paid for the subscription yet.');
+      accountStore._setLoadingStatus(false);
 
       window.setTimeout(() => {
         accountStore._clearAlertBoxesForSubscription();

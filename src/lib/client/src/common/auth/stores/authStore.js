@@ -18,19 +18,15 @@ class AuthStore extends EventEmitter {
       isLoggedIn: false,
       user: {},
       isLoading: false,
-      loginError: {
+      forgotPasswordInfo: {
         isVisible: false,
-        message: defaultErrorMsg,
+        message: defaultInfoMsg,
       },
       signupError: {
         isVisible: false,
         message: defaultErrorMsg,
       },
-      forgotPasswordInfo: {
-        isVisible: false,
-        message: defaultInfoMsg,
-      },
-      accountError: {
+      loginError: {
         isVisible: false,
         message: defaultErrorMsg,
       },
@@ -139,8 +135,8 @@ class AuthStore extends EventEmitter {
   }
 
   _clearAllAlertBoxes() {
-    Object.assign(this[storeContext].loginError, { message: defaultErrorMsg, isVisible: false });
     Object.assign(this[storeContext].signupError, { message: defaultErrorMsg, isVisible: false });
+    Object.assign(this[storeContext].loginError, { message: defaultErrorMsg, isVisible: false });
     Object.assign(this[storeContext].forgotPasswordInfo,
       { message: defaultInfoMsg, isVisible: false });
   }

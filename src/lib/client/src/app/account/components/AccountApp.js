@@ -37,12 +37,23 @@ class AccountApp extends BaseComponent {
   }
 
   render() {
+    let loader;
+
+    if (this.state.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
+
     return (
       <div id="account-app">
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
               <div className="header-placeholder-custom" />
+              { loader }
             </div>
           </div>
           <div className="row">
@@ -127,6 +138,7 @@ function _getState() {
     profileError: accountStore.getError('profile'),
     subscriptionInfo: accountStore.getInfo('subscription'),
     subscriptionError: accountStore.getError('subscription'),
+    isLoading: accountStore.isLoading(),
   };
 }
 
