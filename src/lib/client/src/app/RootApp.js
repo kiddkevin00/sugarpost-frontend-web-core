@@ -64,6 +64,11 @@ class RootApp extends BaseComponent {
         </LinkContainer>
       </li>
     );
+    const aboutCollapseTab = (
+      <LinkContainer to="/" key="1" active={ false }>
+        <NavItem eventKey={ 1 }>About</NavItem>
+      </LinkContainer>
+    )
     const servicesTab = (
       <li key="2">
         <LinkContainer to="/">
@@ -132,6 +137,11 @@ class RootApp extends BaseComponent {
         </LinkContainer>
       </li>
     );
+    const signupCollapseTab = (
+      <LinkContainer to="/register/signup" key="5" active={ false }>
+        <NavItem eventKey={ 5 }>Signup</NavItem>
+      </LinkContainer>
+    )
     const loginTab = (
       <li key="6">
         <LinkContainer to="/register/login">
@@ -149,6 +159,11 @@ class RootApp extends BaseComponent {
         </LinkContainer>
       </li>
     );
+    const loginCollapseTab = (
+      <LinkContainer to="/register/login" key="6" active={ false }>
+        <NavItem eventKey={ 6 }>Login</NavItem>
+      </LinkContainer>
+    )
     const logoutTab = (
       /* eslint-disable jsx-a11y/no-static-element-interactions */
       <NavItem key="5">
@@ -187,7 +202,7 @@ class RootApp extends BaseComponent {
           break;
       }
     } else if (window.innerWidth < 768) {
-      tabsShownWhenUserLoggedIn.push(aboutTab, signupTab, loginTab);
+      tabsShownWhenUserLoggedIn.push(aboutCollapseTab, signupCollapseTab, loginCollapseTab);
     } else {
       tabsShownWhenUserLoggedIn.push(aboutTab, servicesTab, portfolioTab, contactTab, signupTab,
         loginTab);
@@ -212,9 +227,9 @@ class RootApp extends BaseComponent {
               <Navbar.Toggle>Menu</Navbar.Toggle>
             </Navbar.Header>
             <Navbar.Collapse>
-              <ul className="nav navbar-nav navbar-right">
+              <Nav pullRight={ true }>
                 { tabsShownWhenUserLoggedIn }
-              </ul>
+              </Nav>
             </Navbar.Collapse>
           </Navbar>
         </ScrollDiv>
