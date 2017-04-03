@@ -86,7 +86,7 @@ class HomeApp extends BaseComponent {
                       <h3>Subscribe</h3>
                       <p className="text-muted">
                         After purchasing a monthly subscription, you will receive an email with
-                        vouchers during the first day of the every month.
+                        vouchers during the first day of every month.
                       </p>
                     </div>
                   </div>
