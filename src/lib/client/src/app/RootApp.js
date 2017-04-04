@@ -47,6 +47,15 @@ class RootApp extends BaseComponent {
         <NavItem>Referral</NavItem>
       </LinkContainer>
     );
+    const logoutTab = (
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
+      <NavItem key="5">
+        <span onClick={ RootApp._onLogout }>
+          Logout
+        </span>
+      </NavItem>
+      /* eslint-enable */
+    );
     const aboutTab = (
       <li key="1">
         <LinkContainer to="/">
@@ -63,6 +72,11 @@ class RootApp extends BaseComponent {
           </Link>
         </LinkContainer>
       </li>
+    );
+    const aboutCollapseTab = (
+      <LinkContainer key="1" to="/" active={ false }>
+        <NavItem eventKey={ 1 }>About</NavItem>
+      </LinkContainer>
     );
     const servicesTab = (
       <li key="2">
@@ -132,6 +146,11 @@ class RootApp extends BaseComponent {
         </LinkContainer>
       </li>
     );
+    const signupCollapseTab = (
+      <LinkContainer key="5" to="/register/signup" active={ false }>
+        <NavItem eventKey={ 5 }>Signup</NavItem>
+      </LinkContainer>
+    );
     const loginTab = (
       <li key="6">
         <LinkContainer to="/register/login">
@@ -149,14 +168,10 @@ class RootApp extends BaseComponent {
         </LinkContainer>
       </li>
     );
-    const logoutTab = (
-      /* eslint-disable jsx-a11y/no-static-element-interactions */
-      <NavItem key="5">
-        <span onClick={ RootApp._onLogout }>
-          Logout
-        </span>
-      </NavItem>
-      /* eslint-enable */
+    const loginCollapseTab = (
+      <LinkContainer key="6" to="/register/login" active={ false }>
+        <NavItem eventKey={ 6 }>Login</NavItem>
+      </LinkContainer>
     );
 
     if (this.state.isLoggedIn) {
@@ -187,7 +202,7 @@ class RootApp extends BaseComponent {
           break;
       }
     } else if (window.innerWidth < 768) {
-      tabsShownWhenUserLoggedIn.push(aboutTab, signupTab, loginTab);
+      tabsShownWhenUserLoggedIn.push(aboutCollapseTab, signupCollapseTab, loginCollapseTab);
     } else {
       tabsShownWhenUserLoggedIn.push(aboutTab, servicesTab, portfolioTab, contactTab, signupTab,
         loginTab);
@@ -212,9 +227,9 @@ class RootApp extends BaseComponent {
               <Navbar.Toggle>Menu</Navbar.Toggle>
             </Navbar.Header>
             <Navbar.Collapse>
-              <ul className="nav navbar-nav navbar-right">
+              <Nav pullRight={ true }>
                 { tabsShownWhenUserLoggedIn }
-              </ul>
+              </Nav>
             </Navbar.Collapse>
           </Navbar>
         </ScrollDiv>
