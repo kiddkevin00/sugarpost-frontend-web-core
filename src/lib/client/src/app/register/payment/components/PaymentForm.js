@@ -47,7 +47,8 @@ class PaymentForm extends BaseComponent {
           &nbsp; { this.props.errorMsg }
         </div>
         <div className="text-center">
-          <h4><u>Monthly Subscription</u></h4>
+          <h3><b>Monthly Subscription</b></h3>
+          <p>_______________________________</p>
           <h1><b>$24.99</b></h1>
           <span>+</span>
           <br />
