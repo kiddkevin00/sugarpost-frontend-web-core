@@ -47,6 +47,15 @@ class RootApp extends BaseComponent {
         <NavItem>Referral</NavItem>
       </LinkContainer>
     );
+    const logoutTab = (
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
+      <NavItem key="5">
+        <span onClick={ RootApp._onLogout }>
+          Logout
+        </span>
+      </NavItem>
+      /* eslint-enable */
+    );
     const aboutTab = (
       <li key="1">
         <LinkContainer to="/">
@@ -65,10 +74,10 @@ class RootApp extends BaseComponent {
       </li>
     );
     const aboutCollapseTab = (
-      <LinkContainer to="/" key="1" active={ false }>
+      <LinkContainer key="1" to="/" active={ false }>
         <NavItem eventKey={ 1 }>About</NavItem>
       </LinkContainer>
-    )
+    );
     const servicesTab = (
       <li key="2">
         <LinkContainer to="/">
@@ -138,10 +147,10 @@ class RootApp extends BaseComponent {
       </li>
     );
     const signupCollapseTab = (
-      <LinkContainer to="/register/signup" key="5" active={ false }>
+      <LinkContainer key="5" to="/register/signup" active={ false }>
         <NavItem eventKey={ 5 }>Signup</NavItem>
       </LinkContainer>
-    )
+    );
     const loginTab = (
       <li key="6">
         <LinkContainer to="/register/login">
@@ -160,18 +169,9 @@ class RootApp extends BaseComponent {
       </li>
     );
     const loginCollapseTab = (
-      <LinkContainer to="/register/login" key="6" active={ false }>
+      <LinkContainer key="6" to="/register/login" active={ false }>
         <NavItem eventKey={ 6 }>Login</NavItem>
       </LinkContainer>
-    )
-    const logoutTab = (
-      /* eslint-disable jsx-a11y/no-static-element-interactions */
-      <NavItem key="5">
-        <span onClick={ RootApp._onLogout }>
-          Logout
-        </span>
-      </NavItem>
-      /* eslint-enable */
     );
 
     if (this.state.isLoggedIn) {
