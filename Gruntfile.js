@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
   // Loads grunt tasks automatically whenever necessary.
   require('jit-grunt')(grunt, {
-    express: 'grunt-express-server'
+    express: 'grunt-express-server',
   });
 
   // Times how long it takes for each task. Might help when optimizing build times.
@@ -15,34 +15,28 @@ module.exports = function (grunt) {
       dev: {
         NODE_ENV: 'development',
         PORT: '8088',
-        IP: '127.0.0.1'
+        IP: '127.0.0.1',
       },
-      lint: {
-        NODE_ENV: 'lint'
-      },
-      test: {
-        NODE_ENV: 'test',
-        PORT: '8088',
-        IP: '127.0.0.1'
-      },
-      prod: {}
+      lint: {},
+      test: {},
+      prod: {},
     },
     browserify: {
       options: {
         transform: [
-          ['babelify']
-        ]
+          ['babelify'],
+        ],
       },
       client: {
         files: {
           'src/lib/client/static/app/index-<%= pkg.version %>.js': [
-            'src/lib/client/src/app/app.js'
-          ]
+            'src/lib/client/src/app/app.js',
+          ],
         },
         options: {
-          watch: true
-        }
-      }
+          watch: true,
+        },
+      },
     },
     express: {
       options: {
@@ -50,78 +44,78 @@ module.exports = function (grunt) {
         node_env: undefined,
         output: 'Express server listening on port: <%= env.dev.PORT %> at IP: <%= env.dev.IP %>, in <%= env.dev.NODE_ENV %> mode.',
         debug: false,
-        background: true // Sets to false to debug the reason for stopping Express server.
+        background: true, // Sets to false to debug the reason for stopping Express server.
       },
       dev: {
         options: {
-          script: 'src/lib/server/app.js'
-        }
+          script: 'src/lib/server/app.js',
+        },
       },
       prod: {
         options: {
-          script: 'dist/lib/server/app.js'
-        }
-      }
+          script: 'dist/lib/server/app.js',
+        },
+      },
     },
     watch: {
       options: {
-        interrupt: true
+        interrupt: true,
       },
       // [TODO] Server-side live reload is not working.
       express: {
         files: [
           'src/lib/server/**/*.+(js|jsx|jade|json)',
-          'package.json'
+          'package.json',
         ],
         tasks: ['express:dev', 'wait-for-server'],
         options: {
           spawn: false, // Without this option, specified Express won't be reloaded.
           nospawn: true, // For backward compatiability.
           atBegin: false, // Setting this to `true` will run tasks once when `watch:express` task loads.
-          livereload: true
-        }
+          livereload: true,
+        },
       },
       client: {
         files: [
           'src/lib/client/static/index2.html',
           'src/lib/client/static/app/index-<%= pkg.version %>.js',
-          'src/lib/client/static/**/*.css'
+          'src/lib/client/static/**/*.css',
         ],
         options: {
-          livereload: true
-        }
+          livereload: true,
+        },
       },
       lint: {
         files: [
-          '<%= eslint.target %>'
+          '<%= eslint.target %>',
         ],
-        tasks: []
-      }
+        tasks: [],
+      },
     },
     open: {
       dev: {
-        url: 'http://<%= env.dev.IP %>:<%= env.dev.PORT %>'
+        url: 'http://<%= env.dev.IP %>:<%= env.dev.PORT %>',
       },
       prod: {
-        url: 'http://<%= env.dev.IP %>:<%= env.dev.PORT %>'
-      }
+        url: 'http://<%= env.dev.IP %>:<%= env.dev.PORT %>',
+      },
     },
     eslint: {
       options: {
-        format: './node_modules/eslint-friendly-formatter'
+        format: './node_modules/eslint-friendly-formatter',
       },
-      target: ['src/lib/client/src/**/*.+(jsx|js)', 'src/lib/server/**/*.+(js|jsx)', 'src/spec/**/*.+(js|jsx)']
+      target: ['src/lib/client/src/**/*.+(jsx|js)', 'src/lib/server/**/*.+(js|jsx)', 'src/spec/**/*.+(js|jsx)'],
     },
     // [TODO]
     jest: {
       coverage: true,
-      testPathPattern: /.+\.spec\.js/
+      testPathPattern: /.+\.spec\.js/,
     },
     // Empties folders to start fresh.
     clean: {
       dev: ['src/lib/client/static/app/index-*.js'],
       test: ['spec/'],
-      prod: ['src/lib/client/static/app/index-*.js', 'dist/css/', 'dist/js/', 'dist/lib/', 'dist/assets', 'dist/fonts/']
+      prod: ['src/lib/client/static/app/index-*.js', 'dist/css/', 'dist/js/', 'dist/lib/', 'dist/assets', 'dist/fonts/'],
     },
     uglify: {
       options: {
@@ -134,13 +128,13 @@ module.exports = function (grunt) {
           conditionals: true,
           booleans: true,
           if_return: true,
-          join_vars: true
-        }
+          join_vars: true,
+        },
       },
       js: {
         src: ['src/lib/client/static/app/index-<%= pkg.version %>.js'],
-        dest: 'dist/js/index-<%= pkg.version %>.min.js'
-      }
+        dest: 'dist/js/index-<%= pkg.version %>.min.js',
+      },
     },
     concat: {
       options: {
@@ -152,21 +146,21 @@ module.exports = function (grunt) {
           'src/lib/client/static/common/**/*.css',
           'src/lib/client/static/app/**/*.css',
         ],
-        dest: 'dist/css/index-<%= pkg.version %>.css'
-      }
+        dest: 'dist/css/index-<%= pkg.version %>.css',
+      },
     },
     postcss: {
       options: {
         processors: [
           require('pixrem')(), // Adds fallbacks for `rem` units.
           require('autoprefixer')({ browsers: ['last 2 versions', 'ie 9', 'ie 10'] }), // Adds vendor's prefixes.
-          require('cssnano')() // Minifies the result.
-        ]
+          require('cssnano')(), // Minifies the result.
+        ],
       },
       prod: {
         src: 'dist/css/index-<%= pkg.version %>.css',
-        dest: 'dist/css/index-<%= pkg.version %>.min.css'
-      }
+        dest: 'dist/css/index-<%= pkg.version %>.min.css',
+      },
     },
     copy: {
       prod: {
@@ -176,42 +170,42 @@ module.exports = function (grunt) {
             src: ['assets/images/*'],
             dest: 'dist/',
             filter: 'isFile',
-            expand: true
+            expand: true,
           },
           {
             cwd: 'src/lib/client/static/',
             src: ['assets/fonts/*'],
             dest: 'dist/',
             filter: 'isFile',
-            expand: true
+            expand: true,
           },
           {
             cwd: 'src/',
             src: ['lib/client/static/*.png', 'lib/client/static/*.ico'],
             dest: 'dist/',
             filter: 'isFile',
-            expand: true
+            expand: true,
           },
           {
             cwd: 'src/lib/client/static/assets/libraries/font-awesome',
             src: ['fonts/*'],
             dest: 'dist/',
             filter: 'isFile',
-            expand: true
+            expand: true,
           },
           {
             cwd: 'src/lib/client/static/assets/libraries/bootstrap',
             src: ['fonts/*'],
             dest: 'dist/',
             filter: 'isFile',
-            expand: true
-          }
-        ]
-      }
+            expand: true,
+          },
+        ],
+      },
     },
     babel: {
       options: {
-        sourceMap: 'both'
+        sourceMap: 'both',
       },
       prod: {
         files: [
@@ -219,11 +213,11 @@ module.exports = function (grunt) {
             cwd: 'src/',
             src: ['lib/**/*.js'],
             dest: 'dist/',
-            expand: true
-          }
-        ]
-      }
-    }
+            expand: true,
+          },
+        ],
+      },
+    },
   });
 
   // For delaying live reload until after server has restarted.
@@ -250,21 +244,21 @@ module.exports = function (grunt) {
     'browserify',
     'wait-for-server',
     'open:dev',
-    'watch'
+    'watch',
   ]);
 
   // For setup linting environment.
   grunt.registerTask('lint', [
     'env:lint',
     'eslint',
-    'watch:lint'
+    'watch:lint',
   ]);
 
   // For setup testing environment.
   grunt.registerTask('test', [
     'clean:test',
     'env:test',
-    'jest'
+    'jest',
   ]);
 
   // For setup production environment.
@@ -280,7 +274,7 @@ module.exports = function (grunt) {
     'uglify',
     'wait-for-server',
     'open:prod',
-    'express-keep-alive'
+    'express-keep-alive',
   ]);
 
   // For "npm" post-install
@@ -292,7 +286,7 @@ module.exports = function (grunt) {
     'concat',
     'postcss',
     'browserify',
-    'uglify'
+    'uglify',
   ]);
 
   // For default task.
