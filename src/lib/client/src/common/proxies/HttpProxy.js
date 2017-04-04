@@ -88,9 +88,28 @@ class HttpProxy {
     let fullUrl;
 
     if (url[0] === '/') {
-      const urlBase = (window.location.hostname === 'localhost') ||
-        (window.location.hostname === '127.0.0.1') || (window.location.hostname === '0.0.0.0') ?
-        constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API : constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
+      let urlBase;
+
+      switch (window.location.hostname) {
+        case '127.0.0.1':
+          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
+          break;
+        case 'localhost':
+          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
+          break;
+        case '0.0.0.0':
+          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
+          break;
+        case 'localhost':
+          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
+          break;
+        case 'mysugarpost-staging.herokuapp.com':
+          urlBase = constants.SYSTEM.URL_BASES.TEST_BACKEND_API;
+          break;
+        default:
+          urlBase = constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
+          break;
+      }
 
       fullUrl = urlBase + url;
     } else {
