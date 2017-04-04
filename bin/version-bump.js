@@ -22,6 +22,7 @@ console.log(`[Version Bump] Updating version to ${newVersion}`);
 const promises = [];
 const updateFilePaths = [
   'dist/index2.html',
+  'dist/index3.html',
   'src/lib/client/static/index2.html',
   'src/lib/server/views/index.jade',
 ];

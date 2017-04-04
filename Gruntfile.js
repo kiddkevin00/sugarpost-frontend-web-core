@@ -25,11 +25,7 @@ module.exports = function (grunt) {
         PORT: '8088',
         IP: '127.0.0.1'
       },
-      prod: {
-        NODE_ENV: 'production',
-        PORT: '8088',
-        IP: '127.0.0.1'
-      }
+      prod: {}
     },
     browserify: {
       options: {
@@ -52,7 +48,7 @@ module.exports = function (grunt) {
       options: {
         port: '',
         node_env: undefined,
-        output: 'Express server listening on port: [0-9]+ at IP: [0-9]+.[0-9]+.[0-9]+.[0-9]+, in [a-z]+ mode.',
+        output: 'Express server listening on port: <%= env.dev.PORT %> at IP: <%= env.dev.IP %>, in <%= env.dev.NODE_ENV %> mode.',
         debug: false,
         background: true // Sets to false to debug the reason for stopping Express server.
       },
@@ -107,7 +103,7 @@ module.exports = function (grunt) {
         url: 'http://<%= env.dev.IP %>:<%= env.dev.PORT %>'
       },
       prod: {
-        url: 'http://<%= env.prod.IP %>:<%= env.prod.PORT %>'
+        url: 'http://<%= env.dev.IP %>:<%= env.dev.PORT %>'
       }
     },
     eslint: {
@@ -125,7 +121,7 @@ module.exports = function (grunt) {
     clean: {
       dev: ['src/lib/client/static/app/index-*.js'],
       test: ['spec/'],
-      prod: ['src/lib/client/static/app/index-*.js', 'dist/css/', 'dist/js/', 'dist/lib/', 'dist/assets']
+      prod: ['src/lib/client/static/app/index-*.js', 'dist/css/', 'dist/js/', 'dist/lib/', 'dist/assets', 'dist/fonts/']
     },
     uglify: {
       options: {
@@ -246,7 +242,7 @@ module.exports = function (grunt) {
     this.async();
   });
 
-  // For setup development environment.
+  // For setup developing environment.
   grunt.registerTask('dev', [
     'clean:dev',
     'env:dev',
