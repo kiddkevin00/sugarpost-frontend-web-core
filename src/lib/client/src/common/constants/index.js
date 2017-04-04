@@ -1,5 +1,5 @@
 const systemConstants = require('./system');
-const credConstants = require('./credential');
+const credConstants = require('./credential/');
 
 module.exports = exports = {
   SYSTEM: systemConstants,
