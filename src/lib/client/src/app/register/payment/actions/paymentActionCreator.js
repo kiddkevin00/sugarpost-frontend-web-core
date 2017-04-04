@@ -29,17 +29,17 @@ const paymentActionCreator = {
           dispatcher.dispatch({
             actionType: paymentConstants.PAYMENT_SUCCEED,
           });
-        } else if (res.getNthData(0).status === 'ALREADY_PAID') {
+        } else if (res.getNthData(0).status === paymentConstants.ALREADY_PAID) {
           dispatcher.dispatch({
             actionType: paymentConstants.ALREADY_PAID,
             data: res.getNthData(0).detail,
           });
-        } else if (res.getNthData(0).status === 'ALREADY_USED_REFERRAL_CODE') {
+        } else if (res.getNthData(0).status === paymentConstants.NOT_ELIGIBLE_FOR_REFERRAL_DISCOUNT) {
           dispatcher.dispatch({
-            actionType: paymentConstants.ALREADY_USED_REFERRAL_CODE,
+            actionType: paymentConstants.NOT_ELIGIBLE_FOR_REFERRAL_DISCOUNT,
             data: res.getNthData(0).detail,
           });
-        } else if (res.getNthData(0).status === 'REFERRAL_CODE_NOT_FOUND') {
+        } else if (res.getNthData(0).status === paymentConstants.REFERRAL_CODE_NOT_FOUND) {
           dispatcher.dispatch({
             actionType: paymentConstants.REFERRAL_CODE_NOT_FOUND,
             data: res.getNthData(0).detail,

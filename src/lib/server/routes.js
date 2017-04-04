@@ -80,6 +80,10 @@ function setupRoutes(app) {
         res.sendFile(path.resolve(__dirname, '../../../dist/', 'index2.html'), {
           headers: { 'Cache-Control': 'no-cache' },
         });
+      } else if (env === 'test') {
+        res.sendFile(path.resolve(__dirname, '../../../dist/', 'index3.html'), {
+          headers: { 'Cache-Control': 'no-store' },
+        });
       } else {
         res.sendFile(path.resolve(__dirname, '../client/static/', 'index2.html'), {
           headers: { 'Cache-Control': 'no-store' },

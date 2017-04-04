@@ -133,7 +133,7 @@ dispatcher.register((action) => {
       paymentStore.emitChange();
       console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
       break;
-    case paymentConstants.ALREADY_USED_REFERRAL_CODE:
+    case paymentConstants.NOT_ELIGIBLE_FOR_REFERRAL_DISCOUNT:
       paymentStore._showError('Your transaction has not been processed because your account is no longer eligible for the 10% discount.');
       paymentStore._setLoadingStatus(false);
 

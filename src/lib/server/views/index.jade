@@ -4,6 +4,7 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1')
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
   title Sugarpost
+
   link(rel='stylesheet' href='/assets/libraries/bootstrap/css/bootstrap.min.css')
   link(rel='stylesheet' href='/assets/libraries/font-awesome/css/font-awesome.min.css')
   link(rel='stylesheet' href='/common/input-group-template.css')
@@ -20,6 +21,23 @@ head
   link(rel='stylesheet' href='/app/register/referral.css')
   link(rel='stylesheet' href='/app/register/login.css')
   link(rel='stylesheet' href='/app/register/forgot-password.css')
+
+  script.
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+              }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-93746415-2', 'auto');
+    ga('send', 'pageview');
 body
   div#react-main-container !{markup}
+
   script(src='/app/index-1.12.1.js')

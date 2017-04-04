@@ -5,7 +5,7 @@ const paymentConstants = keyMirror({
   PAYMENT_SUCCEED: null,
   PAYMENT_FAIL: null,
   ALREADY_PAID: null,
-  ALREADY_USED_REFERRAL_CODE: null,
+  NOT_ELIGIBLE_FOR_REFERRAL_DISCOUNT: null,
   REFERRAL_CODE_NOT_FOUND: null,
 });
 
