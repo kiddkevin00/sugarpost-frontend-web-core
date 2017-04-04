@@ -92,15 +92,8 @@ class HttpProxy {
 
       switch (window.location.hostname) {
         case '127.0.0.1':
-          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
-          break;
         case 'localhost':
-          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
-          break;
         case '0.0.0.0':
-          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
-          break;
-        case 'localhost':
           urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
           break;
         case 'mysugarpost-staging.herokuapp.com':

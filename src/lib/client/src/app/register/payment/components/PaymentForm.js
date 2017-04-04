@@ -70,7 +70,7 @@ class PaymentForm extends BaseComponent {
         />
         <StripeCheckout
           token={ this._onToken }
-          stripeKey={ constants.CREDENTIAL.STRIPE.PUBLIC_KEY }
+          stripeKey={ constants.GET_CREDENTIAL().STRIPE.PUBLIC_KEY }
           name="Sugarpost"
           description="Premium Subscription Service"
           image="/assets/images/sugarpost-logo.png"

@@ -14,12 +14,12 @@ module.exports = function (grunt) {
     env: {
       dev: {
         NODE_ENV: 'development',
-        PORT: '8088',
-        IP: '127.0.0.1',
       },
       lint: {},
       test: {},
-      prod: {},
+      prod: {
+        NODE_ENV: 'production',
+      },
     },
     browserify: {
       options: {
@@ -42,7 +42,7 @@ module.exports = function (grunt) {
       options: {
         port: '',
         node_env: undefined,
-        output: 'Express server listening on port: <%= env.dev.PORT %> at IP: <%= env.dev.IP %>, in <%= env.dev.NODE_ENV %> mode.',
+        output: 'Express server listening on port: <%= pkg.config.port %> at IP: <%= pkg.config.ip %>.',
         debug: false,
         background: true, // Sets to false to debug the reason for stopping Express server.
       },
@@ -94,10 +94,10 @@ module.exports = function (grunt) {
     },
     open: {
       dev: {
-        url: 'http://<%= env.dev.IP %>:<%= env.dev.PORT %>',
+        url: 'http://<%= pkg.config.ip %>:<%= pkg.config.port %>',
       },
       prod: {
-        url: 'http://<%= env.dev.IP %>:<%= env.dev.PORT %>',
+        url: 'http://<%= pkg.config.ip %>:<%= pkg.config.port %>',
       },
     },
     eslint: {
@@ -280,7 +280,6 @@ module.exports = function (grunt) {
   // For "npm" post-install
   grunt.registerTask('postinstall', [
     'clean:prod',
-    'env:prod',
     'babel',
     'copy',
     'concat',
