@@ -38,7 +38,7 @@ function setupExpressServer(app) {
   app.set('views', path.resolve(__dirname, 'views/'));
   app.set('view engine', 'jade');
 
-  if (env === 'production') {
+  if (env === 'production' || env === 'test') {
     // Here are all the minified version of all JS and CSS files.
     app.use(express.static(path.resolve(__dirname, '../../../', 'dist/'), {
       etag: true,
