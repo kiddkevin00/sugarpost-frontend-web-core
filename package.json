@@ -41,7 +41,7 @@
     "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' --ext .js,.jsx src/lib/client/src/ src/lib/server/ src/spec/ bin/",
     "jest-unit-test": "jest",
     "mocha-unit-test": "multi='tap=- xunit=spec/reports/xunit.xml' mocha --opts mocha.opts --reporter mocha-multi | faucet",
-    "coverage:unit-test": "nyc --check-coverage --reporter cobertura --reporter html mocha --opts mocha.opts",
+    "coverage:unit-test": "nyc --check-coverage --all --reporter cobertura --reporter html mocha --opts mocha.opts",
     "coverage:integration-test": "",
     "coverage:update-thresholds": "echo 'disable `coverage:update-thresholds` for now' || ./bin/update-test-coverage.js",
     "branch-check": "./bin/restrict-branches-to-push.sh",
