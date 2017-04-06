@@ -23,55 +23,64 @@ const authActionCreator = {
 
     Proxy.post(url, body, headers)
       .then((payloadObj) => {
-        const res = StandardResponseWrapper.deserialize(payloadObj);
+        if (StandardResponseWrapper.verifyFormat(payloadObj)) {
+          const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.getNthData(0).success) {
-          const userInfo = res.getNthData(0).detail;
+          if (res.getNthData(0).success) {
+            const userInfo = res.getNthData(0).detail;
 
-          if (
-            /^((?!chrome|android).)*safari/i.test(window.navigator.userAgent) ||
-            window.navigator.vendor === 'Apple Computer, Inc.' ||
-            Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
-          ) {
-            const callbackUrlPath = `/register/payment?email=${userInfo.email}`;
-            const _origin = window.location.origin;
-            let origin;
-            let fullUrl;
+            if (
+              /^((?!chrome|android).)*safari/i.test(window.navigator.userAgent) ||
+              window.navigator.vendor === 'Apple Computer, Inc.' ||
+              Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
+            ) {
+              const callbackUrlPath = `/register/payment?email=${userInfo.email}`;
+              const _origin = window.location.origin;
+              let origin;
+              let fullUrl;
 
-            if (_origin.indexOf('8088') >= 0) {
-              origin = _origin.replace('8088', '8087');
+              if (_origin.indexOf('8088') >= 0) {
+                origin = _origin.replace('8088', '8087');
+              } else {
+                origin = 'https://bulletin-board-system.herokuapp.com';
+              }
+
+              fullUrl = `${origin}/api/auth/token`;
+
+              if (Object.keys(userInfo).length) {
+                const queryStringObj = Object.assign({}, userInfo, {
+                  callback_url: `${_origin}${callbackUrlPath}`,
+                });
+
+                fullUrl += `?${this._parseQueryStringObj(queryStringObj)}`;
+              }
+
+              window.open(fullUrl, '_self');
             } else {
-              origin = 'https://bulletin-board-system.herokuapp.com';
-            }
-
-            fullUrl = `${origin}/api/auth/token`;
-
-            if (Object.keys(userInfo).length) {
-              const queryStringObj = Object.assign({}, userInfo, {
-                callback_url: `${_origin}${callbackUrlPath}`,
+              dispatcher.dispatch({
+                actionType: authConstants.SIGNUP_SUCCEED,
+                data: {
+                  user: userInfo,
+                },
               });
-
-              fullUrl += `?${this._parseQueryStringObj(queryStringObj)}`;
             }
-
-            window.open(fullUrl, '_self');
+          } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
+            dispatcher.dispatch({
+              actionType: authConstants.ALREADY_SIGNED_UP,
+              data: res.getNthData(0).detail,
+            });
           } else {
             dispatcher.dispatch({
-              actionType: authConstants.SIGNUP_SUCCEED,
-              data: {
-                user: userInfo,
-              },
+              actionType: authConstants.SIGNUP_FAIL,
+              data: res.getNthData(0).detail,
             });
           }
-        } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
-          dispatcher.dispatch({
-            actionType: authConstants.ALREADY_SIGNED_UP,
-            data: res.getNthData(0).detail,
-          });
-        } else {
+        } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+          const err = StandardErrorWrapper.deserialize(payloadObj);
+
           dispatcher.dispatch({
             actionType: authConstants.SIGNUP_FAIL,
-            data: res.getNthData(0).detail,
+            data: err,
           });
         }
       })
@@ -94,64 +103,73 @@ const authActionCreator = {
 
     Proxy.post(url, body, headers)
       .then((payloadObj) => {
-        const res = StandardResponseWrapper.deserialize(payloadObj);
+        if (StandardResponseWrapper.verifyFormat(payloadObj)) {
+          const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.getNthData(0).success) {
-          const userInfo = res.getNthData(0).detail;
+          if (res.getNthData(0).success) {
+            const userInfo = res.getNthData(0).detail;
 
-          if (
-            /^((?!chrome|android).)*safari/i.test(window.navigator.userAgent) ||
-            window.navigator.vendor === 'Apple Computer, Inc.' ||
-            Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
-          ) {
-            const _origin = window.location.origin;
-            let origin;
-            let fullUrl;
-            let callbackUrlPath;
+            if (
+              /^((?!chrome|android).)*safari/i.test(window.navigator.userAgent) ||
+              window.navigator.vendor === 'Apple Computer, Inc.' ||
+              Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
+            ) {
+              const _origin = window.location.origin;
+              let origin;
+              let fullUrl;
+              let callbackUrlPath;
 
-            if (_origin.indexOf('8088') >= 0) {
-              origin = _origin.replace('8088', '8087');
+              if (_origin.indexOf('8088') >= 0) {
+                origin = _origin.replace('8088', '8087');
+              } else {
+                origin = 'https://bulletin-board-system.herokuapp.com';
+              }
+
+              fullUrl = `${origin}/api/auth/token`;
+
+              switch (userInfo.type) {
+                case constants.SYSTEM.USER_TYPES.PAID:
+                  callbackUrlPath = '/account';
+                  break;
+                case constants.SYSTEM.USER_TYPES.INFLUENCER:
+                  callbackUrlPath = '/register/referral';
+                  break;
+                case constants.SYSTEM.USER_TYPES.VENDOR:
+                  callbackUrlPath = '/account';
+                  break;
+                default:
+                  callbackUrlPath = `/register/payment?email=${userInfo.email}`;
+                  break;
+              }
+
+              if (Object.keys(userInfo).length) {
+                const queryStringObj = Object.assign({}, userInfo, {
+                  callback_url: `${_origin}${callbackUrlPath}`,
+                });
+
+                fullUrl += `?${this._parseQueryStringObj(queryStringObj)}`;
+              }
+
+              window.open(fullUrl, '_self');
             } else {
-              origin = 'https://bulletin-board-system.herokuapp.com';
-            }
-
-            fullUrl = `${origin}/api/auth/token`;
-
-            switch (userInfo.type) {
-              case constants.SYSTEM.USER_TYPES.PAID:
-                callbackUrlPath = '/account';
-                break;
-              case constants.SYSTEM.USER_TYPES.INFLUENCER:
-                callbackUrlPath = '/register/referral';
-                break;
-              case constants.SYSTEM.USER_TYPES.VENDOR:
-                callbackUrlPath = '/account';
-                break;
-              default:
-                callbackUrlPath = `/register/payment?email=${userInfo.email}`;
-                break;
-            }
-
-            if (Object.keys(userInfo).length) {
-              const queryStringObj = Object.assign({}, userInfo, {
-                callback_url: `${_origin}${callbackUrlPath}`,
+              dispatcher.dispatch({
+                actionType: authConstants.BASIC_LOGIN_SUCCEED,
+                data: {
+                  user: userInfo,
+                },
               });
-
-              fullUrl += `?${this._parseQueryStringObj(queryStringObj)}`;
             }
-
-            window.open(fullUrl, '_self');
           } else {
             dispatcher.dispatch({
-              actionType: authConstants.BASIC_LOGIN_SUCCEED,
-              data: {
-                user: userInfo,
-              },
+              actionType: authConstants.BASIC_LOGIN_FAIL,
             });
           }
-        } else {
+        } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+          const err = StandardErrorWrapper.deserialize(payloadObj);
+
           dispatcher.dispatch({
             actionType: authConstants.BASIC_LOGIN_FAIL,
+            data: err,
           });
         }
       })
@@ -168,15 +186,24 @@ const authActionCreator = {
 
     Proxy.get(url)
       .then((payloadObj) => {
-        const res = StandardResponseWrapper.deserialize(payloadObj);
+        if (StandardResponseWrapper.verifyFormat(payloadObj)) {
+          const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.getNthData(0).success) {
-          dispatcher.dispatch({
-            actionType: authConstants.LOGOUT_SUCCEED,
-          });
-        } else {
+          if (res.getNthData(0).success) {
+            dispatcher.dispatch({
+              actionType: authConstants.LOGOUT_SUCCEED,
+            });
+          } else {
+            dispatcher.dispatch({
+              actionType: authConstants.LOGOUT_FAIL,
+            });
+          }
+        } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+          const err = StandardErrorWrapper.deserialize(payloadObj);
+
           dispatcher.dispatch({
             actionType: authConstants.LOGOUT_FAIL,
+            data: err,
           });
         }
       })

@@ -1,6 +1,7 @@
 import Proxy from '../../../common/proxies/HttpProxy';
 import dispatcher from '../../../common/dispatcher/appDispatcher';
 import StandardResponseWrapper from '../../../common/utility/standard-response-wrapper';
+import StandardErrorWrapper from '../../../common/utility/standard-error-wrapper';
 import accountConstants from '../constants/accountConstants';
 import authConstants from '../../../common/auth/constants/authConstants';
 import constants from '../../../common/constants/';
@@ -17,22 +18,31 @@ const accountActionCreator = {
 
     Proxy.put(url, body, headers)
       .then((payloadObj) => {
-        const res = StandardResponseWrapper.deserialize(payloadObj);
+        if (StandardResponseWrapper.verifyFormat(payloadObj)) {
+          const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.getNthData(0).success) {
-          dispatcher.dispatch({
-            actionType: authConstants.USER_INFO_SYNC,
-            data: {
-              partialNewUserInfo: { fullName },
-            },
-          });
+          if (res.getNthData(0).success) {
+            dispatcher.dispatch({
+              actionType: authConstants.USER_INFO_SYNC,
+              data: {
+                partialNewUserInfo: { fullName },
+              },
+            });
 
-          dispatcher.dispatch({
-            actionType: accountConstants.UPDATE_PROFILE_SUCCEED,
-          });
-        } else {
+            dispatcher.dispatch({
+              actionType: accountConstants.UPDATE_PROFILE_SUCCEED,
+            });
+          } else {
+            dispatcher.dispatch({
+              actionType: accountConstants.UPDATE_PROFILE_FAIL,
+            });
+          }
+        } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+          const err = StandardErrorWrapper.deserialize(payloadObj);
+
           dispatcher.dispatch({
             actionType: accountConstants.UPDATE_PROFILE_FAIL,
+            data: err,
           });
         }
       })
@@ -53,27 +63,36 @@ const accountActionCreator = {
 
     Proxy.post(url)
       .then((payloadObj) => {
-        const res = StandardResponseWrapper.deserialize(payloadObj);
+        if (StandardResponseWrapper.verifyFormat(payloadObj)) {
+          const res = StandardResponseWrapper.deserialize(payloadObj);
 
-        if (res.getNthData(0).success) {
-          dispatcher.dispatch({
-            actionType: authConstants.USER_INFO_SYNC,
-            data: {
-              partialNewUserInfo: { type: constants.SYSTEM.USER_TYPES.CANCELLED },
-            },
-          });
+          if (res.getNthData(0).success) {
+            dispatcher.dispatch({
+              actionType: authConstants.USER_INFO_SYNC,
+              data: {
+                partialNewUserInfo: { type: constants.SYSTEM.USER_TYPES.CANCELLED },
+              },
+            });
 
-          dispatcher.dispatch({
-            actionType: accountConstants.CANCEL_SUBSCRIPTION_SUCCEED,
-          });
+            dispatcher.dispatch({
+              actionType: accountConstants.CANCEL_SUBSCRIPTION_SUCCEED,
+            });
 
-          router.push({
-            pathname: '/register/payment',
-            query: { email },
-          });
-        } else {
+            router.push({
+              pathname: '/register/payment',
+              query: { email },
+            });
+          } else {
+            dispatcher.dispatch({
+              actionType: accountConstants.CANCEL_SUBSCRIPTION_FAIL,
+            });
+          }
+        } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+          const err = StandardErrorWrapper.deserialize(payloadObj);
+
           dispatcher.dispatch({
             actionType: accountConstants.CANCEL_SUBSCRIPTION_FAIL,
+            data: err,
           });
         }
       })
