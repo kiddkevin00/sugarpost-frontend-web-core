@@ -44,7 +44,7 @@ module.exports = function (grunt) {
         node_env: undefined,
         output: 'Express server listening on port: <%= pkg.config.port %> at IP: <%= pkg.config.ip %>.',
         debug: false,
-        background: true, // Sets to false to debug the reason for stopping Express server.
+        background: true, // Sets to false to debug the reason why Express server shut down.
       },
       dev: {
         options: {

@@ -63,7 +63,7 @@ exports.HTTP_METHODS = {
 };
 
 exports.URL_BASES = {
-  LOCAL_BACKEND_API: 'http://127.0.0.1:8087',
+  LOCAL_BACKEND_API: 'http://0.0.0.0:8087',
   TEST_BACKEND_API: 'https://bulletin-board-system-staging.herokuapp.com',
   PROD_BACKEND_API: 'https://bulletin-board-system.herokuapp.com',
 };

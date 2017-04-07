@@ -34,15 +34,22 @@ const authActionCreator = {
               window.navigator.vendor === 'Apple Computer, Inc.' ||
               Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
             ) {
+              const env = window.process.env.NODE_ENV;
               const callbackUrlPath = `/register/payment?email=${userInfo.email}`;
               const _origin = window.location.origin;
               let origin;
               let fullUrl;
 
-              if (_origin.indexOf('8088') >= 0) {
-                origin = _origin.replace('8088', '8087');
-              } else {
-                origin = 'https://bulletin-board-system.herokuapp.com';
+              switch (env) {
+                case 'production':
+                  origin = constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
+                  break;
+                case 'test':
+                  origin = constants.SYSTEM.URL_BASES.TEST_BACKEND_API;
+                  break;
+                default:
+                  origin = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
+                  break;
               }
 
               fullUrl = `${origin}/api/auth/token`;
@@ -114,15 +121,22 @@ const authActionCreator = {
               window.navigator.vendor === 'Apple Computer, Inc.' ||
               Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0
             ) {
+              const env = window.process.env.NODE_ENV;
               const _origin = window.location.origin;
               let origin;
               let fullUrl;
               let callbackUrlPath;
 
-              if (_origin.indexOf('8088') >= 0) {
-                origin = _origin.replace('8088', '8087');
-              } else {
-                origin = 'https://bulletin-board-system.herokuapp.com';
+              switch (env) {
+                case 'production':
+                  origin = constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
+                  break;
+                case 'test':
+                  origin = constants.SYSTEM.URL_BASES.TEST_BACKEND_API;
+                  break;
+                default:
+                  origin = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
+                  break;
               }
 
               fullUrl = `${origin}/api/auth/token`;
