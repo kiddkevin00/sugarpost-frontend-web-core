@@ -5,22 +5,24 @@ head
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
   title Sugarpost
 
-  link(rel='stylesheet' href='/assets/libraries/bootstrap/css/bootstrap.min.css')
-  link(rel='stylesheet' href='/assets/libraries/font-awesome/css/font-awesome.min.css')
-  link(rel='stylesheet' href='/common/input-group-template.css')
-  link(rel='stylesheet' href='/common/register-template.css')
-  link(rel='stylesheet' href='/app/home/home-template.css')
-  link(rel='stylesheet' href='/app/root-app.css')
-  link(rel='stylesheet' href='/app/home/home.css')
-  link(rel='stylesheet' href='/app/account/index.css')
-  link(rel='stylesheet' href='/app/voucher/index.css')
-  link(rel='stylesheet' href='/app/memo/index.css')
-  link(rel='stylesheet' href='/app/register/index.css')
-  link(rel='stylesheet' href='/app/register/signup.css')
-  link(rel='stylesheet' href='/app/register/payment.css')
-  link(rel='stylesheet' href='/app/register/referral.css')
-  link(rel='stylesheet' href='/app/register/login.css')
-  link(rel='stylesheet' href='/app/register/forgot-password.css')
+  if env === 'development'
+    link(rel='stylesheet' href='/assets/libraries/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet' href='/assets/libraries/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet' href='/common/input-group-template.css')
+    link(rel='stylesheet' href='/common/register-template.css')
+    link(rel='stylesheet' href='/app/home/home-template.css')
+    link(rel='stylesheet' href='/app/root-app.css')
+    link(rel='stylesheet' href='/app/home/home.css')
+    link(rel='stylesheet' href='/app/account/index.css')
+    link(rel='stylesheet' href='/app/voucher/index.css')
+    link(rel='stylesheet' href='/app/register/index.css')
+    link(rel='stylesheet' href='/app/register/signup.css')
+    link(rel='stylesheet' href='/app/register/payment.css')
+    link(rel='stylesheet' href='/app/register/referral.css')
+    link(rel='stylesheet' href='/app/register/login.css')
+    link(rel='stylesheet' href='/app/register/forgot-password.css')
+  else
+    link(rel='stylesheet' href='/css/index-2.4.1.min.css')
 
   script.
     (function (i, s, o, g, r, a, m) {
@@ -35,9 +37,12 @@ head
       m.parentNode.insertBefore(a, m)
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-93746415-2', 'auto');
+    ga('create', '!{gaTrackingId}', 'auto');
     ga('send', 'pageview');
 body
-  div#react-main-container !{markup}
+  div#react-main-container
 
-  script(src='/app/index-1.12.1.js')
+  if env === 'development'
+    script(src='/app/index-' + version + '.js')
+  else
+    script(src='/js/index-' + version + '.min.js')

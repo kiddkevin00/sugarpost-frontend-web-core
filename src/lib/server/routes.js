@@ -4,6 +4,7 @@ const packageJson = require('../../../package.json');
 const Router = require('react-router');
 const ReactDOMServer = require('react-dom/server');
 const React = require('react');
+const errorHandler = require('errorhandler');
 const path = require('path');
 
 const serverStartTimestamp = new Date();
@@ -75,22 +76,27 @@ function setupRoutes(app) {
        * ```
        */
       const env = app.get('env'); // Same as `process.env.NODE_ENV`.
+      const globalConstants = {
+        env,
+        version: packageJson.version,
+        stripePublicKey: constants.CREDENTIAL.STRIPE.PUBLIC_KEY,
+        gaTrackingId: constants.CREDENTIAL.GOOGLE_ANALYTICS.TRACKING_ID,
+      };
+      let headers;
 
       if (env === 'production') {
-        res.sendFile(path.resolve(__dirname, '../../../dist/', 'index2.html'), {
-          headers: { 'Cache-Control': 'no-cache' },
-        });
-      } else if (env === 'test') {
-        res.sendFile(path.resolve(__dirname, '../../../dist/', 'index3.html'), {
-          headers: { 'Cache-Control': 'no-store' },
-        });
+        headers = { 'Cache-Control': 'no-cache' };
       } else {
-        res.sendFile(path.resolve(__dirname, '../client/static/', 'index2.html'), {
-          headers: { 'Cache-Control': 'no-store' },
-        });
+        headers = { 'Cache-Control': 'no-store' };
       }
+      res.set(headers);
 
+      return res.render('index', globalConstants);
     });
+
+  if (app.get('env') !== 'production') {
+    app.use(errorHandler()); // Error handler - has to be the last
+  }
 }
 
 module.exports = exports = setupRoutes;

@@ -200,6 +200,13 @@ module.exports = function (grunt) {
             filter: 'isFile',
             expand: true,
           },
+          {
+            cwd: 'src/lib/server/views',
+            src: ['index.jade'],
+            dest: 'dist/lib/server/views/',
+            filter: 'isFile',
+            expand: true,
+          },
         ],
       },
     },

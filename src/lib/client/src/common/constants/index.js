@@ -1,7 +1,7 @@
 const systemConstants = require('./system');
-const getCredential = require('./credential/');
+const credentialConstants = require('./credential/');
 
 module.exports = exports = {
   SYSTEM: systemConstants,
-  GET_CREDENTIAL: getCredential,
+  CREDENTIAL: credentialConstants, // For Node environment only
 };

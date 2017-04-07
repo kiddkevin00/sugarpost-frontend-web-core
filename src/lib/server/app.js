@@ -2,6 +2,7 @@
  * The process of the web application begins here - non-cluster mode.
  */
 
+// Set Node environment default to "development".
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 if (process.env.NODE_ENV !== 'production') {

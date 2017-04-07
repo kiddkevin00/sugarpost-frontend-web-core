@@ -6,14 +6,13 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const compression = require('compression');
-const errorHandler = require('errorhandler');
 const path = require('path');
 const fs = require('fs');
 
 function setupExpressServer(app) {
   const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
-  if (env === 'production') {
+  if (env === 'production' || env === 'test') {
     app.use((req, res, next) => {
       if (req.headers['x-forwarded-proto'] && req.headers['x-forwarded-proto'] !== 'https') {
         return res.redirect(308, `https://${req.headers.host}${req.url}`);
@@ -49,7 +48,6 @@ function setupExpressServer(app) {
         } else {
           res.append('Cache-Control', 'public, max-age=86400'); // Set for one day
         }
-
       },
     }));
 
@@ -81,7 +79,6 @@ function setupExpressServer(app) {
     }));
 
     app.use(morgan('dev'));
-    app.use(errorHandler()); // Error handler - has to be the last.
   }
 }
 
