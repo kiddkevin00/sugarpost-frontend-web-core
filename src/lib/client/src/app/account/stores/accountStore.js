@@ -68,7 +68,7 @@ class AccountStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
+      message = window.JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -80,7 +80,7 @@ class AccountStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
+      message = window.JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -115,7 +115,7 @@ dispatcher.register((action) => {
       accountStore._clearAlertBoxesForSubscription();
 
       accountStore.emitChange();
-      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`accountStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case accountConstants.UPDATING_PROFILE:
@@ -123,7 +123,7 @@ dispatcher.register((action) => {
       accountStore._clearAlertBoxesForProfile();
 
       accountStore.emitChange();
-      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`accountStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.UPDATE_PROFILE_SUCCEED:
       accountStore._showInfo('profile', 'Your profile has been updated.');
@@ -135,7 +135,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       accountStore.emitChange();
-      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`accountStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.UPDATE_PROFILE_FAIL:
       accountStore._showError('profile', data || 'The original password is incorrect.');
@@ -147,7 +147,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       accountStore.emitChange();
-      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`accountStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case accountConstants.CANCELLING_SUBSCRIPTION:
@@ -155,7 +155,7 @@ dispatcher.register((action) => {
       accountStore._clearAlertBoxesForSubscription();
 
       accountStore.emitChange();
-      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`accountStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.CANCEL_SUBSCRIPTION_SUCCEED:
       accountStore._showInfo('subscription', 'Your subscription has been cancelled. Your vouchers will remain available until the end of current cycle.');
@@ -167,7 +167,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       accountStore.emitChange();
-      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`accountStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case accountConstants.CANCEL_SUBSCRIPTION_FAIL:
       accountStore._showError('subscription', data || 'You haven\'t paid for the subscription yet.');
@@ -179,7 +179,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       accountStore.emitChange();
-      console.log(`${actionType} action in \`accountStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`accountStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     default:
       break;

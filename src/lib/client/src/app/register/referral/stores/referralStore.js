@@ -60,7 +60,7 @@ class ReferralStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
+      message = window.JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -72,7 +72,7 @@ class ReferralStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
+      message = window.JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -99,7 +99,7 @@ dispatcher.register((action) => {
       referralStore._clearAllAlertBoxes();
 
       referralStore.emitChange();
-      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`referralStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case referralConstants.REDEEMING_CREDITS:
@@ -108,7 +108,7 @@ dispatcher.register((action) => {
       referralStore._clearAllAlertBoxes();
 
       referralStore.emitChange();
-      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`referralStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case referralConstants.REDEEM_CREDITS_SUCCEED:
       referralStore._showInfo('You have redeemed your next free e-package successfully.');
@@ -120,7 +120,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       referralStore.emitChange();
-      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`referralStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case referralConstants.REDEEM_CREDITS_FAIL:
       referralStore._showError(data || 'Something went wrong while redeeming. Please try again.');
@@ -132,7 +132,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       referralStore.emitChange();
-      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`referralStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case referralConstants.OPENING_MODAL:
@@ -140,7 +140,7 @@ dispatcher.register((action) => {
       referralStore._clearAllAlertBoxes();
 
       referralStore.emitChange();
-      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`referralStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case referralConstants.SEND_EMAIL_TO_REFERRAL_SUCCEED:
       referralStore._showInfo('Referral email has sent out successfully.');
@@ -152,7 +152,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       referralStore.emitChange();
-      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`referralStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case referralConstants.SEND_EMAIL_TO_REFERRAL_FAIL:
       referralStore._showError(data || 'Something went wrong while sending referral email. Please try again.');
@@ -164,7 +164,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       referralStore.emitChange();
-      console.log(`${actionType} action in \`referralStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`referralStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     default:
       break;

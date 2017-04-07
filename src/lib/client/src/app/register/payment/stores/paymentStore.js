@@ -60,7 +60,7 @@ class PaymentStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
+      message = window.JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -72,7 +72,7 @@ class PaymentStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
+      message = window.JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -99,7 +99,7 @@ dispatcher.register((action) => {
       paymentStore._clearAllAlertBoxes();
 
       paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`paymentStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case paymentConstants.PAYING:
@@ -107,7 +107,7 @@ dispatcher.register((action) => {
       paymentStore._clearAllAlertBoxes();
 
       paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`paymentStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.PAYMENT_SUCCEED:
       paymentStore._showInfo('Thank you! We have received your payment.');
@@ -119,7 +119,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`paymentStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.ALREADY_PAID:
       paymentStore._showError('Our record shows that you have already paid for the subscription.');
@@ -131,7 +131,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`paymentStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.NOT_ELIGIBLE_FOR_REFERRAL_DISCOUNT:
       paymentStore._showError('Your transaction has not been processed because your account is no longer eligible for the 10% discount.');
@@ -143,7 +143,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`paymentStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.REFERRAL_CODE_NOT_FOUND:
       paymentStore._showError('Your transaction has not been processed because the referral code you entered is invalid.');
@@ -155,7 +155,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`paymentStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case paymentConstants.PAYMENT_FAIL:
       paymentStore._showError(data || 'Proceeding payment fails. Please try again.');
@@ -167,7 +167,7 @@ dispatcher.register((action) => {
       }, 10000);
 
       paymentStore.emitChange();
-      console.log(`${actionType} action in \`paymentStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`paymentStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     default:
       break;

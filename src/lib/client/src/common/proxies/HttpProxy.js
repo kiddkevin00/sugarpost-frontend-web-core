@@ -49,7 +49,7 @@ class HttpProxy {
     const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
-      body: JSON.stringify(body),
+      body: window.JSON.stringify(body),
       method: constants.SYSTEM.HTTP_METHODS.POST,
       mode: 'cors',
       credentials: 'include',
@@ -62,7 +62,7 @@ class HttpProxy {
     const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
-      body: JSON.stringify(body),
+      body: window.JSON.stringify(body),
       method: constants.SYSTEM.HTTP_METHODS.PUT,
       mode: 'cors',
       credentials: 'include',
@@ -75,7 +75,7 @@ class HttpProxy {
     const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
-      body: JSON.stringify(body),
+      body: window.JSON.stringify(body),
       method: constants.SYSTEM.HTTP_METHODS.DELETE,
       mode: 'cors',
       credentials: 'include',
@@ -88,19 +88,18 @@ class HttpProxy {
     let fullUrl;
 
     if (url[0] === '/') {
+      const env = window.process.env.NODE_ENV;
       let urlBase;
 
-      switch (window.location.hostname) {
-        case '127.0.0.1':
-        case 'localhost':
-        case '0.0.0.0':
-          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
+      switch (env) {
+        case 'production':
+          urlBase = constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
           break;
-        case 'mysugarpost-staging.herokuapp.com':
+        case 'test':
           urlBase = constants.SYSTEM.URL_BASES.TEST_BACKEND_API;
           break;
         default:
-          urlBase = constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
+          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
           break;
       }
 

@@ -101,7 +101,7 @@ class AuthStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
+      message = window.JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -113,7 +113,7 @@ class AuthStore extends EventEmitter {
     let message;
 
     if (typeof _message !== 'string') {
-      message = JSON.stringify(_message, null, 2);
+      message = window.JSON.stringify(_message, null, 2);
     } else {
       message = _message;
     }
@@ -158,7 +158,7 @@ dispatcher.register((action) => {
       authStore._clearAllAlertBoxes();
 
       authStore.emitChange();
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case authConstants.SIGNUP_SUCCEED:
@@ -168,7 +168,7 @@ dispatcher.register((action) => {
       authStore._setLoadingStatus(false);
 
       authStore.emitChange();
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case authConstants.ALREADY_SIGNED_UP:
@@ -176,14 +176,14 @@ dispatcher.register((action) => {
       authStore._setLoadingStatus(false);
 
       authStore.emitChange();
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.SIGNUP_FAIL:
       authStore._showError('signup', data);
       authStore._setLoadingStatus(false);
 
       authStore.emitChange();
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case authConstants.BASIC_LOGIN_FAIL:
@@ -191,7 +191,7 @@ dispatcher.register((action) => {
       authStore._setLoadingStatus(false);
 
       authStore.emitChange();
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case authConstants.LOGOUT_SUCCEED:
@@ -200,14 +200,14 @@ dispatcher.register((action) => {
       authStore._logout();
 
       authStore.emitChange();
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case authConstants.LOGOUT_FAIL:
-      alert((data && JSON.stringify(data, null, 2)) || 'Logout fails.');
+      alert((data && window.JSON.stringify(data, null, 2)) || 'Logout fails.');
 
       authStore.emitChange();
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case authConstants.RESET_PASSWORD_SUCCEED:
@@ -215,30 +215,30 @@ dispatcher.register((action) => {
       authStore._setLoadingStatus(false);
 
       authStore.emitChange();
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.RESET_PASSWORD_FAIL:
       authStore._showInfo('forgotPassword', 'If a matching account was found, an email was sent to allow you to reset your password.');
       authStore._setLoadingStatus(false);
 
       authStore.emitChange();
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
 
     case authConstants.USER_INFO_SYNC:
       authStore._syncUserInfo(data.partialNewUserInfo);
 
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.IN_TRANSITION:
       authStore._storeTransitionPath(data.path);
 
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     case authConstants.STORE_PARAM_MAP:
       authStore._storeReferralCode(data.referralCode);
 
-      console.log(`${actionType} action in \`authStore\`: ${JSON.stringify(action, null, 2)}`);
+      console.log(`${actionType} action in \`authStore\`: ${window.JSON.stringify(action, null, 2)}`);
       break;
     default:
       break;
