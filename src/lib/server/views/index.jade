@@ -42,6 +42,11 @@ head
 body
   div#react-main-container
 
+  script.
+    window.process = window.process || {};
+    window.process.env = window.process.env || {};
+    window.process.env.NODE_ENV = '!{env}';
+
   if env === 'development'
     script(src='/app/index-' + version + '.js')
   else
