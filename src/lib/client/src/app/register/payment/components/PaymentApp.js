@@ -80,7 +80,7 @@ class PaymentApp extends BaseComponent {
                 <li>Sign up to the right and become a paid subscriber.</li>
                 <li>Receive four vouchers during the first day of every month.</li>
                 <li>Visit the dessert shops.</li>
-                <li>Redeem desserts and enjoy!</li>
+                <li>Redeem and enjoy desserts by the end of the month!</li>
               </ol>
             </div>
           </div>

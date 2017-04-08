@@ -74,8 +74,8 @@ class RootApp extends BaseComponent {
       </li>
     );
     const aboutCollapseTab = (
-      <LinkContainer key="1" to="/" active={ false }>
-        <NavItem eventKey={ 1 }>About</NavItem>
+      <LinkContainer key="1" to="/home">
+        <NavItem>About</NavItem>
       </LinkContainer>
     );
     const servicesTab = (
@@ -147,8 +147,8 @@ class RootApp extends BaseComponent {
       </li>
     );
     const signupCollapseTab = (
-      <LinkContainer key="5" to="/register/signup" active={ false }>
-        <NavItem eventKey={ 5 }>Signup</NavItem>
+      <LinkContainer key="5" to="/register/signup">
+        <NavItem>Signup</NavItem>
       </LinkContainer>
     );
     const loginTab = (
@@ -169,8 +169,8 @@ class RootApp extends BaseComponent {
       </li>
     );
     const loginCollapseTab = (
-      <LinkContainer key="6" to="/register/login" active={ false }>
-        <NavItem eventKey={ 6 }>Login</NavItem>
+      <LinkContainer key="6" to="/register/login">
+        <NavItem>Login</NavItem>
       </LinkContainer>
     );
 

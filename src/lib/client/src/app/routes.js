@@ -18,6 +18,7 @@ const clientRoutes = (
   <Router history={ browserHistory }>
     <Route path="/" component={ RootApp }>
       <IndexRoute component={ HomeApp } />
+      <Route path="home" component={ HomeApp } />
       <Route path="register" component={ RegisterApp }>
         <Route path="login" component={ LoginApp } />
         <Route path="signup" component={ SignupApp } onEnter={ storeParamMap } />
