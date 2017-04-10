@@ -12,7 +12,7 @@ const accountActionCreator = {
       actionType: accountConstants.UPDATING_PROFILE,
     });
 
-    const url = '/api/user/info';
+    const url = '/api/v1/user/info';
     const body = { password, newPassword, fullName };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
@@ -59,7 +59,7 @@ const accountActionCreator = {
       actionType: accountConstants.CANCELLING_SUBSCRIPTION,
     });
 
-    const url = '/api/subscription/unsubscribe';
+    const url = '/api/v1/subscription/unsubscribe';
 
     Proxy.post(url)
       .then((payloadObj) => {

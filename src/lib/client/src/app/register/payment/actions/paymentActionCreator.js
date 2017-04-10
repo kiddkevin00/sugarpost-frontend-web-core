@@ -11,7 +11,7 @@ const paymentActionCreator = {
       actionType: paymentConstants.PAYING,
     });
 
-    const url = '/api/payment/proceed';
+    const url = '/api/v1/payment/proceed';
     const body = { referralCode, tokenId: token.id, ccLast4: token.card.last4, email: token.email };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 

@@ -11,7 +11,7 @@ const referralActionCreator = {
       actionType: referralConstants.REDEEMING_CREDITS,
     });
 
-    const url = '/api/referral/redeem';
+    const url = '/api/v1/referral/redeem';
 
     Proxy.post(url)
       .then((payloadObj) => {
@@ -68,7 +68,7 @@ const referralActionCreator = {
       actionType: referralConstants.SENDING_EMAIL_TO_REFERRAL,
     });
 
-    const url = '/api/referral/email';
+    const url = '/api/v1/referral/email';
     const body = { emailTo, emailFromName };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 

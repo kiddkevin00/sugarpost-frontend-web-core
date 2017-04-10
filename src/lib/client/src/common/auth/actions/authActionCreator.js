@@ -17,7 +17,7 @@ const authActionCreator = {
       actionType: authConstants.SIGNING_UP,
     });
 
-    const url = '/api/auth/signup';
+    const url = '/api/v1/auth/signup';
     const body = { email, password, fullName };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
@@ -52,7 +52,7 @@ const authActionCreator = {
                   break;
               }
 
-              fullUrl = `${origin}/api/auth/token`;
+              fullUrl = `${origin}/api/v1/auth/token`;
 
               if (Object.keys(userInfo).length) {
                 const queryStringObj = Object.assign({}, userInfo, {
@@ -104,7 +104,7 @@ const authActionCreator = {
       actionType: authConstants.LOGGING_IN,
     });
 
-    const url = '/api/auth/login';
+    const url = '/api/v1/auth/login';
     const body = { email, password };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
@@ -139,7 +139,7 @@ const authActionCreator = {
                   break;
               }
 
-              fullUrl = `${origin}/api/auth/token`;
+              fullUrl = `${origin}/api/v1/auth/token`;
 
               switch (userInfo.type) {
                 case constants.SYSTEM.USER_TYPES.PAID:
@@ -196,7 +196,7 @@ const authActionCreator = {
   },
 
   logout() {
-    const url = '/api/auth/logout';
+    const url = '/api/v1/auth/logout';
 
     Proxy.get(url)
       .then((payloadObj) => {
@@ -234,7 +234,7 @@ const authActionCreator = {
       actionType: authConstants.RESETTING_PASSWORD,
     });
 
-    const url = '/api/auth/forgot-password';
+    const url = '/api/v1/auth/forgot-password';
     const body = { email };
     const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
@@ -261,7 +261,7 @@ const authActionCreator = {
   },
 
   authCheck() {
-    const url = '/api/auth/check';
+    const url = '/api/v1/auth/check';
 
     Proxy.get(url)
       .then((payloadObj) => {
@@ -301,7 +301,7 @@ const authActionCreator = {
   },
 
   inTransition(nextState, replace) {
-    const url = '/api/auth/check';
+    const url = '/api/v1/auth/check';
 
     Proxy.get(url)
       .then((payloadObj) => {
