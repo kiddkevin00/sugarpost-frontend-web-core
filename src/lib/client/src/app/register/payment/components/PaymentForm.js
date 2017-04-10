@@ -5,6 +5,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import React from 'react';
 import couponCode from 'coupon-code';
 import classNames from 'classnames';
+import ReactGA from 'react-ga';
 
 class PaymentForm extends BaseComponent {
 
@@ -127,10 +128,19 @@ class PaymentForm extends BaseComponent {
   _onClick(event) {
     if (!PaymentForm._validateCouponCode(this.state.referralCode)) {
       event.stopPropagation();
+    } else {
+      ReactGA.event({
+        category: 'User',
+        action: 'payment button clicked',
+      });
     }
   }
 
   _onToken(token) {
+    ReactGA.event({
+      category: 'User',
+      action: 'payment form verified',
+    });
     this.props.onSubmit(token, this.state.referralCode);
   }
 

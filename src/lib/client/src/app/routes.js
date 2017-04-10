@@ -13,6 +13,9 @@ import AccountApp from './account/components/AccountApp';
 import VoucherApp from './voucher/components/VoucherApp';
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-96122075-1');
 
 const clientRoutes = (
   <Router history={ browserHistory }>
