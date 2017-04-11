@@ -211,7 +211,7 @@ dispatcher.register((action) => {
       break;
 
     case authConstants.RESET_PASSWORD_SUCCEED:
-      authStore._showInfo('forgotPassword', 'If a matching account was found, an email was sent to allow you to reset your password.');
+      authStore._showInfo('forgotPassword', data || 'If a matching account was found, an email was sent to allow you to reset your password.');
       authStore._setLoadingStatus(false);
 
       authStore.emitChange();

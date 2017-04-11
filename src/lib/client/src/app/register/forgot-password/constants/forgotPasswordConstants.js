@@ -1,0 +1,8 @@
+const forgotPasswordConstants = {
+  RESETTING_PASSWORD: 'RESETTING_PASSWORD',
+  RESET_PASSWORD_SUCCEED: 'RESET_PASSWORD_SUCCEED',
+  RESET_PASSWORD_FAIL: 'RESET_PASSWORD_FAIL',
+};
+
+
+export default forgotPasswordConstants;

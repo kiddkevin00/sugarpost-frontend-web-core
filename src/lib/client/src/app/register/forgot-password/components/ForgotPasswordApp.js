@@ -1,7 +1,9 @@
+import forgotPasswordCreator from '../actions/forgotPasswordActionCreator';
 import authStore from '../../../../common/auth/stores/authStore';
 import authActionCreator from '../../../../common/auth/actions/authActionCreator';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import { connect } from 'react-redux'
 import React from 'react';
 
 class ForgotPasswordApp extends BaseComponent {
@@ -9,22 +11,22 @@ class ForgotPasswordApp extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange');
-    this.state = _getState();
+    this._bind('_onChange', '_onSubmit');
+    //this.state = _getState();
   }
 
   componentDidMount() {
-    authStore.addChangeListener(this._onChange);
+    //authStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
-    authStore.removeChangeListener(this._onChange);
+    //authStore.removeChangeListener(this._onChange);
   }
 
   render() {
     let loader;
 
-    if (this.state.isLoading) {
+    if (this.props.isLoading) {
       loader = (
         <div className="slow-loader" />
       );
@@ -59,9 +61,9 @@ class ForgotPasswordApp extends BaseComponent {
             <div className="form-bottom">
               { loader }
               <ForgotPasswordForm
-                onSubmit={ ForgotPasswordApp._onSubmit }
-                isInfoVisible={ this.state.info.isVisible }
-                infoMsg={ this.state.info.message }
+                onSubmit={ this._onSubmit }
+                isInfoVisible={ this.props.info.isVisible }
+                infoMsg={ this.props.info.message }
               />
             </div>
           </div>
@@ -70,17 +72,23 @@ class ForgotPasswordApp extends BaseComponent {
     );
   }
 
-  _onChange() {
-    this.setState(_getState());
-  }
+  //_onChange() {
+  //  this.setState(_getState());
+  //}
 
-  static _onSubmit(event, _email) {
+  _onSubmit(event, _email) {
     const email = _email && _email.trim() && _email.toLowerCase();
 
-    authActionCreator.forgotPassword(email);
+    //authActionCreator.forgotPassword(email);
+    forgotPasswordCreator.forgotPassword(this.props.dispatch, email);
   }
 
 }
+ForgotPasswordApp.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  isLoading: React.PropTypes.bool.isRequired,
+  info: React.PropTypes.object.isRequired,
+};
 ForgotPasswordApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
@@ -89,11 +97,18 @@ ForgotPasswordApp.contextTypes = {
  * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
  * the data in the Flux store.
  */
-function _getState() {
+//function _getState() {
+//  return {
+//    info: authStore.getInfo('forgotPassword'),
+//    isLoading: authStore.isLoading(),
+//  };
+//}
+
+function mapStateToProps(state) {
   return {
-    info: authStore.getInfo('forgotPassword'),
-    isLoading: authStore.isLoading(),
+    isLoading: state.isLoading,
+    info: state.forgotPasswordInfo,
   };
 }
 
-export default ForgotPasswordApp;
+export default connect(mapStateToProps)(ForgotPasswordApp);
