@@ -4,6 +4,7 @@ import StandardResponseWrapper from '../../utility/standard-response-wrapper';
 import StandardErrorWrapper from '../../utility/standard-error-wrapper';
 import authConstants from '../constants/authConstants';
 import constants from '../../constants/';
+import ReactGA from 'react-ga';
 
 const authActionCreator = {
   landPage() {
@@ -27,6 +28,11 @@ const authActionCreator = {
           const res = StandardResponseWrapper.deserialize(payloadObj);
 
           if (res.getNthData(0).success) {
+            ReactGA.event({
+              category: 'Acquisition',
+              action: 'created an account',
+            });
+
             const userInfo = res.getNthData(0).detail;
 
             if (
@@ -72,17 +78,32 @@ const authActionCreator = {
               });
             }
           } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
+            ReactGA.event({
+              category: 'Acquisition',
+              action: 'attempted to signup with duplicate email',
+            });
+
             dispatcher.dispatch({
               actionType: authConstants.ALREADY_SIGNED_UP,
               data: res.getNthData(0).detail,
             });
           } else {
+            ReactGA.event({
+              category: 'Acquisition',
+              action: 'signup failed',
+            });
+
             dispatcher.dispatch({
               actionType: authConstants.SIGNUP_FAIL,
               data: res.getNthData(0).detail,
             });
           }
         } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+          ReactGA.event({
+            category: 'Acquisition',
+            action: 'signup failed',
+          });
+
           const err = StandardErrorWrapper.deserialize(payloadObj);
 
           dispatcher.dispatch({
@@ -92,6 +113,11 @@ const authActionCreator = {
         }
       })
       .catch((err) => {
+        ReactGA.event({
+          category: 'Acquisition',
+          action: 'signup failed',
+        });
+
         dispatcher.dispatch({
           actionType: authConstants.SIGNUP_FAIL,
           data: err,
