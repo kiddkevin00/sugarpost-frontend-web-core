@@ -2,6 +2,7 @@ import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 import classNames from 'classnames';
+import ReactGA from 'react-ga';
 
 class SignupForm extends BaseComponent {
 
@@ -96,8 +97,18 @@ class SignupForm extends BaseComponent {
       this.password.isValid() &&
       this.confirmPassword.isValid()
     ) {
+      ReactGA.event({
+        category: 'User',
+        action: 'signup form submitted',
+      });
+
       this.props.onSubmit(event, this.state.email, this.state.password, this.state.fullName);
     } else {
+      ReactGA.event({
+        category: 'User',
+        action: 'signup form invalid',
+      });
+
       this.fullName.isValid();
       this.email.isValid();
       this.password.isValid();
