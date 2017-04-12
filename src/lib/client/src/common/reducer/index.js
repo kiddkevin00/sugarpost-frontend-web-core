@@ -1,5 +1,5 @@
-import forgotPasswordReducer from '../../app/register/forgot-password/reducer/index';
-import actionTypes from './rootActionTypes';
+import forgotPasswordReducer from '../../app/register/forgot-password/reducer/';
+import actionTypes from '../action-types/';
 
 const defaultInfoMsg = 'Request has been completed.';
 

@@ -1,4 +1,4 @@
-import actionTypes from '../../../../common/redux/rootActionTypes';
+import actionTypes from '../../../../common/action-types/';
 import Proxy from '../../../../common/proxies/HttpProxy';
 import StandardResponseWrapper from '../../../../common/utility/standard-response-wrapper';
 import StandardErrorWrapper from '../../../../common/utility/standard-error-wrapper';

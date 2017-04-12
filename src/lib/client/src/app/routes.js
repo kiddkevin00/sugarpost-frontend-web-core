@@ -1,4 +1,4 @@
-import store from '../common/redux/store';
+import rootReducer from '../common/reducer/';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import RootApp from './RootApp';
 import HomeApp from './home/components/HomeApp';
@@ -6,15 +6,18 @@ import RegisterApp from './register/';
 import LoginApp from './register/login/components/LoginApp';
 import SignupApp from './register/signup/components/SignupApp';
 import PaymentApp from './register/payment/components/PaymentApp';
-import ForgotPasswordApp from './register/forgot-password/components/ForgotPasswordApp';
+import ForgotPasswordApp from './register/forgot-password/components/App';
 import ReferralApp from './register/referral/components/ReferralApp';
 import PrivacyPolicyApp from './privacy-policy/components/PrivacyPolicyApp';
 import TermsOfUse from './terms-of-use/components/TermsOfUseApp';
 import AccountApp from './account/components/AccountApp';
 import VoucherApp from './voucher/components/VoucherApp';
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import React from 'react';
+
+const store = createStore(rootReducer);
 
 const clientRoutes = (
   <Provider store={ store }>

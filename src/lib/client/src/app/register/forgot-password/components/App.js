@@ -1,4 +1,4 @@
-import ForgotPasswordForm from './ForgotPasswordForm';
+import ForgotPasswordForm from './Form';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
 import React from 'react';

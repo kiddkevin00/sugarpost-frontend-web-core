@@ -1,4 +1,4 @@
-import actionCreator from '../action/actionCreator';
+import actionCreator from '../action-creator/actionCreator';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
