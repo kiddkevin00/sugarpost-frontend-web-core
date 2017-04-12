@@ -1,9 +1,8 @@
-const forgotPasswordConstants = {
-  SET_FORGOT_PASSWORD_FORM_FIELD: 'SET_EMAIL_TO_RESET',
+const forgotPasswordActionTypes = {
+  SET_FORM_FIELD: 'SET_FORM_FIELD',
   RESETTING_PASSWORD: 'RESETTING_PASSWORD',
   RESET_PASSWORD_SUCCEED: 'RESET_PASSWORD_SUCCEED',
   RESET_PASSWORD_FAIL: 'RESET_PASSWORD_FAIL',
 };
 
-
-export default forgotPasswordConstants;
+export default forgotPasswordActionTypes;

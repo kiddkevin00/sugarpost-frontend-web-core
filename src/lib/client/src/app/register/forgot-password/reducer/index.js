@@ -1,4 +1,4 @@
-const forgotPasswordRedcer = {
+const forgotPasswordReducer = {
   setForgotPasswordFormField(state, action) {
     const data = action.data;
 
@@ -30,4 +30,4 @@ const forgotPasswordRedcer = {
   },
 };
 
-export default forgotPasswordRedcer;
+export default forgotPasswordReducer;

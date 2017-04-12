@@ -1,15 +1,10 @@
-import forgotPasswordCreator from '../actions/forgotPasswordActionCreator';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
 import React from 'react';
 
 class ForgotPasswordApp extends BaseComponent {
-
-  constructor(props) {
-    super(props);
-  }
-
+  
   render() {
     let loader;
 

@@ -1,4 +1,4 @@
-import store from '../common/store/store';
+import store from '../common/redux/store';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import RootApp from './RootApp';
 import HomeApp from './home/components/HomeApp';

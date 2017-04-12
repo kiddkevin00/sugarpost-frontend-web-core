@@ -1,4 +1,4 @@
-import forgotPasswordCreator from '../actions/forgotPasswordActionCreator';
+import actionCreator from '../action/actionCreator';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
@@ -48,7 +48,7 @@ class ForgotPasswordForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    forgotPasswordCreator.setForgotPasswordFormField(this.props.dispatch, field, value);
+    actionCreator.setForgotPasswordFormField(this.props.dispatch, field, value);
   }
 
   _onSubmit(event) {
@@ -59,7 +59,7 @@ class ForgotPasswordForm extends BaseComponent {
       const _email = this.props.forgotPasswordFormEmail;
       const email = _email.trim() && _email.toLowerCase();
 
-      forgotPasswordCreator.forgotPassword(this.props.dispatch, email);
+      actionCreator.forgotPassword(this.props.dispatch, email);
     } else {
       this.email.isValid();
     }

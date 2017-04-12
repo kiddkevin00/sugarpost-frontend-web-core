@@ -1,5 +1,5 @@
-import forgotPasswordReducer from '../../app/register/forgot-password/reducers/forgotPasswordReducer';
-import forgotPasswordConstants from '../../app/register/forgot-password/constants/forgotPasswordConstants';
+import forgotPasswordReducer from '../../app/register/forgot-password/reducer/index';
+import actionTypes from './rootActionTypes';
 
 const defaultInfoMsg = 'Request has been completed.';
 
@@ -14,13 +14,13 @@ const defaultState = {
 
 const rootReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case forgotPasswordConstants.SET_FORGOT_PASSWORD_FORM_FIELD:
+    case actionTypes.FORGOT_PASSWORD.SET_FORM_FIELD:
       return forgotPasswordReducer.setForgotPasswordFormField(state, action);
-    case forgotPasswordConstants.RESETTING_PASSWORD:
+    case actionTypes.FORGOT_PASSWORD.RESETTING_PASSWORD:
       return forgotPasswordReducer.resettingPassword(state, action);
-    case forgotPasswordConstants.RESET_PASSWORD_SUCCEED:
+    case actionTypes.FORGOT_PASSWORD.RESET_PASSWORD_SUCCEED:
       return forgotPasswordReducer.resetPasswordSucceed(state, action);
-    case forgotPasswordConstants.RESET_PASSWORD_FAIL:
+    case actionTypes.FORGOT_PASSWORD.RESET_PASSWORD_FAIL:
       return forgotPasswordReducer.resetPasswordFail(state, action);
     default:
       return state;
