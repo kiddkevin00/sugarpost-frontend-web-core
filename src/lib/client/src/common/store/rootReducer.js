@@ -4,6 +4,7 @@ import forgotPasswordConstants from '../../app/register/forgot-password/constant
 const defaultInfoMsg = 'Request has been completed.';
 
 const defaultState = {
+  forgotPasswordFormEmail: '',
   isLoading: false,
   forgotPasswordInfo: {
     isVisible: false,
@@ -13,6 +14,8 @@ const defaultState = {
 
 const rootReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case forgotPasswordConstants.SET_FORGOT_PASSWORD_FORM_FIELD:
+      return forgotPasswordReducer.setForgotPasswordFormField(state, action);
     case forgotPasswordConstants.RESETTING_PASSWORD:
       return forgotPasswordReducer.resettingPassword(state, action);
     case forgotPasswordConstants.RESET_PASSWORD_SUCCEED:

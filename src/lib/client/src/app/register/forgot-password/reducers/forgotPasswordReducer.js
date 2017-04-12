@@ -1,4 +1,10 @@
 const forgotPasswordRedcer = {
+  setForgotPasswordFormField(state, action) {
+    const data = action.data;
+
+    return Object.assign({}, state, { [`forgotPasswordForm${data.field}`]: data.value });
+  },
+
   resettingPassword(state, action) {
     return Object.assign({}, state, { isLoading: true });
   },

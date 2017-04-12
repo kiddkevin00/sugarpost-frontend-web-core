@@ -1,26 +1,13 @@
 import forgotPasswordCreator from '../actions/forgotPasswordActionCreator';
-import authStore from '../../../../common/auth/stores/authStore';
-import authActionCreator from '../../../../common/auth/actions/authActionCreator';
 import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import React from 'react';
 
 class ForgotPasswordApp extends BaseComponent {
 
   constructor(props) {
     super(props);
-
-    this._bind('_onChange', '_onSubmit');
-    //this.state = _getState();
-  }
-
-  componentDidMount() {
-    //authStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount() {
-    //authStore.removeChangeListener(this._onChange);
   }
 
   render() {
@@ -60,11 +47,7 @@ class ForgotPasswordApp extends BaseComponent {
             </div>
             <div className="form-bottom">
               { loader }
-              <ForgotPasswordForm
-                onSubmit={ this._onSubmit }
-                isInfoVisible={ this.props.info.isVisible }
-                infoMsg={ this.props.info.message }
-              />
+              <ForgotPasswordForm />
             </div>
           </div>
         </div>
@@ -72,42 +55,18 @@ class ForgotPasswordApp extends BaseComponent {
     );
   }
 
-  //_onChange() {
-  //  this.setState(_getState());
-  //}
-
-  _onSubmit(event, _email) {
-    const email = _email && _email.trim() && _email.toLowerCase();
-
-    //authActionCreator.forgotPassword(email);
-    forgotPasswordCreator.forgotPassword(this.props.dispatch, email);
-  }
-
 }
 ForgotPasswordApp.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   isLoading: React.PropTypes.bool.isRequired,
-  info: React.PropTypes.object.isRequired,
 };
 ForgotPasswordApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux store.
- */
-//function _getState() {
-//  return {
-//    info: authStore.getInfo('forgotPassword'),
-//    isLoading: authStore.isLoading(),
-//  };
-//}
-
 function mapStateToProps(state) {
   return {
     isLoading: state.isLoading,
-    info: state.forgotPasswordInfo,
   };
 }
 
