@@ -1,4 +1,4 @@
-import rootReducer from '../common/reducer/';
+import store from '../common/store/';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import RootApp from './RootApp';
 import HomeApp from './home/components/HomeApp';
@@ -13,11 +13,8 @@ import TermsOfUse from './terms-of-use/components/TermsOfUseApp';
 import AccountApp from './account/components/AccountApp';
 import VoucherApp from './voucher/components/VoucherApp';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import React from 'react';
-
-const store = createStore(rootReducer);
 
 const clientRoutes = (
   <Provider store={ store }>
