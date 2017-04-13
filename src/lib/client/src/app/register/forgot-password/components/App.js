@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 class ForgotPasswordApp extends BaseComponent {
-  
+
   render() {
     let loader;
 
@@ -61,7 +61,7 @@ ForgotPasswordApp.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    isLoading: state.isLoading,
+    isLoading: state.forgotPassword.isLoading,
   };
 }
 

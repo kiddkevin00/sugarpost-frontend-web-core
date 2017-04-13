@@ -1,4 +1,4 @@
-import store from '../common/store/';
+import configureStore from '../common/store/';
 import authActionCreator from '../common/auth/actions/authActionCreator';
 import RootApp from './RootApp';
 import HomeApp from './home/components/HomeApp';
@@ -15,6 +15,8 @@ import VoucherApp from './voucher/components/VoucherApp';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import React from 'react';
+
+const store = configureStore();
 
 const clientRoutes = (
   <Provider store={ store }>

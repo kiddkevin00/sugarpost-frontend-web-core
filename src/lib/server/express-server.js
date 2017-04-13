@@ -57,8 +57,6 @@ function setupExpressServer(app) {
     app.use(morgan('combined', { stream: accessLogStream }));
     app.use(morgan('dev'));
   } else {
-    // The Node environment variable should be either "test" or "development".
-
     /*
      * [Note] Install Chrome extension LiveReload instead of adding live-reloaded script to the
      * response, implemented as the following:

@@ -33,7 +33,7 @@ class ForgotPasswordForm extends BaseComponent {
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
           onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
-          value={ this.props.forgotPasswordFormEmail }
+          value={ this.props.formEmail }
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
         />
@@ -56,7 +56,7 @@ class ForgotPasswordForm extends BaseComponent {
     event.preventDefault();
 
     if (this.email.isValid()) {
-      const _email = this.props.forgotPasswordFormEmail;
+      const _email = this.props.formEmail;
       const email = _email.trim() && _email.toLowerCase();
 
       actionCreator.forgotPassword(this.props.dispatch, email);
@@ -68,8 +68,7 @@ class ForgotPasswordForm extends BaseComponent {
 }
 ForgotPasswordForm.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  forgotPasswordFormEmail: React.PropTypes.string.isRequired,
-  isLoading: React.PropTypes.bool.isRequired,
+  formEmail: React.PropTypes.string.isRequired,
   info: React.PropTypes
     .shape({
       isVisible: React.PropTypes.bool.isRequired,
@@ -80,9 +79,8 @@ ForgotPasswordForm.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    forgotPasswordFormEmail: state.forgotPasswordFormEmail,
-    isLoading: state.isLoading,
-    info: state.forgotPasswordInfo,
+    formEmail: state.forgotPassword.formEmail,
+    info: state.forgotPassword.info,
   };
 }
 
