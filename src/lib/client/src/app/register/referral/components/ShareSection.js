@@ -73,52 +73,53 @@ class ShareSection extends BaseComponent {
             >
               <CustomIcon type={ 'email' } />
             </button>
-            <Modal show={ this.state.isModalOpen } onHide={ this._closeModal }>
-              <Modal.Header>
-                <Modal.Title>Earn credit for every friend you refer!</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Form>
-                  <div className={ alertSuccessBoxClasses } role="alert">
-                    <a className="close" data-dismiss="alert">×</a>
-                    <i className="fa fa-check-square-o" />
-                    &nbsp; { this.props.infoMsg }
-                  </div>
-                  <div className={ alertErrorBoxClasses } role="alert">
-                    <a className="close" data-dismiss="alert">×</a>
-                    <i className="fa fa-exclamation-triangle" />
-                    &nbsp; { this.props.errorMsg }
-                  </div>
-                  <FormInput
-                    text="Friend's Email Address"
-                    ref={ (formInputObj) => { this.referralEmail = formInputObj; } }
-                    validate={ FormInput.validateEmailField }
-                    value={ this.state.referralEmail }
-                    onChange={ this._onChange } /* eslint-disable-line react/jsx-no-bind */
-                    errorMessage="Email is invalid"
-                    emptyMessage="Email can't be empty"
-                  />
-                </Form>
-              </Modal.Body>
-              <Modal.Footer>
-                <button
-                  onClick={ this._sendEmailToReferral }
-                  className="btn btn-primary"
-                  type="button"
-                >
-                  Refer Now
-                </button>
-                <button
-                  onClick={ this._closeModal }
-                  className="btn btn-default"
-                  type="button"
-                >
-                  Close
-                </button>
-              </Modal.Footer>
-            </Modal>
           </li>
         </ul>
+
+        <Modal show={ this.state.isModalOpen } onHide={ this._closeModal }>
+          <Modal.Header>
+            <Modal.Title>Earn credit for every friend you refer!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <div className={ alertSuccessBoxClasses } role="alert">
+                <a className="close" data-dismiss="alert">×</a>
+                <i className="fa fa-check-square-o" />
+                &nbsp; { this.props.infoMsg }
+              </div>
+              <div className={ alertErrorBoxClasses } role="alert">
+                <a className="close" data-dismiss="alert">×</a>
+                <i className="fa fa-exclamation-triangle" />
+                &nbsp; { this.props.errorMsg }
+              </div>
+              <FormInput
+                text="Friend's Email Address"
+                ref={ (formInputObj) => { this.referralEmail = formInputObj; } }
+                validate={ FormInput.validateEmailField }
+                value={ this.state.referralEmail }
+                onChange={ this._onChange } /* eslint-disable-line react/jsx-no-bind */
+                errorMessage="Email is invalid"
+                emptyMessage="Email can't be empty"
+              />
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              onClick={ this._sendEmailToReferral }
+              className="btn btn-primary"
+              type="button"
+            >
+              Refer Now
+            </button>
+            <button
+              onClick={ this._closeModal }
+              className="btn btn-default"
+              type="button"
+            >
+              Close
+            </button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }

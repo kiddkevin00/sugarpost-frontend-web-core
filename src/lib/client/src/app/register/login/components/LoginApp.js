@@ -102,7 +102,7 @@ class LoginApp extends BaseComponent {
               <br />
               <a href="/register/forgot-password" className="center-block text-center">
                 Forgot password?
-              </a>
+              </a>                                                                                
             </div>
           </div>
         </div>

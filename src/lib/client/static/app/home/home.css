@@ -4,7 +4,14 @@
 }
 
 
-/***** Find-out-more button *****/
+/***** For Modal component *****/
+
+#promotion-modal .thumbnail {
+    border: none;
+}
+
+
+/***** For find-out-more button *****/
 
 #home-template .btn-circle {
     width: 70px;
@@ -46,7 +53,7 @@
 }
 
 
-/***** For (common) Footer component *****/
+/***** For Footer component *****/
 
 #footer {
     padding: 25px 0;

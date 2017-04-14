@@ -1,25 +1,53 @@
 import BaseComponent from '../../../common/components/BaseComponent';
 import Footer from '../../../common/components/Footer';
-import React from 'react';
+import { Thumbnail, Modal } from 'react-bootstrap';
 import { Element } from 'react-scroll';
+import React from 'react';
 
 class HomeApp extends BaseComponent {
 
   constructor(props) {
     super(props);
 
-    this.state = _getState();
+    this._bind('_closeModal');
+    this.state = {
+      isModalOpen: true,
+    };
   }
-
-  componentDidMount() {}
-
-  componentWillReceiveProps(nextProps) {}
-
-  componentWillUnmount() {}
 
   render() {
     return (
       <div id="home-template">
+        <Modal id="promotion-modal" show={ this.state.isModalOpen } onHide={ this._closeModal }>
+          <Modal.Header>
+            <Modal.Title>Have You Try Our Premium Dessert Subscription Service Yet?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Thumbnail className="text-center" src="/assets/images/sugarpost-logo.png" alt="">
+              <div className="row">
+                <div className="col-xs-12">
+                  <h4>50% OFF</h4>
+                  <h2>For Your First Month</h2>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12">
+                  <p>Limited Edition</p>
+                </div>
+              </div>
+            </Thumbnail>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              onClick={ this._closeModal }
+              className="btn btn-default center-block"
+              type="button"
+            >
+              Close
+            </button>
+          </Modal.Footer>
+        </Modal>
+
         <header>
           <div className="header-content">
             <div className="header-content-inner">
@@ -213,14 +241,12 @@ class HomeApp extends BaseComponent {
     );
   }
 
-}
+  _closeModal() {
+    this.setState({
+      isModalOpen: false,
+    });
+  }
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
- */
-function _getState() {
-  return {};
 }
 
 export default HomeApp;

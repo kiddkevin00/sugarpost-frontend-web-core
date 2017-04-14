@@ -1,4 +1,4 @@
-import actionCreator from '../action-creator/actionCreator';
+import actionCreator from '../actions/actionCreator';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
@@ -20,7 +20,7 @@ class ForgotPasswordForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.info.isVisible,
     });
-
+    
     return (
       <form onSubmit={ this._onSubmit } role="form">
         <div className={ alertBoxClasses } role="alert">

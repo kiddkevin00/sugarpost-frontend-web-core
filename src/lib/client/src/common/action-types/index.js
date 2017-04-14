@@ -1,4 +1,4 @@
-import forgotPasswordActionTypes from './forgotPassword';
+import forgotPasswordActionTypes from '../../app/register/forgot-password/actions/actionTypes';
 
 const actionTypesPerSection = {
   FORGOT_PASSWORD: forgotPasswordActionTypes,

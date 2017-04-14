@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeApp from '../../../../../../../lib/client/src/app/home/components/HomeApp';
+import HomeApp from '../../../../../../../lib/client/src/app/home/components/App';
 import { shallow, mount } from 'enzyme';
 
 describe('Home App component', () => {
