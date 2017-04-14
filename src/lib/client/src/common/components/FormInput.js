@@ -21,7 +21,6 @@ class FormInput extends BaseComponent {
       errorMessage: props.emptyMessage,
       isErrorVisible: false,
       isValidatorVisible: false,
-      isIconsVisible: !props.useValidator, // TODO
       isAllValidatorValid: false,
       isEachValidatorValid: {
         minChars: false,

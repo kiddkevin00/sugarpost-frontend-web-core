@@ -20,7 +20,7 @@ class ForgotPasswordForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.info.isVisible,
     });
-    
+
     return (
       <form onSubmit={ this._onSubmit } role="form">
         <div className={ alertBoxClasses } role="alert">
@@ -48,7 +48,7 @@ class ForgotPasswordForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    actionCreator.setForgotPasswordFormField(this.props.dispatch, field, value);
+    this.props.dispatch(actionCreator.setForgotPasswordFormField(field, value));
   }
 
   _onSubmit(event) {
@@ -59,7 +59,7 @@ class ForgotPasswordForm extends BaseComponent {
       const _email = this.props.formEmail;
       const email = _email.trim() && _email.toLowerCase();
 
-      actionCreator.forgotPassword(this.props.dispatch, email);
+      this.props.dispatch(actionCreator.forgotPassword(email));
     } else {
       this.email.isValid();
     }
