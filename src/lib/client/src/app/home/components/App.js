@@ -54,10 +54,10 @@ class HomeApp extends BaseComponent {
               <hr />
               <p>
                 Discover hidden gems to Manhattan&#39;s trendiest desserts! Subscribe and receive an
-                e-package which will contain four vouchers that can claim in-store desserts or
+                e-package which will contain vouchers that can claim in-store desserts or
                 <b><i>&nbsp;Sugarpost exclusives&nbsp;</i></b>
                 from
-                <b><i>&nbsp;four different featured dessert vendors every month!&nbsp;</i></b>
+                <b><i>&nbsp;different featured dessert vendors every month!&nbsp;</i></b>
               </p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">
                 Sign Up Now
@@ -157,25 +157,19 @@ class HomeApp extends BaseComponent {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 text-center">
-                    <h2 className="section-heading">Upcoming Featured Vendors</h2>
+                    <h2 className="section-heading">Upcoming Vendors</h2>
                     <hr className="primary" />
                   </div>
                 </div>
               </div>
               <div className="container-fluid">
                 <div className="row no-gutter popup-gallery">
-                  <div className="col-lg-3 col-sm-6">
+                  <div className="col-lg-offset-3 col-lg-3 col-sm-6">
                     {/* eslint-disable max-len */}
-                    <img src="/assets/images/eggloo.jpg" className="img-responsive" alt="" />
+                    <img src="/assets/images/eggloo_logo.png" className="img-responsive" alt="" />
                   </div>
                   <div className="col-lg-3 col-sm-6">
-                    <img src="/assets/images/shavedice-with-blur.jpg" className="img-responsive" alt="" />
-                  </div>
-                  <div className="col-lg-3 col-sm-6">
-                    <img src="/assets/images/cupcake-with-blur.jpg" className="img-responsive" alt="" />
-                  </div>
-                  <div className="col-lg-3 col-sm-6">
-                    <img src="/assets/images/ringding-with-blur.jpg" className="img-responsive" alt="" />
+                    <img src="/assets/images/ny-frost-factory_logo.jpg" className="img-responsive" alt="" />
                     {/* eslint-enable max-len */}
                   </div>
                 </div>
@@ -185,7 +179,7 @@ class HomeApp extends BaseComponent {
               <div className="container text-center">
                 <div className="call-to-action">
                   <br />
-                  <h2>Reveal The Mystery Desserts Above</h2>
+                  <h2>Subscribe Today</h2>
                   <a
                     href="/register/signup"
                     className="btn btn-default btn-xl sr-button"

@@ -49,7 +49,7 @@ class SignupApp extends BaseComponent {
             <h1>Adventure Awaits You</h1>
             <div className="description">
               <p>
-                For only $24.99 a month, you will receive e-packages curated by the insight of
+                For only $12.50 a month, you will receive e-packages curated by the insight of
                 influential food bloggers and dessert connoisseurs! Within your e-package, you
                 will find a little background on each featured dessert vendor and your vouchers
                 which can claim in-store desserts or Sugarpost exclusives.
@@ -58,7 +58,7 @@ class SignupApp extends BaseComponent {
             <div className="top-big-link">
               <ol>
                 <li>Sign up to the right and become a paid subscriber.</li>
-                <li>Receive four vouchers during the first day of every month.</li>
+                <li>Receive two vouchers during the first day of every month.</li>
                 <li>Visit the dessert shops.</li>
                 <li>Redeem desserts and enjoy!</li>
               </ol>

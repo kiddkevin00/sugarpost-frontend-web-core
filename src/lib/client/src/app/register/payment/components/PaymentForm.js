@@ -32,8 +32,8 @@ class PaymentForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
-    const showDiscountStr = this.state.isReferralCodeValid ? '10% Off Included' : '\u00A0';
-    const totalCost = this.state.isReferralCodeValid ? '$24.49' : '$27.21';
+    const showDiscountStr = this.state.isReferralCodeValid ? '50% Off Included' : '\u00A0';
+    const totalCost = this.state.isReferralCodeValid ? '$6.81' : '$13.61';
 
     return (
       <form role="form">
@@ -50,7 +50,7 @@ class PaymentForm extends BaseComponent {
         <div className="text-center">
           <h3><b>Monthly Subscription</b></h3>
           <p>_______________________________</p>
-          <h1><b>$24.99</b></h1>
+          <h1><b>$12.50</b></h1>
           <span>+</span>
           <br />
           <span>Tax (8.875%)</span>
@@ -60,7 +60,7 @@ class PaymentForm extends BaseComponent {
         </div>
         <br />
         <div>
-          Do you have an referral code?
+          Do you have a referral code?
         </div>
         <FormInput
           text="Optional"

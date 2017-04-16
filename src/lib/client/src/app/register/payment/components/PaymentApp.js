@@ -69,7 +69,7 @@ class PaymentApp extends BaseComponent {
             <h1>Start Your Adventure Today</h1>
             <div className="description">
               <p>
-                For only $24.99 a month, you will receive e-packages curated by the insight of
+                For only $12.50 a month, you will receive e-packages curated by the insight of
                 influential food bloggers and dessert connoisseurs! Within your e-package, you
                 will find a little background on each featured dessert vendor and your vouchers
                 which can claim in-store desserts or Sugarpost exclusives.
@@ -81,6 +81,10 @@ class PaymentApp extends BaseComponent {
                 <li>Receive four vouchers during the first day of every month.</li>
                 <li>Visit the dessert shops.</li>
                 <li>Redeem and enjoy desserts by the end of the month!</li>
+                <li>
+                  Vouchers include the choices to redeem <i>Sugarpost Exclusives</i> or in-store
+                  desserts <i>(more than 10% discount off total retail value)</i>
+                </li>
               </ol>
             </div>
           </div>

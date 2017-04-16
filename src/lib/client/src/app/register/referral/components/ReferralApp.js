@@ -91,7 +91,7 @@ class ReferralApp extends BaseComponent {
               </p>
               <p>
                 Sugarpost has an amazing referral program! For each friend that subscribes to our
-                monthly service using your referral code, we will add $2.50 to your Sugarpost
+                monthly service using your referral code, we will add $1.25 to your Sugarpost
                 credits.
                 <b><i>
                   &nbsp;Invite ten friends to use your outstanding credits to get next month&#39;s
