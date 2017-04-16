@@ -1,7 +1,9 @@
+import actionCreator from '../actions/actionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
 import Footer from '../../../common/components/Footer';
 import { Thumbnail, Modal } from 'react-bootstrap';
 import { Element } from 'react-scroll';
+import { connect } from 'react-redux';
 import React from 'react';
 
 class HomeApp extends BaseComponent {
@@ -10,15 +12,12 @@ class HomeApp extends BaseComponent {
     super(props);
 
     this._bind('_closeModal');
-    this.state = {
-      isModalOpen: true,
-    };
   }
 
   render() {
     return (
       <div id="home-template">
-        <Modal id="promotion-modal" show={ this.state.isModalOpen } onHide={ this._closeModal }>
+        <Modal id="promotion-modal" show={ this.props.isModalOpen } onHide={ this._closeModal }>
           <Modal.Header>
             <Modal.Title>Have You Try Our Premium Dessert Subscription Service Yet?</Modal.Title>
           </Modal.Header>
@@ -26,8 +25,8 @@ class HomeApp extends BaseComponent {
             <Thumbnail className="text-center" src="/assets/images/sugarpost-logo.png" alt="">
               <div className="row">
                 <div className="col-xs-12">
-                  <h4>50% OFF</h4>
-                  <h2>For Your First Month</h2>
+                  <h2>50% OFF</h2>
+                  <h4>Use U50VRR Code for Your First Month</h4>
                 </div>
               </div>
               <div className="row">
@@ -242,11 +241,26 @@ class HomeApp extends BaseComponent {
   }
 
   _closeModal() {
-    this.setState({
-      isModalOpen: false,
-    });
+    this.props.dispatchCloseModal();
   }
 
 }
+HomeApp.propTypes = {
+  dispatchCloseModal: React.PropTypes.func.isRequired,
+  isModalOpen: React.PropTypes.bool.isRequired,
+};
 
-export default HomeApp;
+function mapStateToProps(state) {
+  return {
+    isModalOpen: state.home.isModalOpen,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchCloseModal() {
+      dispatch(actionCreator.closeModal());
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeApp);

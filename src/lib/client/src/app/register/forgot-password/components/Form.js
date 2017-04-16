@@ -48,7 +48,7 @@ class ForgotPasswordForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    this.props.dispatch(actionCreator.setForgotPasswordFormField(field, value));
+    this.props.dispatchSetForgotPasswordFormField(field, value);
   }
 
   _onSubmit(event) {
@@ -59,7 +59,7 @@ class ForgotPasswordForm extends BaseComponent {
       const _email = this.props.formEmail;
       const email = _email.trim() && _email.toLowerCase();
 
-      this.props.dispatch(actionCreator.forgotPassword(email));
+      this.props.dispatchForgotPassword(email);
     } else {
       this.email.isValid();
     }
@@ -67,7 +67,8 @@ class ForgotPasswordForm extends BaseComponent {
 
 }
 ForgotPasswordForm.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
+  dispatchSetForgotPasswordFormField: React.PropTypes.func.isRequired,
+  dispatchForgotPassword: React.PropTypes.func.isRequired,
   formEmail: React.PropTypes.string.isRequired,
   info: React.PropTypes
     .shape({
@@ -83,5 +84,16 @@ function mapStateToProps(state) {
     info: state.forgotPassword.info,
   };
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchSetForgotPasswordFormField(field, value) {
+      dispatch(actionCreator.setForgotPasswordFormField(field, value));
+    },
 
-export default connect(mapStateToProps)(ForgotPasswordForm);
+    dispatchForgotPassword(email) {
+      dispatch(actionCreator.forgotPassword(email));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordForm);

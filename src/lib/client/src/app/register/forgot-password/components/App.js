@@ -52,7 +52,6 @@ class ForgotPasswordApp extends BaseComponent {
 
 }
 ForgotPasswordApp.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
   isLoading: React.PropTypes.bool.isRequired,
 };
 ForgotPasswordApp.contextTypes = {
