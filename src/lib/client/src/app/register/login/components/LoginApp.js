@@ -1,4 +1,5 @@
 import authStore from '../../../../common/auth/stores/authStore';
+import authActionCreator from '../../../../common/auth/actions/actionCreator';
 import actionCreator from '../actions/actionCreator';
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
@@ -13,7 +14,7 @@ class LoginApp extends BaseComponent {
       const transitionPath = authStore.getTransitionPath();
       const paymentRoute = {
         pathname: '/register/payment',
-        query: { email: nextState.user.email },
+        query: { email: nextProps.user.email },
       };
       const accountRoute = {
         pathname: '/account',
@@ -24,11 +25,11 @@ class LoginApp extends BaseComponent {
 
       if (transitionPath === '/register/payment') {
         nextContext.router.push(paymentRoute);
-      } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.PAID) {
+      } else if (nextProps.user.type === constants.SYSTEM.USER_TYPES.PAID) {
         nextContext.router.push(transitionPath || accountRoute);
-      } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.INFLUENCER) {
+      } else if (nextProps.user.type === constants.SYSTEM.USER_TYPES.INFLUENCER) {
         nextContext.router.push(transitionPath || referralRoute);
-      } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.VENDOR) {
+      } else if (nextProps.user.type === constants.SYSTEM.USER_TYPES.VENDOR) {
         nextContext.router.push(transitionPath || accountRoute);
       } else {
         nextContext.router.push(transitionPath || paymentRoute);
@@ -106,8 +107,8 @@ LoginApp.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    isLoggedIn: state.login.isLoggedIn,
-    user: state.login.user,
+    isLoggedIn: state.auth.isLoggedIn,
+    user: state.auth.user,
     isLoading: state.login.isLoading,
     isErrorVisible: state.login.info.isVisible,
     errorMsg: state.login.info.message,
@@ -119,7 +120,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onLoginChange: (field, value) => dispatch(actionCreator.setLoginFormField(field, value)),
-    _onSubmit: (email, password) => dispatch(actionCreator.login(email, password)),
+    _onSubmit: (email, password) => dispatch(authActionCreator.login(email, password)),
   };
 }
 

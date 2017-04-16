@@ -3,12 +3,10 @@ import actionTypes from '../../../../common/action-types/';
 const defaultErrorMsg = 'Oops! Something went wrong. Please try again.';
 
 const initialState = {
-  isLoggedIn: false,
   formEmail: '',
   formPassword: '',
   isLoading: false,
   isErrorVisible: false,
-  user: {},
   info: {
     isVisible: false,
     message: defaultErrorMsg,
@@ -24,10 +22,9 @@ export default function loginReducer(state = initialState, action) {
     }
     case actionTypes.LOGIN.LOGGING_IN:
       return Object.assign({}, state, { isLoading: true });
-    case actionTypes.BASIC_LOGIN_SUCCEED:
+    case actionTypes.LOGIN.LOGIN_SUCCEED:
       return Object.assign({}, state, {
         isLoading: false,
-        user: action.data.user,
         info: {
           isVisible: false,
         },
@@ -39,7 +36,6 @@ export default function loginReducer(state = initialState, action) {
       }
       return Object.assign({}, state, {
         isLoading: false,
-        user: action.data.user,
         info: {
           message,
           isVisible: true,
