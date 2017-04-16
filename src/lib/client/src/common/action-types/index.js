@@ -17,4 +17,4 @@ function namespaceActionTypesPerSection(actionTypesPerSection) {
   }
 }
 
-export default actionTypesPerSection;
+export default allActionTypesPerSection;
