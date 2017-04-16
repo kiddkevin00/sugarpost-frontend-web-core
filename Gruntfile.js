@@ -272,11 +272,11 @@ module.exports = function (grunt) {
   grunt.registerTask('prod:preview', [
     'clean:prod',
     'env:prod',
-    'babel',
-    'copy',
+    'babel:prod',
+    'copy:prod',
     'express:prod',
-    'concat',
-    'postcss',
+    'concat:prod',
+    'postcss:prod',
     'browserify',
     'uglify',
     'wait-for-server',
@@ -287,10 +287,10 @@ module.exports = function (grunt) {
   // For "npm" post-install
   grunt.registerTask('postinstall', [
     'clean:prod',
-    'babel',
-    'copy',
-    'concat',
-    'postcss',
+    'babel:prod',
+    'copy:prod',
+    'concat:prod',
+    'postcss:prod',
     'browserify',
     'uglify',
   ]);

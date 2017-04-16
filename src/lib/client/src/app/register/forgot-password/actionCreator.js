@@ -1,10 +1,10 @@
-import actionTypes from '../../../../common/action-types/';
-import Proxy from '../../../../common/proxies/HttpProxy';
-import StandardResponseWrapper from '../../../../common/utility/standard-response-wrapper';
-import StandardErrorWrapper from '../../../../common/utility/standard-error-wrapper';
+import actionTypes from '../../../common/action-types/';
+import Proxy from '../../../common/proxies/HttpProxy';
+import StandardResponseWrapper from '../../../common/utility/standard-response-wrapper';
+import StandardErrorWrapper from '../../../common/utility/standard-error-wrapper';
 
 const forgotPasswordActionCreator = {
-  setForgotPasswordFormField(field, value) {
+  setFormField(field, value) {
     return {
       type: actionTypes.FORGOT_PASSWORD.SET_FORM_FIELD,
       data: { field, value },

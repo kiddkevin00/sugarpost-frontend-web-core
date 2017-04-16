@@ -1,4 +1,4 @@
-import actionCreator from '../actions/actionCreator';
+import actionCreator from '../actionCreator';
 import BaseComponent from '../../../common/components/BaseComponent';
 import Footer from '../../../common/components/Footer';
 import { Thumbnail, Modal } from 'react-bootstrap';

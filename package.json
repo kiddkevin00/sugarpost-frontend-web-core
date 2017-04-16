@@ -34,7 +34,7 @@
     "integration-test": "",
     "precommit": "npm run lint && npm run coverage:unit-test",
     "prepush": "npm run branch-check && npm run lint && npm run coverage:unit-test && npm run coverage:update-thresholds",
-    "postinstall": "grunt postinstall",
+    "postinstall2": "grunt postinstall",
     "version:bump": "npm run version:instruction && ./bin/version-bump.js",
     "build": "babel --source-maps --copy-files src/lib/ --out-dir dist/lib/",
     "-------------- INTERNAL -------------": "",

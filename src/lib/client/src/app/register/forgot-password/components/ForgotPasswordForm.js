@@ -1,4 +1,4 @@
-import actionCreator from '../actions/actionCreator';
+import actionCreator from '../actionCreator';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
@@ -48,7 +48,7 @@ class ForgotPasswordForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    this.props.dispatchSetForgotPasswordFormField(field, value);
+    this.props.dispatchSetFormField(field, value);
   }
 
   _onSubmit(event) {
@@ -67,7 +67,7 @@ class ForgotPasswordForm extends BaseComponent {
 
 }
 ForgotPasswordForm.propTypes = {
-  dispatchSetForgotPasswordFormField: React.PropTypes.func.isRequired,
+  dispatchSetFormField: React.PropTypes.func.isRequired,
   dispatchForgotPassword: React.PropTypes.func.isRequired,
   formEmail: React.PropTypes.string.isRequired,
   info: React.PropTypes
@@ -86,8 +86,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchSetForgotPasswordFormField(field, value) {
-      dispatch(actionCreator.setForgotPasswordFormField(field, value));
+    dispatchSetFormField(field, value) {
+      dispatch(actionCreator.setFormField(field, value));
     },
 
     dispatchForgotPassword(email) {

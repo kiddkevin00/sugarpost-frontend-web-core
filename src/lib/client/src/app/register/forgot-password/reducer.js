@@ -1,4 +1,4 @@
-import actionTypes from '../../../../common/action-types/';
+import actionTypes from '../../../common/action-types/';
 
 const defaultInfoMsg = 'The request has been completed.';
 const initialState = {
@@ -13,9 +13,7 @@ const initialState = {
 function forgotPasswordReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.FORGOT_PASSWORD.SET_FORM_FIELD:
-      const data = action.data;
-
-      return Object.assign({}, state, { [`form${data.field}`]: data.value });
+      return Object.assign({}, state, { [`form${action.data.field}`]: action.data.value });
     case actionTypes.FORGOT_PASSWORD.RESETTING_PASSWORD:
       return Object.assign({}, state, { isLoading: true });
     case actionTypes.FORGOT_PASSWORD.RESET_PASSWORD_SUCCEED:

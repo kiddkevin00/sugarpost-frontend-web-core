@@ -10,7 +10,7 @@ import ForgotPasswordApp from './register/forgot-password/components/App';
 import ReferralApp from './register/referral/components/ReferralApp';
 import PrivacyPolicyApp from './privacy-policy/components/PrivacyPolicyApp';
 import TermsOfUse from './terms-of-use/components/TermsOfUseApp';
-import AccountApp from './account/components/AccountApp';
+import AccountApp from './account/components/App';
 import VoucherApp from './voucher/components/VoucherApp';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
