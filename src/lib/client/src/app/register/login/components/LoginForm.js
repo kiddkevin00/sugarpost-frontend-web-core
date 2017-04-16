@@ -3,16 +3,21 @@ import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 import classNames from 'classnames';
 
+const propTypes = {
+  _onSubmit: React.PropTypes.func.isRequired,
+  onLoginChange: React.PropTypes.func.isRequired,
+  isErrorVisible: React.PropTypes.bool.isRequired,
+  errorMsg: React.PropTypes.string,
+  formEmail: React.PropTypes.string.isRequired,
+  formPassword: React.PropTypes.string.isRequired,
+};
+
 class LoginForm extends BaseComponent {
 
   constructor(props) {
     super(props);
 
     this._bind('_onChange', '_onSubmit');
-    this.state = {
-      email: '',
-      password: '',
-    };
   }
 
   render() {
@@ -34,8 +39,8 @@ class LoginForm extends BaseComponent {
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
-          value={ this.state.email }
-          onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formEmail }
+          onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
         />
@@ -43,8 +48,8 @@ class LoginForm extends BaseComponent {
           text="Password"
           type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
-          value={ this.state.password }
-          onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formPassword }
+          onChange={ this._onChange.bind(this, 'Password') } /* eslint-disable-line react/jsx-no-bind */
           errorMessage="Password is invalid"
           emptyMessage="Password can't be empty"
         />
@@ -59,17 +64,18 @@ class LoginForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    this.setState({
-      [field]: value,
-    });
+    this.props.onLoginChange(field, value)
   }
 
   _onSubmit(event) {
     // Prevents browser's default navigation (page refresh).
     event.preventDefault();
-
     if (this.email.isValid() && this.password.isValid()) {
-      this.props.onSubmit(event, this.state.email, this.state.password);
+      const _email = this.props.formEmail;
+      const email = _email && _email.trim() && _email.toLowerCase();
+      const _password = this.props.formPassword;
+      const password = _password && _password.trim();
+      this.props._onSubmit(email, password);
     } else {
       this.email.isValid();
       this.password.isValid();
@@ -77,11 +83,7 @@ class LoginForm extends BaseComponent {
   }
 
 }
-LoginForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired,
-  isErrorVisible: React.PropTypes.bool.isRequired,
-  errorMsg: React.PropTypes.string,
-};
+LoginForm.propTypes = propTypes;
 LoginForm.defaultProps = {
   errorMsg: 'Oops! Something went wrong. Please try again.',
 };
