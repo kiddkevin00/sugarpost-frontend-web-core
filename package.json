@@ -109,7 +109,7 @@
     "grunt-env": "0.4.4",
     "grunt-eslint": "19.0.0",
     "grunt-express-server": "0.5.3",
-    "grunt-jest": "0.3.0",
+    "grunt-jest": "0.4.0",
     "grunt-open": "0.2.3",
     "grunt-postcss": "0.8.0",
     "jade": "1.11.0",
