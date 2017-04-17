@@ -1,4 +1,4 @@
-import actionTypes from '../../../common/action-types/';
+import actionTypes from '../../common/action-types/';
 
 const defaultInfoMsg = 'The request has been completed.';
 const initialState = {
