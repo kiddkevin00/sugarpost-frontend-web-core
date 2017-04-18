@@ -80,6 +80,7 @@
 }
 
 #footer ul.social-buttons li a {
+    padding: 10px;
     display: block;
     background-color: #222222;
     height: 40px;
