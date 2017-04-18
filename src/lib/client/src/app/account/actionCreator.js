@@ -5,7 +5,7 @@ import StandardErrorWrapper from '../../common/utility/standard-error-wrapper';
 import constants from '../../common/constants/';
 
 const accountActionCreator = {
-  updateProfile(password, newPassword, fullName) {
+  updateProfile(fullName, password, newPassword) {
     return (dispatch, getState) => {
       dispatch({
         type: actionTypes.UPDATING_PROFILE,

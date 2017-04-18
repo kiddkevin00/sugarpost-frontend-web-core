@@ -1,7 +1,10 @@
+import actionCreator from '../actionCreator';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import { connect } from 'react-redux';
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 class LoginForm extends BaseComponent {
 
@@ -9,10 +12,6 @@ class LoginForm extends BaseComponent {
     super(props);
 
     this._bind('_onChange', '_onSubmit');
-    this.state = {
-      email: '',
-      password: '',
-    };
   }
 
   render() {
@@ -34,8 +33,8 @@ class LoginForm extends BaseComponent {
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
-          value={ this.state.email }
-          onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formEmail }
+          onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
         />
@@ -43,8 +42,8 @@ class LoginForm extends BaseComponent {
           text="Password"
           type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
-          value={ this.state.password }
-          onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formPassword }
+          onChange={ this._onChange.bind(this, 'Password') } /* eslint-disable-line react/jsx-no-bind */
           errorMessage="Password is invalid"
           emptyMessage="Password can't be empty"
         />
@@ -59,9 +58,7 @@ class LoginForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    this.setState({
-      [field]: value,
-    });
+    this.props.dispatchSetFormField(field, value);
   }
 
   _onSubmit(event) {
@@ -69,7 +66,10 @@ class LoginForm extends BaseComponent {
     event.preventDefault();
 
     if (this.email.isValid() && this.password.isValid()) {
-      this.props.onSubmit(event, this.state.email, this.state.password);
+      const email = this.props.formEmail.trim() && this.props.formEmail.toLowerCase();
+      const password = this.props.formPassword.trim();
+
+      this.props.dispatchLogin(email, password);
     } else {
       this.email.isValid();
       this.password.isValid();
@@ -78,12 +78,32 @@ class LoginForm extends BaseComponent {
 
 }
 LoginForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired,
-  isErrorVisible: React.PropTypes.bool.isRequired,
-  errorMsg: React.PropTypes.string,
-};
-LoginForm.defaultProps = {
-  errorMsg: 'Oops! Something went wrong. Please try again.',
+  dispatchSetFormField: PropTypes.func.isRequired,
+  dispatchLogin: PropTypes.func.isRequired,
+  formEmail: PropTypes.string.isRequired,
+  formPassword: PropTypes.string.isRequired,
+  isErrorVisible: PropTypes.bool.isRequired,
+  errorMsg: PropTypes.string.isRequired,
 };
 
-export default LoginForm;
+function mapStateToProps(state) {
+  return {
+    formEmail: state.login.formEmail,
+    formPassword: state.login.formPassword,
+    isErrorVisible: state.login.error.isVisible,
+    errorMsg: state.login.error.message,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchSetFormField(field, value) {
+      dispatch(actionCreator.setFormField(field, value));
+    },
+
+    dispatchLogin(email, password) {
+      dispatch(actionCreator.login(email, password));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

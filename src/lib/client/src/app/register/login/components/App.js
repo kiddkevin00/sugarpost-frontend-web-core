@@ -1,29 +1,19 @@
 import authStore from '../../../../common/auth/stores/authStore';
-import authActionCreator from '../../../../common/auth/actions/authActionCreator';
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
+import { connect } from 'react-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class LoginApp extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-
-    this._bind('_onChange');
-    this.state = _getState();
-  }
-
-  componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-  }
-
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (nextState.isLoggedIn) {
+    if (nextProps.isLoggedIn) {
       const transitionPath = authStore.getTransitionPath();
       const paymentRoute = {
         pathname: '/register/payment',
-        query: { email: nextState.user.email },
+        query: { email: nextProps.userEmail },
       };
       const accountRoute = {
         pathname: '/account',
@@ -34,11 +24,11 @@ class LoginApp extends BaseComponent {
 
       if (transitionPath === '/register/payment') {
         nextContext.router.push(paymentRoute);
-      } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.PAID) {
+      } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.PAID) {
         nextContext.router.push(transitionPath || accountRoute);
-      } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.INFLUENCER) {
+      } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.INFLUENCER) {
         nextContext.router.push(transitionPath || referralRoute);
-      } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.VENDOR) {
+      } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.VENDOR) {
         nextContext.router.push(transitionPath || accountRoute);
       } else {
         nextContext.router.push(transitionPath || paymentRoute);
@@ -46,14 +36,10 @@ class LoginApp extends BaseComponent {
     }
   }
 
-  componentWillUnmount() {
-    authStore.removeChangeListener(this._onChange);
-  }
-
   render() {
     let loader;
 
-    if (this.state.isLoading) {
+    if (this.props.isLoading) {
       loader = (
         <div className="slow-loader" />
       );
@@ -94,15 +80,11 @@ class LoginApp extends BaseComponent {
             </div>
             <div className="form-bottom">
               { loader }
-              <LoginForm
-                onSubmit={ LoginApp._onSubmit }
-                isErrorVisible={ this.state.error.isVisible }
-                errorMsg={ this.state.error.message }
-              />
+              <LoginForm />
               <br />
               <a href="/register/forgot-password" className="center-block text-center">
                 Forgot password?
-              </a>                                                                                
+              </a>
             </div>
           </div>
         </div>
@@ -110,33 +92,24 @@ class LoginApp extends BaseComponent {
     );
   }
 
-  _onChange() {
-    this.setState(_getState());
-  }
-
-  static _onSubmit(event, _email, _password) {
-    const email = _email && _email.trim() && _email.toLowerCase();
-    const password = _password && _password.trim();
-
-    authActionCreator.login(email, password);
-  }
-
 }
+LoginApp.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  userEmail: PropTypes.string,
+  userType: PropTypes.string,
+};
 LoginApp.contextTypes = {
-  router: React.PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 };
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux store.
- */
-function _getState() {
+function mapStateToProps(state) {
   return {
-    isLoggedIn: authStore.isLoggedIn(),
-    user: authStore.getUser(),
-    error: authStore.getError('login'),
-    isLoading: authStore.isLoading(),
+    isLoading: state.login.isLoading,
+    isLoggedIn: state.auth.isLoggedIn,
+    userEmail: state.auth.user.email,
+    userType: state.auth.user.type,
   };
 }
 
-export default LoginApp;
+export default connect(mapStateToProps)(LoginApp);

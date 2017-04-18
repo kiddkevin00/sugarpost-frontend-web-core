@@ -3,7 +3,7 @@ import authActionCreator from '../common/auth/actions/authActionCreator';
 import RootApp from './RootApp';
 import HomeApp from './home/components/App';
 import RegisterApp from './register/';
-import LoginApp from './register/login/components/LoginApp';
+import LoginApp from './register/login/components/App';
 import SignupApp from './register/signup/components/SignupApp';
 import PaymentApp from './register/payment/components/PaymentApp';
 import ForgotPasswordApp from './register/forgot-password/components/App';

@@ -2,6 +2,7 @@ import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ForgotPasswordApp extends BaseComponent {
 
@@ -52,10 +53,10 @@ class ForgotPasswordApp extends BaseComponent {
 
 }
 ForgotPasswordApp.propTypes = {
-  isLoading: React.PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 ForgotPasswordApp.contextTypes = {
-  router: React.PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

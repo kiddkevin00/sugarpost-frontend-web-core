@@ -118,7 +118,7 @@ class AccountApp extends BaseComponent {
     const newPassword = _newPassword && _newPassword.trim();
     const fullName = _fullName && _fullName.trim();
 
-    accountActionCreator.updateProfile(password, newPassword, fullName);
+    accountActionCreator.updateProfile(fullName, password, newPassword);
   }
 
 }

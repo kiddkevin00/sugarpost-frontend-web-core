@@ -9,7 +9,7 @@ class SignupForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onClick', 'isConfirmPasswordMatched');
+    this._bind('_onSubmit', 'isConfirmPasswordMatched');
     this.state = {
       fullName: '',
       email: '',
@@ -27,7 +27,7 @@ class SignupForm extends BaseComponent {
     });
 
     return (
-      <form role="form">
+      <form onSubmit={ this._onSubmit } role="form">
         <div className={ alertBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-exclamation-triangle" />
@@ -74,9 +74,8 @@ class SignupForm extends BaseComponent {
           errorMessage="Passwords don't match"
         />
         <button
-          onClick={ this._onClick }
           className="btn btn-block"
-          type="button"
+          type="submit"
         >
           Sign Up
         </button>
@@ -90,7 +89,10 @@ class SignupForm extends BaseComponent {
     });
   }
 
-  _onClick(event) {
+  _onSubmit(event) {
+    // Prevents browser's default navigation (page refresh).
+    event.preventDefault();
+
     if (
       this.fullName.isValid() &&
       this.email.isValid() &&
