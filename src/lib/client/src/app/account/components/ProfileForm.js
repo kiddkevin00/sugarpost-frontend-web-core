@@ -41,9 +41,19 @@ class ProfileForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
+    let loader;
+
+    if (this.props.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
 
     return (
-      <form className="form-horizontal" role="form">
+      <form onSubmit={ this._onSave } className="form-horizontal" role="form">
+        { loader }
         <div className={ alertSuccessBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-check-square-o" />
@@ -107,8 +117,7 @@ class ProfileForm extends BaseComponent {
         <div className="form-group">
           <div className="col-sm-6">
             <input
-              onClick={ this._onSave }
-              type="button"
+              type="submit"
               className="btn btn-primary btn-block"
               value="Save Changes"
             />
@@ -131,6 +140,9 @@ class ProfileForm extends BaseComponent {
   }
 
   _onSave(event) {
+    // Prevents browser's default navigation (page refresh).
+    event.preventDefault();
+
     if (
       this.fullName.isValid() &&
       this.email.isValid() &&
@@ -171,6 +183,7 @@ ProfileForm.propTypes = {
   formConfirmNewPassword: PropTypes.string.isRequired,
   originalFullName: PropTypes.string,
   originalEmail: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired,
   isInfoVisible: PropTypes.bool.isRequired,
   infoMsg: PropTypes.string.isRequired,
   isErrorVisible: PropTypes.bool.isRequired,
@@ -190,6 +203,7 @@ function mapStateToProps(state) {
     formConfirmNewPassword: state.accountProfile.formConfirmNewPassword,
     originalFullName: state.auth.user.fullName,
     originalEmail: state.auth.user.email,
+    isLoading: state.accountProfile.isLoading,
     isInfoVisible: state.accountProfile.info.isVisible,
     infoMsg: state.accountProfile.info.message,
     isErrorVisible: state.accountProfile.error.isVisible,

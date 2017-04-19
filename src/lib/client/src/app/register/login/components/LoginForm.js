@@ -80,6 +80,7 @@ class LoginForm extends BaseComponent {
 LoginForm.propTypes = {
   dispatchSetFormField: PropTypes.func.isRequired,
   dispatchLogin: PropTypes.func.isRequired,
+
   formEmail: PropTypes.string.isRequired,
   formPassword: PropTypes.string.isRequired,
   isErrorVisible: PropTypes.bool.isRequired,

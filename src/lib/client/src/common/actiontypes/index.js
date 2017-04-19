@@ -2,8 +2,8 @@ import homeActionTypes from '../../app/home/actionTypes';
 import authActionTypes from '../auth/actionTypes';
 import loginActionTypes from '../../app/register/login/actionTypes';
 import forgotPasswordActionTypes from '../../app/register/forgot-password/actionTypes';
-import accountProfileActionTypes from '../../app/account/actionTypes/profile';
-import accountSubscriptionActionTypes from '../../app/account/actionTypes/subscription';
+import accountProfileActionTypes from '../../app/account/actiontypes/profile';
+import accountSubscriptionActionTypes from '../../app/account/actiontypes/subscription';
 
 const allActionTypesPerSection = {
   HOME: homeActionTypes,

@@ -69,6 +69,7 @@ class ForgotPasswordForm extends BaseComponent {
 ForgotPasswordForm.propTypes = {
   dispatchSetFormField: PropTypes.func.isRequired,
   dispatchForgotPassword: PropTypes.func.isRequired,
+
   formEmail: PropTypes.string.isRequired,
   isInfoVisible: PropTypes.bool.isRequired,
   infoMsg: PropTypes.string.isRequired,

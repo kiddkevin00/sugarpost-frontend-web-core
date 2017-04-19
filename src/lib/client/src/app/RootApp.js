@@ -3,27 +3,14 @@ import authActionCreator from '../common/auth/actions/authActionCreator';
 import ScrollDiv from '../common/components/ScrollDiv';
 import BaseComponent from '../common/components/BaseComponent';
 import constants from '../common/constants/';
-import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-scroll';
+import { connect } from 'react-redux';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class RootApp extends BaseComponent {
-
-  constructor(props) {
-    super(props);
-
-    this._bind('_onChange');
-    this.state = _getState();
-  }
-
-  componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount() {
-    authStore.removeChangeListener(this._onChange);
-  }
 
   render() {
     const tabsShownWhenUserLoggedIn = [];
@@ -33,7 +20,7 @@ class RootApp extends BaseComponent {
       </LinkContainer>
     );
     const paymentTab = (
-      <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: this.state.user.email } } }>
+      <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: this.props.userEmail } } }>
         <NavItem>Payment</NavItem>
       </LinkContainer>
     );
@@ -174,8 +161,8 @@ class RootApp extends BaseComponent {
       </LinkContainer>
     );
 
-    if (this.state.isLoggedIn) {
-      switch (this.state.user.type) {
+    if (this.props.isLoggedIn) {
+      switch (this.props.userType) {
         case constants.SYSTEM.USER_TYPES.UNPAID:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, logoutTab);
           break;
@@ -240,10 +227,6 @@ class RootApp extends BaseComponent {
     );
   }
 
-  _onChange() {
-    this.setState(_getState());
-  }
-
   static _onLogout() {
     authActionCreator.logout();
   }
@@ -255,19 +238,21 @@ class RootApp extends BaseComponent {
   }
 
 }
+RootApp.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  userType: PropTypes.string,
+  userEmail: PropTypes.string,
+};
 RootApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
- */
-function _getState() {
+function mapStateToProps(state) {
   return {
-    isLoggedIn: authStore.isLoggedIn(),
-    user: authStore.getUser(),
+    isLoggedIn: state.auth.isLoggedIn,
+    userType: state.auth.user.type,
+    userEmail: state.auth.user.email,
   };
 }
 
-export default RootApp;
+export default connect(mapStateToProps)(RootApp);

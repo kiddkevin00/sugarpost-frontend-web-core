@@ -38,7 +38,7 @@ function accountProfileReducer(state = initialState, action) {
       return Object.assign({}, state, {
         isLoading: true,
         info: {
-          isVisible: true,
+          isVisible: false,
           message: defaultInfoMsg,
         },
         error: {

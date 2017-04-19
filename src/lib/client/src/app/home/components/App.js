@@ -236,6 +236,7 @@ class HomeApp extends BaseComponent {
 }
 HomeApp.propTypes = {
   dispatchCloseModal: React.PropTypes.func.isRequired,
+  
   isModalOpen: React.PropTypes.bool.isRequired,
 };
 

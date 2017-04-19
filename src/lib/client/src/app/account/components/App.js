@@ -7,6 +7,7 @@ import ProfileForm from './ProfileForm';
 import BaseComponent from '../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class AccountApp extends BaseComponent {
 
@@ -38,23 +39,12 @@ class AccountApp extends BaseComponent {
   }
 
   render() {
-    let loader;
-
-    if (this.state.isLoading) {
-      loader = (
-        <div className="slow-loader" />
-      );
-    } else {
-      loader = null;
-    }
-
     return (
       <div id="account-app">
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
               <div className="header-placeholder-custom" />
-              { loader }
             </div>
           </div>
           <div className="row">
@@ -116,10 +106,13 @@ class AccountApp extends BaseComponent {
 
 }
 AccountApp.propTypes = {
+  dispatchAuthCheck: PropTypes.func.isRequired,
 
+  isLoggedIn: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 AccountApp.contextTypes = {
-  router: React.PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 };
 
 /*
@@ -137,8 +130,8 @@ function _getState() {
 
 function mapStateToProps(state) {
   return {
-    isLoading: state.accountProfile.isLoading,
     isLoggedIn: state.auth.isLoggedIn,
+    isLoading: state.accountProfile.isLoading,
   };
 }
 
