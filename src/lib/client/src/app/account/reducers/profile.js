@@ -1,4 +1,4 @@
-import actionTypes from '../../common/action-types/';
+import actionTypes from '../../../common/actiontypes/';
 
 const defaultInfoMsg = 'The request has been completed.';
 const defaultErrorMsg = 'Oops! Something went wrong. Please try again.';
@@ -19,14 +19,14 @@ const initialState = {
   },
 };
 
-function accountReducer(state = initialState, action) {
+function accountProfileReducer(state = initialState, action) {
   const actionType = action.type;
   const actionData = action.data;
 
   switch (actionType) {
-    case actionTypes.ACCOUNT.SET_ACCOUNT_FORM_FIELD:
+    case actionTypes.ACCOUNT__PROFILE.SET_FORM_FIELD:
       return Object.assign({}, state, { [`form${actionData.field}`]: actionData.value });
-    case actionTypes.ACCOUNT.RESET_ACCOUNT_FORM:
+    case actionTypes.ACCOUNT__PROFILE.RESET_FORM:
       return Object.assign({}, state, {
         formFullName: actionData.fullName,
         formEmail: actionData.email,
@@ -34,7 +34,7 @@ function accountReducer(state = initialState, action) {
         formNewPassword: '',
         formConfirmNewPassword: '',
       });
-    case actionTypes.ACCOUNT.UPDATING_PROFILE:
+    case actionTypes.ACCOUNT__PROFILE.UPDATING_PROFILE:
       return Object.assign({}, state, {
         isLoading: true,
         info: {
@@ -46,7 +46,7 @@ function accountReducer(state = initialState, action) {
           message: defaultErrorMsg,
         },
       });
-    case actionTypes.ACCOUNT.UPDATE_PROFILE_SUCCEED:
+    case actionTypes.ACCOUNT__PROFILE.UPDATE_PROFILE_SUCCEED:
       return Object.assign({}, state, {
         isLoading: false,
         info: {
@@ -58,7 +58,7 @@ function accountReducer(state = initialState, action) {
           message: defaultErrorMsg,
         },
       });
-    case actionTypes.ACCOUNT.UPDATE_PROFILE_FAIL:
+    case actionTypes.ACCOUNT__PROFILE.UPDATE_PROFILE_FAIL:
       return Object.assign({}, state, {
         isLoading: false,
         info: {
@@ -87,4 +87,4 @@ function _showMessage(data) {
   return msg;
 }
 
-export default accountReducer;
+export default accountProfileReducer;

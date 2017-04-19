@@ -21,13 +21,13 @@ class AccountApp extends BaseComponent {
     authStore.addChangeListener(this._onChange);
     accountStore.addChangeListener(this._onChange);
 
-    if (!this.state.isLoggedIn) {
-      this.props.dispatch(authActionCreator.authCheck());
+    if (!this.props.isLoggedIn) {
+      this.props.dispatchAuthCheck();
     }
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (!nextState.isLoggedIn) {
+    if (!nextProps.isLoggedIn) {
       nextContext.router.push('/register/login');
     }
   }
@@ -115,6 +115,9 @@ class AccountApp extends BaseComponent {
   }
 
 }
+AccountApp.propTypes = {
+
+};
 AccountApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
@@ -125,10 +128,7 @@ AccountApp.contextTypes = {
  */
 function _getState() {
   return {
-    isLoggedIn: authStore.isLoggedIn(),
     user: authStore.getUser(),
-    profileInfo: accountStore.getInfo('profile'),
-    profileError: accountStore.getError('profile'),
     subscriptionInfo: accountStore.getInfo('subscription'),
     subscriptionError: accountStore.getError('subscription'),
     isLoading: accountStore.isLoading(),
@@ -136,7 +136,18 @@ function _getState() {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    isLoading: state.accountProfile.isLoading,
+    isLoggedIn: state.auth.isLoggedIn,
+  };
 }
 
-export default connect(mapStateToProps)(AccountApp);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchAuthCheck() {
+      dispatch(authActionCreator.authCheck());
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountApp);

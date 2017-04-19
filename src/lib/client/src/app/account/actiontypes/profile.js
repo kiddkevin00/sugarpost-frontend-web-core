@@ -1,6 +1,6 @@
-const accountActionTypes = {
-  SET_ACCOUNT_FORM_FIELD: 'SET_ACCOUNT_FORM_FIELD',
-  RESET_ACCOUNT_FORM: 'RESET_ACCOUNT_FORM',
+const accountProfileActionTypes = {
+  SET_FORM_FIELD: 'SET_FORM_FIELD',
+  RESET_FORM: 'RESET_FORM',
   UPDATING_PROFILE: 'UPDATING_PROFILE',
   UPDATE_PROFILE_SUCCEED: 'UPDATE_PROFILE_SUCCEED',
   UPDATE_PROFILE_FAIL: 'UPDATE_PROFILE_FAIL',
@@ -10,4 +10,4 @@ const accountActionTypes = {
   CANCEL_SUBSCRIPTION_FAIL: 'CANCEL_SUBSCRIPTION_FAIL',
 };
 
-export default accountActionTypes;
+export default accountProfileActionTypes;

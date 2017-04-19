@@ -183,23 +183,23 @@ ProfileForm.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    formFullName: state.account.formFullName,
-    formEmail: state.account.formEmail,
-    formPassword: state.account.formPassword,
-    formNewPassword: state.account.formNewPassword,
-    formConfirmNewPassword: state.account.formConfirmNewPassword,
+    formFullName: state.accountProfile.formFullName,
+    formEmail: state.accountProfile.formEmail,
+    formPassword: state.accountProfile.formPassword,
+    formNewPassword: state.accountProfile.formNewPassword,
+    formConfirmNewPassword: state.accountProfile.formConfirmNewPassword,
     originalFullName: state.auth.user.fullName,
     originalEmail: state.auth.user.email,
-    isInfoVisible: state.account.info.isVisible,
-    infoMsg: state.account.info.message,
-    isErrorVisible: state.account.error.isVisible,
-    errorMsg: state.account.error.message,
+    isInfoVisible: state.accountProfile.info.isVisible,
+    infoMsg: state.accountProfile.info.message,
+    isErrorVisible: state.accountProfile.error.isVisible,
+    errorMsg: state.accountProfile.error.message,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
     dispatchSetFormField(field, value) {
-      dispatch(actionCreator.setAccountFormField(field, value));
+      dispatch(actionCreator.setFormField(field, value));
     },
 
     dispatchUpdateProfile(fullName, password, newPassword) {
@@ -207,7 +207,7 @@ function mapDispatchToProps(dispatch) {
     },
 
     dispatchResetForm(fullName, email) {
-      dispatch(actionCreator.resetAccountForm(fullName, email));
+      dispatch(actionCreator.resetForm(fullName, email));
     },
   };
 }

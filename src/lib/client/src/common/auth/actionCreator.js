@@ -1,4 +1,4 @@
-import actionTypes from '../action-types/';
+import actionTypes from '../actiontypes/';
 import Proxy from '../proxies/HttpProxy';
 import StandardResponseWrapper from '../utility/standard-response-wrapper';
 import StandardErrorWrapper from '../utility/standard-error-wrapper';

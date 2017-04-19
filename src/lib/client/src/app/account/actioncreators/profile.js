@@ -1,13 +1,12 @@
-import actionTypes from '../../common/action-types/';
-import Proxy from '../../common/proxies/HttpProxy';
-import StandardResponseWrapper from '../../common/utility/standard-response-wrapper';
-import StandardErrorWrapper from '../../common/utility/standard-error-wrapper';
-import constants from '../../common/constants/';
+import actionTypes from '../../../common/actiontypes/';
+import Proxy from '../../../common/proxies/HttpProxy';
+import StandardResponseWrapper from '../../../common/utility/standard-response-wrapper';
+import StandardErrorWrapper from '../../../common/utility/standard-error-wrapper';
 
-const accountActionCreator = {
-  setAccountFormField(field, value) {
+const accountProfileActionCreator = {
+  setFormField(field, value) {
     return {
-      type: actionTypes.ACCOUNT.SET_ACCOUNT_FORM_FIELD,
+      type: actionTypes.ACCOUNT__PROFILE.SET_FORM_FIELD,
       data: { field, value },
     };
   },
@@ -15,7 +14,7 @@ const accountActionCreator = {
   updateProfile(fullName, password, newPassword) {
     return (dispatch, getState) => {
       dispatch({
-        type: actionTypes.ACCOUNT.UPDATING_PROFILE,
+        type: actionTypes.ACCOUNT__PROFILE.UPDATING_PROFILE,
       });
 
       const url = '/api/v1/user/info';
@@ -36,37 +35,37 @@ const accountActionCreator = {
               });
 
               dispatch({
-                type: actionTypes.ACCOUNT.UPDATE_PROFILE_SUCCEED,
+                type: actionTypes.ACCOUNT__PROFILE.UPDATE_PROFILE_SUCCEED,
               });
             } else {
               dispatch({
-                type: actionTypes.ACCOUNT.UPDATE_PROFILE_FAIL,
+                type: actionTypes.ACCOUNT__PROFILE.UPDATE_PROFILE_FAIL,
               });
             }
           } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
             const err = StandardErrorWrapper.deserialize(payloadObj);
 
             dispatch({
-              type: actionTypes.ACCOUNT.UPDATE_PROFILE_FAIL,
+              type: actionTypes.ACCOUNT__PROFILE.UPDATE_PROFILE_FAIL,
               data: err,
             });
           }
         })
         .catch((err) => {
           dispatch({
-            type: actionTypes.ACCOUNT.UPDATE_PROFILE_FAIL,
+            type: actionTypes.ACCOUNT__PROFILE.UPDATE_PROFILE_FAIL,
             data: err,
           });
         });
     };
   },
 
-  resetAccountForm(fullName, email) {
+  resetForm(fullName, email) {
     return {
-      type: actionTypes.ACCOUNT.RESET_ACCOUNT_FORM,
+      type: actionTypes.ACCOUNT__PROFILE.RESET_FORM,
       data: { fullName, email },
     };
   },
 };
 
-export default accountActionCreator;
+export default accountProfileActionCreator;
