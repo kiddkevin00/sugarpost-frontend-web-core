@@ -1,14 +1,17 @@
+import actionCreator from '../actionCreator';
 import FormInput from '../../../common/components/FormInput';
 import BaseComponent from '../../../common/components/BaseComponent';
+import { connect } from 'react-redux';
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-class AccountForm extends BaseComponent {
+class ProfileForm extends BaseComponent {
 
   constructor(props) {
     super(props);
 
-    this._bind('_onSave', '_onReset', 'isConfirmNewPasswordMatched');
+    this._bind('_onSave', '_onReset', '_isConfirmNewPasswordMatched');
     this.state = {
       fullName: props.fullName,
       email: props.email,
@@ -54,8 +57,8 @@ class AccountForm extends BaseComponent {
         <FormInput
           text="Full Name"
           ref={ (formInputObj) => { this.fullName = formInputObj; } }
-          value={ this.state.fullName }
-          onChange={ this._onChange.bind(this, 'fullName') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formFullName === undefined ? this.props.originalFullName : this.props.formFullName }
+          onChange={ this._onChange.bind(this, 'FullName') } /* eslint-disable-line react/jsx-no-bind */
           errorMessage="Full name is invalid"
           emptyMessage="Full name can't be empty"
         />
@@ -63,8 +66,8 @@ class AccountForm extends BaseComponent {
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
-          value={ this.state.email }
-          onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formEmail === undefined ? this.props.originalEmail : this.props.formEmail }
+          onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
           disabled={ true }
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
@@ -73,8 +76,8 @@ class AccountForm extends BaseComponent {
           text="Old Password"
           type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
-          value={ this.state.password }
-          onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formPassword }
+          onChange={ this._onChange.bind(this, 'Password') } /* eslint-disable-line react/jsx-no-bind */
           errorMessage="Old password is invalid"
           emptyMessage="Old password can't be empty"
         />
@@ -82,8 +85,8 @@ class AccountForm extends BaseComponent {
           text="New Password"
           type="password"
           ref={ (formInputObj) => { this.newPassword = formInputObj; } }
-          value={ this.state.newPassword }
-          onChange={ this._onChange.bind(this, 'newPassword') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formNewPassword }
+          onChange={ this._onChange.bind(this, 'NewPassword') } /* eslint-disable-line react/jsx-no-bind */
           useValidator={ true }
           minCharacters={ 8 }
           requireCapitals={ 1 }
@@ -95,9 +98,9 @@ class AccountForm extends BaseComponent {
           text="Confirm New Password"
           type="password"
           ref={ (formInputObj) => { this.confirmNewPassword = formInputObj; } }
-          validate={ this.isConfirmNewPasswordMatched }
-          value={ this.state.confirmNewPassword }
-          onChange={ this._onChange.bind(this, 'confirmNewPassword') } /* eslint-disable-line react/jsx-no-bind */
+          validate={ this._isConfirmNewPasswordMatched }
+          value={ this.props.formConfirmNewPassword }
+          onChange={ this._onChange.bind(this, 'ConfirmNewPassword') } /* eslint-disable-line react/jsx-no-bind */
           emptyMessage="Please confirm your new password"
           errorMessage="Passwords don't match"
         />
@@ -124,9 +127,7 @@ class AccountForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    this.setState({
-      [field]: value,
-    });
+    this.props.dispatchSetFormField(field, value);
   }
 
   _onSave(event) {
@@ -137,7 +138,10 @@ class AccountForm extends BaseComponent {
       this.newPassword.isValid() &&
       this.confirmNewPassword.isValid()
     ) {
-      this.props.onSubmit(event, this.state.password, this.state.newPassword, this.state.fullName);
+      const formFullName = this.props.formFullName || this.props.originalFullName;
+
+      this.props.dispatchUpdateProfile(formFullName, this.props.formPassword,
+        this.props.formNewPassword);
     } else {
       this.fullName.isValid();
       this.email.isValid();
@@ -148,34 +152,64 @@ class AccountForm extends BaseComponent {
   }
 
   _onReset(event) {
-    this.setState({
-      fullName: this.props.fullName,
-      email: this.props.email,
-      password: '',
-      newPassword: '',
-      confirmNewPassword: '',
-    });
+    this.props.dispatchResetForm(this.props.originalFullName, this.props.originalEmail);
   }
 
-  isConfirmNewPasswordMatched(inputText) {
-    return inputText === this.state.newPassword;
+  _isConfirmNewPasswordMatched(inputText) {
+    return inputText === this.props.formNewPassword;
   }
 
 }
-AccountForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired,
-  isInfoVisible: React.PropTypes.bool.isRequired,
-  isErrorVisible: React.PropTypes.bool.isRequired,
-  infoMsg: React.PropTypes.string,
-  errorMsg: React.PropTypes.string,
-  fullName: React.PropTypes.string,
-  email: React.PropTypes.string,
+ProfileForm.propTypes = {
+  dispatchSetFormField: PropTypes.func.isRequired,
+  dispatchUpdateProfile: PropTypes.func.isRequired,
+  dispatchResetForm: PropTypes.func.isRequired,
+  formFullName: PropTypes.string,
+  formEmail: PropTypes.string,
+  formPassword: PropTypes.string.isRequired,
+  formNewPassword: PropTypes.string.isRequired,
+  formConfirmNewPassword: PropTypes.string.isRequired,
+  originalFullName: PropTypes.string,
+  originalEmail: PropTypes.string,
+  isInfoVisible: PropTypes.bool.isRequired,
+  infoMsg: PropTypes.string.isRequired,
+  isErrorVisible: PropTypes.bool.isRequired,
+  errorMsg: PropTypes.string.isRequired,
 };
-AccountForm.defaultProps = {
-  infoMsg: 'Request has been completed.',
-  errorMsg: 'Oops! Something went wrong. Please try again.',
-  fullName: 'Loading...',
-  email: 'Loading...',
+ProfileForm.defaultProps = {
+  originalFullName: 'loading...',
+  originalEmail: 'loading...',
 };
 
-export default AccountForm;
+function mapStateToProps(state) {
+  return {
+    formFullName: state.account.formFullName,
+    formEmail: state.account.formEmail,
+    formPassword: state.account.formPassword,
+    formNewPassword: state.account.formNewPassword,
+    formConfirmNewPassword: state.account.formConfirmNewPassword,
+    originalFullName: state.auth.user.fullName,
+    originalEmail: state.auth.user.email,
+    isInfoVisible: state.account.info.isVisible,
+    infoMsg: state.account.info.message,
+    isErrorVisible: state.account.error.isVisible,
+    errorMsg: state.account.error.message,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchSetFormField(field, value) {
+      dispatch(actionCreator.setAccountFormField(field, value));
+    },
+
+    dispatchUpdateProfile(fullName, password, newPassword) {
+      dispatch(actionCreator.updateProfile(fullName, password, newPassword));
+    },
+
+    dispatchResetForm(fullName, email) {
+      dispatch(actionCreator.resetAccountForm(fullName, email));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm);

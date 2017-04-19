@@ -78,9 +78,10 @@ class PaymentApp extends BaseComponent {
             <div className="top-big-link">
               <ol>
                 <li>Sign up to the right and become a paid subscriber.</li>
-                <li>Receive four vouchers during the first day of every month.</li>
+                <li>Receive two vouchers during the first day of every month.</li>
                 <li>Visit the dessert shops.</li>
                 <li>Redeem and enjoy desserts by the end of the month!</li>
+                <li>No time? No worries! You can share any of your vouchers with friends!</li>
                 <li>
                   Vouchers include the choices to redeem <i>Sugarpost Exclusives</i> or in-store
                   desserts <i>(more than 10% discount off total retail value)</i>

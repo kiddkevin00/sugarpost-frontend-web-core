@@ -25,11 +25,11 @@ class ShareSection extends BaseComponent {
     const TwitterIcon = generateShareIcon('twitter');
     const shareUrl = 'https://www.mysugarpost.com/register/signup?' +
       `refer_code=${this.props.myReferralCode}`;
-    const facebookTitle = '10% Discount Off Your First Sugarpost Subscription';
-    const facebookDescription = 'Here is a 10% discount off your first month of Sugarpost’s ' +
+    const facebookTitle = '50% Discount Off Your First Sugarpost Subscription';
+    const facebookDescription = 'Here is a 50% discount off your first month of Sugarpost’s ' +
       'premium dessert subscription service! To claim your discount, sign up now and enter the ' +
       `following referral code on the payment page: ${this.props.myReferralCode}`;
-    const twitterDescription = 'Get 10% off your first month\'s subscription with @mysugarpost. ' +
+    const twitterDescription = 'Get 50% off your first month\'s subscription with @mysugarpost. ' +
       'Claim this offer now:';
     const alertSuccessBoxClasses = classNames({
       alert: true,

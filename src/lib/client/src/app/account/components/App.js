@@ -1,10 +1,11 @@
+import authActionCreator from '../../../common/auth/actionCreator';
 import authStore from '../../../common/auth/stores/authStore';
 import accountStore from '../stores/accountStore';
-import authActionCreator from '../../../common/auth/actions/authActionCreator';
 import accountActionCreator from '../actionCreator';
 import SubscriptionSection from './SubscriptionSection';
-import AccountForm from './AccountForm';
+import ProfileForm from './ProfileForm';
 import BaseComponent from '../../../common/components/BaseComponent';
+import { connect } from 'react-redux';
 import React from 'react';
 
 class AccountApp extends BaseComponent {
@@ -21,7 +22,7 @@ class AccountApp extends BaseComponent {
     accountStore.addChangeListener(this._onChange);
 
     if (!this.state.isLoggedIn) {
-      authActionCreator.authCheck();
+      this.props.dispatch(authActionCreator.authCheck());
     }
   }
 
@@ -82,15 +83,7 @@ class AccountApp extends BaseComponent {
                 <div className="panel-heading"><h4>Profile</h4></div>
                 <div className="panel-body">
                   <div className="col-lg-offset-1 col-lg-10 col-lg-xs-12">
-                    <AccountForm
-                      onSubmit={ AccountApp._onUpdateProfile }
-                      isInfoVisible={ this.state.profileInfo.isVisible }
-                      isErrorVisible={ this.state.profileError.isVisible }
-                      infoMsg={ this.state.profileInfo.message }
-                      errorMsg={ this.state.profileError.message }
-                      fullName={ this.state.user.fullName }
-                      email={ this.state.user.email }
-                    />
+                    <ProfileForm />
                   </div>
                 </div>
               </div>
@@ -142,4 +135,8 @@ function _getState() {
   };
 }
 
-export default AccountApp;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(AccountApp);

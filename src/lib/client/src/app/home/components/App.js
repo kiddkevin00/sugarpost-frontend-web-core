@@ -17,16 +17,16 @@ class HomeApp extends BaseComponent {
   render() {
     return (
       <div id="home-template">
-        <Modal id="promotion-modal" show={ this.props.isModalOpen } onHide={ this._closeModal }>
+        <Modal id="promotion-modal" className="text-center" show={ this.props.isModalOpen } onHide={ this._closeModal }>
           <Modal.Header>
-            <Modal.Title>Have You Try Our Premium Dessert Subscription Service Yet?</Modal.Title>
+            <Modal.Title>Try Our Premium Dessert Subscription Today!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Thumbnail className="text-center" src="/assets/images/sugarpost-logo.png" alt="">
               <div className="row">
                 <div className="col-xs-12">
                   <h2>50% OFF</h2>
-                  <h4>Use U50VRR Code for Your First Month</h4>
+                  <h4>Use <b>U50VRR</b> Code for Your First Month</h4>
                 </div>
               </div>
               <div className="row">
@@ -73,7 +73,7 @@ class HomeApp extends BaseComponent {
         <Element name="main">
 
           <Element name="about">
-            <section className="bg-primary" id="about">
+            <section id="about" className="bg-primary">
               <div className="container">
                 <div className="row">
                   <div className="col-lg-8 col-lg-offset-2 text-center">
@@ -164,13 +164,8 @@ class HomeApp extends BaseComponent {
               </div>
               <div className="container-fluid">
                 <div className="row no-gutter popup-gallery">
-                  <div className="col-lg-offset-3 col-lg-3 col-sm-6">
-                    {/* eslint-disable max-len */}
-                    <img src="/assets/images/eggloo_logo.png" className="img-responsive" alt="" />
-                  </div>
-                  <div className="col-lg-3 col-sm-6">
-                    <img src="/assets/images/ny-frost-factory_logo.jpg" className="img-responsive" alt="" />
-                    {/* eslint-enable max-len */}
+                  <div className="col-lg-offset-2 col-lg-8 col-md-12">
+                    <img src="/assets/images/june-featured-desserts.png" className="img-responsive" alt="" />
                   </div>
                 </div>
               </div>
@@ -193,14 +188,14 @@ class HomeApp extends BaseComponent {
             </aside>
           </Element>
           {/* <aside className="bg-darker">
-           <div className="container text-center">
-           <div>
-           <h2>Featured On</h2>
-           <hr className="primary" />
-           <h4>Coming Soon...</h4>
-           </div>
-           </div>
-           </aside> */}
+             <div className="container text-center">
+               <div>
+                 <h2>Featured On</h2>
+                 <hr className="primary" />
+                 <h4>Coming Soon...</h4>
+               </div>
+             </div>
+          </aside> */}
           <Element name="contact">
             <section id="contact">
               <div className="container">

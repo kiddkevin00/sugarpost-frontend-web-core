@@ -9,8 +9,8 @@ import { Thumbnail } from 'react-bootstrap';
 import React from 'react';
 import classNames from 'classnames';
 
-const refererCredit = 2.5;
-const redeemableAmount = 25;
+const refererCredit = 1.25;
+const redeemableAmount = 12.5;
 
 class ReferralApp extends BaseComponent {
 
@@ -86,7 +86,7 @@ class ReferralApp extends BaseComponent {
                 friends by clicking the Facebook, Twitter, or Email buttons on the right. Should
                 you want to tell your friends outside these platforms, feel free to send them your
                 referral code so they can get a
-                <b><i>&nbsp;10% discount off their first month&nbsp;</i></b>
+                <b><i>&nbsp;50% discount off their first month&nbsp;</i></b>
                 with Sugarpost!
               </p>
               <p>

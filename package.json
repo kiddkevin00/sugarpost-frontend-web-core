@@ -141,6 +141,7 @@
     "babel-cli": "6.24.0",
     "babel-jest": "16.0.0",
     "babel-register": "6.24.0",
+    "bluebird": "3.5.0",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "chai-shallow-deep-equal": "1.4.6",

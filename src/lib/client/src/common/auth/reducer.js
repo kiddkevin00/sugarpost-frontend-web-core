@@ -1,19 +1,20 @@
 import actionTypes from '../action-types/';
 
+const initialUserState = {
+  _id: undefined,
+  type: undefined,
+  fullName: undefined,
+  email: undefined,
+  referralCode: undefined,
+  referralAmount: undefined,
+  creditCardLast4: undefined,
+  usedReferralCode: undefined,
+  stripeCustomerId: undefined,
+  stripeSubscriptionId: undefined,
+};
 const initialState = {
   isLoggedIn: false,
-  user: {
-    _id: undefined,
-    type: undefined,
-    email: undefined,
-    fullName: undefined,
-    referralCode: undefined,
-    referralAmount: undefined,
-    creditCardLast4: undefined,
-    usedReferralCode: undefined,
-    stripeCustomerId: undefined,
-    stripeSubscriptionId: undefined,
-  },
+  user: initialUserState,
 };
 
 function authReducer(state = initialState, action) {
@@ -21,10 +22,18 @@ function authReducer(state = initialState, action) {
   const actionData = action.data;
 
   switch (actionType) {
+    case actionTypes.AUTH.IS_LOGGED_IN:
+    case actionTypes.AUTH.USER_INFO_SYNC:
     case actionTypes.AUTH.BASIC_LOGIN_SUCCEED:
       return Object.assign({}, state, {
         isLoggedIn: true,
-        user: actionData.user,
+        user: Object.assign({}, state.user, actionData.user),
+      });
+    case actionTypes.AUTH.NOT_LOGGED_IN:
+    case actionTypes.AUTH.AUTH_CHECK_FAIL:
+      return Object.assign({}, state, {
+        isLoggedIn: false,
+        user: initialUserState,
       });
     default:
       return state;
