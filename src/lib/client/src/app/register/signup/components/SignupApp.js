@@ -1,31 +1,16 @@
-import authStore from '../../../../common/auth/stores/authStore';
-import authActionCreator from '../../../../common/auth/actions/authActionCreator';
 import SignupForm from './SignupForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import { connect } from 'react-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SignupApp extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-
-    this._bind('_onChange', '_onSubmit');
-    this.state = _getState();
-  }
-
-  componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount() {
-    authStore.removeChangeListener(this._onChange);
-  }
-
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (nextState.isLoggedIn) {
+    if (nextProps.isLoggedIn) {
       nextContext.router.push({
         pathname: '/register/payment',
-        query: { email: this.email },
+        query: { email: this.props.userEmail },
       });
     }
   }
@@ -33,7 +18,7 @@ class SignupApp extends BaseComponent {
   render() {
     let loader;
 
-    if (this.state.isLoading) {
+    if (this.props.isLoading) {
       loader = (
         <div className="slow-loader" />
       );
@@ -75,11 +60,7 @@ class SignupApp extends BaseComponent {
               </div>
             </div>
             <div className="form-bottom">
-              <SignupForm
-                onSubmit={ this._onSubmit }
-                isErrorVisible={ this.state.error.isVisible }
-                errorMsg={ this.state.error.message }
-              />
+              <SignupForm />
               <div className="row">
                 <div className="col-xs-offset-1 col-xs-10">
                   <br />
@@ -97,35 +78,23 @@ class SignupApp extends BaseComponent {
       </div>
     );
   }
-
-  _onChange() {
-    this.setState(_getState());
-  }
-
-  _onSubmit(event, email, _password, _fullName) {
-    const password = _password.trim();
-    const fullName = _fullName.trim();
-
-    this.email = email.trim() && email.toLowerCase();
-
-    authActionCreator.signup(this.email, password, fullName);
-  }
-
 }
+
+SignupApp.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  userEmail: PropTypes.string,
+};
+
 SignupApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
- */
-function _getState() {
+function mapStateToProps(state) {
   return {
-    isLoggedIn: authStore.isLoggedIn(),
-    error: authStore.getError('signup'),
-    isLoading: authStore.isLoading(),
+    isLoading: state.signup.isLoading,
+    isLoggedIn: state.auth.isLoggedIn,
+    userEmail: state.auth.user.email,
   };
 }
-
-export default SignupApp;
+export default connect(mapStateToProps)(SignupApp);
