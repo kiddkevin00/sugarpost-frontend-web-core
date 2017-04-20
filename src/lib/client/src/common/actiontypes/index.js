@@ -2,8 +2,9 @@ import homeActionTypes from '../../app/home/actionTypes';
 import authActionTypes from '../auth/actionTypes';
 import loginActionTypes from '../../app/register/login/actionTypes';
 import forgotPasswordActionTypes from '../../app/register/forgot-password/actionTypes';
-import accountProfileActionTypes from '../../app/account/actiontypes/profile';
-import accountSubscriptionActionTypes from '../../app/account/actiontypes/subscription';
+import accountProfileActionTypes from '../../app/account/actiontypes/profileForm';
+import accountSubscriptionActionTypes from '../../app/account/actiontypes/subscriptionSection';
+import paymentActionTypes from '../../app/register/payment/actiontypes/paymentForm';
 
 const allActionTypesPerSection = {
   HOME: homeActionTypes,
@@ -12,6 +13,7 @@ const allActionTypesPerSection = {
   FORGOT_PASSWORD: forgotPasswordActionTypes,
   ACCOUNT__PROFILE: accountProfileActionTypes,
   ACCOUNT__SUBSCRIPTION: accountSubscriptionActionTypes,
+  PAYMENT: paymentActionTypes,
 };
 
 namespaceActionTypesPerSection(allActionTypesPerSection);

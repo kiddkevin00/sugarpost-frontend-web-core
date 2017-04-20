@@ -19,7 +19,13 @@ function loginReducer(state = initialState, action) {
     case actionTypes.LOGIN.SET_FORM_FIELD:
       return Object.assign({}, state, { [`form${actionData.field}`]: actionData.value });
     case actionTypes.LOGIN.LOGGING_IN:
-      return Object.assign({}, state, { isLoading: true });
+      return Object.assign({}, state, {
+        isLoading: true,
+        error: {
+          isVisible: false,
+          message: defaultErrorMsg,
+        },
+      });
     case actionTypes.LOGIN.BASIC_LOGIN_SUCCEED:
       return Object.assign({}, state, {
         isLoading: false,

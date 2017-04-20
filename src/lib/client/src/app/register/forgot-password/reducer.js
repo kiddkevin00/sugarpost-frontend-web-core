@@ -18,7 +18,13 @@ function forgotPasswordReducer(state = initialState, action) {
     case actionTypes.FORGOT_PASSWORD.SET_FORM_FIELD:
       return Object.assign({}, state, { [`form${actionData.field}`]: actionData.value });
     case actionTypes.FORGOT_PASSWORD.RESETTING_PASSWORD:
-      return Object.assign({}, state, { isLoading: true });
+      return Object.assign({}, state, {
+        isLoading: true,
+        info: {
+          isVisible: false,
+          message: defaultInfoMsg,
+        },
+      });
     case actionTypes.FORGOT_PASSWORD.RESET_PASSWORD_SUCCEED:
       return Object.assign({}, state, {
         isLoading: false,

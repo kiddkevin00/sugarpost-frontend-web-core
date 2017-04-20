@@ -21,9 +21,19 @@ class ForgotPasswordForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isInfoVisible,
     });
+    let loader;
+
+    if (this.props.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
 
     return (
       <form onSubmit={ this._onSubmit } role="form">
+        { loader }
         <div className={ alertBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-info-circle" />
@@ -71,6 +81,7 @@ ForgotPasswordForm.propTypes = {
   dispatchForgotPassword: PropTypes.func.isRequired,
 
   formEmail: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   isInfoVisible: PropTypes.bool.isRequired,
   infoMsg: PropTypes.string.isRequired,
 };
@@ -78,6 +89,7 @@ ForgotPasswordForm.propTypes = {
 function mapStateToProps(state) {
   return {
     formEmail: state.forgotPassword.formEmail,
+    isLoading: state.forgotPassword.isLoading,
     isInfoVisible: state.forgotPassword.info.isVisible,
     infoMsg: state.forgotPassword.info.message,
   };

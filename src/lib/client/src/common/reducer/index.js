@@ -2,8 +2,9 @@ import home from '../../app/home/reducer';
 import auth from '../auth/reducer';
 import login from '../../app/register/login/reducer';
 import forgotPassword from '../../app/register/forgot-password/reducer';
-import accountProfile from '../../app/account/reducers/profile';
-import accountSubscription from '../../app/account/reducers/subscription';
+import accountProfile from '../../app/account/reducers/profileForm';
+import accountSubscription from '../../app/account/reducers/subscriptionSection';
+import payment from '../../app/register/payment/reducers/paymentForm';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   forgotPassword,
   accountProfile,
   accountSubscription,
+  payment,
 });
 
 export default rootReducer;

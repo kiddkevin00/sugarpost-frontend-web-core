@@ -1,13 +1,8 @@
 import actionTypes from '../../../common/actiontypes/';
 
-const defaultInfoMsg = 'The request has been completed.';
-const defaultErrorMsg = 'Oops! Something went wrong. Please try again.';
+const defaultInfoMsg = 'Your subscription has been cancelled. Your vouchers will remain available until the end of current cycle.';
+const defaultErrorMsg = 'You haven\'t paid for the subscription yet.';
 const initialState = {
-  formFullName: undefined,
-  formEmail: undefined,
-  formPassword: '',
-  formNewPassword: '',
-  formConfirmNewPassword: '',
   isLoading: false,
   info: {
     isVisible: false,
@@ -19,22 +14,12 @@ const initialState = {
   },
 };
 
-function accountProfileReducer(state = initialState, action) {
+function accountSubscriptionReducer(state = initialState, action) {
   const actionType = action.type;
   const actionData = action.data;
 
   switch (actionType) {
-    case actionTypes.ACCOUNT__PROFILE.SET_FORM_FIELD:
-      return Object.assign({}, state, { [`form${actionData.field}`]: actionData.value });
-    case actionTypes.ACCOUNT__PROFILE.RESET_FORM:
-      return Object.assign({}, state, {
-        formFullName: actionData.fullName,
-        formEmail: actionData.email,
-        formPassword: '',
-        formNewPassword: '',
-        formConfirmNewPassword: '',
-      });
-    case actionTypes.ACCOUNT__PROFILE.UPDATING_PROFILE:
+    case actionTypes.ACCOUNT__SUBSCRIPTION.CANCELLING_SUBSCRIPTION:
       return Object.assign({}, state, {
         isLoading: true,
         info: {
@@ -46,19 +31,19 @@ function accountProfileReducer(state = initialState, action) {
           message: defaultErrorMsg,
         },
       });
-    case actionTypes.ACCOUNT__PROFILE.UPDATE_PROFILE_SUCCEED:
+    case actionTypes.ACCOUNT__SUBSCRIPTION.CANCEL_SUBSCRIPTION_SUCCEED:
       return Object.assign({}, state, {
         isLoading: false,
         info: {
           isVisible: true,
-          message: 'Your profile has been updated.',
+          message: defaultInfoMsg,
         },
         error: {
           isVisible: false,
           message: defaultErrorMsg,
         },
       });
-    case actionTypes.ACCOUNT__PROFILE.UPDATE_PROFILE_FAIL:
+    case actionTypes.ACCOUNT__SUBSCRIPTION.CANCEL_SUBSCRIPTION_FAIL:
       return Object.assign({}, state, {
         isLoading: false,
         info: {
@@ -67,7 +52,7 @@ function accountProfileReducer(state = initialState, action) {
         },
         error: {
           isVisible: true,
-          message: _showMessage(actionData || 'The original password is incorrect.'),
+          message: _showMessage(actionData || defaultErrorMsg),
         },
       });
     default:
@@ -87,4 +72,4 @@ function _showMessage(data) {
   return msg;
 }
 
-export default accountProfileReducer;
+export default accountSubscriptionReducer;

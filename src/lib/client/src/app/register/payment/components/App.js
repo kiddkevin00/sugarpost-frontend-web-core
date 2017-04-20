@@ -1,66 +1,43 @@
-import authStore from '../../../../common/auth/stores/authStore';
-import paymentStore from '../stores/paymentStore';
-import authActionCreator from '../../../../common/auth/actions/authActionCreator';
-import paymentActionCreator from '../actions/paymentActionCreator';
+import authActionCreator from '../../../../common/auth/actionCreator';
 import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
+import { connect } from 'react-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
   'September', 'October', 'November', 'December'];
 
 class PaymentApp extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-
-    this._bind('_onChange');
-    this.state = _getState();
-  }
-
   componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-    paymentStore.addChangeListener(this._onChange);
-
-    if (!this.state.isLoggedIn) {
-      authActionCreator.authCheck();
+    if (!this.props.isLoggedIn) {
+      this.props.dispatchAuthCheck();
     }
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (!nextState.isLoggedIn) {
+    if (!nextProps.isLoggedIn) {
       nextContext.router.push('/register/login');
-    } else if (nextState.user.type === constants.SYSTEM.USER_TYPES.PAID) {
+    } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.PAID) {
       nextContext.router.push('/account');
     }
-  }
-
-  componentWillUnmount() {
-    authStore.removeChangeListener(this._onChange);
-    paymentStore.removeChangeListener(this._onChange);
   }
 
   render() {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const currentDay = currentDate.getDate();
-    let loader;
     let monthNameToSubscribe;
-
-    if (this.state.isLoading) {
-      loader = (
-        <div className="slow-loader" />
-      );
-    } else {
-      loader = null;
-    }
 
     if (currentDay <= 25) {
       monthNameToSubscribe = monthNames[currentMonth + 1];
     } else {
       monthNameToSubscribe = monthNames[currentMonth + 2];
     }
+    // [TODO] Removes this line after 4/26.
+    monthNameToSubscribe = 'June';
 
     return (
       <div className="container">
@@ -100,15 +77,8 @@ class PaymentApp extends BaseComponent {
               </div>
             </div>
             <div className="form-bottom">
-              { loader }
               <PaymentForm
-                onSubmit={ PaymentApp._onSubmit }
                 email={ this.props.location.query.email || '' }
-                isInfoVisible={ this.state.info.isVisible }
-                isErrorVisible={ this.state.error.isVisible }
-                infoMsg={ this.state.info.message }
-                errorMsg={ this.state.error.message }
-                referralCode={ this.state.referralCode }
                 subscribedMonth={ monthNameToSubscribe }
               />
             </div>
@@ -118,32 +88,31 @@ class PaymentApp extends BaseComponent {
     );
   }
 
-  _onChange() {
-    this.setState(_getState());
-  }
-
-  static _onSubmit(token, referralCode) {
-    paymentActionCreator.pay(token, referralCode);
-  }
-
 }
+PaymentApp.propTypes = {
+  dispatchAuthCheck: PropTypes.func.isRequired,
+
+  isLoggedIn: PropTypes.bool.isRequired,
+  forceUpdate: PropTypes.bool.isRequired,
+  userType: PropTypes.string,
+};
 PaymentApp.contextTypes = {
-  router: React.PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 };
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
- */
-function _getState() {
+function mapStateToProps(state) {
   return {
-    isLoggedIn: authStore.isLoggedIn(),
-    user: authStore.getUser(),
-    referralCode: authStore.gerReferralCode(),
-    info: paymentStore.getInfo(),
-    error: paymentStore.getError(),
-    isLoading: paymentStore.isLoading(),
+    isLoggedIn: state.auth.isLoggedIn,
+    forceUpdate: state.auth.forceUpdate,
+    userType: state.auth.user.type,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchAuthCheck() {
+      dispatch(authActionCreator.authCheck());
+    },
   };
 }
 
-export default PaymentApp;
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentApp);

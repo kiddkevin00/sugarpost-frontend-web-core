@@ -11,7 +11,7 @@ class LoginForm extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', '_onSubmit');
+    this._bind('_onSubmit');
   }
 
   render() {
@@ -21,9 +21,19 @@ class LoginForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
+    let loader;
+
+    if (this.props.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
 
     return (
       <form onSubmit={ this._onSubmit } role="form">
+        { loader }
         <div className={ alertBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-exclamation-triangle" />
@@ -83,6 +93,7 @@ LoginForm.propTypes = {
 
   formEmail: PropTypes.string.isRequired,
   formPassword: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   isErrorVisible: PropTypes.bool.isRequired,
   errorMsg: PropTypes.string.isRequired,
 };
@@ -91,6 +102,7 @@ function mapStateToProps(state) {
   return {
     formEmail: state.login.formEmail,
     formPassword: state.login.formPassword,
+    isLoading: state.login.isLoading,
     isErrorVisible: state.login.error.isVisible,
     errorMsg: state.login.error.message,
   };

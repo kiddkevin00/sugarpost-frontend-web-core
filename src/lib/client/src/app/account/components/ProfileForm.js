@@ -1,4 +1,4 @@
-import actionCreator from '../actioncreators/profile';
+import actionCreator from '../actioncreators/profileForm';
 import FormInput from '../../../common/components/FormInput';
 import BaseComponent from '../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
@@ -150,10 +150,12 @@ class ProfileForm extends BaseComponent {
       this.newPassword.isValid() &&
       this.confirmNewPassword.isValid()
     ) {
-      const formFullName = this.props.formFullName || this.props.originalFullName;
+      const formFullName = this.props.formFullName ?
+        this.props.formFullName.trim() : this.props.originalFullName;
+      const password = this.props.formPassword.trim();
+      const newPassword = this.props.formNewPassword.trim();
 
-      this.props.dispatchUpdateProfile(formFullName, this.props.formPassword,
-        this.props.formNewPassword);
+      this.props.dispatchUpdateProfile(formFullName, password, newPassword);
     } else {
       this.fullName.isValid();
       this.email.isValid();

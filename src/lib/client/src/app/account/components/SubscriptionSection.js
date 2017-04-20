@@ -1,3 +1,4 @@
+import actionCreator from '../actioncreators/subscriptionSection';
 import FormInput from '../../../common/components/FormInput';
 import BaseComponent from '../../../common/components/BaseComponent';
 import constants from '../../../common/constants/';
@@ -89,19 +90,14 @@ class SubscriptionSection extends BaseComponent {
     );
   }
 
-  _onUpdatePayment(event) {
-    this.props.onUpdatePayment(event);
-  }
+  _onUpdatePayment(event) {}
 
   _onUnsubscribe(event) {
-    this.props.onUnsubscribe(event);
+    this.props.dispatchUnsubscribe(this.context.router);
   }
 
 }
 SubscriptionSection.propTypes = {
-  onUnsubscribe: PropTypes.func.isRequired,
-  onUpdatePayment: PropTypes.func.isRequired,
-
   userType: PropTypes.string,
   userCreditCardLast4: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
@@ -112,6 +108,9 @@ SubscriptionSection.propTypes = {
 };
 SubscriptionSection.defaultProps = {
   userType: 'loading...',
+};
+SubscriptionSection.contextTypes = {
+  router: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -127,7 +126,9 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-
+    dispatchUnsubscribe(router) {
+      dispatch(actionCreator.cancelSubscription(router));
+    },
   };
 }
 

@@ -46,6 +46,42 @@ const authActionCreator = {
         });
     };
   },
+
+  logout() {
+    return (dispatch, getState) => {
+      const url = '/api/v1/auth/logout';
+
+      Proxy.get(url)
+        .then((payloadObj) => {
+          if (StandardResponseWrapper.verifyFormat(payloadObj)) {
+            const res = StandardResponseWrapper.deserialize(payloadObj);
+
+            if (res.getNthData(0).success) {
+              dispatch({
+                type: actionTypes.AUTH.LOGOUT_SUCCEED,
+              });
+            } else {
+              dispatch({
+                type: actionTypes.AUTH.LOGOUT_FAIL,
+              });
+            }
+          } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
+            const err = StandardErrorWrapper.deserialize(payloadObj);
+
+            dispatch({
+              type: actionTypes.AUTH.LOGOUT_FAIL,
+              data: err,
+            });
+          }
+        })
+        .catch((err) => {
+          dispatch({
+            type: actionTypes.AUTH.LOGOUT_FAIL,
+            data: err,
+          });
+        });
+    };
+  },
 };
 
 export default authActionCreator;

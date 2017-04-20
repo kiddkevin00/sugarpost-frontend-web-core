@@ -2,21 +2,10 @@ import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class ForgotPasswordApp extends BaseComponent {
 
   render() {
-    let loader;
-
-    if (this.props.isLoading) {
-      loader = (
-        <div className="slow-loader" />
-      );
-    } else {
-      loader = null;
-    }
-
     return (
       <div className="container">
         <div className="row">
@@ -42,7 +31,6 @@ class ForgotPasswordApp extends BaseComponent {
               </div>
             </div>
             <div className="form-bottom">
-              { loader }
               <ForgotPasswordForm />
             </div>
           </div>
@@ -52,17 +40,10 @@ class ForgotPasswordApp extends BaseComponent {
   }
 
 }
-ForgotPasswordApp.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-};
-ForgotPasswordApp.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
+ForgotPasswordApp.propTypes = {};
 
 function mapStateToProps(state) {
-  return {
-    isLoading: state.forgotPassword.isLoading,
-  };
+  return {};
 }
 
 export default connect(mapStateToProps)(ForgotPasswordApp);

@@ -37,16 +37,6 @@ class LoginApp extends BaseComponent {
   }
 
   render() {
-    let loader;
-
-    if (this.props.isLoading) {
-      loader = (
-        <div className="slow-loader" />
-      );
-    } else {
-      loader = null;
-    }
-
     return (
       <div className="container">
         <div className="row">
@@ -79,7 +69,6 @@ class LoginApp extends BaseComponent {
               </div>
             </div>
             <div className="form-bottom">
-              { loader }
               <LoginForm />
               <br />
               <a href="/register/forgot-password" className="center-block text-center">
@@ -94,7 +83,6 @@ class LoginApp extends BaseComponent {
 
 }
 LoginApp.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
   userType: PropTypes.string,
@@ -105,7 +93,6 @@ LoginApp.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    isLoading: state.login.isLoading,
     isLoggedIn: state.auth.isLoggedIn,
     userEmail: state.auth.user.email,
     userType: state.auth.user.type,

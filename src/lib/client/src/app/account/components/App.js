@@ -1,7 +1,4 @@
 import authActionCreator from '../../../common/auth/actionCreator';
-import authStore from '../../../common/auth/stores/authStore';
-import accountStore from '../stores/accountStore';
-import accountActionCreator from '../actions/actionCreator';
 import SubscriptionSection from './SubscriptionSection';
 import ProfileForm from './ProfileForm';
 import BaseComponent from '../../../common/components/BaseComponent';
@@ -11,17 +8,7 @@ import PropTypes from 'prop-types';
 
 class AccountApp extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-
-    this._bind('_onChange', '_onCancelSubscription');
-    this.state = _getState();
-  }
-
   componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-    accountStore.addChangeListener(this._onChange);
-
     if (!this.props.isLoggedIn) {
       this.props.dispatchAuthCheck();
     }
@@ -31,11 +18,6 @@ class AccountApp extends BaseComponent {
     if (!nextProps.isLoggedIn) {
       nextContext.router.push('/register/login');
     }
-  }
-
-  componentWillUnmount() {
-    authStore.removeChangeListener(this._onChange);
-    accountStore.removeChangeListener(this._onChange);
   }
 
   render() {
@@ -53,16 +35,7 @@ class AccountApp extends BaseComponent {
                 <div className="panel-heading"><h4>Subscription</h4></div>
                 <div className="panel-body">
                   <div className="col-lg-xs-12">
-                    <SubscriptionSection
-                      onUnsubscribe={ this._onCancelSubscription }
-                      onUpdatePayment={ AccountApp._onUpdatePayment }
-                      isInfoVisible={ this.state.subscriptionInfo.isVisible }
-                      isErrorVisible={ this.state.subscriptionError.isVisible }
-                      infoMsg={ this.state.subscriptionInfo.message }
-                      errorMsg={ this.state.subscriptionError.message }
-                      status={ this.state.user.type }
-                      creditCardLast4={ this.state.user.creditCardLast4 }
-                    />
+                    <SubscriptionSection />
                     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                   </div>
                 </div>
@@ -84,57 +57,23 @@ class AccountApp extends BaseComponent {
     );
   }
 
-  _onChange() {
-    this.setState(_getState());
-  }
-
-  _onCancelSubscription() {
-    accountActionCreator.cancelSubscription(this.context.router, this.state.user.email);
-  }
-
-  static _onUpdatePayment() {
-
-  }
-
-  static _onUpdateProfile(event, _password, _newPassword, _fullName) {
-    const password = _password && _password.trim();
-    const newPassword = _newPassword && _newPassword.trim();
-    const fullName = _fullName && _fullName.trim();
-
-    accountActionCreator.updateProfile(fullName, password, newPassword);
-  }
-
 }
 AccountApp.propTypes = {
   dispatchAuthCheck: PropTypes.func.isRequired,
 
   isLoggedIn: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  forceUpdate: PropTypes.bool.isRequired,
 };
 AccountApp.contextTypes = {
   router: PropTypes.object.isRequired,
 };
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
- */
-function _getState() {
-  return {
-    user: authStore.getUser(),
-    subscriptionInfo: accountStore.getInfo('subscription'),
-    subscriptionError: accountStore.getError('subscription'),
-    isLoading: accountStore.isLoading(),
-  };
-}
-
 function mapStateToProps(state) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
-    isLoading: state.accountProfile.isLoading,
+    forceUpdate: state.auth.forceUpdate,
   };
 }
-
 function mapDispatchToProps(dispatch) {
   return {
     dispatchAuthCheck() {

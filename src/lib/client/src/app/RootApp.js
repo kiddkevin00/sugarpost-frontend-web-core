@@ -1,5 +1,4 @@
-import authStore from '../common/auth/stores/authStore';
-import authActionCreator from '../common/auth/actions/authActionCreator';
+import authActionCreator from '../common/auth/actionCreator';
 import ScrollDiv from '../common/components/ScrollDiv';
 import BaseComponent from '../common/components/BaseComponent';
 import constants from '../common/constants/';
@@ -11,6 +10,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class RootApp extends BaseComponent {
+
+  constructor(props) {
+    super(props);
+
+    this._bind('_onLogout');
+  }
 
   render() {
     const tabsShownWhenUserLoggedIn = [];
@@ -37,7 +42,7 @@ class RootApp extends BaseComponent {
     const logoutTab = (
       /* eslint-disable jsx-a11y/no-static-element-interactions */
       <NavItem key="5">
-        <span onClick={ RootApp._onLogout }>
+        <span onClick={ this._onLogout }>
           Logout
         </span>
       </NavItem>
@@ -227,8 +232,8 @@ class RootApp extends BaseComponent {
     );
   }
 
-  static _onLogout() {
-    authActionCreator.logout();
+  _onLogout() {
+    this.props.dispatchLogout();
   }
 
   static _onLink(url) {
@@ -239,6 +244,8 @@ class RootApp extends BaseComponent {
 
 }
 RootApp.propTypes = {
+  dispatchLogout: PropTypes.func.isRequired,
+
   isLoggedIn: PropTypes.bool.isRequired,
   userType: PropTypes.string,
   userEmail: PropTypes.string,
@@ -254,5 +261,12 @@ function mapStateToProps(state) {
     userEmail: state.auth.user.email,
   };
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchLogout(field, value) {
+      dispatch(authActionCreator.logout());
+    },
+  };
+}
 
-export default connect(mapStateToProps)(RootApp);
+export default connect(mapStateToProps, mapDispatchToProps)(RootApp);
