@@ -31,7 +31,7 @@ class HomeApp extends BaseComponent {
               </div>
               <div className="row">
                 <div className="col-xs-12">
-                  <p>Limited Edition</p>
+                  <p>Limited Time Offers</p>
                 </div>
               </div>
             </Thumbnail>
@@ -179,7 +179,7 @@ class HomeApp extends BaseComponent {
                     href="/register/signup"
                     className="btn btn-default btn-xl sr-button"
                   >
-                    Unlock Now
+                    Sign Up Now
                   </a>
                   <br />
                   <br />
@@ -236,7 +236,7 @@ class HomeApp extends BaseComponent {
 }
 HomeApp.propTypes = {
   dispatchCloseModal: React.PropTypes.func.isRequired,
-  
+
   isModalOpen: React.PropTypes.bool.isRequired,
 };
 
