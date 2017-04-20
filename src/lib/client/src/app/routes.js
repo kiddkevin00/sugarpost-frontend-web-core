@@ -46,7 +46,7 @@ function storeParamMap(nextState) {
   }
 }
 function inTransition(nextState, replace) {
-  authActionCreator.inTransition(nextState, replace);
+  //authActionCreator.inTransition(nextState, replace);
 }
 
 export default clientRoutes;
