@@ -1,4 +1,4 @@
-import actionTypes from '../../common/actiontypes/';
+import actionTypes from '../../../common/actiontypes/';
 
 const initialState = {
   isModalOpen: true,

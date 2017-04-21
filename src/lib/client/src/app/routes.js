@@ -1,5 +1,4 @@
 import configureStore from '../common/store/';
-import authActionCreator from '../common/auth/actions/authActionCreator';
 import RootApp from './RootApp';
 import HomeApp from './home/components/App';
 import RegisterApp from './register/';
@@ -42,10 +41,12 @@ const clientRoutes = (
 
 function storeParamMap(nextState) {
   if (Object.keys(nextState.location.query).length) {
-    authActionCreator.storeParamMap(nextState.location.query);
+    // [TODO]
+    //authActionCreator.storeParamMap(nextState.location.query);
   }
 }
 function inTransition(nextState, replace) {
+  // [TODO]
   //authActionCreator.inTransition(nextState, replace);
 }
 

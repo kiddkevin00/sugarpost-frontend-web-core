@@ -1,4 +1,3 @@
-import authStore from '../../../../common/auth/stores/authStore';
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';

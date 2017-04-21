@@ -1,4 +1,4 @@
-import authActionCreator from '../../../../common/auth/actionCreator';
+import authActionCreator from '../../../../common/auth/actioncreator/';
 import ReferralForm from './ReferralForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';

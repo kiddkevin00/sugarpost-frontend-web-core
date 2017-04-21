@@ -1,4 +1,4 @@
-import authActionCreator from '../../../common/auth/actionCreator';
+import authActionCreator from '../../../common/auth/actioncreator/';
 import SubscriptionSection from './SubscriptionSection';
 import ProfileForm from './ProfileForm';
 import BaseComponent from '../../../common/components/BaseComponent';

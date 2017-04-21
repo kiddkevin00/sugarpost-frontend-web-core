@@ -1,4 +1,4 @@
-import authActionCreator from '../../../../common/auth/actionCreator';
+import authActionCreator from '../../../../common/auth/actioncreator/';
 import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';

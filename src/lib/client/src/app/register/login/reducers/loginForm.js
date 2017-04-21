@@ -1,44 +1,45 @@
-import actionTypes from '../../../common/actiontypes/';
+import actionTypes from '../../../../common/actiontypes/';
 
-const defaultInfoMsg = 'If a matching account was found, an email was sent to allow you to reset your password.';
+const defaultErrorMsg = 'The username or password is incorrect.';
 const initialState = {
   formEmail: '',
+  formPassword: '',
   isLoading: false,
-  info: {
+  error: {
     isVisible: false,
-    message: defaultInfoMsg,
+    message: defaultErrorMsg,
   },
 };
 
-function forgotPasswordReducer(state = initialState, action) {
+function loginReducer(state = initialState, action) {
   const actionType = action.type;
   const actionData = action.data;
 
   switch (actionType) {
-    case actionTypes.FORGOT_PASSWORD.SET_FORM_FIELD:
+    case actionTypes.LOGIN.SET_FORM_FIELD:
       return Object.assign({}, state, { [`form${actionData.field}`]: actionData.value });
-    case actionTypes.FORGOT_PASSWORD.RESETTING_PASSWORD:
+    case actionTypes.LOGIN.LOGGING_IN:
       return Object.assign({}, state, {
         isLoading: true,
-        info: {
+        error: {
           isVisible: false,
-          message: defaultInfoMsg,
+          message: defaultErrorMsg,
         },
       });
-    case actionTypes.FORGOT_PASSWORD.RESET_PASSWORD_SUCCEED:
+    case actionTypes.LOGIN.BASIC_LOGIN_SUCCEED:
       return Object.assign({}, state, {
         isLoading: false,
-        info: {
-          isVisible: true,
-          message: defaultInfoMsg,
+        error: {
+          isVisible: false,
+          message: defaultErrorMsg,
         },
       });
-    case actionTypes.FORGOT_PASSWORD.RESET_PASSWORD_FAIL:
+    case actionTypes.LOGIN.BASIC_LOGIN_FAIL:
       return Object.assign({}, state, {
         isLoading: false,
-        info: {
+        error: {
           isVisible: true,
-          message: _showMessage(actionData || defaultInfoMsg),
+          message: _showMessage(actionData || defaultErrorMsg),
         },
       });
     default:
@@ -58,4 +59,4 @@ function _showMessage(data) {
   return msg;
 }
 
-export default forgotPasswordReducer;
+export default loginReducer;

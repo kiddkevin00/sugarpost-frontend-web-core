@@ -1,4 +1,4 @@
-import actionCreator from '../actionCreator';
+import actionCreator from '../actioncreators/forgotPasswordForm';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import { connect } from 'react-redux';
