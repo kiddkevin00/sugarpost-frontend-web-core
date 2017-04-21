@@ -157,12 +157,12 @@ class ShareSection extends BaseComponent {
 
 }
 ShareSection.propTypes = {
-  isInfoVisible: React.PropTypes.bool.isRequired,
-  isErrorVisible: React.PropTypes.bool.isRequired,
-  infoMsg: React.PropTypes.string.isRequired,
-  errorMsg: React.PropTypes.string.isRequired,
-  myFullName: React.PropTypes.string,
-  myReferralCode: React.PropTypes.string,
+  //isInfoVisible: React.PropTypes.bool.isRequired,
+  //isErrorVisible: React.PropTypes.bool.isRequired,
+  //infoMsg: React.PropTypes.string.isRequired,
+  //errorMsg: React.PropTypes.string.isRequired,
+  //myFullName: React.PropTypes.string,
+  //myReferralCode: React.PropTypes.string,
 };
 ShareSection.defaultProps = {
   infoMsg: 'Request has been completed.',

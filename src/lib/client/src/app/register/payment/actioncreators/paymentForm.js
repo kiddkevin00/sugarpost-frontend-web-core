@@ -2,10 +2,9 @@ import actionTypes from '../../../../common/actiontypes/';
 import Proxy from '../../../../common/proxies/HttpProxy';
 import StandardResponseWrapper from '../../../../common/utility/standard-response-wrapper';
 import StandardErrorWrapper from '../../../../common/utility/standard-error-wrapper';
-import couponCode from 'coupon-code';
 import ReactGA from 'react-ga';
 
-const paymentActionCreator = {
+const paymentFormActionCreator = {
   setFormField(field, value, validateReferralCode) {
     if (field === 'ReferralCode' && validateReferralCode(value)) {
       if (value.trim().length === 0) {
@@ -126,4 +125,4 @@ const paymentActionCreator = {
   },
 };
 
-export default paymentActionCreator;
+export default paymentFormActionCreator;

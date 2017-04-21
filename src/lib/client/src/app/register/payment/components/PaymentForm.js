@@ -4,10 +4,10 @@ import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
 import StripeCheckout from 'react-stripe-checkout';
 import couponCode from 'coupon-code';
-import classNames from 'classnames';
 import ReactGA from 'react-ga';
 import { connect } from 'react-redux';
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 class PaymentForm extends BaseComponent {
@@ -158,9 +158,10 @@ PaymentForm.propTypes = {
 
   email: PropTypes.string.isRequired,
   subscribedMonth: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+
   formReferralCode: PropTypes.string.isRequired,
   isReferralCodeValid: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   isInfoVisible: PropTypes.bool.isRequired,
   infoMsg: PropTypes.string.isRequired,
   isErrorVisible: PropTypes.bool.isRequired,
@@ -169,9 +170,9 @@ PaymentForm.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    isLoading: state.payment.isLoading,
     formReferralCode: state.payment.formReferralCode,
     isReferralCodeValid: state.payment.isReferralCodeValid,
+    isLoading: state.payment.isLoading,
     isInfoVisible: state.payment.info.isVisible,
     infoMsg: state.payment.info.message,
     isErrorVisible: state.payment.error.isVisible,

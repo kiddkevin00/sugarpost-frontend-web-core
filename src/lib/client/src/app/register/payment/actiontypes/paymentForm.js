@@ -1,4 +1,4 @@
-const paymentActionTypes = {
+const paymentFormActionTypes = {
   SET_FORM_FIELD: 'SET_FORM_FIELD',
   PAYING: 'PAYING',
   PAYMENT_SUCCEED: 'PAYMENT_SUCCEED',
@@ -8,4 +8,4 @@ const paymentActionTypes = {
   PAYMENT_FAIL: 'PAYMENT_FAIL',
 };
 
-export default paymentActionTypes;
+export default paymentFormActionTypes;

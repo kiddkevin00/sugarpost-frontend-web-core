@@ -1,0 +1,7 @@
+const referralFormActionTypes = {
+  REDEEMING_CREDITS: 'REDEEMING_CREDITS',
+  REDEEM_CREDITS_SUCCEED: 'REDEEM_CREDITS_SUCCEED',
+  REDEEM_CREDITS_FAIL: 'REDEEM_CREDITS_FAIL',
+};
+
+export default referralFormActionTypes;

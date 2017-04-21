@@ -5,6 +5,7 @@ import forgotPasswordActionTypes from '../../app/register/forgot-password/action
 import accountProfileActionTypes from '../../app/account/actiontypes/profileForm';
 import accountSubscriptionActionTypes from '../../app/account/actiontypes/subscriptionSection';
 import paymentActionTypes from '../../app/register/payment/actiontypes/paymentForm';
+import referralActionTypes from '../../app/register/referral/actiontypes/referralForm';
 
 const allActionTypesPerSection = {
   HOME: homeActionTypes,
@@ -14,6 +15,7 @@ const allActionTypesPerSection = {
   ACCOUNT__PROFILE: accountProfileActionTypes,
   ACCOUNT__SUBSCRIPTION: accountSubscriptionActionTypes,
   PAYMENT: paymentActionTypes,
+  REFERRAL: referralActionTypes,
 };
 
 namespaceActionTypesPerSection(allActionTypesPerSection);

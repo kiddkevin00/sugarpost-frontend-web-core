@@ -7,7 +7,7 @@ import LoginApp from './register/login/components/App';
 import SignupApp from './register/signup/components/SignupApp';
 import PaymentApp from './register/payment/components/App';
 import ForgotPasswordApp from './register/forgot-password/components/App';
-import ReferralApp from './register/referral/components/ReferralApp';
+import ReferralApp from './register/referral/components/App';
 import PrivacyPolicyApp from './privacy-policy/components/PrivacyPolicyApp';
 import TermsOfUse from './terms-of-use/components/TermsOfUseApp';
 import AccountApp from './account/components/App';

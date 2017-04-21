@@ -178,6 +178,7 @@ ProfileForm.propTypes = {
   dispatchSetFormField: PropTypes.func.isRequired,
   dispatchUpdateProfile: PropTypes.func.isRequired,
   dispatchResetForm: PropTypes.func.isRequired,
+  
   formFullName: PropTypes.string,
   formEmail: PropTypes.string,
   formPassword: PropTypes.string.isRequired,

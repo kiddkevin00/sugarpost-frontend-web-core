@@ -16,7 +16,7 @@ const initialState = {
   },
 };
 
-function accountProfileReducer(state = initialState, action) {
+function paymentFormReducer(state = initialState, action) {
   const actionType = action.type;
   const actionData = action.data;
 
@@ -115,4 +115,4 @@ function _showMessage(data) {
   return msg;
 }
 
-export default accountProfileReducer;
+export default paymentFormReducer;
