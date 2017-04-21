@@ -10,25 +10,14 @@ class SignupApp extends BaseComponent {
     if (nextProps.isLoggedIn) {
       nextContext.router.push({
         pathname: '/register/payment',
-        query: { email: this.props.userEmail },
+        query: { email: nextProps.userEmail },
       });
     }
   }
 
   render() {
-    let loader;
-
-    if (this.props.isLoading) {
-      loader = (
-        <div className="slow-loader" />
-      );
-    } else {
-      loader = null;
-    }
-
     return (
       <div className="container">
-        { loader }
         <div className="row">
           <div className="col-sm-7 text">
             <h1>Adventure Awaits You</h1>
@@ -82,17 +71,14 @@ class SignupApp extends BaseComponent {
 
 SignupApp.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
 };
-
 SignupApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    isLoading: state.signup.isLoading,
     isLoggedIn: state.auth.isLoggedIn,
     userEmail: state.auth.user.email,
   };

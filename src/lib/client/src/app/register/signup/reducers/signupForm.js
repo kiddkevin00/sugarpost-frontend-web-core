@@ -1,7 +1,6 @@
 import actionTypes from '../../../../common/actiontypes/';
 
-const defaultErrorMsg = 'The username or password is incorrect.';
-const alreadySignUpMsg = 'That email address is already in use. Please log in.'
+const defaultErrorMsg = 'Something went wrong while signing up. Please try again.';
 const initialState = {
   formFullName: '',
   formEmail: '',
@@ -14,7 +13,7 @@ const initialState = {
   },
 };
 
-function signupReducer(state = initialState, action) {
+function signupFormReducer(state = initialState, action) {
   const actionType = action.type;
   const actionData = action.data;
 
@@ -22,7 +21,13 @@ function signupReducer(state = initialState, action) {
     case actionTypes.SIGNUP.SET_FORM_FIELD:
       return Object.assign({}, state, { [`form${actionData.field}`]: actionData.value });
     case actionTypes.SIGNUP.SIGNING_UP:
-      return Object.assign({}, state, { isLoading: true });
+      return Object.assign({}, state, {
+        isLoading: true,
+        error: {
+          isVisible: false,
+          message: defaultErrorMsg,
+        },
+      });
     case actionTypes.SIGNUP.SIGNUP_SUCCEED:
       return Object.assign({}, state, {
         isLoading: false,
@@ -31,12 +36,12 @@ function signupReducer(state = initialState, action) {
           message: defaultErrorMsg,
         },
       });
-    case actionTypes.SIGNUP.ALREADY_SIGNED_UP:
+    case actionTypes.SIGNUP.EMAIL_ALREADY_SIGNUP:
       return Object.assign({}, state, {
         isLoading: false,
         error: {
           isVisible: true,
-          message: _showMessage(alreadySignUpMsg),
+          message: 'That email address is already in use. Please log in.',
         },
       });
     case actionTypes.SIGNUP.SIGNUP_FAIL:
@@ -64,4 +69,4 @@ function _showMessage(data) {
   return msg;
 }
 
-export default signupReducer;
+export default signupFormReducer;

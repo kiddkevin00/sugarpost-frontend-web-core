@@ -81,14 +81,14 @@ const loginActionCreator = {
                 window.open(fullUrl, '_self');
               } else {
                 dispatch({
-                  type: actionTypes.LOGIN.BASIC_LOGIN_SUCCEED,
-                });
-
-                dispatch({
                   type: actionTypes.AUTH.BASIC_LOGIN_SUCCEED,
                   data: {
                     user: userInfo,
                   },
+                });
+                
+                dispatch({
+                  type: actionTypes.LOGIN.BASIC_LOGIN_SUCCEED,
                 });
               }
             } else {

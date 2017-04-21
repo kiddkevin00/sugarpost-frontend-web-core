@@ -25,6 +25,7 @@ function authReducer(state = initialState, action) {
   switch (actionType) {
     case actionTypes.AUTH.IS_LOGGED_IN:
     case actionTypes.AUTH.USER_INFO_SYNC:
+    case actionTypes.AUTH.SIGNUP_SUCCEED:
     case actionTypes.AUTH.BASIC_LOGIN_SUCCEED:
       return Object.assign({}, state, {
         isLoggedIn: true,

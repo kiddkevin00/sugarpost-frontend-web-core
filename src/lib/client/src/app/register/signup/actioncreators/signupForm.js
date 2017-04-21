@@ -5,13 +5,14 @@ import StandardErrorWrapper from '../../../../common/utility/standard-error-wrap
 import constants from '../../../../common/constants/';
 import ReactGA from 'react-ga';
 
-const signupActionCreator = {
+const signupFormActionCreator = {
   setFormField(field, value) {
     return {
       type: actionTypes.SIGNUP.SET_FORM_FIELD,
       data: { field, value },
     };
   },
+
   signup(email, password, fullName) {
     return (dispatch, getState) => {
       dispatch({
@@ -71,23 +72,24 @@ const signupActionCreator = {
                 window.open(fullUrl, '_self');
               } else {
                 dispatch({
-                  type: actionTypes.SIGNUP.SIGNUP_SUCCEED,
-                });
-                dispatch({
-                  type: actionTypes.AUTH.BASIC_LOGIN_SUCCEED,
+                  type: actionTypes.AUTH.SIGNUP_SUCCEED,
                   data: {
                     user: userInfo,
                   },
                 });
+
+                dispatch({
+                  type: actionTypes.SIGNUP.SIGNUP_SUCCEED,
+                });
               }
-            } else if (res.getNthData(0).status === 'EMAIL_ALREADY_SIGNUP') {
+            } else if (res.getNthData(0).status === actionTypes.SIGNUP.EMAIL_ALREADY_SIGNUP) {
               ReactGA.event({
                 category: 'Acquisition',
                 action: 'attempted to signup with duplicate email',
               });
 
               dispatch({
-                type: actionTypes.SIGNUP.ALREADY_SIGNED_UP,
+                type: actionTypes.SIGNUP.EMAIL_ALREADY_SIGNUP,
                 data: res.getNthData(0).detail,
               });
             } else {
@@ -126,8 +128,8 @@ const signupActionCreator = {
             data: err,
           });
         });
-    }
+    };
   },
 };
 
-export default signupActionCreator;
+export default signupFormActionCreator;

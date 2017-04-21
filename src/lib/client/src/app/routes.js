@@ -4,7 +4,7 @@ import RootApp from './RootApp';
 import HomeApp from './home/components/App';
 import RegisterApp from './register/';
 import LoginApp from './register/login/components/App';
-import SignupApp from './register/signup/components/SignupApp';
+import SignupApp from './register/signup/components/App';
 import PaymentApp from './register/payment/components/App';
 import ForgotPasswordApp from './register/forgot-password/components/App';
 import ReferralApp from './register/referral/components/App';

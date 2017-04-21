@@ -1,7 +1,7 @@
 import homeActionTypes from '../../app/home/actionTypes';
 import authActionTypes from '../auth/actionTypes';
-import loginActionTypes from '../../app/register/login/actionTypes';
 import signupActionTypes from '../../app/register/signup/actiontypes';
+import loginActionTypes from '../../app/register/login/actionTypes';
 import forgotPasswordActionTypes from '../../app/register/forgot-password/actionTypes';
 import accountProfileActionTypes from '../../app/account/actiontypes/profileForm';
 import accountSubscriptionActionTypes from '../../app/account/actiontypes/subscriptionSection';
@@ -12,8 +12,8 @@ import referralShareActionTypes from '../../app/register/referral/actiontypes/sh
 const allActionTypesPerSection = {
   HOME: homeActionTypes,
   AUTH: authActionTypes,
-  LOGIN: loginActionTypes,
   SIGNUP: signupActionTypes,
+  LOGIN: loginActionTypes,
   FORGOT_PASSWORD: forgotPasswordActionTypes,
   ACCOUNT__PROFILE: accountProfileActionTypes,
   ACCOUNT__SUBSCRIPTION: accountSubscriptionActionTypes,

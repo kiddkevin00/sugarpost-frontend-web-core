@@ -1,9 +1,9 @@
-const signupActionTypes = {
+const signupFormActionTypes = {
   SET_FORM_FIELD: 'SET_FORM_FIELD',
   SIGNING_UP: 'SIGNING_UP',
   SIGNUP_SUCCEED: 'SIGNUP_SUCCEED',
-  ALREADY_SIGNED_UP: 'ALREADY_SIGNED_UP',
+  EMAIL_ALREADY_SIGNUP: 'EMAIL_ALREADY_SIGNUP',
   SIGNUP_FAIL: 'SIGNUP_FAIL',
 };
 
-export default signupActionTypes;
+export default signupFormActionTypes;

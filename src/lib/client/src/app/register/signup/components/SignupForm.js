@@ -1,10 +1,11 @@
+import actionCreator from '../actioncreators/signupForm';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import ReactGA from 'react-ga';
 import { connect } from 'react-redux';
-import actionCreator from '../actioncreators';
 import React from 'react';
 import classNames from 'classnames';
-import ReactGA from 'react-ga';
+import PropTypes from 'prop-types';
 
 class SignupForm extends BaseComponent {
 
@@ -21,9 +22,19 @@ class SignupForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
+    let loader;
+
+    if (this.props.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
 
     return (
       <form onSubmit={ this._onSubmit } role="form">
+        { loader }
         <div className={ alertBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-exclamation-triangle" />
@@ -80,7 +91,7 @@ class SignupForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    this.props.dispatchSetSingUpField(field, value);
+    this.props.dispatchSetFormField(field, value);
   }
 
   _onSubmit(event) {
@@ -97,9 +108,11 @@ class SignupForm extends BaseComponent {
         category: 'User',
         action: 'signup form submitted',
       });
+
+      const fullName = this.props.formFullName.trim();
       const email = this.props.formEmail.trim() && this.props.formEmail.toLowerCase();
       const password = this.props.formPassword.trim();
-      const fullName = this.props.formFullName.trim();
+
       this.props.dispatchSignUp(email, password, fullName);
     } else {
       ReactGA.event({
@@ -120,9 +133,16 @@ class SignupForm extends BaseComponent {
 
 }
 SignupForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired,
-  isErrorVisible: React.PropTypes.bool.isRequired,
-  errorMsg: React.PropTypes.string,
+  dispatchSetFormField: PropTypes.func.isRequired,
+  dispatchSignUp: PropTypes.func.isRequired,
+
+  formFullName: PropTypes.string.isRequired,
+  formEmail: PropTypes.string.isRequired,
+  formPassword: PropTypes.string.isRequired,
+  formConfirmPassword: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isErrorVisible: PropTypes.bool.isRequired,
+  errorMsg: PropTypes.string.isRequired,
 };
 
 
@@ -132,15 +152,17 @@ function mapStateToProps(state) {
     formEmail: state.signup.formEmail,
     formPassword: state.signup.formPassword,
     formConfirmPassword: state.signup.formConfirmPassword,
+    isLoading: state.signup.isLoading,
     isErrorVisible: state.signup.error.isVisible,
     errorMsg: state.signup.error.message,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchSetSingUpField(field, value) {
+    dispatchSetFormField(field, value) {
       dispatch(actionCreator.setFormField(field, value));
     },
+
     dispatchSignUp(email, password, fullName) {
       dispatch(actionCreator.signup(email, password, fullName));
     },
