@@ -6,6 +6,7 @@ import accountProfileActionTypes from '../../app/account/actiontypes/profileForm
 import accountSubscriptionActionTypes from '../../app/account/actiontypes/subscriptionSection';
 import paymentActionTypes from '../../app/register/payment/actiontypes/paymentForm';
 import referralActionTypes from '../../app/register/referral/actiontypes/referralForm';
+import referralShareActionTypes from '../../app/register/referral/actiontypes/shareSection';
 
 const allActionTypesPerSection = {
   HOME: homeActionTypes,
@@ -16,6 +17,7 @@ const allActionTypesPerSection = {
   ACCOUNT__SUBSCRIPTION: accountSubscriptionActionTypes,
   PAYMENT: paymentActionTypes,
   REFERRAL: referralActionTypes,
+  REFERRAL__SHARE: referralShareActionTypes,
 };
 
 namespaceActionTypesPerSection(allActionTypesPerSection);

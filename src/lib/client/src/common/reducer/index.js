@@ -6,6 +6,7 @@ import accountProfile from '../../app/account/reducers/profileForm';
 import accountSubscription from '../../app/account/reducers/subscriptionSection';
 import payment from '../../app/register/payment/reducers/paymentForm';
 import referral from '../../app/register/referral/reducers/referralForm';
+import referralShare from '../../app/register/referral/reducers/shareSection';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   accountSubscription,
   payment,
   referral,
+  referralShare,
 });
 
 export default rootReducer;

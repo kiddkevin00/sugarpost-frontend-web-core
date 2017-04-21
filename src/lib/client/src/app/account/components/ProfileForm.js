@@ -135,10 +135,6 @@ class ProfileForm extends BaseComponent {
     );
   }
 
-  _onChange(field, value) {
-    this.props.dispatchSetFormField(field, value);
-  }
-
   _onSave(event) {
     // Prevents browser's default navigation (page refresh).
     event.preventDefault();
@@ -167,6 +163,10 @@ class ProfileForm extends BaseComponent {
 
   _onReset(event) {
     this.props.dispatchResetForm(this.props.originalFullName, this.props.originalEmail);
+  }
+
+  _onChange(field, value) {
+    this.props.dispatchSetFormField(field, value);
   }
 
   _isConfirmNewPasswordMatched(inputText) {

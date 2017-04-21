@@ -112,8 +112,13 @@ class PaymentForm extends BaseComponent {
     );
   }
 
-  _onChange(field, value) {
-    this.props.dispatchSetFormField(field, value, PaymentForm._validateReferralCode);
+  _onToken(token) {
+    ReactGA.event({
+      category: 'User',
+      action: 'payment form verified',
+    });
+
+    this.props.dispatchPay(token, this.props.formReferralCode);
   }
 
   _onClick(event) {
@@ -127,13 +132,8 @@ class PaymentForm extends BaseComponent {
     }
   }
 
-  _onToken(token) {
-    ReactGA.event({
-      category: 'User',
-      action: 'payment form verified',
-    });
-
-    this.props.dispatchPay(token, this.props.formReferralCode);
+  _onChange(field, value) {
+    this.props.dispatchSetFormField(field, value, PaymentForm._validateReferralCode);
   }
 
   static _validateReferralCode(inputText) {
