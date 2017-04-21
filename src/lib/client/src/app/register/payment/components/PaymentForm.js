@@ -180,8 +180,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchSetFormField(field, value) {
-      dispatch(actionCreator.setFormField(field, value));
+    dispatchSetFormField(field, value, validateReferralCode) {
+      dispatch(actionCreator.setFormField(field, value, validateReferralCode));
     },
 
     dispatchPay(token, referralCode) {

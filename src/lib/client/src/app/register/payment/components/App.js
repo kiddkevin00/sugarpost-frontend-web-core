@@ -60,7 +60,7 @@ class PaymentApp extends BaseComponent {
                 <li>Redeem and enjoy desserts by the end of the month!</li>
                 <li>No time? No worries! You can share any of your vouchers with friends!</li>
                 <li>
-                  Vouchers include the choices to redeem <i>Sugarpost Exclusives</i> or in-store
+                  Vouchers include the choices to redeem <i>Sugarpost exclusives</i> or in-store
                   desserts <i>(more than 10% discount off total retail value)</i>
                 </li>
               </ol>
