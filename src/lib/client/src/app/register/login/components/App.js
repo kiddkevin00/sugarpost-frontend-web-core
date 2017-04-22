@@ -9,7 +9,10 @@ class LoginApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (nextProps.isLoggedIn) {
-      let transitionPath = authStore.getTransitionPath();
+      /// [TODO] Removes until migrating to Redux.
+      //let transitionPath = authStore.getTransitionPath();
+      const transitionPath = '';
+
       const paymentRoute = {
         pathname: '/register/payment',
         query: { email: nextProps.userEmail },
@@ -20,8 +23,6 @@ class LoginApp extends BaseComponent {
       const referralRoute = {
         pathname: '/register/referral',
       };
-      // [TODO] Removes until migrating to Redux.
-      transitionPath = '';
 
       if (transitionPath === '/register/payment') {
         nextContext.router.push(paymentRoute);
