@@ -31,15 +31,22 @@ class HomeApp extends BaseComponent {
               </div>
               <div className="row">
                 <div className="col-xs-12">
-                  <p>Limited Time Offers</p>
+                  <p>Limited Time Offer</p>
                 </div>
               </div>
             </Thumbnail>
           </Modal.Body>
           <Modal.Footer>
+            <a
+              href="/register/signup"
+              className="btn btn-warning btn-block"
+              type="button"
+            >
+              Sign Up Now
+            </a>
             <button
               onClick={ this._closeModal }
-              className="btn btn-default center-block"
+              className="btn btn-default btn-block"
               type="button"
             >
               Close
@@ -52,12 +59,13 @@ class HomeApp extends BaseComponent {
             <div className="header-content-inner">
               <h1>SUGARPOST</h1>
               <hr />
+              <h3>Manhattan’s Premium Dessert Subscription Service</h3>
               <p>
-                Discover hidden gems to Manhattan&#39;s trendiest desserts! Subscribe and receive an
-                e-package which will contain vouchers that can claim in-store desserts or
+                Subscribe and discover trendy desserts to hidden gems with e-packages which will
+                contain vouchers that can claim in-store desserts or
                 <b><i>&nbsp;Sugarpost exclusives&nbsp;</i></b>
                 from
-                <b><i>&nbsp;different featured dessert vendors every month!&nbsp;</i></b>
+                <b><i>&nbsp;different featured vendors every month!&nbsp;</i></b>
               </p>
               <a href="/register/signup" className="btn btn-primary btn-xl page-scroll">
                 Sign Up Now
