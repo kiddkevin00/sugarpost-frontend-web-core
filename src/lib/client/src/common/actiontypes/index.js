@@ -29,6 +29,7 @@ function namespaceActionTypesPerSection(actionTypesPerSection) {
     const actionTypes = actionTypesPerSection[section];
 
     for (const type in actionTypes) {
+      actionTypes[`_${type}`] = `${actionTypes[type]}`;
       actionTypes[type] = `${section}.${actionTypes[type]}`;
     }
   }

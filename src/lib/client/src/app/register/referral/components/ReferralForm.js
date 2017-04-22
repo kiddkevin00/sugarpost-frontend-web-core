@@ -32,7 +32,7 @@ class ReferralForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
-    const creditBalance = this.props.userReferralAmount * refererCredit;
+    const creditBalance = (this.props.userReferralAmount || 0) * refererCredit;
     const creditBalanceStr = window.parseFloat(creditBalance).toFixed(2);
     const isNotRedeemable = creditBalance < redeemableAmount ||
       this.props.userType === constants.SYSTEM.USER_TYPES.INFLUENCER;
