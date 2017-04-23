@@ -20,9 +20,7 @@ if (!versionRegex.test(newVersion)) {
 console.log(`[Version Bump] Updating version to ${newVersion}`);
 
 const promises = [];
-const updateFilePaths = [
-  'src/lib/server/views/index.jade',
-];
+const updateFilePaths = [];
 
 
 for (const filePath of updateFilePaths) {
