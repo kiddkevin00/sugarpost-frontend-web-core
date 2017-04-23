@@ -14,6 +14,12 @@ class LoginForm extends BaseComponent {
     this._bind('_onSubmit');
   }
 
+  componentDidMount() {
+    if (this.props.isErrorVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
+  }
+
   render() {
     const alertBoxClasses = classNames({
       alert: true,
@@ -88,6 +94,7 @@ class LoginForm extends BaseComponent {
 
 }
 LoginForm.propTypes = {
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
   dispatchSetFormField: PropTypes.func.isRequired,
   dispatchLogin: PropTypes.func.isRequired,
 
@@ -109,6 +116,10 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+    
     dispatchSetFormField(field, value) {
       dispatch(actionCreator.setFormField(field, value));
     },

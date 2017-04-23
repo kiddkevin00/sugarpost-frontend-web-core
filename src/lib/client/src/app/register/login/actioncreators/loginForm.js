@@ -5,6 +5,12 @@ import StandardErrorWrapper from '../../../../common/utility/standard-error-wrap
 import constants from '../../../../common/constants/';
 
 const loginActionCreator = {
+  resetFormAlertBoxes() {
+    return {
+      type: actionTypes.LOGIN.RESET_FORM_ALERT_BOXES,
+    };
+  },
+  
   setFormField(field, value) {
     return {
       type: actionTypes.LOGIN.SET_FORM_FIELD,

@@ -16,6 +16,13 @@ function loginReducer(state = initialState, action) {
   const actionData = action.data;
 
   switch (actionType) {
+    case actionTypes.LOGIN.RESET_FORM_ALERT_BOXES:
+      return Object.assign({}, state, {
+        error: {
+          isVisible: false,
+          message: defaultErrorMsg,
+        },
+      });
     case actionTypes.LOGIN.SET_FORM_FIELD:
       return Object.assign({}, state, { [`form${actionData.field}`]: actionData.value });
     case actionTypes.LOGIN.LOGGING_IN:
