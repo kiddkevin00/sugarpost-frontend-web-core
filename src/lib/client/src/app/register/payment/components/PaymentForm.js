@@ -18,6 +18,12 @@ class PaymentForm extends BaseComponent {
     this._bind('_onClick', '_onToken');
   }
 
+  componentDidMount() {
+    if (this.props.isInfoVisible || this.props.isErrorVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
+  }
+
   render() {
     const alertSuccessBoxClasses = classNames({
       alert: true,
@@ -153,6 +159,7 @@ class PaymentForm extends BaseComponent {
 
 }
 PaymentForm.propTypes = {
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
   dispatchSetFormField: PropTypes.func.isRequired,
   dispatchPay: PropTypes.func.isRequired,
 
@@ -181,6 +188,10 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
     dispatchSetFormField(field, value, validateReferralCode) {
       dispatch(actionCreator.setFormField(field, value, validateReferralCode));
     },

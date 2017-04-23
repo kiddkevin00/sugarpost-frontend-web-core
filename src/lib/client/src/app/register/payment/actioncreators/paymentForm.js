@@ -5,6 +5,12 @@ import StandardErrorWrapper from '../../../../common/utility/standard-error-wrap
 import ReactGA from 'react-ga';
 
 const paymentFormActionCreator = {
+  resetFormAlertBoxes() {
+    return {
+      type: actionTypes.PAYMENT.RESET_FORM_ALERT_BOXES,
+    };
+  },
+  
   setFormField(field, value, validateReferralCode) {
     if (field === 'ReferralCode' && validateReferralCode(value)) {
       if (value.trim().length === 0) {
