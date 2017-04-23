@@ -123,6 +123,7 @@
     "prop-types": "15.5.8",
     "react": "15.4.2",
     "react-bootstrap": "0.30.8",
+    "react-dom": "15.4.2",
     "react-ga": "2.2.0",
     "react-redux": "5.0.4",
     "react-router": "3.0.3",
@@ -161,7 +162,6 @@
     "mocha-multi": "0.10.0",
     "nyc": "8.4.0",
     "react-addons-test-utils": "15.4.2",
-    "react-dom": "15.4.2",
     "sinon": "1.17.7",
     "sinon-as-promised": "4.0.3",
     "sinon-chai": "2.9.0"
