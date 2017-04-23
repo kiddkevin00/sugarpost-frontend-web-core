@@ -172,8 +172,8 @@ class HomeApp extends BaseComponent {
               </div>
               <div className="container-fluid">
                 <div className="row no-gutter popup-gallery">
-                  <div className="col-lg-offset-2 col-lg-8 col-md-12">
-                    <img src="/assets/images/june-featured-desserts.png" className="img-responsive" alt="" />
+                  <div className="col-lg-offset-2 col-lg-8 col-xs-12">
+                    <img src="/assets/images/june-vendors.png" className="img-responsive" alt="" />
                   </div>
                 </div>
               </div>
