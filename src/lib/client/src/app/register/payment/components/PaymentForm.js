@@ -1,9 +1,14 @@
+import actionCreator from '../actioncreators/paymentForm';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import constants from '../../../../common/constants/';
 import StripeCheckout from 'react-stripe-checkout';
-import React from 'react';
 import couponCode from 'coupon-code';
+import ReactGA from 'react-ga';
+import { connect } from 'react-redux';
+import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 class PaymentForm extends BaseComponent {
 
@@ -11,10 +16,12 @@ class PaymentForm extends BaseComponent {
     super(props);
 
     this._bind('_onClick', '_onToken');
-    this.state = {
-      referralCode: this.props.referralCode,
-      isReferralCodeValid: false,
-    };
+  }
+
+  componentDidMount() {
+    if (this.props.isInfoVisible || this.props.isErrorVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
   }
 
   render() {
@@ -30,11 +37,21 @@ class PaymentForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
-    const showDiscountStr = this.state.isReferralCodeValid ? '10% Off Included' : '\u00A0';
-    const totalCost = this.state.isReferralCodeValid ? '$24.49' : '$27.21';
+    const showDiscountStr = this.props.isReferralCodeValid ? '50% Off Included' : '\u00A0';
+    const totalCost = this.props.isReferralCodeValid ? '$6.81' : '$13.61';
+    let loader;
+
+    if (this.props.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
 
     return (
       <form role="form">
+        { loader }
         <div className={ alertSuccessBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-check-square-o" />
@@ -46,29 +63,30 @@ class PaymentForm extends BaseComponent {
           &nbsp; { this.props.errorMsg }
         </div>
         <div className="text-center">
-          <h4><u>Monthly Subscription</u></h4>
-          <h1><b>$24.99</b></h1>
+          <h3><b>Monthly Subscription</b></h3>
+          <p>_______________________________</p>
+          <h1><b>$12.50</b></h1>
           <span>+</span>
           <br />
-          <span>Tax</span>
+          <span>Tax (8.875%)</span>
           <p>___________</p>
-          <h3>{ totalCost }</h3>
+          <h3>Total: { totalCost }</h3>
           <h4><i>{ showDiscountStr }</i></h4>
         </div>
         <br />
         <div>
-          Do you have an referral code?
+          Do you have a referral code?
         </div>
         <FormInput
           text="Optional"
-          validate={ PaymentForm._validateCouponCode }
-          value={ this.state.referralCode }
-          onChange={ this._onChange.bind(this, 'referralCode') } /* eslint-disable-line react/jsx-no-bind */
+          validate={ PaymentForm._validateReferralCode }
+          value={ this.props.formReferralCode }
+          onChange={ this._onChange.bind(this, 'ReferralCode') } /* eslint-disable-line react/jsx-no-bind */
           errorMessage="Referral code is invalid"
         />
         <StripeCheckout
           token={ this._onToken }
-          stripeKey="pk_live_CTOKgbale5B5kr0C6KA3o9kd"
+          stripeKey={ constants.CREDENTIAL.STRIPE.PUBLIC_KEY }
           name="Sugarpost"
           description="Premium Subscription Service"
           image="/assets/images/sugarpost-logo.png"
@@ -100,39 +118,31 @@ class PaymentForm extends BaseComponent {
     );
   }
 
-  _onChange(field, value) {
-    if (PaymentForm._validateCouponCode(value)) {
-      if (value.trim().length === 0) {
-        this.setState({
-          isReferralCodeValid: false,
-        });
-      } else {
-        this.setState({
-          isReferralCodeValid: true,
-        });
-      }
-    } else {
-      this.setState({
-        isReferralCodeValid: false,
-      });
-    }
-
-    this.setState({
-      [field]: value,
+  _onToken(token) {
+    ReactGA.event({
+      category: 'User',
+      action: 'payment form verified',
     });
+
+    this.props.dispatchPay(token, this.props.formReferralCode);
   }
 
   _onClick(event) {
-    if (!PaymentForm._validateCouponCode(this.state.referralCode)) {
+    if (!PaymentForm._validateReferralCode(this.props.formReferralCode)) {
       event.stopPropagation();
+    } else {
+      ReactGA.event({
+        category: 'User',
+        action: 'payment button clicked',
+      });
     }
   }
 
-  _onToken(token) {
-    this.props.onSubmit(token, this.state.referralCode);
+  _onChange(field, value) {
+    this.props.dispatchSetFormField(field, value, PaymentForm._validateReferralCode);
   }
 
-  static _validateCouponCode(inputText) {
+  static _validateReferralCode(inputText) {
     if (inputText.trim().length === 0) {
       return true;
     }
@@ -149,20 +159,47 @@ class PaymentForm extends BaseComponent {
 
 }
 PaymentForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired,
-  email: React.PropTypes.string.isRequired,
-  isInfoVisible: React.PropTypes.bool.isRequired,
-  isErrorVisible: React.PropTypes.bool.isRequired,
-  infoMsg: React.PropTypes.string,
-  errorMsg: React.PropTypes.string,
-  referralCode: React.PropTypes.string,
-  subscribedMonth: React.PropTypes.string,
-};
-PaymentForm.defaultProps = {
-  infoMsg: 'Request has been completed.',
-  errorMsg: 'Oops! Something went wrong. Please try again.',
-  referralCode: '',
-  subscribedMonth: 'Unknown',
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
+  dispatchSetFormField: PropTypes.func.isRequired,
+  dispatchPay: PropTypes.func.isRequired,
+
+  email: PropTypes.string.isRequired,
+  subscribedMonth: PropTypes.string.isRequired,
+
+  formReferralCode: PropTypes.string.isRequired,
+  isReferralCodeValid: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isInfoVisible: PropTypes.bool.isRequired,
+  infoMsg: PropTypes.string.isRequired,
+  isErrorVisible: PropTypes.bool.isRequired,
+  errorMsg: PropTypes.string.isRequired,
 };
 
-export default PaymentForm;
+function mapStateToProps(state) {
+  return {
+    formReferralCode: state.payment.formReferralCode,
+    isReferralCodeValid: state.payment.isReferralCodeValid,
+    isLoading: state.payment.isLoading,
+    isInfoVisible: state.payment.info.isVisible,
+    infoMsg: state.payment.info.message,
+    isErrorVisible: state.payment.error.isVisible,
+    errorMsg: state.payment.error.message,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
+    dispatchSetFormField(field, value, validateReferralCode) {
+      dispatch(actionCreator.setFormField(field, value, validateReferralCode));
+    },
+
+    dispatchPay(token, referralCode) {
+      dispatch(actionCreator.pay(token, referralCode));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentForm);

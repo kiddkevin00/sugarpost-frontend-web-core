@@ -49,7 +49,7 @@ class HttpProxy {
     const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
-      body: JSON.stringify(body),
+      body: window.JSON.stringify(body),
       method: constants.SYSTEM.HTTP_METHODS.POST,
       mode: 'cors',
       credentials: 'include',
@@ -62,7 +62,7 @@ class HttpProxy {
     const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
-      body: JSON.stringify(body),
+      body: window.JSON.stringify(body),
       method: constants.SYSTEM.HTTP_METHODS.PUT,
       mode: 'cors',
       credentials: 'include',
@@ -75,7 +75,7 @@ class HttpProxy {
     const url = HttpProxy._getFullUrl(_url, queryStringObj);
     const options = {
       headers,
-      body: JSON.stringify(body),
+      body: window.JSON.stringify(body),
       method: constants.SYSTEM.HTTP_METHODS.DELETE,
       mode: 'cors',
       credentials: 'include',
@@ -88,9 +88,20 @@ class HttpProxy {
     let fullUrl;
 
     if (url[0] === '/') {
-      const urlBase = (window.location.hostname === 'localhost') ||
-        (window.location.hostname === '127.0.0.1') || (window.location.hostname === '0.0.0.0') ?
-        constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API : constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
+      const env = window.process.env.NODE_ENV;
+      let urlBase;
+
+      switch (env) {
+        case 'production':
+          urlBase = constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
+          break;
+        case 'test':
+          urlBase = constants.SYSTEM.URL_BASES.TEST_BACKEND_API;
+          break;
+        default:
+          urlBase = constants.SYSTEM.URL_BASES.LOCAL_BACKEND_API;
+          break;
+      }
 
       fullUrl = urlBase + url;
     } else {

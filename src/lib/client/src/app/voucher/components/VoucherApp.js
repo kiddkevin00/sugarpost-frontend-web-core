@@ -1,41 +1,29 @@
-import authStore from '../../../common/auth/stores/authStore';
-import authActionCreator from '../../../common/auth/actions/authActionCreator';
+import authActionCreator from '../../../common/auth/actioncreator/';
 import BaseComponent from '../../../common/components/BaseComponent';
 import constants from '../../../common/constants/';
+import { connect } from 'react-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class VoucherApp extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-
-    this._bind('_onChange');
-    this.state = _getState();
-  }
-
   componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-
-    if (!this.state.isLoggedIn) {
-      authActionCreator.authCheck();
+    if (!this.props.isLoggedIn) {
+      this.props.dispatchAuthCheck();
     }
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (!nextState.isLoggedIn) {
+    if (!nextProps.isLoggedIn) {
       nextContext.router.push('/register/login');
     } else if (
-      nextState.user.type === constants.SYSTEM.USER_TYPES.UNPAID
+      nextProps.userType === constants.SYSTEM.USER_TYPES.UNPAID
     ) {
       nextContext.router.push({
         pathname: '/register/payment',
-        query: { email: nextState.user.email },
+        query: { email: nextProps.userEmail },
       });
     }
-  }
-
-  componentWillUnmount() {
-    authStore.removeChangeListener(this._onChange);
   }
 
   render() {
@@ -50,9 +38,9 @@ class VoucherApp extends BaseComponent {
           <div className="row">
             <div className="col-xs-12 text-center" style={ { color: 'white' } }>
               <h1 >
-                Thank you for subscribing! Your vouchers will be available on May 1st, 2017.
+                Thank you for subscribing! Your vouchers will be available on June 1st, 2017.
               </h1>
-              <h2>(Vouchers will expire at the end of May)</h2>
+              <h2>(Vouchers will be expired at the end of June)</h2>
             </div>
           </div>
         </div>
@@ -60,24 +48,33 @@ class VoucherApp extends BaseComponent {
     );
   }
 
-  _onChange() {
-    this.setState(_getState());
-  }
-
 }
+VoucherApp.propTypes = {
+  dispatchAuthCheck: PropTypes.func.isRequired,
+
+  isLoggedIn: PropTypes.bool.isRequired,
+  forceUpdate: PropTypes.bool.isRequired,
+  userEmail: PropTypes.string,
+  userType: PropTypes.string,
+};
 VoucherApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
- */
-function _getState() {
+function mapStateToProps(state) {
   return {
-    isLoggedIn: authStore.isLoggedIn(),
-    user: authStore.getUser(),
+    isLoggedIn: state.auth.isLoggedIn,
+    forceUpdate: state.auth.forceUpdate,
+    userEmail: state.auth.user.email,
+    userType: state.auth.user.type,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchAuthCheck() {
+      dispatch(authActionCreator.authCheck());
+    },
   };
 }
 
-export default VoucherApp;
+export default connect(mapStateToProps, mapDispatchToProps)(VoucherApp);

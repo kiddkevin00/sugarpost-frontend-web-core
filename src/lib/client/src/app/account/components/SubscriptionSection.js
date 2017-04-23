@@ -1,8 +1,11 @@
+import actionCreator from '../actioncreators/subscriptionSection';
 import FormInput from '../../../common/components/FormInput';
 import BaseComponent from '../../../common/components/BaseComponent';
 import constants from '../../../common/constants/';
+import { connect } from 'react-redux';
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 class SubscriptionSection extends BaseComponent {
 
@@ -10,17 +13,12 @@ class SubscriptionSection extends BaseComponent {
     super(props);
 
     this._bind('_onUpdatePayment', '_onUnsubscribe');
-    this.state = {
-      subscriptionStatus: props.status,
-      creditCardLast4: props.creditCardLast4,
-    };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      subscriptionStatus: nextProps.status,
-      creditCardLast4: nextProps.creditCardLast4,
-    });
+  componentDidMount() {
+    if (this.props.isInfoVisible || this.props.isErrorVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
   }
 
   render() {
@@ -36,9 +34,19 @@ class SubscriptionSection extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
+    let loader;
+
+    if (this.props.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
 
     return (
       <form className="form-horizontal" role="form">
+        { loader }
         <div className={ alertSuccessBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-check-square-o" />
@@ -51,13 +59,13 @@ class SubscriptionSection extends BaseComponent {
         </div>
         <FormInput
           text="Status"
-          value={ this.state.subscriptionStatus }
+          value={ this.props.userType }
           onChange={ () => {} }
           disabled={ true }
         />
         <FormInput
           text="Payment Method"
-          value={ this.state.creditCardLast4 !== 'N/A' ? `Card Ending in ${this.state.creditCardLast4}` : 'N/A' }
+          value={ this.props.userCreditCardLast4 ? `Card Ending in ${this.props.userCreditCardLast4}` : 'N/A' }
           onChange={ () => {} }
           disabled={ true }
         />
@@ -77,7 +85,7 @@ class SubscriptionSection extends BaseComponent {
           <div className="col-sm-12">
             <input
               onClick={ this._onUnsubscribe }
-              disabled={ this.state.subscriptionStatus !== constants.SYSTEM.USER_TYPES.PAID }
+              disabled={ this.props.userType !== constants.SYSTEM.USER_TYPES.PAID }
               type="button"
               className="btn btn-link"
               value="Cancel Subscription"
@@ -88,30 +96,53 @@ class SubscriptionSection extends BaseComponent {
     );
   }
 
-  _onUpdatePayment(event) {
-    this.props.onUpdatePayment(event);
-  }
+  _onUpdatePayment(event) {}
 
   _onUnsubscribe(event) {
-    this.props.onUnsubscribe(event);
+    this.props.dispatchCancelSubscription(this.context.router);
   }
 
 }
 SubscriptionSection.propTypes = {
-  onUnsubscribe: React.PropTypes.func.isRequired,
-  onUpdatePayment: React.PropTypes.func.isRequired,
-  isInfoVisible: React.PropTypes.bool.isRequired,
-  isErrorVisible: React.PropTypes.bool.isRequired,
-  infoMsg: React.PropTypes.string,
-  errorMsg: React.PropTypes.string,
-  status: React.PropTypes.string,
-  creditCardLast4: React.PropTypes.string,
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
+  dispatchCancelSubscription: PropTypes.func.isRequired,
+
+  userType: PropTypes.string,
+  userCreditCardLast4: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired,
+  isInfoVisible: PropTypes.bool.isRequired,
+  infoMsg: PropTypes.string.isRequired,
+  isErrorVisible: PropTypes.bool.isRequired,
+  errorMsg: PropTypes.string.isRequired,
 };
 SubscriptionSection.defaultProps = {
-  infoMsg: 'Request has been completed.',
-  errorMsg: 'Oops! Something went wrong. Please try again.',
-  status: 'Loading...',
-  creditCardLast4: 'N/A',
+  userType: 'loading...',
+};
+SubscriptionSection.contextTypes = {
+  router: PropTypes.object.isRequired,
 };
 
-export default SubscriptionSection;
+function mapStateToProps(state) {
+  return {
+    userType: state.auth.user.type,
+    userCreditCardLast4: state.auth.user.creditCardLast4,
+    isLoading: state.accountSubscription.isLoading,
+    isInfoVisible: state.accountSubscription.info.isVisible,
+    infoMsg: state.accountSubscription.info.message,
+    isErrorVisible: state.accountSubscription.error.isVisible,
+    errorMsg: state.accountSubscription.error.message,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
+    dispatchCancelSubscription(router) {
+      dispatch(actionCreator.cancelSubscription(router));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionSection);

@@ -1,39 +1,38 @@
 const routes = require('../client/src/app/routes');
+const constants = require('../client/src/common/constants/');
+const packageJson = require('../../../package.json');
+const Router = require('react-router');
 const ReactDOMServer = require('react-dom/server');
 const React = require('react');
-const Router = require('react-router');
+const errorHandler = require('errorhandler');
 const path = require('path');
 
+const serverStartTimestamp = new Date();
+const containerId = process.env.HOSTNAME;
+
 function setupRoutes(app) {
-  // [TODO]
   app.get('/ping', (req, res) => res.json({
-    'uptime(s)': 456,
-    hostname: 'host 2',
+    uptimeInSec: ((new Date()).getTime() - serverStartTimestamp.getTime()) / 1000,
+    hostname: containerId || 'N/A',
   }));
   app.get('/health', (req, res) => res.json({
-    version: 0,
+    version: packageJson.version,
     self: {
-      name: 'bulletin-board-system-frontend',
-      version: 1,
-      status: 200,
-      dateStamp: (new Date()).toString(),
-      hostname: 'host 2',
+      name: packageJson.name,
+      version: packageJson.version,
+      status: constants.SYSTEM.HTTP_STATUS_CODES.OK,
+      serverDateStamp: (new Date()).toString(),
+      hostname: containerId,
     },
     dependencies: {
       http: [
         {
-          name: 'bulletin-board-system-backend',
-          version: 1,
-          status: 200,
-          dateStamp: (new Date()).toString(),
-          hostname: 'host 1',
-          uptime: 123,
+          name: constants.SYSTEM.SOURCES.SUGARPOST_BACKEND_CORE,
+          version: '1.x',
         },
       ],
     },
   }));
-
-  //app.use('/auth', require('./auth'));
 
   // All not-found API endpoints should return an custom 404 page.
   app.route('/:url(app|assets)/*')
@@ -77,18 +76,27 @@ function setupRoutes(app) {
        * ```
        */
       const env = app.get('env'); // Same as `process.env.NODE_ENV`.
+      const globalConstants = {
+        env,
+        version: packageJson.version,
+        stripePublicKey: constants.CREDENTIAL.STRIPE.PUBLIC_KEY,
+        gaTrackingId: constants.CREDENTIAL.GOOGLE_ANALYTICS.TRACKING_ID,
+      };
+      let headers;
 
       if (env === 'production') {
-        res.sendFile(path.resolve(__dirname, '../../../dist/', 'index2.html'), {
-          headers: { 'Cache-Control': 'no-cache' },
-        });
+        headers = { 'Cache-Control': 'no-cache' };
       } else {
-        res.sendFile(path.resolve(__dirname, '../client/static/', 'index2.html'), {
-          headers: { 'Cache-Control': 'no-store' },
-        });
+        headers = { 'Cache-Control': 'no-store' };
       }
+      res.set(headers);
 
+      return res.render('index', globalConstants);
     });
+
+  if (app.get('env') !== 'production') {
+    app.use(errorHandler()); // Error handler - has to be the last.
+  }
 }
 
 module.exports = exports = setupRoutes;

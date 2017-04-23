@@ -5,6 +5,11 @@
       "plugins": ["add-module-exports"],
       "sourceMap": true
     },
+    "test": {
+      "presets": ["react", "es2015"],
+      "plugins": ["add-module-exports"],
+      "sourceMap": "both"
+    },
     "production": {
       "presets": ["react", "es2015"],
       "plugins": ["add-module-exports"],

@@ -1,45 +1,53 @@
-import authActionCreator from '../common/auth/actions/authActionCreator';
+import configureStore from '../common/store/';
 import RootApp from './RootApp';
-import HomeApp from './home/components/HomeApp';
+import HomeApp from './home/components/App';
 import RegisterApp from './register/';
-import LoginApp from './register/login/components/LoginApp';
-import SignupApp from './register/signup/components/SignupApp';
-import PaymentApp from './register/payment/components/PaymentApp';
-import ForgotPasswordApp from './register/forgot-password/components/ForgotPasswordApp';
-import ReferralApp from './register/referral/components/ReferralApp';
+import LoginApp from './register/login/components/App';
+import SignupApp from './register/signup/components/App';
+import PaymentApp from './register/payment/components/App';
+import ForgotPasswordApp from './register/forgot-password/components/App';
+import ReferralApp from './register/referral/components/App';
 import PrivacyPolicyApp from './privacy-policy/components/PrivacyPolicyApp';
 import TermsOfUse from './terms-of-use/components/TermsOfUseApp';
-import AccountApp from './account/components/AccountApp';
+import AccountApp from './account/components/App';
 import VoucherApp from './voucher/components/VoucherApp';
-import React from 'react';
+import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import React from 'react';
+
+const store = configureStore();
 
 const clientRoutes = (
-  <Router history={ browserHistory }>
-    <Route path="/" component={ RootApp }>
-      <IndexRoute component={ HomeApp } />
-      <Route path="register" component={ RegisterApp }>
-        <Route path="login" component={ LoginApp } />
-        <Route path="signup" component={ SignupApp } onEnter={ storeParamMap } />
-        <Route path="payment" component={ PaymentApp } onEnter={ inTransition } />
-        <Route path="forgot-password" component={ ForgotPasswordApp } />
-        <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
+  <Provider store={ store }>
+    <Router history={ browserHistory }>
+      <Route path="/" component={ RootApp }>
+        <IndexRoute component={ HomeApp } />
+        <Route path="home" component={ HomeApp } />
+        <Route path="register" component={ RegisterApp }>
+          <Route path="login" component={ LoginApp } />
+          <Route path="signup" component={ SignupApp } onEnter={ storeParamMap } />
+          <Route path="payment" component={ PaymentApp } onEnter={ inTransition } />
+          <Route path="forgot-password" component={ ForgotPasswordApp } />
+          <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
+        </Route>
+        <Route path="privacy-policy" component={ PrivacyPolicyApp } />
+        <Route path="terms-of-use" component={ TermsOfUse } />
+        <Route path="account" component={ AccountApp } onEnter={ inTransition } />
+        <Route path="vouchers" component={ VoucherApp } onEnter={ inTransition } />
       </Route>
-      <Route path="privacy-policy" component={ PrivacyPolicyApp } />
-      <Route path="terms-of-use" component={ TermsOfUse } />
-      <Route path="account" component={ AccountApp } onEnter={ inTransition } />
-      <Route path="vouchers" component={ VoucherApp } onEnter={ inTransition } />
-    </Route>
-  </Router>
+    </Router>
+  </Provider>
 );
 
 function storeParamMap(nextState) {
   if (Object.keys(nextState.location.query).length) {
-    authActionCreator.storeParamMap(nextState.location.query);
+    // [TODO]
+    //authActionCreator.storeParamMap(nextState.location.query);
   }
 }
 function inTransition(nextState, replace) {
-  authActionCreator.inTransition(nextState, replace);
+  // [TODO]
+  //authActionCreator.inTransition(nextState, replace);
 }
 
 export default clientRoutes;

@@ -1,28 +1,20 @@
-import authStore from '../common/auth/stores/authStore';
-import authActionCreator from '../common/auth/actions/authActionCreator';
+import authActionCreator from '../common/auth/actioncreator/';
 import ScrollDiv from '../common/components/ScrollDiv';
 import BaseComponent from '../common/components/BaseComponent';
 import constants from '../common/constants/';
-import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-scroll';
+import { connect } from 'react-redux';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class RootApp extends BaseComponent {
 
   constructor(props) {
     super(props);
 
-    this._bind('_onChange');
-    this.state = _getState();
-  }
-
-  componentDidMount() {
-    authStore.addChangeListener(this._onChange);
-  }
-
-  componentWillUnmount() {
-    authStore.removeChangeListener(this._onChange);
+    this._bind('_onLogout');
   }
 
   render() {
@@ -33,7 +25,7 @@ class RootApp extends BaseComponent {
       </LinkContainer>
     );
     const paymentTab = (
-      <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: this.state.user.email } } }>
+      <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: this.props.userEmail } } }>
         <NavItem>Payment</NavItem>
       </LinkContainer>
     );
@@ -46,6 +38,15 @@ class RootApp extends BaseComponent {
       <LinkContainer key="4" to="/register/referral">
         <NavItem>Referral</NavItem>
       </LinkContainer>
+    );
+    const logoutTab = (
+      /* eslint-disable jsx-a11y/no-static-element-interactions */
+      <NavItem key="5">
+        <span onClick={ this._onLogout }>
+          Logout
+        </span>
+      </NavItem>
+      /* eslint-enable */
     );
     const aboutTab = (
       <li key="1">
@@ -63,6 +64,11 @@ class RootApp extends BaseComponent {
           </Link>
         </LinkContainer>
       </li>
+    );
+    const aboutCollapseTab = (
+      <LinkContainer key="1" to="/home">
+        <NavItem>About</NavItem>
+      </LinkContainer>
     );
     const servicesTab = (
       <li key="2">
@@ -132,6 +138,11 @@ class RootApp extends BaseComponent {
         </LinkContainer>
       </li>
     );
+    const signupCollapseTab = (
+      <LinkContainer key="5" to="/register/signup">
+        <NavItem>Signup</NavItem>
+      </LinkContainer>
+    );
     const loginTab = (
       <li key="6">
         <LinkContainer to="/register/login">
@@ -149,18 +160,14 @@ class RootApp extends BaseComponent {
         </LinkContainer>
       </li>
     );
-    const logoutTab = (
-      /* eslint-disable jsx-a11y/no-static-element-interactions */
-      <NavItem key="5">
-        <span onClick={ RootApp._onLogout }>
-          Logout
-        </span>
-      </NavItem>
-      /* eslint-enable */
+    const loginCollapseTab = (
+      <LinkContainer key="6" to="/register/login">
+        <NavItem>Login</NavItem>
+      </LinkContainer>
     );
 
-    if (this.state.isLoggedIn) {
-      switch (this.state.user.type) {
+    if (this.props.isLoggedIn) {
+      switch (this.props.userType) {
         case constants.SYSTEM.USER_TYPES.UNPAID:
           tabsShownWhenUserLoggedIn.push(accountTab, paymentTab, logoutTab);
           break;
@@ -187,7 +194,7 @@ class RootApp extends BaseComponent {
           break;
       }
     } else if (window.innerWidth < 768) {
-      tabsShownWhenUserLoggedIn.push(aboutTab, signupTab, loginTab);
+      tabsShownWhenUserLoggedIn.push(aboutCollapseTab, signupCollapseTab, loginCollapseTab);
     } else {
       tabsShownWhenUserLoggedIn.push(aboutTab, servicesTab, portfolioTab, contactTab, signupTab,
         loginTab);
@@ -212,9 +219,9 @@ class RootApp extends BaseComponent {
               <Navbar.Toggle>Menu</Navbar.Toggle>
             </Navbar.Header>
             <Navbar.Collapse>
-              <ul className="nav navbar-nav navbar-right">
+              <Nav pullRight={ true }>
                 { tabsShownWhenUserLoggedIn }
-              </ul>
+              </Nav>
             </Navbar.Collapse>
           </Navbar>
         </ScrollDiv>
@@ -225,12 +232,8 @@ class RootApp extends BaseComponent {
     );
   }
 
-  _onChange() {
-    this.setState(_getState());
-  }
-
-  static _onLogout() {
-    authActionCreator.logout();
+  _onLogout() {
+    this.props.dispatchLogout();
   }
 
   static _onLink(url) {
@@ -240,19 +243,30 @@ class RootApp extends BaseComponent {
   }
 
 }
+RootApp.propTypes = {
+  dispatchLogout: PropTypes.func.isRequired,
+
+  isLoggedIn: PropTypes.bool.isRequired,
+  userType: PropTypes.string,
+  userEmail: PropTypes.string,
+};
 RootApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
- */
-function _getState() {
+function mapStateToProps(state) {
   return {
-    isLoggedIn: authStore.isLoggedIn(),
-    user: authStore.getUser(),
+    isLoggedIn: state.auth.isLoggedIn,
+    userType: state.auth.user.type,
+    userEmail: state.auth.user.email,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchLogout(field, value) {
+      dispatch(authActionCreator.logout());
+    },
   };
 }
 
-export default RootApp;
+export default connect(mapStateToProps, mapDispatchToProps)(RootApp);

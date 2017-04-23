@@ -1,17 +1,23 @@
+import actionCreator from '../actioncreators/forgotPasswordForm';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import { connect } from 'react-redux';
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 class ForgotPasswordForm extends BaseComponent {
 
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', '_onSubmit');
-    this.state = {
-      email: '',
-    };
+    this._bind('_onSubmit');
+  }
+
+  componentDidMount() {
+    if (this.props.isInfoVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
   }
 
   render() {
@@ -21,9 +27,19 @@ class ForgotPasswordForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isInfoVisible,
     });
+    let loader;
+
+    if (this.props.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
 
     return (
       <form onSubmit={ this._onSubmit } role="form">
+        { loader }
         <div className={ alertBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-info-circle" />
@@ -33,8 +49,8 @@ class ForgotPasswordForm extends BaseComponent {
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
-          value={ this.state.email }
-          onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formEmail }
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
         />
@@ -49,9 +65,7 @@ class ForgotPasswordForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    this.setState({
-      [field]: value,
-    });
+    this.props.dispatchSetFormField(field, value);
   }
 
   _onSubmit(event) {
@@ -59,7 +73,9 @@ class ForgotPasswordForm extends BaseComponent {
     event.preventDefault();
 
     if (this.email.isValid()) {
-      this.props.onSubmit(event, this.state.email);
+      const email = this.props.formEmail.trim() && this.props.formEmail.toLowerCase();
+
+      this.props.dispatchForgotPassword(email);
     } else {
       this.email.isValid();
     }
@@ -67,12 +83,38 @@ class ForgotPasswordForm extends BaseComponent {
 
 }
 ForgotPasswordForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired,
-  isInfoVisible: React.PropTypes.bool.isRequired,
-  infoMsg: React.PropTypes.string,
-};
-ForgotPasswordForm.defaultProps = {
-  infoMsg: 'Request has been completed.',
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
+  dispatchSetFormField: PropTypes.func.isRequired,
+  dispatchForgotPassword: PropTypes.func.isRequired,
+
+  formEmail: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isInfoVisible: PropTypes.bool.isRequired,
+  infoMsg: PropTypes.string.isRequired,
 };
 
-export default ForgotPasswordForm;
+function mapStateToProps(state) {
+  return {
+    formEmail: state.forgotPassword.formEmail,
+    isLoading: state.forgotPassword.isLoading,
+    isInfoVisible: state.forgotPassword.info.isVisible,
+    infoMsg: state.forgotPassword.info.message,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
+    dispatchSetFormField(field, value) {
+      dispatch(actionCreator.setFormField(field, value));
+    },
+
+    dispatchForgotPassword(email) {
+      dispatch(actionCreator.forgotPassword(email));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordForm);

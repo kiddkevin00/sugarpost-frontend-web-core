@@ -1,23 +1,21 @@
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const compression = require('compression');
-const errorHandler = require('errorhandler');
 const path = require('path');
 const fs = require('fs');
 
 function setupExpressServer(app) {
   const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
-  if (env === 'production') {
+  if (env === 'production' || env === 'test') {
     app.use((req, res, next) => {
       if (req.headers['x-forwarded-proto'] && req.headers['x-forwarded-proto'] !== 'https') {
-        return res.redirect(301, `https://${req.headers.host}${req.url}`);
+        return res.redirect(308, `https://${req.headers.host}${req.url}`);
       }
       return next();
     });
@@ -38,7 +36,7 @@ function setupExpressServer(app) {
   app.set('views', path.resolve(__dirname, 'views/'));
   app.set('view engine', 'jade');
 
-  if (env === 'production') {
+  if (env === 'production' || env === 'test') {
     // Here are all the minified version of all JS and CSS files.
     app.use(express.static(path.resolve(__dirname, '../../../', 'dist/'), {
       etag: true,
@@ -50,7 +48,6 @@ function setupExpressServer(app) {
         } else {
           res.append('Cache-Control', 'public, max-age=86400'); // Set for one day
         }
-
       },
     }));
 
@@ -60,8 +57,6 @@ function setupExpressServer(app) {
     app.use(morgan('combined', { stream: accessLogStream }));
     app.use(morgan('dev'));
   } else {
-    // The Node environment variable should be either "test" or "development".
-
     /*
      * [Note] Install Chrome extension LiveReload instead of adding live-reloaded script to the
      * response, implemented as the following:
@@ -82,7 +77,6 @@ function setupExpressServer(app) {
     }));
 
     app.use(morgan('dev'));
-    app.use(errorHandler()); // Error handler - has to be the last.
   }
 }
 

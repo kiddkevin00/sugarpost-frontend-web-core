@@ -1,11 +1,12 @@
 // BEGIN - THIS PART SHOULD BE CONSISTENT WITH FRONTEND
 
 const sources = {
-  BULLETIN_BOARD_SYSTEM: 'bulletin-board-system',
-  SUGARPOST_FRONTEND_WEB: 'sugarpost-frontend-web',
+  SUGARPOST_BACKEND_CORE: 'sugarpost-backend-core',
+  SUGARPOST_FRONTEND_WEB_CORE: 'sugarpost-frontend-web-core',
 };
 const httpStatusCodes = {
   OK: 200,
+  PERMANENT_REDIRECT: 308,
   BAD_REQUEST: 400,
   UNAUTHENTICATED: 401,
   NOT_FOUND: 404,
@@ -29,7 +30,7 @@ exports.USER_TYPES = {
 // END - THIS PART SHOULD BE CONSISTENT WITH FRONTEND
 
 exports.COMMON = {
-  CURRENT_SOURCE: sources.SUGARPOST_FRONTEND_WEB,
+  CURRENT_SOURCE: sources.SUGARPOST_FRONTEND_WEB_CORE,
 };
 
 exports.DEFAULT_CONFIG = {};
@@ -62,6 +63,7 @@ exports.HTTP_METHODS = {
 };
 
 exports.URL_BASES = {
-  LOCAL_BACKEND_API: 'http://127.0.0.1:8087',
+  LOCAL_BACKEND_API: 'http://0.0.0.0:8087',
+  TEST_BACKEND_API: 'https://bulletin-board-system-staging.herokuapp.com',
   PROD_BACKEND_API: 'https://bulletin-board-system.herokuapp.com',
 };

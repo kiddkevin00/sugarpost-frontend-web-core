@@ -1,18 +1,23 @@
+import actionCreator from '../actioncreators/loginForm';
 import FormInput from '../../../../common/components/FormInput';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import { connect } from 'react-redux';
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 class LoginForm extends BaseComponent {
 
   constructor(props) {
     super(props);
 
-    this._bind('_onChange', '_onSubmit');
-    this.state = {
-      email: '',
-      password: '',
-    };
+    this._bind('_onSubmit');
+  }
+
+  componentDidMount() {
+    if (this.props.isErrorVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
   }
 
   render() {
@@ -22,9 +27,19 @@ class LoginForm extends BaseComponent {
       'alert-dismissible': true,
       collapse: !this.props.isErrorVisible,
     });
+    let loader;
+
+    if (this.props.isLoading) {
+      loader = (
+        <div className="slow-loader" />
+      );
+    } else {
+      loader = null;
+    }
 
     return (
       <form onSubmit={ this._onSubmit } role="form">
+        { loader }
         <div className={ alertBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>
           <i className="fa fa-exclamation-triangle" />
@@ -34,8 +49,8 @@ class LoginForm extends BaseComponent {
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
-          value={ this.state.email }
-          onChange={ this._onChange.bind(this, 'email') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formEmail }
+          onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
         />
@@ -43,8 +58,8 @@ class LoginForm extends BaseComponent {
           text="Password"
           type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
-          value={ this.state.password }
-          onChange={ this._onChange.bind(this, 'password') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formPassword }
+          onChange={ this._onChange.bind(this, 'Password') } /* eslint-disable-line react/jsx-no-bind */
           errorMessage="Password is invalid"
           emptyMessage="Password can't be empty"
         />
@@ -59,9 +74,7 @@ class LoginForm extends BaseComponent {
   }
 
   _onChange(field, value) {
-    this.setState({
-      [field]: value,
-    });
+    this.props.dispatchSetFormField(field, value);
   }
 
   _onSubmit(event) {
@@ -69,7 +82,10 @@ class LoginForm extends BaseComponent {
     event.preventDefault();
 
     if (this.email.isValid() && this.password.isValid()) {
-      this.props.onSubmit(event, this.state.email, this.state.password);
+      const email = this.props.formEmail.trim() && this.props.formEmail.toLowerCase();
+      const password = this.props.formPassword.trim();
+
+      this.props.dispatchLogin(email, password);
     } else {
       this.email.isValid();
       this.password.isValid();
@@ -78,12 +94,40 @@ class LoginForm extends BaseComponent {
 
 }
 LoginForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired,
-  isErrorVisible: React.PropTypes.bool.isRequired,
-  errorMsg: React.PropTypes.string,
-};
-LoginForm.defaultProps = {
-  errorMsg: 'Oops! Something went wrong. Please try again.',
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
+  dispatchSetFormField: PropTypes.func.isRequired,
+  dispatchLogin: PropTypes.func.isRequired,
+
+  formEmail: PropTypes.string.isRequired,
+  formPassword: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isErrorVisible: PropTypes.bool.isRequired,
+  errorMsg: PropTypes.string.isRequired,
 };
 
-export default LoginForm;
+function mapStateToProps(state) {
+  return {
+    formEmail: state.login.formEmail,
+    formPassword: state.login.formPassword,
+    isLoading: state.login.isLoading,
+    isErrorVisible: state.login.error.isVisible,
+    errorMsg: state.login.error.message,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+    
+    dispatchSetFormField(field, value) {
+      dispatch(actionCreator.setFormField(field, value));
+    },
+
+    dispatchLogin(email, password) {
+      dispatch(actionCreator.login(email, password));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
