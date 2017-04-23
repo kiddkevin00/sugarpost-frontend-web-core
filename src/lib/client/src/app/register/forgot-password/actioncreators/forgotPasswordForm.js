@@ -4,6 +4,12 @@ import StandardResponseWrapper from '../../../../common/utility/standard-respons
 import StandardErrorWrapper from '../../../../common/utility/standard-error-wrapper';
 
 const forgotPasswordActionCreator = {
+  resetFormAlertBoxes() {
+    return {
+      type: actionTypes.FORGOT_PASSWORD.RESET_FORM_ALERT_BOXES,
+    };
+  },
+  
   setFormField(field, value) {
     return {
       type: actionTypes.FORGOT_PASSWORD.SET_FORM_FIELD,

@@ -14,6 +14,12 @@ class ForgotPasswordForm extends BaseComponent {
     this._bind('_onSubmit');
   }
 
+  componentDidMount() {
+    if (this.props.isInfoVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
+  }
+
   render() {
     const alertBoxClasses = classNames({
       alert: true,
@@ -77,6 +83,7 @@ class ForgotPasswordForm extends BaseComponent {
 
 }
 ForgotPasswordForm.propTypes = {
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
   dispatchSetFormField: PropTypes.func.isRequired,
   dispatchForgotPassword: PropTypes.func.isRequired,
 
@@ -96,6 +103,10 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
     dispatchSetFormField(field, value) {
       dispatch(actionCreator.setFormField(field, value));
     },
