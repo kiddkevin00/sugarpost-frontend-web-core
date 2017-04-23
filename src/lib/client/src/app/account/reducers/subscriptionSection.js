@@ -19,6 +19,17 @@ function accountSubscriptionReducer(state = initialState, action) {
   const actionData = action.data;
 
   switch (actionType) {
+    case actionTypes.ACCOUNT__SUBSCRIPTION.RESET_FORM_ALERT_BOXES:
+      return Object.assign({}, state, {
+        info: {
+          isVisible: false,
+          message: defaultInfoMsg,
+        },
+        error: {
+          isVisible: false,
+          message: defaultErrorMsg,
+        },
+      });
     case actionTypes.ACCOUNT__SUBSCRIPTION.CANCELLING_SUBSCRIPTION:
       return Object.assign({}, state, {
         isLoading: true,

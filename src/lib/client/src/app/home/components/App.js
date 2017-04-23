@@ -195,15 +195,17 @@ class HomeApp extends BaseComponent {
               </div>
             </aside>
           </Element>
-          {/* <aside className="bg-darker">
-             <div className="container text-center">
-               <div>
-                 <h2>Featured On</h2>
-                 <hr className="primary" />
-                 <h4>Coming Soon...</h4>
-               </div>
-             </div>
-          </aside> */}
+          {/*
+          <aside className="bg-darker">
+            <div className="container text-center">
+              <div>
+                <h2>Featured On</h2>
+                <hr className="primary" />
+                <h4>Coming Soon...</h4>
+              </div>
+            </div>
+          </aside>
+          */}
           <Element name="contact">
             <section id="contact">
               <div className="container">

@@ -15,6 +15,12 @@ class SubscriptionSection extends BaseComponent {
     this._bind('_onUpdatePayment', '_onUnsubscribe');
   }
 
+  componentDidMount() {
+    if (this.props.isInfoVisible || this.props.isErrorVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
+  }
+
   render() {
     const alertSuccessBoxClasses = classNames({
       alert: true,
@@ -93,11 +99,14 @@ class SubscriptionSection extends BaseComponent {
   _onUpdatePayment(event) {}
 
   _onUnsubscribe(event) {
-    this.props.dispatchUnsubscribe(this.context.router);
+    this.props.dispatchCancelSubscription(this.context.router);
   }
 
 }
 SubscriptionSection.propTypes = {
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
+  dispatchCancelSubscription: PropTypes.func.isRequired,
+
   userType: PropTypes.string,
   userCreditCardLast4: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
@@ -126,7 +135,11 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchUnsubscribe(router) {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
+    dispatchCancelSubscription(router) {
       dispatch(actionCreator.cancelSubscription(router));
     },
   };

@@ -5,6 +5,12 @@ import StandardErrorWrapper from '../../../common/utility/standard-error-wrapper
 import constants from '../../../common/constants/';
 
 const accountSubscriptionActionCreator = {
+  resetFormAlertBoxes() {
+    return {
+      type: actionTypes.ACCOUNT__SUBSCRIPTION.RESET_FORM_ALERT_BOXES,
+    };
+  },
+
   cancelSubscription(router) {
     return (dispatch, getState) => {
       dispatch({
@@ -29,7 +35,7 @@ const accountSubscriptionActionCreator = {
               dispatch({
                 type: actionTypes.ACCOUNT__SUBSCRIPTION.CANCEL_SUBSCRIPTION_SUCCEED,
               });
-              
+
               router.push({
                 pathname: '/register/payment',
                 query: { email: getState().auth.user.email },
@@ -43,14 +49,14 @@ const accountSubscriptionActionCreator = {
             const err = StandardErrorWrapper.deserialize(payloadObj);
 
             dispatch({
-              type: actionTypes.CANCEL_SUBSCRIPTION_FAIL,
+              type: actionTypes.ACCOUNT__SUBSCRIPTION.CANCEL_SUBSCRIPTION_FAIL,
               data: err,
             });
           }
         })
         .catch((err) => {
           dispatch({
-            type: actionTypes.CANCEL_SUBSCRIPTION_FAIL,
+            type: actionTypes.ACCOUNT__SUBSCRIPTION.CANCEL_SUBSCRIPTION_FAIL,
             data: err,
           });
         });
