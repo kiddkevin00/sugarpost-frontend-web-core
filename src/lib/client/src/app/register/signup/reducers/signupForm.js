@@ -18,6 +18,13 @@ function signupFormReducer(state = initialState, action) {
   const actionData = action.data;
 
   switch (actionType) {
+    case actionTypes.SIGNUP.RESET_FORM_ALERT_BOXES:
+      return Object.assign({}, state, {
+        error: {
+          isVisible: false,
+          message: defaultErrorMsg,
+        },
+      });
     case actionTypes.SIGNUP.SET_FORM_FIELD:
       return Object.assign({}, state, { [`form${actionData.field}`]: actionData.value });
     case actionTypes.SIGNUP.SIGNING_UP:

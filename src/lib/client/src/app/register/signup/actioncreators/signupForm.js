@@ -6,6 +6,12 @@ import constants from '../../../../common/constants/';
 import ReactGA from 'react-ga';
 
 const signupFormActionCreator = {
+  resetFormAlertBoxes() {
+    return {
+      type: actionTypes.SIGNUP.RESET_FORM_ALERT_BOXES,
+    };
+  },
+
   setFormField(field, value) {
     return {
       type: actionTypes.SIGNUP.SET_FORM_FIELD,

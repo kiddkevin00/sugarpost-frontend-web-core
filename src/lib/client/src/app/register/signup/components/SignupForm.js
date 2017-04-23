@@ -15,6 +15,12 @@ class SignupForm extends BaseComponent {
     this._bind('_onSubmit', '_onChange', 'isConfirmPasswordMatched');
   }
 
+  componentDidMount() {
+    if (this.props.isErrorVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
+  }
+
   render() {
     const alertBoxClasses = classNames({
       alert: true,
@@ -133,6 +139,7 @@ class SignupForm extends BaseComponent {
 
 }
 SignupForm.propTypes = {
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
   dispatchSetFormField: PropTypes.func.isRequired,
   dispatchSignUp: PropTypes.func.isRequired,
 
@@ -159,6 +166,10 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
     dispatchSetFormField(field, value) {
       dispatch(actionCreator.setFormField(field, value));
     },
