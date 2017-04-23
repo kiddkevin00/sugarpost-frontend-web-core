@@ -4,6 +4,12 @@ import StandardResponseWrapper from '../../../common/utility/standard-response-w
 import StandardErrorWrapper from '../../../common/utility/standard-error-wrapper';
 
 const accountProfileActionCreator = {
+  resetFormAlertBoxes() {
+    return {
+      type: actionTypes.ACCOUNT__PROFILE.RESET_FORM_ALERT_BOXES,
+    };
+  },
+  
   setFormField(field, value) {
     return {
       type: actionTypes.ACCOUNT__PROFILE.SET_FORM_FIELD,

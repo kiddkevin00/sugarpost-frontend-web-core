@@ -24,6 +24,17 @@ function accountProfileReducer(state = initialState, action) {
   const actionData = action.data;
 
   switch (actionType) {
+    case actionTypes.ACCOUNT__PROFILE.RESET_FORM_ALERT_BOXES:
+      return Object.assign({}, state, {
+        info: {
+          isVisible: false,
+          message: defaultInfoMsg,
+        },
+        error: {
+          isVisible: false,
+          message: defaultErrorMsg,
+        },
+      });
     case actionTypes.ACCOUNT__PROFILE.SET_FORM_FIELD:
       return Object.assign({}, state, { [`form${actionData.field}`]: actionData.value });
     case actionTypes.ACCOUNT__PROFILE.RESET_FORM:

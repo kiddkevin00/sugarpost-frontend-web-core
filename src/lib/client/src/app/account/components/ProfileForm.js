@@ -21,11 +21,10 @@ class ProfileForm extends BaseComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      fullName: nextProps.fullName,
-      email: nextProps.email,
-    });
+  componentDidMount() {
+    if (this.props.isInfoVisible || this.props.isErrorVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
   }
 
   render() {
@@ -175,10 +174,11 @@ class ProfileForm extends BaseComponent {
 
 }
 ProfileForm.propTypes = {
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
   dispatchSetFormField: PropTypes.func.isRequired,
   dispatchUpdateProfile: PropTypes.func.isRequired,
   dispatchResetForm: PropTypes.func.isRequired,
-  
+
   formFullName: PropTypes.string,
   formEmail: PropTypes.string,
   formPassword: PropTypes.string.isRequired,
@@ -215,6 +215,10 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
     dispatchSetFormField(field, value) {
       dispatch(actionCreator.setFormField(field, value));
     },
