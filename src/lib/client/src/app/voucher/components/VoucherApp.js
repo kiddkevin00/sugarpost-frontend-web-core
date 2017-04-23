@@ -48,10 +48,6 @@ class VoucherApp extends BaseComponent {
     );
   }
 
-  _onChange() {
-    this.setState(_getState());
-  }
-
 }
 VoucherApp.propTypes = {
   dispatchAuthCheck: PropTypes.func.isRequired,
