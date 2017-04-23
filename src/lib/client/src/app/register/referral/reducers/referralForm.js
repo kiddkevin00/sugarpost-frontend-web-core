@@ -19,6 +19,17 @@ function referralFormReducer(state = initialState, action) {
   const actionData = action.data;
 
   switch (actionType) {
+    case actionTypes.REFERRAL.RESET_FORM_ALERT_BOXES:
+      return Object.assign({}, state, {
+        info: {
+          isVisible: false,
+          message: defaultInfoMsg,
+        },
+        error: {
+          isVisible: false,
+          message: defaultErrorMsg,
+        },
+      });
     case actionTypes.REFERRAL.REDEEMING_CREDITS:
       return Object.assign({}, state, {
         isLoading: true,

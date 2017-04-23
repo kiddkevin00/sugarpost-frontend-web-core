@@ -4,6 +4,12 @@ import StandardResponseWrapper from '../../../../common/utility/standard-respons
 import StandardErrorWrapper from '../../../../common/utility/standard-error-wrapper';
 
 const referralFormActionCreator = {
+  resetFormAlertBoxes() {
+    return {
+      type: actionTypes.REFERRAL.RESET_FORM_ALERT_BOXES,
+    };
+  },
+  
   redeemCredits() {
     return (dispatch, getState) => {
       dispatch({

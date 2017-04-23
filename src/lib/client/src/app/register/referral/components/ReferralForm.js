@@ -19,6 +19,12 @@ class ReferralForm extends BaseComponent {
     this._bind('_onRedeem');
   }
 
+  componentDidMount() {
+    if (this.props.isInfoVisible || this.props.isErrorVisible) {
+      this.props.dispatchResetFormAlertBoxes();
+    }
+  }
+
   render() {
     const alertSuccessBoxClasses = classNames({
       alert: true,
@@ -100,6 +106,7 @@ class ReferralForm extends BaseComponent {
 
 }
 ReferralForm.propTypes = {
+  dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
   dispatchRedeemCredits: PropTypes.func.isRequired,
 
   userType: PropTypes.string,
@@ -126,6 +133,10 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
+    dispatchResetFormAlertBoxes() {
+      dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
     dispatchRedeemCredits() {
       dispatch(actionCreator.redeemCredits());
     },
