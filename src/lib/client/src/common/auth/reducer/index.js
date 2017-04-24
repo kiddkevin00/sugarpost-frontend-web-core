@@ -11,6 +11,8 @@ const initialUserState = {
   usedReferralCode: undefined,
   stripeCustomerId: undefined,
   stripeSubscriptionId: undefined,
+  referralCodeUsed: undefined,
+  transitionPath: undefined,
 };
 const initialState = {
   isLoggedIn: false,
@@ -40,6 +42,15 @@ function authReducer(state = initialState, action) {
         user: initialUserState,
         forceUpdate: true,
       });
+    case actionTypes.AUTH.STORE_PARAM_MAP:
+      return Object.assign({}, state, {
+        referralCodeUsed: actionData.referralCode,
+      });
+    case actionTypes.AUTH.IN_TRANSITION: {
+      return Object.assign({}, state, {
+        transitionPath: actionData.path,
+      });
+    }
     default:
       return state;
   }

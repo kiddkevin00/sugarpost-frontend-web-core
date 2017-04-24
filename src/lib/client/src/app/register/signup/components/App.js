@@ -1,10 +1,17 @@
 import SignupForm from './SignupForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import authActionCreator from '../../../../common/auth/actioncreator';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 class SignupApp extends BaseComponent {
+
+  componentDidMount() {
+    if (Object.keys(this.props.query).length) {
+      this.props.dispatchStoreParamMap(this.props.query);
+    }
+  }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (nextProps.isLoggedIn) {
@@ -72,15 +79,25 @@ class SignupApp extends BaseComponent {
 SignupApp.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
+  dispatchStoreParamMap: PropTypes.func.isRequired,
 };
 SignupApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchStoreParamMap(query) {
+      dispatch(authActionCreator.storeParamMap(query));
+    },
+  };
+}
+
+function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     userEmail: state.auth.user.email,
+    query: ownProps.location.query,
   };
 }
-export default connect(mapStateToProps)(SignupApp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupApp);

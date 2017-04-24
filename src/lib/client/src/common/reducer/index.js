@@ -9,6 +9,7 @@ import payment from '../../app/register/payment/reducers/paymentForm';
 import referral from '../../app/register/referral/reducers/referralForm';
 import referralShare from '../../app/register/referral/reducers/shareSection';
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux'
 
 const rootReducer = combineReducers({
   home,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   payment,
   referral,
   referralShare,
+  routing: routerReducer
 });
 
 export default rootReducer;

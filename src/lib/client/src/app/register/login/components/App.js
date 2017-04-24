@@ -11,7 +11,7 @@ class LoginApp extends BaseComponent {
     if (nextProps.isLoggedIn) {
       /// [TODO] Removes until migrating to Redux.
       //let transitionPath = authStore.getTransitionPath();
-      const transitionPath = '';
+      const transitionPath = nextProps.transitionPath
 
       const paymentRoute = {
         pathname: '/register/payment',
@@ -98,6 +98,7 @@ function mapStateToProps(state) {
     isLoggedIn: state.auth.isLoggedIn,
     userEmail: state.auth.user.email,
     userType: state.auth.user.type,
+    transitionPath: state.auth.transitionPath,
   };
 }
 

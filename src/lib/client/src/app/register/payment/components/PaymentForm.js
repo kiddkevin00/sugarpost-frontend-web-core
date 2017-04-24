@@ -177,7 +177,7 @@ PaymentForm.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    formReferralCode: state.payment.formReferralCode,
+    formReferralCode: state.auth.referralCodeUsed,
     isReferralCodeValid: state.payment.isReferralCodeValid,
     isLoading: state.payment.isLoading,
     isInfoVisible: state.payment.info.isVisible,

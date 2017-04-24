@@ -10,6 +10,9 @@ const authActionTypes = {
 
   SIGNUP_SUCCEED: 'SIGNUP_SUCCEED',
   BASIC_LOGIN_SUCCEED: 'BASIC_LOGIN_SUCCEED',
+
+  STORE_PARAM_MAP: 'STORE_PARAM_MAP',
+  IN_TRANSITION: 'IN_TRANSITION',
 };
 
 export default authActionTypes;
