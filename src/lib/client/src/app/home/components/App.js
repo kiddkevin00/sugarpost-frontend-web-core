@@ -117,7 +117,7 @@ class HomeApp extends BaseComponent {
                 <div className="row">
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
-                      <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
+                      <i className="fa fa-4x fa-ticket text-primary sr-icons" />
                       <h3>Subscribe</h3>
                       <p className="text-muted">
                         After purchasing a monthly subscription, you will receive an email with
