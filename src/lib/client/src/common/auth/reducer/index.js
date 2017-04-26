@@ -15,6 +15,7 @@ const initialUserState = {
 const initialState = {
   isLoggedIn: false,
   forceUpdate: false,
+  transitionPath: undefined,
   user: initialUserState,
 };
 
@@ -31,7 +32,6 @@ function authReducer(state = initialState, action) {
         isLoggedIn: true,
         user: Object.assign({}, state.user, actionData.user),
       });
-    case actionTypes.AUTH.NOT_LOGGED_IN:
     case actionTypes.AUTH.AUTH_CHECK_FAIL:
     case actionTypes.AUTH.LOGOUT_SUCCEED:
     case actionTypes.AUTH.LOGOUT_FAIL:
@@ -39,6 +39,13 @@ function authReducer(state = initialState, action) {
         isLoggedIn: false,
         user: initialUserState,
         forceUpdate: true,
+      });
+    case actionTypes.AUTH.NOT_LOGGED_IN:
+      return Object.assign({}, state, {
+        isLoggedIn: false,
+        user: initialUserState,
+        forceUpdate: true,
+        transitionPath: actionData.transitionPath,
       });
     default:
       return state;

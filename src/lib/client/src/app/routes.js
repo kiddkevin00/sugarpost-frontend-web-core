@@ -11,43 +11,34 @@ import PrivacyPolicyApp from './privacy-policy/components/PrivacyPolicyApp';
 import TermsOfUse from './terms-of-use/components/TermsOfUseApp';
 import AccountApp from './account/components/App';
 import VoucherApp from './voucher/components/VoucherApp';
-import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
 import React from 'react';
 
 const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
 
 const clientRoutes = (
   <Provider store={ store }>
-    <Router history={ browserHistory }>
+    <Router history={ history }>
       <Route path="/" component={ RootApp }>
         <IndexRoute component={ HomeApp } />
         <Route path="home" component={ HomeApp } />
         <Route path="register" component={ RegisterApp }>
           <Route path="login" component={ LoginApp } />
-          <Route path="signup" component={ SignupApp } onEnter={ storeParamMap } />
-          <Route path="payment" component={ PaymentApp } onEnter={ inTransition } />
+          <Route path="signup" component={ SignupApp } />
+          <Route path="payment" component={ PaymentApp } />
           <Route path="forgot-password" component={ ForgotPasswordApp } />
-          <Route path="referral" component={ ReferralApp } onEnter={ inTransition } />
+          <Route path="referral" component={ ReferralApp } />
         </Route>
         <Route path="privacy-policy" component={ PrivacyPolicyApp } />
         <Route path="terms-of-use" component={ TermsOfUse } />
-        <Route path="account" component={ AccountApp } onEnter={ inTransition } />
-        <Route path="vouchers" component={ VoucherApp } onEnter={ inTransition } />
+        <Route path="account" component={ AccountApp } />
+        <Route path="vouchers" component={ VoucherApp } />
       </Route>
     </Router>
   </Provider>
 );
-
-function storeParamMap(nextState) {
-  if (Object.keys(nextState.location.query).length) {
-    // [TODO]
-    //authActionCreator.storeParamMap(nextState.location.query);
-  }
-}
-function inTransition(nextState, replace) {
-  // [TODO]
-  //authActionCreator.inTransition(nextState, replace);
-}
 
 export default clientRoutes;

@@ -5,7 +5,7 @@ import StandardErrorWrapper from '../../utility/standard-error-wrapper';
 import constants from '../../constants/';
 
 const authActionCreator = {
-  authCheck() {
+  authCheck(transitionPath) {
     return (dispatch, getState) => {
       const url = '/api/v1/auth/check';
 
@@ -23,7 +23,7 @@ const authActionCreator = {
               });
             }
             return dispatch({
-              type: actionTypes.AUTH.NOT_LOGGED_IN,
+              type: actionTypes.AUTH.AUTH_CHECK_FAIL,
             });
           } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
             const err = StandardErrorWrapper.deserialize(payloadObj);
@@ -31,6 +31,7 @@ const authActionCreator = {
             if (err.getNthError(0).code === constants.SYSTEM.ERROR_CODES.UNAUTHENTICATED) {
               return dispatch({
                 type: actionTypes.AUTH.NOT_LOGGED_IN,
+                data: { transitionPath },
               });
             }
           }

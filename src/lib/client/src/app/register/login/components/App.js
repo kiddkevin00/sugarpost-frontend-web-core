@@ -1,6 +1,7 @@
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -9,10 +10,7 @@ class LoginApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (nextProps.isLoggedIn) {
-      /// [TODO] Removes until migrating to Redux.
-      //let transitionPath = authStore.getTransitionPath();
-      const transitionPath = '';
-
+      const transitionPath = nextProps.transitionPath;
       const paymentRoute = {
         pathname: '/register/payment',
         query: { email: nextProps.userEmail },
@@ -25,15 +23,15 @@ class LoginApp extends BaseComponent {
       };
 
       if (transitionPath === '/register/payment') {
-        nextContext.router.push(paymentRoute);
+        nextProps.dispatchPushRoute(paymentRoute);
       } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.PAID) {
-        nextContext.router.push(transitionPath || accountRoute);
+        nextProps.dispatchPushRoute(transitionPath || accountRoute);
       } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.INFLUENCER) {
-        nextContext.router.push(transitionPath || referralRoute);
+        nextProps.dispatchPushRoute(transitionPath || referralRoute);
       } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.VENDOR) {
-        nextContext.router.push(transitionPath || accountRoute);
+        nextProps.dispatchPushRoute(transitionPath || accountRoute);
       } else {
-        nextContext.router.push(transitionPath || paymentRoute);
+        nextProps.dispatchPushRoute(transitionPath || paymentRoute);
       }
     }
   }
@@ -85,20 +83,28 @@ class LoginApp extends BaseComponent {
 
 }
 LoginApp.propTypes = {
+  dispatchPushRoute: PropTypes.func.isRequired,
+
   isLoggedIn: PropTypes.bool.isRequired,
+  transitionPath: PropTypes.string,
   userEmail: PropTypes.string,
   userType: PropTypes.string,
-};
-LoginApp.contextTypes = {
-  router: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
+    transitionPath: state.auth.transitionPath,
     userEmail: state.auth.user.email,
     userType: state.auth.user.type,
   };
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchPushRoute(route) {
+      dispatch(push(route));
+    },
+  };
+}
 
-export default connect(mapStateToProps)(LoginApp);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginApp);

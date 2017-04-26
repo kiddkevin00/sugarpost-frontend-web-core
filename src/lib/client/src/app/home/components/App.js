@@ -38,18 +38,18 @@ class HomeApp extends BaseComponent {
           </Modal.Body>
           <Modal.Footer>
             <a
-              href="/register/signup"
+              href="/register/signup?referral_code=U50VRR"
               className="btn btn-warning btn-block"
               type="button"
             >
-              Sign Up Now
+              GET YOUR 50% OFF
             </a>
             <button
               onClick={ this._closeModal }
               className="btn btn-default btn-block"
               type="button"
             >
-              Close
+              NO THANKS
             </button>
           </Modal.Footer>
         </Modal>
