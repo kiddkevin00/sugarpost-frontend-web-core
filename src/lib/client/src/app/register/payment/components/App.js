@@ -2,6 +2,7 @@ import authActionCreator from '../../../../common/auth/actioncreator/';
 import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -19,9 +20,9 @@ class PaymentApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextProps.isLoggedIn) {
-      nextContext.router.push('/register/login');
+      nextProps.dispatchPushRoute('/register/login');
     } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.PAID) {
-      nextContext.router.push('/account');
+      nextProps.dispatchPushRoute('/account');
     }
   }
 
@@ -92,6 +93,7 @@ class PaymentApp extends BaseComponent {
 }
 PaymentApp.propTypes = {
   dispatchAuthCheck: PropTypes.func.isRequired,
+  dispatchPushRoute: PropTypes.func.isRequired,
 
   isLoggedIn: PropTypes.bool.isRequired,
   forceUpdate: PropTypes.bool.isRequired,
@@ -99,9 +101,6 @@ PaymentApp.propTypes = {
   userEmail: PropTypes.string.isRequired,
   referralCodeToUse: PropTypes.string,
   urlPath: PropTypes.string.isRequired,
-};
-PaymentApp.contextTypes = {
-  router: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
@@ -118,6 +117,10 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatchAuthCheck(transitionPath) {
       dispatch(authActionCreator.authCheck(transitionPath));
+    },
+
+    dispatchPushRoute(route) {
+      dispatch(push(route));
     },
   };
 }

@@ -2,6 +2,7 @@ import actionCreator from '../actioncreators/subscriptionSection';
 import FormInput from '../../../common/components/FormInput';
 import BaseComponent from '../../../common/components/BaseComponent';
 import constants from '../../../common/constants/';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import classNames from 'classnames';
@@ -99,13 +100,14 @@ class SubscriptionSection extends BaseComponent {
   _onUpdatePayment(event) {}
 
   _onUnsubscribe(event) {
-    this.props.dispatchCancelSubscription(this.context.router);
+    this.props.dispatchCancelSubscription(this.props.dispatchPushRoute);
   }
 
 }
 SubscriptionSection.propTypes = {
   dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
   dispatchCancelSubscription: PropTypes.func.isRequired,
+  dispatchPushRoute: PropTypes.func.isRequired,
 
   userType: PropTypes.string,
   userCreditCardLast4: PropTypes.string,
@@ -117,9 +119,6 @@ SubscriptionSection.propTypes = {
 };
 SubscriptionSection.defaultProps = {
   userType: 'loading...',
-};
-SubscriptionSection.contextTypes = {
-  router: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -139,8 +138,12 @@ function mapDispatchToProps(dispatch) {
       dispatch(actionCreator.resetFormAlertBoxes());
     },
 
-    dispatchCancelSubscription(router) {
-      dispatch(actionCreator.cancelSubscription(router));
+    dispatchCancelSubscription(dispatchPushRoute) {
+      dispatch(actionCreator.cancelSubscription(dispatchPushRoute));
+    },
+
+    dispatchPushRoute(route) {
+      dispatch(push(route));
     },
   };
 }

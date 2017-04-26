@@ -250,9 +250,6 @@ RootApp.propTypes = {
   userType: PropTypes.string,
   userEmail: PropTypes.string,
 };
-RootApp.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-};
 
 function mapStateToProps(state) {
   return {

@@ -23,15 +23,15 @@ class LoginApp extends BaseComponent {
       };
 
       if (transitionPath === '/register/payment') {
-        this.props.dispatchPushRoute(paymentRoute);
+        nextProps.dispatchPushRoute(paymentRoute);
       } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.PAID) {
-        this.props.dispatchPushRoute(transitionPath || accountRoute);
+        nextProps.dispatchPushRoute(transitionPath || accountRoute);
       } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.INFLUENCER) {
-        this.props.dispatchPushRoute(transitionPath || referralRoute);
+        nextProps.dispatchPushRoute(transitionPath || referralRoute);
       } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.VENDOR) {
-        this.props.dispatchPushRoute(transitionPath || accountRoute);
+        nextProps.dispatchPushRoute(transitionPath || accountRoute);
       } else {
-        this.props.dispatchPushRoute(transitionPath || paymentRoute);
+        nextProps.dispatchPushRoute(transitionPath || paymentRoute);
       }
     }
   }
@@ -83,13 +83,12 @@ class LoginApp extends BaseComponent {
 
 }
 LoginApp.propTypes = {
+  dispatchPushRoute: PropTypes.func.isRequired,
+
   isLoggedIn: PropTypes.bool.isRequired,
-  transitionPath: PropTypes.string.isRequired,
+  transitionPath: PropTypes.string,
   userEmail: PropTypes.string,
   userType: PropTypes.string,
-};
-LoginApp.contextTypes = {
-  router: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

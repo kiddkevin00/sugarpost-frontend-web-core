@@ -17,7 +17,7 @@ class AccountApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextProps.isLoggedIn) {
-      this.props.dispatchPushRoute('/register/login');
+      nextProps.dispatchPushRoute('/register/login');
     }
   }
 
@@ -66,9 +66,6 @@ AccountApp.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   forceUpdate: PropTypes.bool.isRequired,
   urlPath: PropTypes.string.isRequired,
-};
-AccountApp.contextTypes = {
-  router: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {

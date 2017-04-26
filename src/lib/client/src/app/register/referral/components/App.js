@@ -2,6 +2,7 @@ import authActionCreator from '../../../../common/auth/actioncreator/';
 import ReferralForm from './ReferralForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -16,11 +17,9 @@ class ReferralApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextProps.isLoggedIn) {
-      nextContext.router.push('/register/login');
-    } else if (
-      nextProps.userType === constants.SYSTEM.USER_TYPES.UNPAID
-    ) {
-      nextContext.router.push({
+      nextProps.dispatchPushRoute('/register/login');
+    } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.UNPAID) {
+      nextProps.dispatchPushRoute({
         pathname: '/register/payment',
         query: { email: nextProps.userEmail },
       });
@@ -66,15 +65,13 @@ class ReferralApp extends BaseComponent {
 }
 ReferralApp.propTypes = {
   dispatchAuthCheck: PropTypes.func.isRequired,
+  dispatchPushRoute: PropTypes.func.isRequired,
 
   isLoggedIn: PropTypes.bool.isRequired,
   forceUpdate: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
   userType: PropTypes.string,
   urlPath: PropTypes.string.isRequired,
-};
-ReferralApp.contextTypes = {
-  router: React.PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
@@ -90,6 +87,10 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatchAuthCheck(transitionPath) {
       dispatch(authActionCreator.authCheck(transitionPath));
+    },
+
+    dispatchPushRoute(route) {
+      dispatch(push(route));
     },
   };
 }

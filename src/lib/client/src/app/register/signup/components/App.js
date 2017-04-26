@@ -9,7 +9,7 @@ class SignupApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (nextProps.isLoggedIn) {
-      this.props.dispatchPushRoute({
+      nextProps.dispatchPushRoute({
         pathname: '/register/payment',
         query: {
           email: nextProps.userEmail,
@@ -79,9 +79,6 @@ SignupApp.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
   referralCodeToUse: PropTypes.string,
-};
-SignupApp.contextTypes = {
-  router: React.PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
