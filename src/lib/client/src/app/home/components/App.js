@@ -137,7 +137,7 @@ class HomeApp extends BaseComponent {
                   </div>
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
-                      <i className="fa fa-4x fa-shopping-basket text-primary sr-icons" />
+                      <i className="fa fa-4x fa-birthday-cake text-primary sr-icons" />
                       <h3>Enjoy</h3>
                       <p className="text-muted">
                         Present your vouchers at the participating locations to claim your in-store
