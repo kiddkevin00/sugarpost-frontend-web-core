@@ -40,7 +40,7 @@ function paymentFormReducer(state = initialState, action) {
     case actionTypes.PAYMENT.SET_FORM_REFERRAL_CODE:
       return Object.assign({}, state, {
         formReferralCode: actionData.referralCode,
-        isReferralCodeValid: true,
+        isReferralCodeValid: !!actionData.referralCode,
       });
     case actionTypes.PAYMENT.PAYING:
       return Object.assign({}, state, {
