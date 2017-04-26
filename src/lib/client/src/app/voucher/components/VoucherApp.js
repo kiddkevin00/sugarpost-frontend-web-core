@@ -9,7 +9,7 @@ class VoucherApp extends BaseComponent {
 
   componentDidMount() {
     if (!this.props.isLoggedIn) {
-      this.props.dispatchAuthCheck();
+      this.props.dispatchAuthCheck(this.props.urlPath);
     }
   }
 
@@ -56,23 +56,25 @@ VoucherApp.propTypes = {
   forceUpdate: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
   userType: PropTypes.string,
+  urlPath: PropTypes.string.isRequired,
 };
 VoucherApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     forceUpdate: state.auth.forceUpdate,
     userEmail: state.auth.user.email,
     userType: state.auth.user.type,
+    urlPath: ownProps.location.pathname,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchAuthCheck() {
-      dispatch(authActionCreator.authCheck());
+    dispatchAuthCheck(transitionPath) {
+      dispatch(authActionCreator.authCheck(transitionPath));
     },
   };
 }

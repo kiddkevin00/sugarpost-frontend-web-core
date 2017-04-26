@@ -13,7 +13,7 @@ class PaymentApp extends BaseComponent {
 
   componentDidMount() {
     if (!this.props.isLoggedIn) {
-      this.props.dispatchAuthCheck();
+      this.props.dispatchAuthCheck(this.props.urlPath);
     }
   }
 
@@ -98,6 +98,7 @@ PaymentApp.propTypes = {
   userType: PropTypes.string,
   userEmail: PropTypes.string.isRequired,
   referralCodeToUse: PropTypes.string,
+  urlPath: PropTypes.string.isRequired,
 };
 PaymentApp.contextTypes = {
   router: PropTypes.object.isRequired,
@@ -110,12 +111,13 @@ function mapStateToProps(state, ownProps) {
     userType: state.auth.user.type,
     userEmail: ownProps.location.query.email,
     referralCodeToUse: ownProps.location.query.referral_code,
+    urlPath: ownProps.location.pathname,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchAuthCheck() {
-      dispatch(authActionCreator.authCheck());
+    dispatchAuthCheck(transitionPath) {
+      dispatch(authActionCreator.authCheck(transitionPath));
     },
   };
 }
