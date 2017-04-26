@@ -78,8 +78,9 @@ class PaymentApp extends BaseComponent {
             </div>
             <div className="form-bottom">
               <PaymentForm
-                email={ this.props.location.query.email || '' }
                 subscribedMonth={ monthNameToSubscribe }
+                email={ this.props.userEmail }
+                referralCodeToUse={ this.props.referralCodeToUse }
               />
             </div>
           </div>
@@ -95,16 +96,20 @@ PaymentApp.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   forceUpdate: PropTypes.bool.isRequired,
   userType: PropTypes.string,
+  userEmail: PropTypes.string.isRequired,
+  referralCodeToUse: PropTypes.string,
 };
 PaymentApp.contextTypes = {
   router: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     forceUpdate: state.auth.forceUpdate,
     userType: state.auth.user.type,
+    userEmail: ownProps.location.query.email,
+    referralCodeToUse: ownProps.location.query.referral_code,
   };
 }
 function mapDispatchToProps(dispatch) {

@@ -1,23 +1,20 @@
 import SignupForm from './SignupForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
-import authActionCreator from '../../../../common/auth/actioncreator';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 class SignupApp extends BaseComponent {
 
-  componentDidMount() {
-    if (Object.keys(this.props.query).length) {
-      this.props.dispatchStoreParamMap(this.props.query);
-    }
-  }
-
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (nextProps.isLoggedIn) {
-      nextContext.router.push({
+      this.props.dispatchPushRoute({
         pathname: '/register/payment',
-        query: { email: nextProps.userEmail },
+        query: {
+          email: nextProps.userEmail,
+          referral_code: nextProps.referralCodeToUse,
+        },
       });
     }
   }
@@ -74,30 +71,32 @@ class SignupApp extends BaseComponent {
       </div>
     );
   }
-}
 
+}
 SignupApp.propTypes = {
+  dispatchPushRoute: PropTypes.func.isRequired,
+
   isLoggedIn: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
-  dispatchStoreParamMap: PropTypes.func.isRequired,
+  referralCodeToUse: PropTypes.string,
 };
 SignupApp.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatchStoreParamMap(query) {
-      dispatch(authActionCreator.storeParamMap(query));
-    },
-  };
-}
-
 function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     userEmail: state.auth.user.email,
-    query: ownProps.location.query,
+    referralCodeToUse: ownProps.location.query.referral_code,
   };
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchPushRoute(route) {
+      dispatch(push(route));
+    },
+  };
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(SignupApp);

@@ -10,7 +10,14 @@ const paymentFormActionCreator = {
       type: actionTypes.PAYMENT.RESET_FORM_ALERT_BOXES,
     };
   },
-  
+
+  setFormReferralCode(referralCode) {
+    return {
+      type: actionTypes.PAYMENT.SET_FORM_REFERRAL_CODE,
+      data: { referralCode },
+    };
+  },
+
   setFormField(field, value, validateReferralCode) {
     if (field === 'ReferralCode' && validateReferralCode(value)) {
       if (value.trim().length === 0) {

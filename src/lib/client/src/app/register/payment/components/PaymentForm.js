@@ -22,6 +22,10 @@ class PaymentForm extends BaseComponent {
     if (this.props.isInfoVisible || this.props.isErrorVisible) {
       this.props.dispatchResetFormAlertBoxes();
     }
+
+    if (this.props.referralCodeToUse) {
+      this.props.dispatchSetFormReferralCode(this.props.referralCodeToUse);
+    }
   }
 
   render() {
@@ -160,11 +164,13 @@ class PaymentForm extends BaseComponent {
 }
 PaymentForm.propTypes = {
   dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
+  dispatchSetFormReferralCode: PropTypes.func.isRequired,
   dispatchSetFormField: PropTypes.func.isRequired,
   dispatchPay: PropTypes.func.isRequired,
 
-  email: PropTypes.string.isRequired,
   subscribedMonth: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  referralCodeToUse: PropTypes.string,
 
   formReferralCode: PropTypes.string.isRequired,
   isReferralCodeValid: PropTypes.bool.isRequired,
@@ -177,7 +183,7 @@ PaymentForm.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    formReferralCode: state.auth.referralCodeUsed,
+    formReferralCode: '',
     isReferralCodeValid: state.payment.isReferralCodeValid,
     isLoading: state.payment.isLoading,
     isInfoVisible: state.payment.info.isVisible,
@@ -190,6 +196,10 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatchResetFormAlertBoxes() {
       dispatch(actionCreator.resetFormAlertBoxes());
+    },
+
+    dispatchSetFormReferralCode(referralCodeToUse) {
+      dispatch(actionCreator.setFormReferralCode(referralCodeToUse));
     },
 
     dispatchSetFormField(field, value, validateReferralCode) {

@@ -11,12 +11,11 @@ const initialUserState = {
   usedReferralCode: undefined,
   stripeCustomerId: undefined,
   stripeSubscriptionId: undefined,
-  referralCodeUsed: undefined,
-  transitionPath: undefined,
 };
 const initialState = {
   isLoggedIn: false,
   forceUpdate: false,
+  transitionPath: undefined,
   user: initialUserState,
 };
 
@@ -33,7 +32,6 @@ function authReducer(state = initialState, action) {
         isLoggedIn: true,
         user: Object.assign({}, state.user, actionData.user),
       });
-    case actionTypes.AUTH.NOT_LOGGED_IN:
     case actionTypes.AUTH.AUTH_CHECK_FAIL:
     case actionTypes.AUTH.LOGOUT_SUCCEED:
     case actionTypes.AUTH.LOGOUT_FAIL:
@@ -42,15 +40,13 @@ function authReducer(state = initialState, action) {
         user: initialUserState,
         forceUpdate: true,
       });
-    case actionTypes.AUTH.STORE_PARAM_MAP:
+    case actionTypes.AUTH.NOT_LOGGED_IN:
       return Object.assign({}, state, {
-        referralCodeUsed: actionData.referralCode,
+        isLoggedIn: false,
+        user: initialUserState,
+        forceUpdate: true,
+        transitionPath: actionData.transitionPath,
       });
-    case actionTypes.AUTH.IN_TRANSITION: {
-      return Object.assign({}, state, {
-        transitionPath: actionData.path,
-      });
-    }
     default:
       return state;
   }

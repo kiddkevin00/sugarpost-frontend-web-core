@@ -5,7 +5,7 @@ import StandardErrorWrapper from '../../utility/standard-error-wrapper';
 import constants from '../../constants/';
 
 const authActionCreator = {
-  authCheck() {
+  authCheck(transitionPath) {
     return (dispatch, getState) => {
       const url = '/api/v1/auth/check';
 
@@ -23,19 +23,15 @@ const authActionCreator = {
               });
             }
             return dispatch({
-              type: actionTypes.AUTH.NOT_LOGGED_IN,
+              type: actionTypes.AUTH.AUTH_CHECK_FAIL,
             });
           } else if (StandardErrorWrapper.verifyFormat(payloadObj)) {
-            const { pathname } = getState().routing.locationBeforeTransitions;
-            dispatch({
-              type: actionTypes.AUTH.IN_TRANSITION,
-              data: { path: pathname },
-            });
             const err = StandardErrorWrapper.deserialize(payloadObj);
 
             if (err.getNthError(0).code === constants.SYSTEM.ERROR_CODES.UNAUTHENTICATED) {
               return dispatch({
                 type: actionTypes.AUTH.NOT_LOGGED_IN,
+                data: { transitionPath },
               });
             }
           }
@@ -86,18 +82,6 @@ const authActionCreator = {
           });
         });
     };
-  },
-  storeParamMap(queryMap) {
-    let action;
-    for (const key in queryMap) {
-      if (key === 'refer_code' && queryMap[key]) {
-        action = ({
-          type: actionTypes.AUTH.STORE_PARAM_MAP,
-          data: { referralCode: queryMap[key] },
-        });
-      }
-    }
-    return action;
   },
 };
 
