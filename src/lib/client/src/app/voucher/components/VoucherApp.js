@@ -1,6 +1,7 @@
 import authActionCreator from '../../../common/auth/actioncreator/';
 import BaseComponent from '../../../common/components/BaseComponent';
 import constants from '../../../common/constants/';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -9,17 +10,15 @@ class VoucherApp extends BaseComponent {
 
   componentDidMount() {
     if (!this.props.isLoggedIn) {
-      this.props.dispatchAuthCheck();
+      this.props.dispatchAuthCheck(this.props.urlPath);
     }
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextProps.isLoggedIn) {
-      nextContext.router.push('/register/login');
-    } else if (
-      nextProps.userType === constants.SYSTEM.USER_TYPES.UNPAID
-    ) {
-      nextContext.router.push({
+      nextProps.dispatchPushRoute('/register/login');
+    } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.UNPAID) {
+      nextProps.dispatchPushRoute({
         pathname: '/register/payment',
         query: { email: nextProps.userEmail },
       });
@@ -51,28 +50,32 @@ class VoucherApp extends BaseComponent {
 }
 VoucherApp.propTypes = {
   dispatchAuthCheck: PropTypes.func.isRequired,
+  dispatchPushRoute: PropTypes.func.isRequired,
 
   isLoggedIn: PropTypes.bool.isRequired,
   forceUpdate: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
   userType: PropTypes.string,
-};
-VoucherApp.contextTypes = {
-  router: React.PropTypes.object.isRequired,
+  urlPath: PropTypes.string.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     forceUpdate: state.auth.forceUpdate,
     userEmail: state.auth.user.email,
     userType: state.auth.user.type,
+    urlPath: ownProps.location.pathname,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchAuthCheck() {
-      dispatch(authActionCreator.authCheck());
+    dispatchAuthCheck(transitionPath) {
+      dispatch(authActionCreator.authCheck(transitionPath));
+    },
+
+    dispatchPushRoute(route) {
+      dispatch(push(route));
     },
   };
 }

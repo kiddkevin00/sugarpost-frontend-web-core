@@ -1,5 +1,6 @@
 import SignupForm from './SignupForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -8,9 +9,12 @@ class SignupApp extends BaseComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (nextProps.isLoggedIn) {
-      nextContext.router.push({
+      nextProps.dispatchPushRoute({
         pathname: '/register/payment',
-        query: { email: nextProps.userEmail },
+        query: {
+          email: nextProps.userEmail,
+          referral_code: nextProps.referralCodeToUse,
+        },
       });
     }
   }
@@ -67,20 +71,29 @@ class SignupApp extends BaseComponent {
       </div>
     );
   }
-}
 
+}
 SignupApp.propTypes = {
+  dispatchPushRoute: PropTypes.func.isRequired,
+
   isLoggedIn: PropTypes.bool.isRequired,
   userEmail: PropTypes.string,
-};
-SignupApp.contextTypes = {
-  router: React.PropTypes.object.isRequired,
+  referralCodeToUse: PropTypes.string,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     userEmail: state.auth.user.email,
+    referralCodeToUse: ownProps.location.query.referral_code,
   };
 }
-export default connect(mapStateToProps)(SignupApp);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchPushRoute(route) {
+      dispatch(push(route));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupApp);

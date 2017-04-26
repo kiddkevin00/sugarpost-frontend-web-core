@@ -11,7 +11,7 @@ const accountSubscriptionActionCreator = {
     };
   },
 
-  cancelSubscription(router) {
+  cancelSubscription(dispatchPushRoute) {
     return (dispatch, getState) => {
       dispatch({
         type: actionTypes.ACCOUNT__SUBSCRIPTION.CANCELLING_SUBSCRIPTION,
@@ -36,7 +36,7 @@ const accountSubscriptionActionCreator = {
                 type: actionTypes.ACCOUNT__SUBSCRIPTION.CANCEL_SUBSCRIPTION_SUCCEED,
               });
 
-              router.push({
+              dispatchPushRoute({
                 pathname: '/register/payment',
                 query: { email: getState().auth.user.email },
               });

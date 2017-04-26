@@ -2,6 +2,7 @@ import authActionCreator from '../../../common/auth/actioncreator/';
 import SubscriptionSection from './SubscriptionSection';
 import ProfileForm from './ProfileForm';
 import BaseComponent from '../../../common/components/BaseComponent';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -10,13 +11,13 @@ class AccountApp extends BaseComponent {
 
   componentDidMount() {
     if (!this.props.isLoggedIn) {
-      this.props.dispatchAuthCheck();
+      this.props.dispatchAuthCheck(this.props.urlPath);
     }
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextProps.isLoggedIn) {
-      nextContext.router.push('/register/login');
+      nextProps.dispatchPushRoute('/register/login');
     }
   }
 
@@ -60,24 +61,28 @@ class AccountApp extends BaseComponent {
 }
 AccountApp.propTypes = {
   dispatchAuthCheck: PropTypes.func.isRequired,
+  dispatchPushRoute: PropTypes.func.isRequired,
 
   isLoggedIn: PropTypes.bool.isRequired,
   forceUpdate: PropTypes.bool.isRequired,
-};
-AccountApp.contextTypes = {
-  router: PropTypes.object.isRequired,
+  urlPath: PropTypes.string.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     forceUpdate: state.auth.forceUpdate,
+    urlPath: ownProps.location.pathname,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchAuthCheck() {
-      dispatch(authActionCreator.authCheck());
+    dispatchAuthCheck(transitionPath) {
+      dispatch(authActionCreator.authCheck(transitionPath));
+    },
+
+    dispatchPushRoute(route) {
+      dispatch(push(route));
     },
   };
 }

@@ -38,18 +38,18 @@ class HomeApp extends BaseComponent {
           </Modal.Body>
           <Modal.Footer>
             <a
-              href="/register/signup"
+              href="/register/signup?referral_code=U50VRR"
               className="btn btn-warning btn-block"
               type="button"
             >
-              Sign Up Now
+              GET YOUR 50% OFF
             </a>
             <button
               onClick={ this._closeModal }
               className="btn btn-default btn-block"
               type="button"
             >
-              Close
+              NO THANKS
             </button>
           </Modal.Footer>
         </Modal>
@@ -117,7 +117,7 @@ class HomeApp extends BaseComponent {
                 <div className="row">
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
-                      <i className="fa fa-4x fa-envelope-o text-primary sr-icons" />
+                      <i className="fa fa-4x fa-ticket text-primary sr-icons" />
                       <h3>Subscribe</h3>
                       <p className="text-muted">
                         After purchasing a monthly subscription, you will receive an email with
@@ -137,7 +137,7 @@ class HomeApp extends BaseComponent {
                   </div>
                   <div className="col-lg-3 col-md-6 text-center">
                     <div className="service-box">
-                      <i className="fa fa-4x fa-shopping-basket text-primary sr-icons" />
+                      <i className="fa fa-4x fa-birthday-cake text-primary sr-icons" />
                       <h3>Enjoy</h3>
                       <p className="text-muted">
                         Present your vouchers at the participating locations to claim your in-store

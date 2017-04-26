@@ -2,6 +2,7 @@ import authActionCreator from '../../../../common/auth/actioncreator/';
 import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -13,15 +14,15 @@ class PaymentApp extends BaseComponent {
 
   componentDidMount() {
     if (!this.props.isLoggedIn) {
-      this.props.dispatchAuthCheck();
+      this.props.dispatchAuthCheck(this.props.urlPath);
     }
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
     if (!nextProps.isLoggedIn) {
-      nextContext.router.push('/register/login');
+      nextProps.dispatchPushRoute('/register/login');
     } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.PAID) {
-      nextContext.router.push('/account');
+      nextProps.dispatchPushRoute('/account');
     }
   }
 
@@ -55,14 +56,13 @@ class PaymentApp extends BaseComponent {
             <div className="top-big-link">
               <ol>
                 <li>Sign up to the right and become a paid subscriber.</li>
-                <li>Receive two vouchers during the first day of every month.</li>
+                <li>
+                  Receive two vouchers during the first day of every month (more than 10% discount
+                  off of the total retail value).
+                </li>
                 <li>Visit the dessert shops.</li>
                 <li>Redeem and enjoy desserts by the end of the month!</li>
                 <li>No time? No worries! You can share any of your vouchers with friends!</li>
-                <li>
-                  Vouchers include the choices to redeem <i>Sugarpost exclusives</i> or in-store
-                  desserts <i>(more than 10% discount off total retail value)</i>
-                </li>
               </ol>
             </div>
           </div>
@@ -78,8 +78,9 @@ class PaymentApp extends BaseComponent {
             </div>
             <div className="form-bottom">
               <PaymentForm
-                email={ this.props.location.query.email || '' }
                 subscribedMonth={ monthNameToSubscribe }
+                email={ this.props.userEmail }
+                referralCodeToUse={ this.props.referralCodeToUse }
               />
             </div>
           </div>
@@ -91,26 +92,34 @@ class PaymentApp extends BaseComponent {
 }
 PaymentApp.propTypes = {
   dispatchAuthCheck: PropTypes.func.isRequired,
+  dispatchPushRoute: PropTypes.func.isRequired,
 
   isLoggedIn: PropTypes.bool.isRequired,
   forceUpdate: PropTypes.bool.isRequired,
   userType: PropTypes.string,
-};
-PaymentApp.contextTypes = {
-  router: PropTypes.object.isRequired,
+  userEmail: PropTypes.string.isRequired,
+  referralCodeToUse: PropTypes.string,
+  urlPath: PropTypes.string.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     forceUpdate: state.auth.forceUpdate,
     userType: state.auth.user.type,
+    userEmail: ownProps.location.query.email,
+    referralCodeToUse: ownProps.location.query.referral_code,
+    urlPath: ownProps.location.pathname,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchAuthCheck() {
-      dispatch(authActionCreator.authCheck());
+    dispatchAuthCheck(transitionPath) {
+      dispatch(authActionCreator.authCheck(transitionPath));
+    },
+
+    dispatchPushRoute(route) {
+      dispatch(push(route));
     },
   };
 }
