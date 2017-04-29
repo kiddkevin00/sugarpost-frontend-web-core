@@ -1,52 +1,53 @@
-doctype html lang='en'
-head
-  meta(charset="utf-8")
-  meta(name='viewport' content='width=device-width, initial-scale=1')
-  meta(http-equiv='X-UA-Compatible' content='IE=edge')
-  title Sugarpost
+doctype html
+html(lang='en')
+  head
+    meta(charset="utf-8")
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    title Sugarpost
 
-  if env === 'development'
-    link(rel='stylesheet' href='/assets/libraries/bootstrap/css/bootstrap.min.css')
-    link(rel='stylesheet' href='/assets/libraries/font-awesome/css/font-awesome.min.css')
-    link(rel='stylesheet' href='/common/input-group-template.css')
-    link(rel='stylesheet' href='/common/registration-template.css')
-    link(rel='stylesheet' href='/app/home/home-template.css')
-    link(rel='stylesheet' href='/app/root-app.css')
-    link(rel='stylesheet' href='/app/home/home.css')
-    link(rel='stylesheet' href='/app/account/index.css')
-    link(rel='stylesheet' href='/app/voucher/index.css')
-    link(rel='stylesheet' href='/app/register/index.css')
-    link(rel='stylesheet' href='/app/register/signup.css')
-    link(rel='stylesheet' href='/app/register/payment.css')
-    link(rel='stylesheet' href='/app/register/referral.css')
-    link(rel='stylesheet' href='/app/register/login.css')
-    link(rel='stylesheet' href='/app/register/forgot-password.css')
-  else
-    link(rel='stylesheet' href='/css/index-' + version + '.min.css')
+    if env === 'development'
+      link(rel='stylesheet' href='/assets/libraries/bootstrap/css/bootstrap.min.css')
+      link(rel='stylesheet' href='/assets/libraries/font-awesome/css/font-awesome.min.css')
+      link(rel='stylesheet' href='/common/input-group-template.css')
+      link(rel='stylesheet' href='/common/registration-template.css')
+      link(rel='stylesheet' href='/app/home/home-template.css')
+      link(rel='stylesheet' href='/app/root-app.css')
+      link(rel='stylesheet' href='/app/home/home.css')
+      link(rel='stylesheet' href='/app/account/index.css')
+      link(rel='stylesheet' href='/app/voucher/index.css')
+      link(rel='stylesheet' href='/app/register/index.css')
+      link(rel='stylesheet' href='/app/register/signup.css')
+      link(rel='stylesheet' href='/app/register/payment.css')
+      link(rel='stylesheet' href='/app/register/referral.css')
+      link(rel='stylesheet' href='/app/register/login.css')
+      link(rel='stylesheet' href='/app/register/forgot-password.css')
+    else
+      link(rel='stylesheet' href='/css/index-' + version + '.min.css')
 
-  script.
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-              }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-              m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    script.
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                  (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', '!{gaTrackingId}', 'auto');
-    ga('send', 'pageview');
-body
-  div#react-main-container
+      ga('create', '!{gaTrackingId}', 'auto');
+      ga('send', 'pageview');
+  body
+    div#react-main-container !{markup}
 
-  script.
-    window.process = window.process || {};
-    window.process.env = window.process.env || {};
-    window.process.env.NODE_ENV = '!{env}';
-  if env === 'development'
-    script(src='/app/index-' + version + '.js')
-  else
-    script(src='/js/index-' + version + '.min.js')
+    script.
+      window.process = window.process || {};
+      window.process.env = window.process.env || {};
+      window.process.env.NODE_ENV = '!{env}';
+    if env === 'development'
+      script(src='/app/index-' + version + '.js')
+    else
+      script(src='/js/index-' + version + '.min.js')
