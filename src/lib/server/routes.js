@@ -1,9 +1,15 @@
-//const routes = require('../client/src/app/routes');
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const configureStore = require('../client/src/common/store')
+const { Routes } = require('../client/src/app/routes');
+
+import { match, RouterContext } from 'react-router';
+import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
+import createHistory from 'react-router/lib/createMemoryHistory';
+
 const constants = require('../client/src/common/constants/');
 const packageJson = require('../../../package.json');
-//const Router = require('react-router');
-//const ReactDOMServer = require('react-dom/server');
-//const React = require('react');
 const errorHandler = require('errorhandler');
 const path = require('path');
 
@@ -46,8 +52,27 @@ function setupRoutes(app) {
     }));
 
   // All other endpoints should redirect to the index.html.
-  app.route('/*')
-    .get((req, res) => {
+  app.use((req, res) => {
+    const memoryHistory = createHistory(req.originalUrl)
+    const store = configureStore(memoryHistory)
+    const history = syncHistoryWithStore(memoryHistory, store)
+     match({ routes: Routes(), history, location: req.url }, (error, redirectLocation, renderProps) => {
+          // check for error and redirection
+       if (error) {
+         res.status(500).send(error.message)
+       } else if (redirectLocation) {
+         res.redirect(302, redirectLocation.pathname, redirectLocation.search)
+       } else if (renderProps) {
+         const content = ReactDOMServer.renderToString(
+            React.createElement(Provider, { store },
+              React.createElement(RouterContext, renderProps)
+            )
+          );
+         res.render('index', { title: 'Express', data: false, content });
+       } else {
+         res.status(404).send('Not Found');
+       }
+     });
       /*
        * [Note] Server-side rendering - normal version, implemented as the following:
        * ```

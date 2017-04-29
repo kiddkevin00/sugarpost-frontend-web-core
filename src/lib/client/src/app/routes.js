@@ -16,29 +16,33 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import React from 'react';
 
-const store = configureStore();
+const store = configureStore(browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
+const Routes = () => (
+  <Route path="/" component={ RootApp }>
+    <IndexRoute component={ HomeApp } />
+    <Route path="home" component={ HomeApp } />
+    <Route path="register" component={ RegisterApp }>
+      <Route path="login" component={ LoginApp } />
+      <Route path="signup" component={ SignupApp } />
+      <Route path="payment" component={ PaymentApp } />
+      <Route path="forgot-password" component={ ForgotPasswordApp } />
+      <Route path="referral" component={ ReferralApp } />
+    </Route>
+    <Route path="privacy-policy" component={ PrivacyPolicyApp } />
+    <Route path="terms-of-use" component={ TermsOfUse } />
+    <Route path="account" component={ AccountApp } />
+    <Route path="vouchers" component={ VoucherApp } />
+  </Route>
+)
 
 const clientRoutes = (
   <Provider store={ store }>
     <Router history={ history }>
-      <Route path="/" component={ RootApp }>
-        <IndexRoute component={ HomeApp } />
-        <Route path="home" component={ HomeApp } />
-        <Route path="register" component={ RegisterApp }>
-          <Route path="login" component={ LoginApp } />
-          <Route path="signup" component={ SignupApp } />
-          <Route path="payment" component={ PaymentApp } />
-          <Route path="forgot-password" component={ ForgotPasswordApp } />
-          <Route path="referral" component={ ReferralApp } />
-        </Route>
-        <Route path="privacy-policy" component={ PrivacyPolicyApp } />
-        <Route path="terms-of-use" component={ TermsOfUse } />
-        <Route path="account" component={ AccountApp } />
-        <Route path="vouchers" component={ VoucherApp } />
-      </Route>
+      {Routes()}
     </Router>
   </Provider>
 );
 
+clientRoutes.Routes = Routes;
 export default clientRoutes;
