@@ -107,11 +107,6 @@ module.exports = function (grunt) {
       },
       target: ['src/lib/client/src/**/*.+(jsx|js)', 'src/lib/server/**/*.+(js|jsx)', 'src/spec/**/*.+(js|jsx)'],
     },
-    // [TODO]
-    jest: {
-      coverage: true,
-      testPathPattern: /.+\.spec\.js/,
-    },
     // Empties folders to start fresh.
     clean: {
       dev: ['src/lib/client/static/app/index-*.js'],
@@ -266,7 +261,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:test',
     'env:test',
-    'jest',
+    
   ]);
 
   // For setup production environment.
