@@ -193,7 +193,7 @@ class RootApp extends BaseComponent {
           tabsShownWhenUserLoggedIn.push(logoutTab);
           break;
       }
-    } else if (window.innerWidth < 768) {
+    } else if (typeof window !== 'undefined' && window.innerWidth < 768) {
       tabsShownWhenUserLoggedIn.push(aboutCollapseTab, signupCollapseTab, loginCollapseTab);
     } else {
       tabsShownWhenUserLoggedIn.push(aboutTab, servicesTab, portfolioTab, contactTab, signupTab,

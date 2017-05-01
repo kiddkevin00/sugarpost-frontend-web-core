@@ -16,8 +16,6 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import React from 'react';
 
-const store = configureStore(browserHistory);
-const history = syncHistoryWithStore(browserHistory, store);
 const Routes = () => (
   <Route path="/" component={ RootApp }>
     <IndexRoute component={ HomeApp } />
@@ -34,15 +32,23 @@ const Routes = () => (
     <Route path="account" component={ AccountApp } />
     <Route path="vouchers" component={ VoucherApp } />
   </Route>
-)
-
-const clientRoutes = (
-  <Provider store={ store }>
-    <Router history={ history }>
-      {Routes()}
-    </Router>
-  </Provider>
 );
+let store;
+let history;
+let clientRoutes;
 
-clientRoutes.Routes = Routes;
+if (typeof window !== 'undefined') {
+  store = configureStore(browserHistory);
+  history = syncHistoryWithStore(browserHistory, store);
+
+  clientRoutes = (
+    <Provider store={ store }>
+      <Router history={ history }>
+        { Routes() }
+      </Router>
+    </Provider>
+  );
+}
+
+export { Routes };
 export default clientRoutes;
