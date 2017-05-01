@@ -16,29 +16,39 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import React from 'react';
 
-const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
-
-const clientRoutes = (
-  <Provider store={ store }>
-    <Router history={ history }>
-      <Route path="/" component={ RootApp }>
-        <IndexRoute component={ HomeApp } />
-        <Route path="home" component={ HomeApp } />
-        <Route path="register" component={ RegisterApp }>
-          <Route path="login" component={ LoginApp } />
-          <Route path="signup" component={ SignupApp } />
-          <Route path="payment" component={ PaymentApp } />
-          <Route path="forgot-password" component={ ForgotPasswordApp } />
-          <Route path="referral" component={ ReferralApp } />
-        </Route>
-        <Route path="privacy-policy" component={ PrivacyPolicyApp } />
-        <Route path="terms-of-use" component={ TermsOfUse } />
-        <Route path="account" component={ AccountApp } />
-        <Route path="vouchers" component={ VoucherApp } />
-      </Route>
-    </Router>
-  </Provider>
+const routes = (
+  <Route path="/" component={ RootApp }>
+    <IndexRoute component={ HomeApp } />
+    <Route path="home" component={ HomeApp } />
+    <Route path="register" component={ RegisterApp }>
+      <Route path="login" component={ LoginApp } />
+      <Route path="signup" component={ SignupApp } />
+      <Route path="payment" component={ PaymentApp } />
+      <Route path="forgot-password" component={ ForgotPasswordApp } />
+      <Route path="referral" component={ ReferralApp } />
+    </Route>
+    <Route path="privacy-policy" component={ PrivacyPolicyApp } />
+    <Route path="terms-of-use" component={ TermsOfUse } />
+    <Route path="account" component={ AccountApp } />
+    <Route path="vouchers" component={ VoucherApp } />
+  </Route>
 );
+let store;
+let history;
+let clientRoutes;
 
-export default clientRoutes;
+if (typeof window !== 'undefined') {
+  store = configureStore(browserHistory);
+  history = syncHistoryWithStore(browserHistory, store);
+
+  clientRoutes = (
+    <Provider store={ store }>
+      <Router history={ history }>
+        { routes }
+      </Router>
+    </Provider>
+  );
+}
+
+export { routes };
+export { clientRoutes };
