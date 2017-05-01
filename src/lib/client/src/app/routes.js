@@ -16,7 +16,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import React from 'react';
 
-const Routes = () => (
+const routes = (
   <Route path="/" component={ RootApp }>
     <IndexRoute component={ HomeApp } />
     <Route path="home" component={ HomeApp } />
@@ -44,11 +44,11 @@ if (typeof window !== 'undefined') {
   clientRoutes = (
     <Provider store={ store }>
       <Router history={ history }>
-        { Routes() }
+        { routes }
       </Router>
     </Provider>
   );
 }
 
-export { Routes };
-export default clientRoutes;
+export { routes };
+export { clientRoutes };

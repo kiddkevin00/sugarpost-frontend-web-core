@@ -1,4 +1,4 @@
-import routes from './routes';
+import { clientRoutes as routes } from './routes';
 import ReactDOM from 'react-dom';
 import Promise from 'promise-polyfill';
 import 'whatwg-fetch';

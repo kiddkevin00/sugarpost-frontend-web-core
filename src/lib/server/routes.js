@@ -1,11 +1,11 @@
 const React = require('react');
 const configureStore = require('../client/src/common/store');
-const { Routes } = require('../client/src/app/routes');
+const { routes } = require('../client/src/app/routes');
 const constants = require('../client/src/common/constants/');
 const packageJson = require('../../../package.json');
-import { createMemoryHistory, match, RouterContext } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { Provider } from 'react-redux';
+const { createMemoryHistory, match, RouterContext } = require('react-router');
+const { syncHistoryWithStore } = require('react-router-redux');
+const { Provider } = require('react-redux');
 const ReactDOMServer = require('react-dom/server');
 const errorHandler = require('errorhandler');
 
@@ -53,7 +53,7 @@ function setupRoutes(app) {
     const store = configureStore(memoryHistory);
     const history = syncHistoryWithStore(memoryHistory, store);
 
-    match({ routes: Routes(), history, location: req.url }, (error, redirectLocation, renderProps) => {
+    match({ routes, history, location: req.url }, (error, redirectLocation, renderProps) => {
       // Check for error and redirection.
       if (error) {
         return res.status(constants.SYSTEM.HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR)
@@ -88,52 +88,6 @@ function setupRoutes(app) {
       return res.status(constants.SYSTEM.HTTP_STATUS_CODES.NOT_FOUND)
         .render('404');
     });
-
-    /*
-     * [Note] Server-side rendering - normal version, implemented as the following:
-     * ```
-     * const MyComponent =
-     *   React.createFactory(require('../client/src/app/memo/components/MemoApp.js'));
-     * const markup = ReactDOMServer.renderToString( MyComponent() );
-     * res.render('index', { markup });
-     * ```
-     */
-    ///Server-side rendering - React Router version, implemented as the following:
-    //const router = Router.createRoutes({ routes, location: req.url });
-    //
-    //router.render((Handler, state) => {
-    //  console.log('SSR:', _.has(req, 'session.userID'));
-    //
-    //  const markup =
-    //    ReactDOMServer.renderToString(<Handler isLoggedIn={ _.has(req, 'session.userID') } />);
-    //  res.cookie('login_tmp', _.has(req, 'session.userID') ? 'yes' : 'no');
-    //  res.render('index', { markup });
-    //});
-
-    /*
-     * [Note] Client-side Rendering, implemented as the following:
-     * ```
-     * res.sendFile(path.resolve(config.get('root'), 'client/static', 'index2.html'));
-     * ```
-     */
-
-    //const env = app.get('env'); // Same as `process.env.NODE_ENV`.
-    //const globalConstants = {
-    //  env,
-    //  version: packageJson.version,
-    //  stripePublicKey: constants.CREDENTIAL.STRIPE.PUBLIC_KEY,
-    //  gaTrackingId: constants.CREDENTIAL.GOOGLE_ANALYTICS.TRACKING_ID,
-    //};
-    //let headers;
-    //
-    //if (env === 'production') {
-    //  headers = { 'Cache-Control': 'no-cache' };
-    //} else {
-    //  headers = { 'Cache-Control': 'no-store' };
-    //}
-    //res.set(headers);
-    //
-    //return res.render('index', globalConstants);
   });
 
   if (app.get('env') !== 'production') {
