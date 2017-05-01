@@ -58,24 +58,10 @@
     "debug": "node --debug --debug-brk src/lib/server/app.js"
   },
   "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "testPathDirs": [
-      "<rootDir>/src/spec/unit"
-    ],
-    "testRegex": "src/spec/unit/.*\\.spec\\.(jsx|js)$",
-    "preprocessorIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "automock": true,
-    "unmockedModulePathPatterns": [
-      "node_modules/sinon",
-      "node_modules/react",
-      "node_modules/react-dom",
-      "node_modules/react-addons-test-utils",
-      "node_modules/enzyme",
-      "node_modules/randomstring"
-    ],
-    "verbose": true
+    "verbose": true,
+    "testMatch": [
+      "**/unit_jest/**/*.(spec|test).js?(x)"
+    ]
   },
   "engines": {
     "node": "6.1.0",
@@ -109,7 +95,6 @@
     "grunt-env": "0.4.4",
     "grunt-eslint": "19.0.0",
     "grunt-express-server": "0.5.3",
-    "grunt-jest": "0.4.0",
     "grunt-open": "0.2.3",
     "grunt-postcss": "0.8.0",
     "jade": "1.11.0",
@@ -141,7 +126,7 @@
   },
   "devDependencies": {
     "babel-cli": "6.24.0",
-    "babel-jest": "16.0.0",
+    "babel-jest": "19.0.0",
     "babel-register": "6.24.0",
     "bluebird": "3.5.0",
     "chai": "3.5.0",
@@ -157,12 +142,13 @@
     "eslint-plugin-react": "6.10.3",
     "faucet": "0.0.1",
     "husky": "0.11.9",
-    "jest-cli": "16.0.2",
+    "jest": "19.0.2",
     "jsdom": "9.12.0",
     "mocha": "3.2.0",
     "mocha-multi": "0.10.0",
     "nyc": "8.4.0",
     "react-addons-test-utils": "15.4.2",
+    "react-test-renderer": "15.5.4",
     "sinon": "1.17.7",
     "sinon-as-promised": "4.0.3",
     "sinon-chai": "2.9.0"

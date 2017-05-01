@@ -3,18 +3,6 @@ import React from 'react';
 
 class PrivacyPolicyApp extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-
-    this.state = _getState();
-  }
-
-  componentDidMount() {}
-
-  componentWillReceiveProps(nextProps) {}
-
-  componentWillUnmount() {}
-
   render() {
     return (
       <div id="privacy-policy-app">
@@ -542,14 +530,6 @@ class PrivacyPolicyApp extends BaseComponent {
     );
   }
 
-}
-
-/*
- * A private method. It should only be used by `setState()` and `getInitialState()` to sync up
- * the data in the Flux's store.
- */
-function _getState() {
-  return {};
 }
 
 export default PrivacyPolicyApp;
