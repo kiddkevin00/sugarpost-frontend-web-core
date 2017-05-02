@@ -36,7 +36,7 @@
     "prepush": "npm run branch-check && npm run lint && npm run coverage:unit-test && npm run coverage:update-thresholds",
     "postinstall": "grunt postinstall",
     "version:bump": "npm run version:instruction && ./bin/version-bump.js",
-    "build": "babel --source-maps --copy-files src/lib/ --out-dir dist/lib/",
+    "build": "NODE_ENV=webpack webpack",
     "-------------- INTERNAL -------------": "",
     "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' --ext .js,.jsx src/lib/client/src/ src/lib/server/ src/spec/ bin/",
     "jest-unit-test": "jest",
@@ -51,6 +51,7 @@
     "local-integration-test": "",
     "coverage:report": "nyc report",
     "coverage:html-report": "open spec/coverage/index.html",
+    "bebel-build": "babel --source-maps --copy-files src/lib/ --out-dir dist/lib/",
     "dev:start": "grunt dev",
     "dev:prod-preview": "grunt prod:preview",
     "dev:lint": "grunt lint --force",
@@ -126,7 +127,10 @@
   },
   "devDependencies": {
     "babel-cli": "6.24.0",
+    "babel-core": "6.24.1",
     "babel-jest": "19.0.0",
+    "babel-loader": "7.0.0",
+    "babel-preset-env": "1.4.0",
     "babel-register": "6.24.0",
     "bluebird": "3.5.0",
     "chai": "3.5.0",
@@ -151,7 +155,8 @@
     "react-test-renderer": "15.5.4",
     "sinon": "1.17.7",
     "sinon-as-promised": "4.0.3",
-    "sinon-chai": "2.9.0"
+    "sinon-chai": "2.9.0",
+    "webpack": "2.4.1"
   },
   "author": "Marcus Hsu",
   "license": "ISC",
