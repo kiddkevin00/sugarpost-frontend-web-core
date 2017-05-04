@@ -1,6 +1,6 @@
 import configureStore from '../common/store/';
+import AsyncRoute from '../common/components/AsyncRoute';
 import RootApp from './RootApp';
-import HomeApp from './home/components/App';
 import RegisterApp from './register/';
 import LoginApp from './register/login/components/App';
 import SignupApp from './register/signup/components/App';
@@ -16,10 +16,15 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import React from 'react';
 
+// [TODO] Finds a more elegant way to resolve isomorphic issue.
+if (global) {
+  global.System = { import() {} };
+}
+
 const routes = (
   <Route path="/" component={ RootApp }>
-    <IndexRoute component={ HomeApp } />
-    <Route path="home" component={ HomeApp } />
+    <IndexRoute component={ (props) => <AsyncRoute props={ props } loadingPromise={ System.import('./home/components/App.js') } /> } />
+    <Route path="home" component={ (props) => <AsyncRoute props={ props } loadingPromise={ System.import('./home/components/App.js') } /> } />
     <Route path="register" component={ RegisterApp }>
       <Route path="login" component={ LoginApp } />
       <Route path="signup" component={ SignupApp } />

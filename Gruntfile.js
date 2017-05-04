@@ -261,7 +261,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:test',
     'env:test',
-    
+
   ]);
 
   // For setup production environment.
