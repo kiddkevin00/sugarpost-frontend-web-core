@@ -20,7 +20,7 @@ const signupFormActionCreator = {
   },
 
   signup(email, password, fullName) {
-    return (dispatch, getState) => {
+    return (dispatch/*, getState*/) => {
       dispatch({
         type: actionTypes.SIGNUP.SIGNING_UP,
       });

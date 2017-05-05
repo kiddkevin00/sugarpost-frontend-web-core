@@ -120,7 +120,6 @@
     "react-stripe-checkout": "2.2.5",
     "redux": "3.6.0",
     "redux-thunk": "2.2.0",
-    "request": "2.81.0",
     "serve-favicon": "2.4.2",
     "time-grunt": "1.4.0",
     "whatwg-fetch": "2.0.3"

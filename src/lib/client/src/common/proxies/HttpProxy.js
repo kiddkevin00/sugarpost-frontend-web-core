@@ -1,6 +1,5 @@
 const StandardErrorWrapper = require('../utility/standard-error-wrapper');
 const constants = require('../constants/');
-const request = require('request');
 
 class HttpRequest {
 

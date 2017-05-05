@@ -6,7 +6,7 @@ import constants from '../../constants/';
 
 const authActionCreator = {
   authCheck(transitionPath) {
-    return (dispatch, getState) => {
+    return (dispatch/*, getState*/) => {
       const url = '/api/v1/auth/check';
 
       Proxy.get(url)
@@ -49,7 +49,7 @@ const authActionCreator = {
   },
 
   logout() {
-    return (dispatch, getState) => {
+    return (dispatch/*, getState*/) => {
       const url = '/api/v1/auth/logout';
 
       Proxy.get(url)

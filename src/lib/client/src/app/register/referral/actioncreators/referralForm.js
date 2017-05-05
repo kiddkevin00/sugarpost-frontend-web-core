@@ -9,9 +9,9 @@ const referralFormActionCreator = {
       type: actionTypes.REFERRAL.RESET_FORM_ALERT_BOXES,
     };
   },
-  
+
   redeemCredits() {
-    return (dispatch, getState) => {
+    return (dispatch/*, getState*/) => {
       dispatch({
         type: actionTypes.REFERRAL.REDEEMING_CREDITS,
       });

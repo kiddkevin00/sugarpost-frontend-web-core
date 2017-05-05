@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 class SignupApp extends BaseComponent {
 
-  componentWillUpdate(nextProps, nextState, nextContext) {
+  componentWillUpdate(nextProps) {
     if (nextProps.isLoggedIn) {
       nextProps.dispatchPushRoute({
         pathname: '/register/payment',

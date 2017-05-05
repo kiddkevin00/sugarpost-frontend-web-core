@@ -36,8 +36,8 @@ class AsyncRoute extends BaseComponent {
 
 }
 AsyncRoute.propTypes = {
-  props: PropTypes.object,
-  loadingPromise: PropTypes.object,
+  props: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  loadingPromise: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 export default AsyncRoute;

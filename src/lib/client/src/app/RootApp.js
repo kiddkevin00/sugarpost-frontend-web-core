@@ -260,7 +260,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchLogout(field, value) {
+    dispatchLogout() {
       dispatch(authActionCreator.logout());
     },
   };

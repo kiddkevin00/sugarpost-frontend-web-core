@@ -1,23 +1,23 @@
 {
+  "presets": ["react"],
   "env": {
     "development": {
-      "presets": ["react", "es2015"],
+      "presets": ["es2015"],
       "plugins": ["add-module-exports"],
-      "sourceMap": true
+      "sourceMaps": "both"
     },
     "test": {
-      "presets": ["react", "es2015"],
+      "presets": ["es2015"],
       "plugins": ["add-module-exports"],
-      "sourceMap": "both"
+      "sourceMaps": "both"
     },
     "production": {
-      "presets": ["react", "es2015"],
+      "presets": ["es2015"],
       "plugins": ["add-module-exports"],
-      "sourceMap": "both"
+      "sourceMaps": "both"
     },
     "webpack": {
       "presets": [
-        "react",
         ["es2015", { "modules": false, "loose": true }]
       ]
     }

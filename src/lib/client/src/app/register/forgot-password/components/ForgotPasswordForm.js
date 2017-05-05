@@ -49,7 +49,7 @@ class ForgotPasswordForm extends BaseComponent {
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
-          onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'Email') }
           value={ this.props.formEmail }
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"

@@ -66,8 +66,8 @@ class ProfileForm extends BaseComponent {
         <FormInput
           text="Full Name"
           ref={ (formInputObj) => { this.fullName = formInputObj; } }
-          value={ this.props.formFullName === undefined ? this.props.originalFullName : this.props.formFullName }
-          onChange={ this._onChange.bind(this, 'FullName') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formFullName === undefined ? this.props.originalFullName : this.props.formFullName } // eslint-disable-line max-len
+          onChange={ this._onChange.bind(this, 'FullName') }
           errorMessage="Full name is invalid"
           emptyMessage="Full name can't be empty"
         />
@@ -75,8 +75,8 @@ class ProfileForm extends BaseComponent {
           text="Email Address"
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
-          value={ this.props.formEmail === undefined ? this.props.originalEmail : this.props.formEmail }
-          onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
+          value={ this.props.formEmail === undefined ? this.props.originalEmail : this.props.formEmail } // eslint-disable-line max-len
+          onChange={ this._onChange.bind(this, 'Email') }
           disabled={ true }
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
@@ -86,7 +86,7 @@ class ProfileForm extends BaseComponent {
           type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
           value={ this.props.formPassword }
-          onChange={ this._onChange.bind(this, 'Password') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'Password') }
           errorMessage="Old password is invalid"
           emptyMessage="Old password can't be empty"
         />
@@ -95,7 +95,7 @@ class ProfileForm extends BaseComponent {
           type="password"
           ref={ (formInputObj) => { this.newPassword = formInputObj; } }
           value={ this.props.formNewPassword }
-          onChange={ this._onChange.bind(this, 'NewPassword') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'NewPassword') }
           useValidator={ true }
           minCharacters={ 8 }
           requireCapitals={ 1 }
@@ -109,7 +109,7 @@ class ProfileForm extends BaseComponent {
           ref={ (formInputObj) => { this.confirmNewPassword = formInputObj; } }
           validate={ this._isConfirmNewPasswordMatched }
           value={ this.props.formConfirmNewPassword }
-          onChange={ this._onChange.bind(this, 'ConfirmNewPassword') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'ConfirmNewPassword') }
           emptyMessage="Please confirm your new password"
           errorMessage="Passwords don't match"
         />
@@ -160,7 +160,7 @@ class ProfileForm extends BaseComponent {
     }
   }
 
-  _onReset(event) {
+  _onReset(/*event*/) {
     this.props.dispatchResetForm(this.props.originalFullName, this.props.originalEmail);
   }
 

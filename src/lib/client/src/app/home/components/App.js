@@ -17,7 +17,12 @@ class HomeApp extends BaseComponent {
   render() {
     return (
       <div id="home-template">
-        <Modal id="promotion-modal" className="text-center" show={ this.props.isModalOpen } onHide={ this._closeModal }>
+        <Modal
+          id="promotion-modal"
+          className="text-center"
+          show={ this.props.isModalOpen }
+          onHide={ this._closeModal }
+        >
           <Modal.Header>
             <Modal.Title>Try Our Premium Dessert Subscription Today!</Modal.Title>
           </Modal.Header>

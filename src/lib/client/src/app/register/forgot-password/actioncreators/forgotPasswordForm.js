@@ -9,7 +9,7 @@ const forgotPasswordActionCreator = {
       type: actionTypes.FORGOT_PASSWORD.RESET_FORM_ALERT_BOXES,
     };
   },
-  
+
   setFormField(field, value) {
     return {
       type: actionTypes.FORGOT_PASSWORD.SET_FORM_FIELD,
@@ -18,7 +18,7 @@ const forgotPasswordActionCreator = {
   },
 
   forgotPassword(email) {
-    return (dispatch, getState) => {
+    return (dispatch/*, getState*/) => {
       dispatch({
         type: actionTypes.FORGOT_PASSWORD.RESETTING_PASSWORD,
       });

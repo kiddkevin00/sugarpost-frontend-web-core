@@ -1,6 +1,5 @@
 const constants = require('../client/src/common/constants/');
 const express = require('express');
-const cors = require('cors');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -16,7 +15,8 @@ function setupExpressServer(app) {
   if (env === 'production' || env === 'test') {
     app.use((req, res, next) => {
       if (req.headers['x-forwarded-proto'] && req.headers['x-forwarded-proto'] !== 'https') {
-        return res.redirect(constants.SYSTEM.HTTP_STATUS_CODES.PERMANENT_REDIRECT, `https://${req.headers.host}${req.url}`);
+        return res.redirect(constants.SYSTEM.HTTP_STATUS_CODES.PERMANENT_REDIRECT,
+          `https://${req.headers.host}${req.url}`);
       }
       return next();
     });
@@ -72,7 +72,7 @@ function setupExpressServer(app) {
     // Here are all the original version of JS and CSS files.
     app.use(express.static(path.resolve(__dirname, '../client/', 'static/'), {
       etag: true,
-      setHeaders(res, filepPath) {
+      setHeaders(res/*, filepPath*/) {
         res.append('Cache-Control', 'no-store');
       },
     }));

@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   payment,
   referral,
   referralShare,
-  routing: routerReducer
+  routing: routerReducer,
 });
 
 export default rootReducer;

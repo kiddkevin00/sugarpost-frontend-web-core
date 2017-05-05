@@ -10,14 +10,14 @@ module.exports = {
     publicPath: '/app/',
   },
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
   },
   node: {
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
   },
-  devtool: 'eval',
+  devtool: 'eval', // Replaces with 'cheap-module-source-map' when running Webpack in production.
   stats: {
     color: true,
     reason: true,

@@ -50,7 +50,7 @@ class LoginForm extends BaseComponent {
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
           value={ this.props.formEmail }
-          onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'Email') }
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
         />
@@ -59,7 +59,7 @@ class LoginForm extends BaseComponent {
           type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
           value={ this.props.formPassword }
-          onChange={ this._onChange.bind(this, 'Password') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'Password') }
           errorMessage="Password is invalid"
           emptyMessage="Password can't be empty"
         />
@@ -119,7 +119,7 @@ function mapDispatchToProps(dispatch) {
     dispatchResetFormAlertBoxes() {
       dispatch(actionCreator.resetFormAlertBoxes());
     },
-    
+
     dispatchSetFormField(field, value) {
       dispatch(actionCreator.setFormField(field, value));
     },

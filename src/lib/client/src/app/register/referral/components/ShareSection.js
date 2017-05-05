@@ -95,7 +95,7 @@ class ShareSection extends BaseComponent {
                 ref={ (formInputObj) => { this.referralEmail = formInputObj; } }
                 validate={ FormInput.validateEmailField }
                 value={ this.props.formReferralEmail }
-                onChange={ this._onChange.bind(this, 'ReferralEmail') } /* eslint-disable-line react/jsx-no-bind */
+                onChange={ this._onChange.bind(this, 'ReferralEmail') }
                 errorMessage="Email is invalid"
                 emptyMessage="Email can't be empty"
               />

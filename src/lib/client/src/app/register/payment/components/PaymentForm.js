@@ -84,7 +84,7 @@ class PaymentForm extends BaseComponent {
           text="Optional"
           validate={ PaymentForm._validateReferralCode }
           value={ this.props.formReferralCode }
-          onChange={ this._onChange.bind(this, 'ReferralCode') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'ReferralCode') }
           errorMessage="Referral code is invalid"
         />
         <StripeCheckout

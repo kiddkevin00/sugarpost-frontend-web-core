@@ -14,7 +14,7 @@ class VoucherApp extends BaseComponent {
     }
   }
 
-  componentWillUpdate(nextProps, nextState, nextContext) {
+  componentWillUpdate(nextProps) {
     if (!nextProps.isLoggedIn) {
       nextProps.dispatchPushRoute('/register/login');
     } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.UNPAID) {

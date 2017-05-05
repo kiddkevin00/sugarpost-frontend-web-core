@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 class LoginApp extends BaseComponent {
 
-  componentWillUpdate(nextProps, nextState, nextContext) {
+  componentWillUpdate(nextProps) {
     if (nextProps.isLoggedIn) {
       const transitionPath = nextProps.transitionPath;
       const paymentRoute = {

@@ -59,7 +59,8 @@ function setupRoutes(app) {
         return res.status(constants.SYSTEM.HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR)
           .json(error);
       } else if (redirectLocation) {
-        return res.redirect(constants.SYSTEM.HTTP_STATUS_CODES.FOUND, redirectLocation.pathname, redirectLocation.search);
+        return res.redirect(constants.SYSTEM.HTTP_STATUS_CODES.FOUND, redirectLocation.pathname,
+         redirectLocation.search);
       } else if (renderProps) {
         const env = app.get('env'); // Same as `process.env.NODE_ENV`.
         const markup = ReactDOMServer.renderToString(

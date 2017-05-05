@@ -1,6 +1,5 @@
 import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
-import { connect } from 'react-redux';
 import React from 'react';
 
 class ForgotPasswordApp extends BaseComponent {
@@ -40,10 +39,5 @@ class ForgotPasswordApp extends BaseComponent {
   }
 
 }
-ForgotPasswordApp.propTypes = {};
 
-function mapStateToProps(state) {
-  return {};
-}
-
-export default connect(mapStateToProps)(ForgotPasswordApp);
+export default ForgotPasswordApp;

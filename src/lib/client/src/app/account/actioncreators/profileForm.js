@@ -9,7 +9,7 @@ const accountProfileActionCreator = {
       type: actionTypes.ACCOUNT__PROFILE.RESET_FORM_ALERT_BOXES,
     };
   },
-  
+
   setFormField(field, value) {
     return {
       type: actionTypes.ACCOUNT__PROFILE.SET_FORM_FIELD,
@@ -18,7 +18,7 @@ const accountProfileActionCreator = {
   },
 
   updateProfile(fullName, password, newPassword) {
-    return (dispatch, getState) => {
+    return (dispatch/*, getState*/) => {
       dispatch({
         type: actionTypes.ACCOUNT__PROFILE.UPDATING_PROFILE,
       });

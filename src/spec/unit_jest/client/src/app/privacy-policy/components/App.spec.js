@@ -5,6 +5,6 @@ import React from 'react';
 test('Privacy Policy App component snapshot test', () => {
   const component = renderer.create(<PrivacyPolicyApp />);
   const tree = component.toJSON();
-  
+
   expect(tree).toMatchSnapshot();
 });

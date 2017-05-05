@@ -15,7 +15,7 @@ class AccountApp extends BaseComponent {
     }
   }
 
-  componentWillUpdate(nextProps, nextState, nextContext) {
+  componentWillUpdate(nextProps) {
     if (!nextProps.isLoggedIn) {
       nextProps.dispatchPushRoute('/register/login');
     }

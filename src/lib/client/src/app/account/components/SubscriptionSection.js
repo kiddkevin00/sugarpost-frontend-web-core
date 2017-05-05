@@ -97,9 +97,9 @@ class SubscriptionSection extends BaseComponent {
     );
   }
 
-  _onUpdatePayment(event) {}
+  _onUpdatePayment(/*event*/) {} // eslint-disable-line class-methods-use-this
 
-  _onUnsubscribe(event) {
+  _onUnsubscribe(/*event*/) {
     this.props.dispatchCancelSubscription(this.props.dispatchPushRoute);
   }
 

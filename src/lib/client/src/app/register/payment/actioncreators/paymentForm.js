@@ -38,13 +38,18 @@ const paymentFormActionCreator = {
   },
 
   pay(token, referralCode) {
-    return (dispatch, getState) => {
+    return (dispatch/*, getState*/) => {
       dispatch({
         type: actionTypes.PAYMENT.PAYING,
       });
 
       const url = '/api/v1/payment/proceed';
-      const body = { referralCode, tokenId: token.id, ccLast4: token.card.last4, email: token.email };
+      const body = {
+        referralCode,
+        tokenId: token.id,
+        ccLast4: token.card.last4,
+        email: token.email,
+      };
       const headers = { 'Content-Type': 'application/json; charset=UTF-8' };
 
       Proxy.post(url, body, headers)
@@ -78,7 +83,9 @@ const paymentFormActionCreator = {
                 type: actionTypes.PAYMENT.ALREADY_PAID,
                 data: res.getNthData(0).detail,
               });
-            } else if (res.getNthData(0).status === actionTypes.PAYMENT._NOT_ELIGIBLE_FOR_REFERRAL_DISCOUNT) {
+            } else if (
+              res.getNthData(0).status === actionTypes.PAYMENT._NOT_ELIGIBLE_FOR_REFERRAL_DISCOUNT
+            ) {
               ReactGA.event({
                 category: 'Revenue',
                 action: 'attempted to pay with referral discount twice',

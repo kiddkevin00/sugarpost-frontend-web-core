@@ -50,7 +50,7 @@ class SignupForm extends BaseComponent {
           text="Full Name"
           ref={ (formInputObj) => { this.fullName = formInputObj; } }
           value={ this.props.formFullName }
-          onChange={ this._onChange.bind(this, 'FullName') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'FullName') }
           errorMessage="Full name is invalid"
           emptyMessage="Full name can't be empty"
         />
@@ -59,7 +59,7 @@ class SignupForm extends BaseComponent {
           ref={ (formInputObj) => { this.email = formInputObj; } }
           validate={ FormInput.validateEmailField }
           value={ this.props.formEmail }
-          onChange={ this._onChange.bind(this, 'Email') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'Email') }
           errorMessage="Email is invalid"
           emptyMessage="Email can't be empty"
         />
@@ -68,7 +68,7 @@ class SignupForm extends BaseComponent {
           type="password"
           ref={ (formInputObj) => { this.password = formInputObj; } }
           value={ this.props.formPassword }
-          onChange={ this._onChange.bind(this, 'Password') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'Password') }
           useValidator={ true }
           minCharacters={ 8 }
           requireCapitals={ 1 }
@@ -82,7 +82,7 @@ class SignupForm extends BaseComponent {
           ref={ (formInputObj) => { this.confirmPassword = formInputObj; } }
           validate={ this.isConfirmPasswordMatched }
           value={ this.props.formConfirmPassword }
-          onChange={ this._onChange.bind(this, 'ConfirmPassword') } /* eslint-disable-line react/jsx-no-bind */
+          onChange={ this._onChange.bind(this, 'ConfirmPassword') }
           emptyMessage="Please confirm your password"
           errorMessage="Passwords don't match"
         />

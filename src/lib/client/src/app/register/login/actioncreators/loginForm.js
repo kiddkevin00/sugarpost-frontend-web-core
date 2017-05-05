@@ -10,7 +10,7 @@ const loginActionCreator = {
       type: actionTypes.LOGIN.RESET_FORM_ALERT_BOXES,
     };
   },
-  
+
   setFormField(field, value) {
     return {
       type: actionTypes.LOGIN.SET_FORM_FIELD,
@@ -19,7 +19,7 @@ const loginActionCreator = {
   },
 
   login(email, password) {
-    return (dispatch, getState) => {
+    return (dispatch/*, getState*/) => {
       dispatch({
         type: actionTypes.LOGIN.LOGGING_IN,
       });

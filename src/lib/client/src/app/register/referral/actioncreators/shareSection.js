@@ -24,7 +24,7 @@ const shareSectionActionCreator = {
   },
 
   sendEmailToReferral(emailTo, emailFromName) {
-    return (dispatch, getState) => {
+    return (dispatch/*, getState*/) => {
       dispatch({
         type: actionTypes.REFERRAL__SHARE.SENDING_EMAIL_TO_REFERRAL,
       });
