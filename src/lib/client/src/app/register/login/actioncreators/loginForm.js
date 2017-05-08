@@ -51,7 +51,7 @@ const loginActionCreator = {
                   case 'production':
                     origin = constants.SYSTEM.URL_BASES.PROD_BACKEND_API;
                     break;
-                  case 'test':
+                  case 'staging':
                     origin = constants.SYSTEM.URL_BASES.TEST_BACKEND_API;
                     break;
                   default:

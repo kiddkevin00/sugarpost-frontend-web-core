@@ -9,7 +9,7 @@ switch (env) {
   case 'production':
     credential = prodCredential;
     break;
-  case 'test':
+  case 'staging':
     credential = testCredential;
     break;
   default:

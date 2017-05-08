@@ -5,9 +5,11 @@ module.exports = {
   context: __dirname,
   entry: './src/lib/client/src/app/app.js',
   output: {
-    path: path.resolve(__dirname, './src/lib/client/static/', 'app/'),
+    path: process.env.RUNTIME_ENV === 'heroku' ?
+      path.resolve(__dirname, './dist/', 'js/') :
+      path.resolve(__dirname, './src/lib/client/static/', 'app/'),
     filename: `bundle-${packageJson.version}.js`,
-    publicPath: '/app/',
+    publicPath: process.env.RUNTIME_ENV === 'heroku' ? '/js/' : '/app/',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -17,7 +19,7 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
   },
-  devtool: 'eval', // Replaces with 'cheap-module-source-map' when running Webpack in production.
+  devtool: process.env.RUNTIME_ENV === 'heroku' ? 'cheap-module-source-map' : 'eval',
   stats: {
     color: true,
     reason: true,
@@ -30,6 +32,10 @@ module.exports = {
         enforce: 'pre',
         exclude: /node_modules/,
         loader: 'eslint-loader',
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
       },
       {
         test: /\.js$/,

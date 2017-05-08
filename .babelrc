@@ -1,5 +1,5 @@
 {
-  "presets": ["react"],
+  "presets": ["react", "env"],
   "env": {
     "development": {
       "presets": ["es2015"],
@@ -7,6 +7,12 @@
       "sourceMaps": "both"
     },
     "test": {
+      "presets": [
+        ["es2015", { "modules": false, "loose": true }]
+      ],
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "staging": {
       "presets": ["es2015"],
       "plugins": ["add-module-exports"],
       "sourceMaps": "both"

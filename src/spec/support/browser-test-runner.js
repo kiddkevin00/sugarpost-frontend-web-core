@@ -1,3 +1,6 @@
+// Set Node environment to "test".
+process.env.NODE_ENV = process.env.NODE_ENV || 'test';
+
 require('babel-register');
 
 const jsDomWrapper = require('jsdom');

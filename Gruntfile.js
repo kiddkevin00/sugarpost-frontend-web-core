@@ -16,9 +16,12 @@ module.exports = function (grunt) {
         NODE_ENV: 'development',
       },
       lint: {},
-      test: {},
+      test: {
+        NODE_ENV: 'test',
+      },
       prod: {
         NODE_ENV: 'production',
+        RUNTIME_ENV: 'heroku',
       },
     },
     browserify: {
@@ -70,16 +73,15 @@ module.exports = function (grunt) {
         ],
         tasks: ['express:dev', 'wait-for-server'],
         options: {
-          spawn: false, // Without this option, specified Express won't be reloaded.
-          nospawn: true, // For backward compatiability.
-          atBegin: false, // Setting this to `true` will run tasks once when `watch:express` task loads.
+          spawn: false, // Without this option, Express server won't reload itself.
+          nospawn: true, // For backward version compatibility.
+          atBegin: false, // Setting this to `true` will run the tasks once when `watch:express` task loads.
           livereload: true,
         },
       },
       client: {
         files: [
-          'src/lib/client/static/index2.html',
-          'src/lib/client/static/app/index-<%= pkg.version %>.js',
+          'src/lib/client/static/app/*bundle-<%= pkg.version %>.js',
           'src/lib/client/static/**/*.css',
         ],
         options: {
@@ -90,7 +92,9 @@ module.exports = function (grunt) {
         files: [
           '<%= eslint.target %>',
         ],
-        tasks: [],
+        tasks: [
+          //'eslint'
+        ],
       },
     },
     open: {
@@ -109,9 +113,9 @@ module.exports = function (grunt) {
     },
     // Empties folders to start fresh.
     clean: {
-      dev: ['src/lib/client/static/app/index-*.js'],
+      dev: ['src/lib/client/static/app/*bundle-<%= pkg.version %>.js'],
       test: ['spec/'],
-      prod: ['src/lib/client/static/app/index-*.js', 'dist/css/', 'dist/js/', 'dist/lib/', 'dist/assets', 'dist/fonts/'],
+      prod: ['dist/css/', 'dist/lib/', 'dist/assets', 'dist/fonts/'],
     },
     uglify: {
       options: {
@@ -177,7 +181,7 @@ module.exports = function (grunt) {
           },
           {
             cwd: 'src/',
-            src: ['lib/client/static/*.png', 'lib/client/static/*.ico'],
+            src: ['lib/client/static/*.+(png|ico)'],
             dest: 'dist/',
             filter: 'isFile',
             expand: true,
@@ -198,7 +202,7 @@ module.exports = function (grunt) {
           },
           {
             cwd: 'src/lib/server/views',
-            src: ['index.jade'],
+            src: ['*.jade'],
             dest: 'dist/lib/server/views/',
             filter: 'isFile',
             expand: true,
@@ -244,7 +248,7 @@ module.exports = function (grunt) {
     'clean:dev',
     'env:dev',
     'express:dev',
-    'browserify',
+    //'browserify',
     'wait-for-server',
     'open:dev',
     'watch',
@@ -273,22 +277,22 @@ module.exports = function (grunt) {
     'express:prod',
     'concat:prod',
     'postcss:prod',
-    'browserify',
-    'uglify',
+    //'browserify',
+    //'uglify',
     'wait-for-server',
     'open:prod',
     'express-keep-alive',
   ]);
 
-  // For "npm" post-install
+  // For "npm" post-install.
   grunt.registerTask('postinstall', [
     'clean:prod',
     'babel:prod',
     'copy:prod',
     'concat:prod',
     'postcss:prod',
-    'browserify',
-    'uglify',
+    //'browserify',
+    //'uglify',
   ]);
 
   // For default task.

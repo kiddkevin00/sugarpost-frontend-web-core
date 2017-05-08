@@ -54,7 +54,7 @@ function setupRoutes(app) {
     const history = syncHistoryWithStore(memoryHistory, store);
 
     match({ routes, history, location: req.url }, (error, redirectLocation, renderProps) => {
-      // Check for error and redirection.
+      // Checks whether it is an error or redirection (miss), otherwise it is a match.
       if (error) {
         return res.status(constants.SYSTEM.HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR)
           .json(error);
