@@ -115,7 +115,7 @@ module.exports = function (grunt) {
     clean: {
       dev: ['src/lib/client/static/app/*bundle-<%= pkg.version %>.js'],
       test: ['spec/'],
-      prod: ['dist/css/', 'dist/lib/', 'dist/assets', 'dist/fonts/'],
+      prod: ['dist/'],
     },
     uglify: {
       options: {
