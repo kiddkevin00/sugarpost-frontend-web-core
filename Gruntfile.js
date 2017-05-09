@@ -20,8 +20,7 @@ module.exports = function (grunt) {
         NODE_ENV: 'test',
       },
       prod: {
-        NODE_ENV: 'production',
-        RUNTIME_ENV: 'heroku',
+        NODE_ENV: 'server',
       },
     },
     browserify: {
@@ -43,10 +42,10 @@ module.exports = function (grunt) {
     },
     express: {
       options: {
-        port: '',
         node_env: undefined,
+        port: '',
         debug: false,
-        background: true, // Sets to false to debug the reason why Express server shut down.
+        background: true, // Sets to `false` to debug the reason why Express server shuts down unexpectedly.
       },
       dev: {
         options: {
@@ -58,6 +57,7 @@ module.exports = function (grunt) {
         options: {
           output: 'Express server listening on port: <%= pkg.config.port %> at IP: <%= pkg.config.ip %>, in <%= env.prod.NODE_ENV %> mode.',
           script: 'dist/lib/server/app.js',
+          node_env: 'production',
         },
       },
     },
@@ -229,10 +229,9 @@ module.exports = function (grunt) {
 
   // For delaying live reload until after server has restarted.
   grunt.registerTask('wait-for-server', function () {
-    grunt.log.ok('Waiting for server reload...');
-
     var done = this.async();
 
+    grunt.log.ok('Waiting for server reload...');
     setTimeout(function () {
       grunt.log.writeln('Done waiting!');
       done();
@@ -248,7 +247,6 @@ module.exports = function (grunt) {
     'clean:dev',
     'env:dev',
     'express:dev',
-    //'browserify',
     'wait-for-server',
     'open:dev',
     'watch',
@@ -274,25 +272,22 @@ module.exports = function (grunt) {
     'env:prod',
     'babel:prod',
     'copy:prod',
-    'express:prod',
     'concat:prod',
     'postcss:prod',
-    //'browserify',
-    //'uglify',
-    'wait-for-server',
     'open:prod',
+    'express:prod',
+    'wait-for-server',
     'express-keep-alive',
   ]);
 
   // For "npm" post-install.
   grunt.registerTask('postinstall', [
     'clean:prod',
+    'env:prod',
     'babel:prod',
     'copy:prod',
     'concat:prod',
     'postcss:prod',
-    //'browserify',
-    //'uglify',
   ]);
 
   // For default task.
