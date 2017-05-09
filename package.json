@@ -133,7 +133,8 @@
     "redux-thunk": "2.2.0",
     "serve-favicon": "2.4.2",
     "time-grunt": "1.4.0",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "webpack": "2.4.1"
   },
   "devDependencies": {
     "babel-cli": "6.24.0",
@@ -164,8 +165,7 @@
     "react-test-renderer": "15.5.4",
     "sinon": "1.17.7",
     "sinon-as-promised": "4.0.3",
-    "sinon-chai": "2.9.0",
-    "webpack": "2.4.1"
+    "sinon-chai": "2.9.0"
   },
   "author": "Marcus Hsu",
   "license": "ISC",
