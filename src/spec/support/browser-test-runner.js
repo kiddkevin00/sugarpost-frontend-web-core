@@ -1,11 +1,11 @@
-// Set Node environment to "test".
+// Set Node environment default to "test".
 process.env.NODE_ENV = process.env.NODE_ENV || 'test';
 
 require('babel-register');
 
 const jsDomWrapper = require('jsdom');
 const chai = require('chai');
-const sinon = require('sinon');
+const sinon = require('sinon'); // eslint-disable-line newline-after-var
 require('sinon-as-promised');
 const sinonChai = require('sinon-chai');
 const chaiAsPromised = require('chai-as-promised');
