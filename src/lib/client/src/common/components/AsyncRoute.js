@@ -16,7 +16,7 @@ class AsyncRoute extends BaseComponent {
     if (this.props.loadingPromise) {
       this.props.loadingPromise
         .then((module) => {
-          this.component = module.default;
+          this.component = module.default || module;
 
           this.setState({ isLoaded: true });
         });

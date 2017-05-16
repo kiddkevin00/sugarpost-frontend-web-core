@@ -16,9 +16,11 @@ module.exports = function (grunt) {
         NODE_ENV: 'development',
       },
       lint: {},
-      test: {},
+      test: {
+        NODE_ENV: 'test',
+      },
       prod: {
-        NODE_ENV: 'production',
+        NODE_ENV: 'server',
       },
     },
     browserify: {
@@ -40,10 +42,10 @@ module.exports = function (grunt) {
     },
     express: {
       options: {
-        port: '',
         node_env: undefined,
+        port: '',
         debug: false,
-        background: true, // Sets to false to debug the reason why Express server shut down.
+        background: true, // Sets to `false` to debug the reason why Express server shuts down unexpectedly.
       },
       dev: {
         options: {
@@ -55,6 +57,7 @@ module.exports = function (grunt) {
         options: {
           output: 'Express server listening on port: <%= pkg.config.port %> at IP: <%= pkg.config.ip %>, in <%= env.prod.NODE_ENV %> mode.',
           script: 'dist/lib/server/app.js',
+          node_env: 'production',
         },
       },
     },
@@ -70,16 +73,15 @@ module.exports = function (grunt) {
         ],
         tasks: ['express:dev', 'wait-for-server'],
         options: {
-          spawn: false, // Without this option, specified Express won't be reloaded.
-          nospawn: true, // For backward compatiability.
-          atBegin: false, // Setting this to `true` will run tasks once when `watch:express` task loads.
+          spawn: false, // Without this option, Express server won't reload itself.
+          nospawn: true, // For backward version compatibility.
+          atBegin: false, // Setting this to `true` will run the tasks once when `watch:express` task loads.
           livereload: true,
         },
       },
       client: {
         files: [
-          'src/lib/client/static/index2.html',
-          'src/lib/client/static/app/index-<%= pkg.version %>.js',
+          'src/lib/client/static/app/*bundle-<%= pkg.version %>.js',
           'src/lib/client/static/**/*.css',
         ],
         options: {
@@ -90,7 +92,9 @@ module.exports = function (grunt) {
         files: [
           '<%= eslint.target %>',
         ],
-        tasks: [],
+        tasks: [
+          //'eslint'
+        ],
       },
     },
     open: {
@@ -109,9 +113,9 @@ module.exports = function (grunt) {
     },
     // Empties folders to start fresh.
     clean: {
-      dev: ['src/lib/client/static/app/index-*.js'],
+      dev: ['src/lib/client/static/app/*bundle-<%= pkg.version %>.js'],
       test: ['spec/'],
-      prod: ['src/lib/client/static/app/index-*.js', 'dist/css/', 'dist/js/', 'dist/lib/', 'dist/assets', 'dist/fonts/'],
+      prod: ['dist/'],
     },
     uglify: {
       options: {
@@ -177,7 +181,7 @@ module.exports = function (grunt) {
           },
           {
             cwd: 'src/',
-            src: ['lib/client/static/*.png', 'lib/client/static/*.ico'],
+            src: ['lib/client/static/*.+(png|ico)'],
             dest: 'dist/',
             filter: 'isFile',
             expand: true,
@@ -198,7 +202,7 @@ module.exports = function (grunt) {
           },
           {
             cwd: 'src/lib/server/views',
-            src: ['index.jade'],
+            src: ['*.jade'],
             dest: 'dist/lib/server/views/',
             filter: 'isFile',
             expand: true,
@@ -225,10 +229,9 @@ module.exports = function (grunt) {
 
   // For delaying live reload until after server has restarted.
   grunt.registerTask('wait-for-server', function () {
-    grunt.log.ok('Waiting for server reload...');
-
     var done = this.async();
 
+    grunt.log.ok('Waiting for server reload...');
     setTimeout(function () {
       grunt.log.writeln('Done waiting!');
       done();
@@ -244,7 +247,6 @@ module.exports = function (grunt) {
     'clean:dev',
     'env:dev',
     'express:dev',
-    'browserify',
     'wait-for-server',
     'open:dev',
     'watch',
@@ -270,25 +272,22 @@ module.exports = function (grunt) {
     'env:prod',
     'babel:prod',
     'copy:prod',
-    'express:prod',
     'concat:prod',
     'postcss:prod',
-    'browserify',
-    'uglify',
-    'wait-for-server',
     'open:prod',
+    'express:prod',
+    'wait-for-server',
     'express-keep-alive',
   ]);
 
-  // For "npm" post-install
+  // For "npm" post-install.
   grunt.registerTask('postinstall', [
     'clean:prod',
+    'env:prod',
     'babel:prod',
     'copy:prod',
     'concat:prod',
     'postcss:prod',
-    'browserify',
-    'uglify',
   ]);
 
   // For default task.

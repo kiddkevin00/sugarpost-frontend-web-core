@@ -12,7 +12,7 @@ const fs = require('fs');
 function setupExpressServer(app) {
   const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 
-  if (env === 'production' || env === 'test') {
+  if (env === 'production' || env === 'staging') {
     app.use((req, res, next) => {
       if (req.headers['x-forwarded-proto'] && req.headers['x-forwarded-proto'] !== 'https') {
         return res.redirect(constants.SYSTEM.HTTP_STATUS_CODES.PERMANENT_REDIRECT,
@@ -37,7 +37,7 @@ function setupExpressServer(app) {
   app.set('views', path.resolve(__dirname, 'views/'));
   app.set('view engine', 'jade');
 
-  if (env === 'production' || env === 'test') {
+  if (env === 'production' || env === 'staging') {
     // Here are all the minified version of all JS and CSS files.
     app.use(express.static(path.resolve(__dirname, '../../../', 'dist/'), {
       etag: true,

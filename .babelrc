@@ -1,25 +1,28 @@
 {
-  "presets": ["react"],
+  "presets": [
+    ["es2015", { "modules": false, "loose": true }],
+    "react",
+    "env"
+  ],
   "env": {
     "development": {
-      "presets": ["es2015"],
       "plugins": ["add-module-exports"],
       "sourceMaps": "both"
     },
     "test": {
-      "presets": ["es2015"],
+      "plugins": ["transform-es2015-modules-commonjs"]
+    },
+    "staging": {
       "plugins": ["add-module-exports"],
       "sourceMaps": "both"
     },
     "production": {
-      "presets": ["es2015"],
       "plugins": ["add-module-exports"],
       "sourceMaps": "both"
     },
-    "webpack": {
-      "presets": [
-        ["es2015", { "modules": false, "loose": true }]
-      ]
-    }
+    "server": {
+      "plugins": ["add-module-exports", "transform-es2015-modules-commonjs"],
+      "sourceMaps": "both"
+    },
   }
 }

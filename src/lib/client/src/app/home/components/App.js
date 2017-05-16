@@ -12,7 +12,14 @@ class HomeApp extends BaseComponent {
     super(props);
 
     this._bind('_closeModal');
+    this.state = {}; // For Mocha's unit testing.
   }
+
+  componentDidMount() {} // For Mocha's unit testing.
+
+  componentWillReceiveProps() {} // For Mocha's unit testing.
+
+  componentWillUnmount() {} // For Mocha's unit testing.
 
   render() {
     return (
@@ -268,4 +275,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+export { HomeApp as UnwrappedHomeApp };
 export default connect(mapStateToProps, mapDispatchToProps)(HomeApp);
