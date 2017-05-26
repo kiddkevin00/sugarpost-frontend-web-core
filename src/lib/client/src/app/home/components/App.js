@@ -2,7 +2,6 @@ import actionCreator from '../actioncreators/app';
 import BaseComponent from '../../../common/components/BaseComponent';
 import Footer from '../../../common/components/Footer';
 import { Thumbnail, Modal } from 'react-bootstrap';
-import { Element } from 'react-scroll';
 import { connect } from 'react-redux';
 import React from 'react';
 
@@ -90,161 +89,150 @@ class HomeApp extends BaseComponent {
           </div>
         </header>
 
-        <Element name="main">
-
-          <Element name="about">
-            <section id="about" className="bg-primary">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 className="section-heading">Got a sweet tooth? We&#39;ve got the cure!</h2>
-                    <hr className="light" />
-                    <p className="text-faded">
-                      We are a New York based online monthly premium subscription service that
-                      provides you with e-packages of trendy and innovative desserts. These
-                      e-packages have been assembled by our curators who have scoured the internet
-                      and attained insight from influential foodies to dessert connoisseurs,
-                      providing you with the city&#39;s best dessert discovery experience!
-                    </p>
-                    <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
-                      Learn More
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </Element>
-
-          <Element name="services">
-            <section id="services">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-12 text-center">
-                    <h2 className="section-heading">How It Works</h2>
-                    <hr className="primary" />
-                  </div>
-                </div>
-              </div>
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-3 col-md-6 text-center">
-                    <div className="service-box">
-                      <i className="fa fa-4x fa-ticket text-primary sr-icons" />
-                      <h3>Subscribe</h3>
-                      <p className="text-muted">
-                        After purchasing a monthly subscription, you will receive an email with
-                        vouchers during the first day of every month.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-md-6 text-center">
-                    <div className="service-box">
-                      <i className="fa fa-4x fa-map-marker text-primary sr-icons" />
-                      <h3>Discover</h3>
-                      <p className="text-muted">
-                        Venture out to all of the locations we&#39;ve hand-picked for you. We even
-                        included a little background on each featured dessert vendor.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-md-6 text-center">
-                    <div className="service-box">
-                      <i className="fa fa-4x fa-birthday-cake text-primary sr-icons" />
-                      <h3>Enjoy</h3>
-                      <p className="text-muted">
-                        Present your vouchers at the participating locations to claim your in-store
-                        or Sugarpost exclusive desserts - snap it, share it, and enjoy it!
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-md-6 text-center">
-                    <div className="service-box">
-                      <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
-                      <h3>Share</h3>
-                      <p className="text-muted">
-                        Refer your friends and earn credits. If enough friends sign up, you will get
-                        a month free!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </Element>
-
-          <Element name="portfolio">
-            <section id="portfolio">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-12 text-center">
-                    <h2 className="section-heading">Upcoming Vendors</h2>
-                    <hr className="primary" />
-                  </div>
-                </div>
-              </div>
-              <div className="container-fluid">
-                <div className="row no-gutter popup-gallery">
-                  <div className="col-lg-offset-2 col-lg-8 col-xs-12">
-                    <img src="/assets/images/june-vendors.png" className="img-responsive" alt="" />
-                  </div>
-                </div>
-              </div>
-            </section>
-            <aside className="bg-dark">
-              <div className="container text-center">
-                <div className="call-to-action">
-                  <br />
-                  <h2>Subscribe Today</h2>
-                  <a
-                    href="/register/signup"
-                    className="btn btn-default btn-xl sr-button"
-                  >
-                    Sign Up Now
-                  </a>
-                  <br />
-                  <br />
-                </div>
-              </div>
-            </aside>
-          </Element>
-          {/*
-          <aside className="bg-darker">
-            <div className="container text-center">
-              <div>
-                <h2>Featured On</h2>
-                <hr className="primary" />
-                <h4>Coming Soon...</h4>
+        <section id="about" className="bg-primary">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8 col-lg-offset-2 text-center">
+                <h2 className="section-heading">Got a sweet tooth? We&#39;ve got the cure!</h2>
+                <hr className="light" />
+                <p className="text-faded">
+                  We are a New York based online monthly premium subscription service that
+                  provides you with e-packages of trendy and innovative desserts. These
+                  e-packages have been assembled by our curators who have scoured the internet
+                  and attained insight from influential foodies to dessert connoisseurs,
+                  providing you with the city&#39;s best dessert discovery experience!
+                </p>
+                <a href="/#services" className="btn btn-default btn-xl sr-button page-scroll">
+                  Learn More
+                </a>
               </div>
             </div>
-          </aside>
-          */}
-          <Element name="contact">
-            <section id="contact">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 className="section-heading">Let&#39;s Get In Touch!</h2>
-                    <hr className="primary" />
-                    <p>
-                      Interested in partnering with us? Inquiries? Questions? Press coverage?
-                      That&#39;s great! We look forward to hearing from you! Send us an email and
-                      we will get back to you as soon as possible!
-                    </p>
-                  </div>
-                  <div className="col-lg-6 col-lg-offset-3 text-center">
-                    <i className="fa fa-envelope-o fa-3x sr-contact" />
-                    <p>
-                      <a href="mailto:administrator@mysugarpost.com">
-                        administrator@mysugarpost.com
-                      </a>
-                    </p>
-                  </div>
+          </div>
+        </section>
+
+        <section id="services">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12 text-center">
+                <h2 className="section-heading">How It Works</h2>
+                <hr className="primary" />
+              </div>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-3 col-md-6 text-center">
+                <div className="service-box">
+                  <i className="fa fa-4x fa-ticket text-primary sr-icons" />
+                  <h3>Subscribe</h3>
+                  <p className="text-muted">
+                    After purchasing a monthly subscription, you will receive an email with
+                    vouchers during the first day of every month.
+                  </p>
                 </div>
               </div>
-            </section>
-          </Element>
+              <div className="col-lg-3 col-md-6 text-center">
+                <div className="service-box">
+                  <i className="fa fa-4x fa-map-marker text-primary sr-icons" />
+                  <h3>Discover</h3>
+                  <p className="text-muted">
+                    Venture out to all of the locations we&#39;ve hand-picked for you. We even
+                    included a little background on each featured dessert vendor.
+                  </p>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-6 text-center">
+                <div className="service-box">
+                  <i className="fa fa-4x fa-birthday-cake text-primary sr-icons" />
+                  <h3>Enjoy</h3>
+                  <p className="text-muted">
+                    Present your vouchers at the participating locations to claim your in-store
+                    or Sugarpost exclusive desserts - snap it, share it, and enjoy it!
+                  </p>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-6 text-center">
+                <div className="service-box">
+                  <i className="fa fa-4x fa-share-alt text-primary sr-icons" />
+                  <h3>Share</h3>
+                  <p className="text-muted">
+                    Refer your friends and earn credits. If enough friends sign up, you will get
+                    a month free!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        </Element>
+        <section id="portfolio">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12 text-center">
+                <h2 className="section-heading">Upcoming Vendors</h2>
+                <hr className="primary" />
+              </div>
+            </div>
+          </div>
+          <div className="container-fluid">
+            <div className="row no-gutter popup-gallery">
+              <div className="col-lg-offset-2 col-lg-8 col-xs-12">
+                <img src="/assets/images/june-vendors.png" className="img-responsive" alt="" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside className="bg-dark">
+          <div className="container text-center">
+            <div className="call-to-action">
+              <br />
+              <h2>Subscribe Today</h2>
+              <a
+                href="/register/signup"
+                className="btn btn-default btn-xl sr-button"
+              >
+                Sign Up Now
+              </a>
+              <br />
+              <br />
+            </div>
+          </div>
+        </aside>
+
+        <aside className="bg-darker">
+          <div className="container text-center">
+            <div>
+              <h2>Featured On</h2>
+              <hr className="primary" />
+              <h4>Coming Soon...</h4>
+            </div>
+          </div>
+        </aside>
+
+        <section id="contact">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-8 col-lg-offset-2 text-center">
+                <h2 className="section-heading">Let&#39;s Get In Touch!</h2>
+                <hr className="primary" />
+                <p>
+                  Interested in partnering with us? Inquiries? Questions? Press coverage?
+                  That&#39;s great! We look forward to hearing from you! Send us an email and
+                  we will get back to you as soon as possible!
+                </p>
+              </div>
+              <div className="col-lg-6 col-lg-offset-3 text-center">
+                <i className="fa fa-envelope-o fa-3x sr-contact" />
+                <p>
+                  <a href="mailto:administrator@mysugarpost.com">
+                    administrator@mysugarpost.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <Footer />
       </div>

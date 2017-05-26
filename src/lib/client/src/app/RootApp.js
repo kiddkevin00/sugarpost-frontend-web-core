@@ -1,10 +1,10 @@
 import authActionCreator from '../common/auth/actioncreator/';
-import ScrollDiv from '../common/components/ScrollDiv';
+import HomeApp from './home/components/App';
+import AsyncRoute from '../common/components/AsyncRoute';
 import BaseComponent from '../common/components/BaseComponent';
 import constants from '../common/constants/';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from 'react-scroll';
+import { Link, NavLink, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -20,24 +20,48 @@ class RootApp extends BaseComponent {
   render() {
     const tabsShownWhenUserLoggedIn = [];
     const accountTab = (
-      <LinkContainer key="1" to="/account">
-        <NavItem>Account</NavItem>
-      </LinkContainer>
+      <li key="1">
+        <NavLink
+          to="/account"
+          activeClassName="active"
+          className="page-scroll"
+        >
+          Account
+        </NavLink>
+      </li>
     );
     const paymentTab = (
-      <LinkContainer key="2" to={ { pathname: '/register/payment', query: { email: this.props.userEmail } } }>
-        <NavItem>Payment</NavItem>
-      </LinkContainer>
+      <li key="2">
+        <NavLink
+          to={ { pathname: '/register/payment', search: `?email=${this.props.userEmail}` } }
+          activeClassName="active"
+          className="page-scroll"
+        >
+          Payment
+        </NavLink>
+      </li>
     );
     const voucherTab = (
-      <LinkContainer key="3" to="/vouchers">
-        <NavItem>Vouchers</NavItem>
-      </LinkContainer>
+      <li key="3">
+        <NavLink
+          to="/vouchers"
+          activeClassName="active"
+          className="page-scroll"
+        >
+          Vouchers
+        </NavLink>
+      </li>
     );
     const referralTab = (
-      <LinkContainer key="4" to="/register/referral">
-        <NavItem>Referral</NavItem>
-      </LinkContainer>
+      <li key="4">
+        <NavLink
+          to="/register/referral"
+          activeClassName="active"
+          className="page-scroll"
+        >
+          Referral
+        </NavLink>
+      </li>
     );
     const logoutTab = (
       /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -49,121 +73,54 @@ class RootApp extends BaseComponent {
       /* eslint-enable */
     );
     const aboutTab = (
-      <li key="1">
-        <LinkContainer to="/">
-          <Link
-            activeClass="active"
-            className="page-scroll"
-            to="about"
-            spy={ true }
-            smooth={ true }
-            duration={ 700 }
-            delay={ 300 }
-          >
-            About
-          </Link>
-        </LinkContainer>
+      <li key="6">
+        <a href="/#about" className="page-scroll">
+          About
+        </a>
       </li>
     );
-    const aboutCollapseTab = (
-      <LinkContainer key="1" to="/home">
-        <NavItem>About</NavItem>
-      </LinkContainer>
-    );
     const servicesTab = (
-      <li key="2">
-        <LinkContainer to="/">
-          <Link
-            activeClass="active"
-            className="page-scroll"
-            to="services"
-            spy={ true }
-            smooth={ true }
-            duration={ 700 }
-            delay={ 300 }
-          >
-            Services
-          </Link>
-        </LinkContainer>
+      <li key="7">
+        <a href="/#services" className="page-scroll">
+          Services
+        </a>
       </li>
     );
     const portfolioTab = (
-      <li key="3">
-        <LinkContainer to="/">
-          <Link
-            activeClass="active"
-            className="page-scroll"
-            to="portfolio"
-            spy={ true }
-            smooth={ true }
-            duration={ 700 }
-            delay={ 300 }
-          >
-            Featured
-          </Link>
-        </LinkContainer>
+      <li key="8">
+        <a href="/#portfolio" className="page-scroll">
+          Featured
+        </a>
       </li>
     );
     const contactTab = (
-      <li key="4">
-        <LinkContainer to="/">
-          <Link
-            activeClass="active"
-            className="page-scroll"
-            to="contact"
-            spy={ true }
-            smooth={ true }
-            duration={ 700 }
-            delay={ 300 }
-          >
-            Contact
-          </Link>
-        </LinkContainer>
+      <li key="9">
+        <a href="/#contact" className="page-scroll">
+          Contact
+        </a>
       </li>
     );
     const signupTab = (
-      <li key="5">
-        <LinkContainer to="/register/signup">
-          <Link
-            activeClass="active"
-            className="page-scroll"
-            to="registration"
-            spy={ true }
-            smooth={ true }
-            duration={ 700 }
-            delay={ 300 }
-          >
-            Signup
-          </Link>
-        </LinkContainer>
+      <li key="10">
+        <NavLink
+          to="/register/signup"
+          activeClassName="active"
+          className="page-scroll"
+        >
+          Signup
+        </NavLink>
       </li>
-    );
-    const signupCollapseTab = (
-      <LinkContainer key="5" to="/register/signup">
-        <NavItem>Signup</NavItem>
-      </LinkContainer>
     );
     const loginTab = (
-      <li key="6">
-        <LinkContainer to="/register/login">
-          <Link
-            activeClass="active"
-            className="page-scroll"
-            to="registration"
-            spy={ true }
-            smooth={ true }
-            duration={ 700 }
-            delay={ 300 }
-          >
-            Login
-          </Link>
-        </LinkContainer>
+      <li key="11">
+        <NavLink
+          to="/register/login"
+          activeClassName="active"
+          className="page-scroll"
+        >
+          Login
+        </NavLink>
       </li>
-    );
-    const loginCollapseTab = (
-      <LinkContainer key="6" to="/register/login">
-        <NavItem>Login</NavItem>
-      </LinkContainer>
     );
 
     if (this.props.isLoggedIn) {
@@ -194,7 +151,7 @@ class RootApp extends BaseComponent {
           break;
       }
     } else if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      tabsShownWhenUserLoggedIn.push(aboutCollapseTab, signupCollapseTab, loginCollapseTab);
+      tabsShownWhenUserLoggedIn.push(aboutTab, signupTab, loginTab);
     } else {
       tabsShownWhenUserLoggedIn.push(aboutTab, servicesTab, portfolioTab, contactTab, signupTab,
         loginTab);
@@ -202,32 +159,72 @@ class RootApp extends BaseComponent {
 
     return (
       <div id="root-app">
-        <ScrollDiv
-          activeClass="scroll"
-          className="navbar navbar-default navbar-fixed-top"
-          to="main"
-          spy={ true }
-          smooth={ true }
-        >
-          <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
-            <Navbar.Header>
-              <Navbar.Brand>
-                <LinkContainer to="/">
-                  <a className="page-scroll" href="/">Sugarpost</a>
-                </LinkContainer>
-              </Navbar.Brand>
-              <Navbar.Toggle>Menu</Navbar.Toggle>
-            </Navbar.Header>
-            <Navbar.Collapse>
-              <Nav pullRight={ true }>
-                { tabsShownWhenUserLoggedIn }
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
-        </ScrollDiv>
+        <Navbar fixedTop={ true } default={ true } collapseOnSelect={ true } fluid={ true }>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <NavLink to="/" activeClassName="active" className="page-scroll">
+                Sugarpost
+              </NavLink>
+            </Navbar.Brand>
+            <Navbar.Toggle>Menu</Navbar.Toggle>
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav pullRight={ true }>
+              { tabsShownWhenUserLoggedIn }
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
 
-        { this.props.children }
-
+        <Route exact={ true } path="/" component={ HomeApp } />
+        <Route
+          path="/register"
+          render={ (props) => (
+            <AsyncRoute
+              props={ props }
+              loadingPromise={ System.import('./register/') }
+            />
+          ) }
+        />
+        <Route
+          exact={ true }
+          path="/privacy-policy"
+          render={ (props) => (
+            <AsyncRoute
+              props={ props }
+              loadingPromise={ System.import('./privacy-policy/components/App') }
+            />
+          ) }
+        />
+        <Route
+          exact={ true }
+          path="/terms-of-use"
+          render={ (props) => (
+            <AsyncRoute
+              props={ props }
+              loadingPromise={ System.import('./terms-of-use/components/App') }
+            />
+          ) }
+        />
+        <Route
+          exact={ true }
+          path="/account"
+          render={ (props) => (
+            <AsyncRoute
+              props={ props }
+              loadingPromise={ System.import('./account/components/App') }
+            />
+          ) }
+        />
+        <Route
+          exact={ true }
+          path="/vouchers"
+          render={ (props) => (
+            <AsyncRoute
+              props={ props }
+              loadingPromise={ System.import('./voucher/components/VoucherApp') }
+            />
+          ) }
+        />
       </div>
     );
   }

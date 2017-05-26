@@ -3,10 +3,9 @@ const configureStore = require('../client/src/common/store');
 const { routes } = require('../client/src/app/routes');
 const constants = require('../client/src/common/constants/');
 const packageJson = require('../../../package.json');
-const { createMemoryHistory, match, RouterContext } = require('react-router');
-const { syncHistoryWithStore } = require('react-router-redux');
+const { StaticRouter } = require('react-router');
 const { Provider } = require('react-redux');
-const ReactDOMServer = require('react-dom/server');
+const { renderToString } = require('react-dom/server');
 const errorHandler = require('errorhandler');
 
 const serverStartTimestamp = new Date();
@@ -49,46 +48,36 @@ function setupRoutes(app) {
 
   // All other endpoints should redirect to the index.html.
   app.use((req, res) => {
-    const memoryHistory = createMemoryHistory(req.originalUrl);
-    const store = configureStore(memoryHistory);
-    const history = syncHistoryWithStore(memoryHistory, store);
+    const context = {};
+    const store = configureStore();
+    const env = app.get('env'); // Same as `process.env.NODE_ENV`.
+    const markup = renderToString(
+      React.createElement(Provider, { store },
+        React.createElement(StaticRouter, { location: req.url, context }, routes)
+      )
+    );
 
-    match({ routes, history, location: req.url }, (error, redirectLocation, renderProps) => {
-      // Checks whether it is an error or redirection (miss), otherwise it is a match.
-      if (error) {
-        return res.status(constants.SYSTEM.HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR)
-          .json(error);
-      } else if (redirectLocation) {
-        return res.redirect(constants.SYSTEM.HTTP_STATUS_CODES.FOUND, redirectLocation.pathname,
-         redirectLocation.search);
-      } else if (renderProps) {
-        const env = app.get('env'); // Same as `process.env.NODE_ENV`.
-        const markup = ReactDOMServer.renderToString(
-          React.createElement(Provider, { store },
-            React.createElement(RouterContext, renderProps)
-          )
-        );
-        const globalConstants = {
-          env,
-          markup,
-          version: packageJson.version,
-          stripePublicKey: constants.CREDENTIAL.STRIPE.PUBLIC_KEY,
-          gaTrackingId: constants.CREDENTIAL.GOOGLE_ANALYTICS.TRACKING_ID,
-        };
-        let headers;
+    if (context.url) {
+      return res.redirect(constants.SYSTEM.HTTP_STATUS_CODES.FOUND, context.url);
+    }
 
-        if (env === 'production') {
-          headers = { 'Cache-Control': 'no-cache' };
-        } else {
-          headers = { 'Cache-Control': 'no-store' };
-        }
-        res.set(headers);
+    const globalConstants = {
+      env,
+      markup,
+      version: packageJson.version,
+      stripePublicKey: constants.CREDENTIAL.STRIPE.PUBLIC_KEY,
+      gaTrackingId: constants.CREDENTIAL.GOOGLE_ANALYTICS.TRACKING_ID,
+    };
+    let headers;
 
-        return res.render('index', globalConstants);
-      }
-      return res.status(constants.SYSTEM.HTTP_STATUS_CODES.NOT_FOUND)
-        .render('404');
-    });
+    if (env === 'production') {
+      headers = { 'Cache-Control': 'no-cache' };
+    } else {
+      headers = { 'Cache-Control': 'no-store' };
+    }
+    res.set(headers);
+
+    return res.render('index', globalConstants);
   });
 
   if (app.get('env') !== 'production') {

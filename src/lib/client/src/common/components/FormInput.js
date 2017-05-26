@@ -3,6 +3,7 @@ import FormInputError from './FormInputError';
 import PasswordValidator from './PasswordValidator';
 import CustomIcon from './CustomIcon';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 class FormInput extends BaseComponent {
@@ -232,19 +233,19 @@ class FormInput extends BaseComponent {
 
 }
 FormInput.propTypes = {
-  onChange: React.PropTypes.func.isRequired,
-  value: React.PropTypes.string.isRequired,
-  validate: React.PropTypes.func,
-  useValidator: React.PropTypes.bool,
-  emptyMessage: React.PropTypes.string,
-  errorMessage: React.PropTypes.string,
-  minCharacters: React.PropTypes.number,
-  requireCapitals: React.PropTypes.number,
-  requireNumbers: React.PropTypes.number,
-  forbiddenWords: React.PropTypes.arrayOf(React.PropTypes.string),
-  text: React.PropTypes.string,
-  type: React.PropTypes.string,
-  disabled: React.PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  validate: PropTypes.func,
+  useValidator: PropTypes.bool,
+  emptyMessage: PropTypes.string,
+  errorMessage: PropTypes.string,
+  minCharacters: PropTypes.number,
+  requireCapitals: PropTypes.number,
+  requireNumbers: PropTypes.number,
+  forbiddenWords: PropTypes.arrayOf(PropTypes.string),
+  text: PropTypes.string,
+  type: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 FormInput.defaultProps = {
   validate: FormInput.validateEmptyField,

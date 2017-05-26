@@ -101,7 +101,7 @@ class ProfileForm extends BaseComponent {
           requireCapitals={ 1 }
           requireNumbers={ 1 }
           forbiddenWords={ ['password', 'user', 'username'] }
-          emptyMessage={ window.innerWidth > 870 ? 'Password is invalid' : '8+ chars, 1+ uppers, 1+ numbers' }
+          emptyMessage={ window.innerWidth < 870 ? '8+ chars, 1+ uppers, 1+ numbers' : 'Password is invalid' }
         />
         <FormInput
           text="Confirm New Password"

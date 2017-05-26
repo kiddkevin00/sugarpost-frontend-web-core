@@ -2,7 +2,6 @@ import authActionCreator from '../../../common/auth/actioncreator/';
 import SubscriptionSection from './SubscriptionSection';
 import ProfileForm from './ProfileForm';
 import BaseComponent from '../../../common/components/BaseComponent';
-import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -17,7 +16,7 @@ class AccountApp extends BaseComponent {
 
   componentWillUpdate(nextProps) {
     if (!nextProps.isLoggedIn) {
-      nextProps.dispatchPushRoute('/register/login');
+      nextProps.history.replace('/register/login');
     }
   }
 
@@ -36,8 +35,8 @@ class AccountApp extends BaseComponent {
                 <div className="panel-heading"><h4>Subscription</h4></div>
                 <div className="panel-body">
                   <div className="col-lg-xs-12">
-                    <SubscriptionSection />
-                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    <SubscriptionSection routerHistory={ this.props.history } />
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                   </div>
                 </div>
               </div>
@@ -61,7 +60,6 @@ class AccountApp extends BaseComponent {
 }
 AccountApp.propTypes = {
   dispatchAuthCheck: PropTypes.func.isRequired,
-  dispatchPushRoute: PropTypes.func.isRequired,
 
   isLoggedIn: PropTypes.bool.isRequired,
   forceUpdate: PropTypes.bool.isRequired,
@@ -79,10 +77,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatchAuthCheck(transitionPath) {
       dispatch(authActionCreator.authCheck(transitionPath));
-    },
-
-    dispatchPushRoute(route) {
-      dispatch(push(route));
     },
   };
 }
