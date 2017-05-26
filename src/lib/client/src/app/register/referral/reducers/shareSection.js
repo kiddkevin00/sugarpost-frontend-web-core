@@ -95,7 +95,9 @@ function referralFormReducer(state = initialState, action) {
 function _showMessage(data) {
   let msg;
 
-  if (typeof data !== 'string') {
+  if (data instanceof Error) {
+    msg = data.toString();
+  } else if (typeof data !== 'string') {
     msg = window.JSON.stringify(data, null, 2);
   } else {
     msg = data;

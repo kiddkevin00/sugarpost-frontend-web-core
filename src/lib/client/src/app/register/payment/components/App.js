@@ -2,7 +2,6 @@ import authActionCreator from '../../../../common/auth/actioncreator/';
 import PaymentForm from './PaymentForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
-import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -20,9 +19,9 @@ class PaymentApp extends BaseComponent {
 
   componentWillUpdate(nextProps) {
     if (!nextProps.isLoggedIn) {
-      nextProps.dispatchPushRoute('/register/login');
+      nextProps.history.replace('/register/login');
     } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.PAID) {
-      nextProps.dispatchPushRoute('/account');
+      nextProps.history.replace('/account');
     }
   }
 
@@ -37,8 +36,6 @@ class PaymentApp extends BaseComponent {
     } else {
       monthNameToSubscribe = monthNames[currentMonth + 2];
     }
-    // [TODO] Removes this line after 4/26.
-    monthNameToSubscribe = 'June';
 
     return (
       <div className="container">
@@ -92,7 +89,6 @@ class PaymentApp extends BaseComponent {
 }
 PaymentApp.propTypes = {
   dispatchAuthCheck: PropTypes.func.isRequired,
-  dispatchPushRoute: PropTypes.func.isRequired,
 
   isLoggedIn: PropTypes.bool.isRequired,
   forceUpdate: PropTypes.bool.isRequired,
@@ -107,8 +103,8 @@ function mapStateToProps(state, ownProps) {
     isLoggedIn: state.auth.isLoggedIn,
     forceUpdate: state.auth.forceUpdate,
     userType: state.auth.user.type,
-    userEmail: ownProps.location.query.email,
-    referralCodeToUse: ownProps.location.query.referral_code,
+    userEmail: ownProps.location.search.length > 2 ? ownProps.location.search.split('=')[1].split('&')[0] : '', // TODO
+    referralCodeToUse: ownProps.location.search.length > 2 ? ownProps.location.search.split('=')[2] : '', // TODO
     urlPath: ownProps.location.pathname,
   };
 }
@@ -116,10 +112,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatchAuthCheck(transitionPath) {
       dispatch(authActionCreator.authCheck(transitionPath));
-    },
-
-    dispatchPushRoute(route) {
-      dispatch(push(route));
     },
   };
 }

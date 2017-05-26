@@ -23,7 +23,6 @@ class PaymentForm extends BaseComponent {
       this.props.dispatchResetFormAlertBoxes();
     }
 
-
     this.props.dispatchSetFormReferralCode(this.props.referralCodeToUse || '');
   }
 

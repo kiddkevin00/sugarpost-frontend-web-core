@@ -1,5 +1,6 @@
 import BaseComponent from './BaseComponent';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Footer extends BaseComponent {
 
@@ -47,7 +48,7 @@ class Footer extends BaseComponent {
 
 }
 Footer.popTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default Footer;

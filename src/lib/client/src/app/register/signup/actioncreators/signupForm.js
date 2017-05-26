@@ -88,7 +88,7 @@ const signupFormActionCreator = {
                   type: actionTypes.SIGNUP.SIGNUP_SUCCEED,
                 });
               }
-            } else if (res.getNthData(0).status === actionTypes.SIGNUP._EMAIL_ALREADY_SIGNUP) {
+            } else if (res.getNthData(0).status === actionTypes.SIGNUP.EMAIL_ALREADY_SIGNUP) {
               ReactGA.event({
                 category: 'Acquisition',
                 action: 'attempted to signup with duplicate email',

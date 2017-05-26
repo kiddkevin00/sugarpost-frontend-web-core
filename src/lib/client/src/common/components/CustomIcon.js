@@ -1,5 +1,6 @@
 import BaseComponent from './BaseComponent';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Icon extends BaseComponent {
 
@@ -72,7 +73,7 @@ class Icon extends BaseComponent {
 
 }
 Icon.propTypes = {
-  type: React.PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Icon;

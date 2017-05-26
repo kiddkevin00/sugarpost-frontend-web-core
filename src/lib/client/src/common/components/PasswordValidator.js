@@ -1,6 +1,7 @@
 import BaseComponent from './BaseComponent';
 import CustomIcon from './CustomIcon';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 class PasswordValidator extends BaseComponent {
@@ -69,21 +70,21 @@ class PasswordValidator extends BaseComponent {
 
 }
 PasswordValidator.propTypes = {
-  visible: React.PropTypes.bool.isRequired,
-  valid: React.PropTypes.bool.isRequired,
-  validData: React.PropTypes
+  visible: PropTypes.bool.isRequired,
+  valid: PropTypes.bool.isRequired,
+  validData: PropTypes
     .shape({
-      minChars: React.PropTypes.bool.isRequired,
-      capitalLetters: React.PropTypes.bool.isRequired,
-      numbers: React.PropTypes.bool.isRequired,
-      words: React.PropTypes.bool.isRequired,
+      minChars: PropTypes.bool.isRequired,
+      capitalLetters: PropTypes.bool.isRequired,
+      numbers: PropTypes.bool.isRequired,
+      words: PropTypes.bool.isRequired,
     })
     .isRequired,
-  minCharacters: React.PropTypes.number,
-  requireCapitals: React.PropTypes.number,
-  requireNumbers: React.PropTypes.number,
-  forbiddenWords: React.PropTypes.arrayOf(React.PropTypes.string),
-  name: React.PropTypes.string,
+  minCharacters: PropTypes.number,
+  requireCapitals: PropTypes.number,
+  requireNumbers: PropTypes.number,
+  forbiddenWords: PropTypes.arrayOf(PropTypes.string),
+  name: PropTypes.string,
 };
 PasswordValidator.defaultProps = {
   minCharacters: 8,

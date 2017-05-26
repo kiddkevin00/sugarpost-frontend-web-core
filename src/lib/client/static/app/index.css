@@ -1,0 +1,61 @@
+/***** Global setting *****/
+
+@font-face {
+    font-family: nexa-light;
+    src: url("/assets/fonts/nexa-light.otf");
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url("/assets/fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: nexa-bold;
+    src: url("/assets/fonts/nexa-bold.otf");
+}
+
+@font-face {
+    font-family: trajan-pro-bold;
+    src: url("/assets/fonts/trajan-pro-bold.ttf");
+}
+
+@font-face {
+    font-family: trajan-pro-regular;
+    src: url("/assets/fonts/trajan-pro-regular.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-bold;
+    src: url("/assets/fonts/sfuitext-bold.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-semibold;
+    src: url("/assets/fonts/sfuitext-semibold.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-medium;
+    src: url("/assets/fonts/sfuitext-medium.ttf");
+}
+
+@font-face {
+    font-family: sfuitext-regular;
+    src: url("/assets/fonts/sfuitext-regular.ttf");
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}

@@ -1,7 +1,6 @@
 import LoginForm from './LoginForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
-import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -13,7 +12,7 @@ class LoginApp extends BaseComponent {
       const transitionPath = nextProps.transitionPath;
       const paymentRoute = {
         pathname: '/register/payment',
-        query: { email: nextProps.userEmail },
+        search: `email=${nextProps.userEmail}`,
       };
       const accountRoute = {
         pathname: '/account',
@@ -23,15 +22,15 @@ class LoginApp extends BaseComponent {
       };
 
       if (transitionPath === '/register/payment') {
-        nextProps.dispatchPushRoute(paymentRoute);
+        nextProps.history.push(paymentRoute);
       } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.PAID) {
-        nextProps.dispatchPushRoute(transitionPath || accountRoute);
+        nextProps.history.push(transitionPath || accountRoute);
       } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.INFLUENCER) {
-        nextProps.dispatchPushRoute(transitionPath || referralRoute);
+        nextProps.history.push(transitionPath || referralRoute);
       } else if (nextProps.userType === constants.SYSTEM.USER_TYPES.VENDOR) {
-        nextProps.dispatchPushRoute(transitionPath || accountRoute);
+        nextProps.history.push(transitionPath || accountRoute);
       } else {
-        nextProps.dispatchPushRoute(transitionPath || paymentRoute);
+        nextProps.history.push(transitionPath || paymentRoute);
       }
     }
   }
@@ -83,8 +82,6 @@ class LoginApp extends BaseComponent {
 
 }
 LoginApp.propTypes = {
-  dispatchPushRoute: PropTypes.func.isRequired,
-
   isLoggedIn: PropTypes.bool.isRequired,
   transitionPath: PropTypes.string,
   userEmail: PropTypes.string,
@@ -100,11 +97,7 @@ function mapStateToProps(state) {
   };
 }
 function mapDispatchToProps(dispatch) {
-  return {
-    dispatchPushRoute(route) {
-      dispatch(push(route));
-    },
-  };
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginApp);

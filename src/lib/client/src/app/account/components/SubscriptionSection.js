@@ -2,7 +2,6 @@ import actionCreator from '../actioncreators/subscriptionSection';
 import FormInput from '../../../common/components/FormInput';
 import BaseComponent from '../../../common/components/BaseComponent';
 import constants from '../../../common/constants/';
-import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import classNames from 'classnames';
@@ -70,7 +69,6 @@ class SubscriptionSection extends BaseComponent {
           onChange={ () => {} }
           disabled={ true }
         />
-        {/*
         <div className="form-group">
           <div className="col-sm-12">
             <input
@@ -81,7 +79,6 @@ class SubscriptionSection extends BaseComponent {
             />
           </div>
         </div>
-        */}
         <div className="form-group">
           <div className="col-sm-12">
             <input
@@ -100,14 +97,15 @@ class SubscriptionSection extends BaseComponent {
   _onUpdatePayment(/*event*/) {} // eslint-disable-line class-methods-use-this
 
   _onUnsubscribe(/*event*/) {
-    this.props.dispatchCancelSubscription(this.props.dispatchPushRoute);
+    this.props.dispatchCancelSubscription(this.props.routerHistory);
   }
 
 }
 SubscriptionSection.propTypes = {
   dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
   dispatchCancelSubscription: PropTypes.func.isRequired,
-  dispatchPushRoute: PropTypes.func.isRequired,
+
+  routerHistory: PropTypes.object.isRequired,
 
   userType: PropTypes.string,
   userCreditCardLast4: PropTypes.string,
@@ -138,12 +136,8 @@ function mapDispatchToProps(dispatch) {
       dispatch(actionCreator.resetFormAlertBoxes());
     },
 
-    dispatchCancelSubscription(dispatchPushRoute) {
-      dispatch(actionCreator.cancelSubscription(dispatchPushRoute));
-    },
-
-    dispatchPushRoute(route) {
-      dispatch(push(route));
+    dispatchCancelSubscription(routerHistory) {
+      dispatch(actionCreator.cancelSubscription(routerHistory));
     },
   };
 }

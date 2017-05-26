@@ -1,5 +1,6 @@
 import BaseComponent from './BaseComponent';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 class FormInputError extends BaseComponent {
@@ -20,8 +21,8 @@ class FormInputError extends BaseComponent {
 
 }
 FormInputError.propTypes = {
-  visible: React.PropTypes.bool.isRequired,
-  errorMessage: React.PropTypes.string,
+  visible: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
 };
 FormInputError.defaultProps = {
   errorMessage: 'Unknown error',

@@ -1,61 +1,3 @@
-/***** Global setting *****/
-
-@font-face {
-    font-family: nexa-light;
-    src: url("/assets/fonts/nexa-light.otf");
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    src: url("/assets/fonts/OpenSans-Regular.ttf");
-}
-
-@font-face {
-    font-family: nexa-bold;
-    src: url("/assets/fonts/nexa-bold.otf");
-}
-
-@font-face {
-    font-family: trajan-pro-bold;
-    src: url("/assets/fonts/trajan-pro-bold.ttf");
-}
-
-@font-face {
-    font-family: trajan-pro-regular;
-    src: url("/assets/fonts/trajan-pro-regular.ttf");
-}
-
-@font-face {
-    font-family: sfuitext-bold;
-    src: url("/assets/fonts/sfuitext-bold.ttf");
-}
-
-@font-face {
-    font-family: sfuitext-semibold;
-    src: url("/assets/fonts/sfuitext-semibold.ttf");
-}
-
-@font-face {
-    font-family: sfuitext-medium;
-    src: url("/assets/fonts/sfuitext-medium.ttf");
-}
-
-@font-face {
-    font-family: sfuitext-regular;
-    src: url("/assets/fonts/sfuitext-regular.ttf");
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-}
-
-body {
-    font-family: 'Open Sans', sans-serif;
-}
-
-
 /***** For full background image *****/
 
 #react-main-container {
@@ -128,19 +70,11 @@ body {
 }
 
 .navbar-default .nav > li > a:focus:hover,
-.navbar-default .nav > li > a:hover {
+.navbar-default .nav > li > a:hover,
+.navbar-default .nav > li > a:active,
+.navbar-default .nav > li > a:focus,
+.navbar-default .nav > li > a.active {
     color: #FBB352;
-}
-
-.navbar-default .nav > li.active > a,
-.navbar-default .nav > li.active > a:focus {
-    color: #FBB352 !important;
-    background-color: transparent;
-}
-
-.navbar-default .nav > li.active > a:focus:hover,
-.navbar-default .nav > li.active > a:hover {
-    background-color: transparent;
 }
 
 .navbar-default .nav > li > a > span {
@@ -165,11 +99,6 @@ body {
 
     .navbar-default .nav > li > a {
         color: rgba(255, 255, 255, .7);
-    }
-    .navbar-default .nav > li:nth-child(5) > a:focus,
-    .navbar-default .nav > li:nth-child(6) > a:focus,
-    .navbar-default .nav > li:nth-child(7) > a:focus {
-        color: #FBB352;
     }
 
     .navbar-default .nav > li > a:focus:hover,
