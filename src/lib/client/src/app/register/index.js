@@ -12,7 +12,7 @@ class RegisterApp extends BaseComponent {
 
           <Route
             exact={ true }
-            path="/register/login"
+            path={ `${this.props.match.path}/login` }
             render={ (props) => (
               <AsyncRoute
                 props={ props }
@@ -22,7 +22,7 @@ class RegisterApp extends BaseComponent {
           />
           <Route
             exact={ true }
-            path="/register/signup"
+            path={ `${this.props.match.path}/signup` }
             render={ (props) => (
               <AsyncRoute
                 props={ props }
@@ -32,7 +32,7 @@ class RegisterApp extends BaseComponent {
           />
           <Route
             exact={ true }
-            path="/register/payment"
+            path={ `${this.props.match.path}/payment` }
             render={ (props) => (
               <AsyncRoute
                 props={ props }
@@ -42,7 +42,7 @@ class RegisterApp extends BaseComponent {
           />
           <Route
             exact={ true }
-            path="/register/forgot-password"
+            path={ `${this.props.match.path}/forgot-password` }
             render={ (props) => (
               <AsyncRoute
                 props={ props }
@@ -52,7 +52,7 @@ class RegisterApp extends BaseComponent {
           />
           <Route
             exact={ true }
-            path="/register/referral"
+            path={ `${this.props.match.path}/referral` }
             render={ (props) => (
               <AsyncRoute
                 props={ props }
