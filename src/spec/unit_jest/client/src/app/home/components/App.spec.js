@@ -23,7 +23,7 @@ test('Home App component should render correct number of Modal', () => {
   expect(component.find(Modal).length).toBe(1);
 });
 
-test('Home App component can close the initial popup', () => {
+test('Home App component can close the initial popup - via mouse click', () => {
   const component = shallow(
     <UnwrappedHomeApp isModalOpen={ true } dispatchCloseModal={ () => null } />
   );
@@ -36,11 +36,11 @@ test('Home App component can close the initial popup', () => {
   expect(component.find(Modal).node.props.show).toBe(false);
 });
 
-test('Home App component can close the initial popup - 2', () => {
+test('Home App component can close the initial popup - directly via dispatcher', () => {
   const store = configureStore();
   const component = render(
     <Provider store={ store }>
-      <HomeApp isModalOpen={ true } dispatchCloseModal={ () => null } />
+      <HomeApp />
     </Provider>
   );
 
