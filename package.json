@@ -60,13 +60,15 @@
     "dev:jest": "npm run jest-unit-test -- --watch=all",
     "jest:update": "npm run jest-unit-test -- -u",
     "jest:no-cache": "npm run jest-unit-test -- --no-cache",
+    "jest:coverage": "npm run jest-unit-test -- --coverage",
     "debug": "node --debug --debug-brk src/lib/server/app.js"
   },
   "jest": {
     "verbose": true,
     "testMatch": [
       "**/unit_jest/**/*.(spec|test).js?(x)"
-    ]
+    ],
+    "coverageDirectory": "spec/coverage/"
   },
   "engines": {
     "node": "6.1.0",

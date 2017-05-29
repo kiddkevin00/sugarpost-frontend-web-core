@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home App component snapshot test 1`] = `
+exports[`Home App component should be rendered correctly 1`] = `
 <div
   id="home-template"
 >
@@ -16,11 +16,14 @@ exports[`Home App component snapshot test 1`] = `
     keyboard={true}
     manager={
       ModalManager {
+        "add": [Function],
         "containers": Array [],
         "data": Array [],
         "handleContainerOverflow": true,
         "hideSiblingNodes": true,
+        "isTopModal": [Function],
         "modals": Array [],
+        "remove": [Function],
       }
     }
     onHide={[Function]}
@@ -29,9 +32,9 @@ exports[`Home App component snapshot test 1`] = `
     show={false}
   >
     <ModalHeader
-      aria-label="Close"
       bsClass="modal-header"
       closeButton={false}
+      closeLabel="Close"
     >
       <ModalTitle
         bsClass="modal-title"
@@ -147,276 +150,275 @@ exports[`Home App component snapshot test 1`] = `
       </div>
     </div>
   </header>
-  <Component
-    name="main"
+  <section
+    className="bg-primary"
+    id="about"
   >
-    <Component
-      name="about"
+    <div
+      className="container"
     >
-      <section
-        className="bg-primary"
-        id="about"
+      <div
+        className="row"
       >
         <div
-          className="container"
+          className="col-lg-8 col-lg-offset-2 text-center"
         >
-          <div
-            className="row"
+          <h2
+            className="section-heading"
           >
-            <div
-              className="col-lg-8 col-lg-offset-2 text-center"
-            >
-              <h2
-                className="section-heading"
-              >
-                Got a sweet tooth? We've got the cure!
-              </h2>
-              <hr
-                className="light"
-              />
-              <p
-                className="text-faded"
-              >
-                We are a New York based online monthly premium subscription service that provides you with e-packages of trendy and innovative desserts. These e-packages have been assembled by our curators who have scoured the internet and attained insight from influential foodies to dessert connoisseurs, providing you with the city's best dessert discovery experience!
-              </p>
-              <a
-                className="btn btn-default btn-xl sr-button page-scroll"
-                href="/#services"
-              >
-                Learn More
-              </a>
-            </div>
-          </div>
+            Got a sweet tooth? We've got the cure!
+          </h2>
+          <hr
+            className="light"
+          />
+          <p
+            className="text-faded"
+          >
+            We are a New York based online monthly premium subscription service that provides you with e-packages of trendy and innovative desserts. These e-packages have been assembled by our curators who have scoured the internet and attained insight from influential foodies to dessert connoisseurs, providing you with the city's best dessert discovery experience!
+          </p>
+          <a
+            className="btn btn-default btn-xl sr-button page-scroll"
+            href="/#services"
+          >
+            Learn More
+          </a>
         </div>
-      </section>
-    </Component>
-    <Component
-      name="services"
+      </div>
+    </div>
+  </section>
+  <section
+    id="services"
+  >
+    <div
+      className="container"
     >
-      <section
-        id="services"
+      <div
+        className="row"
       >
         <div
-          className="container"
+          className="col-lg-12 text-center"
         >
-          <div
-            className="row"
+          <h2
+            className="section-heading"
           >
-            <div
-              className="col-lg-12 text-center"
-            >
-              <h2
-                className="section-heading"
-              >
-                How It Works
-              </h2>
-              <hr
-                className="primary"
-              />
-            </div>
-          </div>
+            How It Works
+          </h2>
+          <hr
+            className="primary"
+          />
         </div>
-        <div
-          className="container"
-        >
-          <div
-            className="row"
-          >
-            <div
-              className="col-lg-3 col-md-6 text-center"
-            >
-              <div
-                className="service-box"
-              >
-                <i
-                  className="fa fa-4x fa-ticket text-primary sr-icons"
-                />
-                <h3>
-                  Subscribe
-                </h3>
-                <p
-                  className="text-muted"
-                >
-                  After purchasing a monthly subscription, you will receive an email with vouchers during the first day of every month.
-                </p>
-              </div>
-            </div>
-            <div
-              className="col-lg-3 col-md-6 text-center"
-            >
-              <div
-                className="service-box"
-              >
-                <i
-                  className="fa fa-4x fa-map-marker text-primary sr-icons"
-                />
-                <h3>
-                  Discover
-                </h3>
-                <p
-                  className="text-muted"
-                >
-                  Venture out to all of the locations we've hand-picked for you. We even included a little background on each featured dessert vendor.
-                </p>
-              </div>
-            </div>
-            <div
-              className="col-lg-3 col-md-6 text-center"
-            >
-              <div
-                className="service-box"
-              >
-                <i
-                  className="fa fa-4x fa-birthday-cake text-primary sr-icons"
-                />
-                <h3>
-                  Enjoy
-                </h3>
-                <p
-                  className="text-muted"
-                >
-                  Present your vouchers at the participating locations to claim your in-store or Sugarpost exclusive desserts - snap it, share it, and enjoy it!
-                </p>
-              </div>
-            </div>
-            <div
-              className="col-lg-3 col-md-6 text-center"
-            >
-              <div
-                className="service-box"
-              >
-                <i
-                  className="fa fa-4x fa-share-alt text-primary sr-icons"
-                />
-                <h3>
-                  Share
-                </h3>
-                <p
-                  className="text-muted"
-                >
-                  Refer your friends and earn credits. If enough friends sign up, you will get a month free!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </Component>
-    <Component
-      name="portfolio"
+      </div>
+    </div>
+    <div
+      className="container"
     >
-      <section
-        id="portfolio"
+      <div
+        className="row"
       >
         <div
-          className="container"
+          className="col-lg-3 col-md-6 text-center"
         >
           <div
-            className="row"
+            className="service-box"
           >
-            <div
-              className="col-lg-12 text-center"
+            <i
+              className="fa fa-4x fa-ticket text-primary sr-icons"
+            />
+            <h3>
+              Subscribe
+            </h3>
+            <p
+              className="text-muted"
             >
-              <h2
-                className="section-heading"
-              >
-                Upcoming Vendors
-              </h2>
-              <hr
-                className="primary"
-              />
-            </div>
+              After purchasing a monthly subscription, you will receive an email with vouchers during the first day of every month.
+            </p>
           </div>
         </div>
         <div
-          className="container-fluid"
+          className="col-lg-3 col-md-6 text-center"
         >
           <div
-            className="row no-gutter popup-gallery"
+            className="service-box"
           >
-            <div
-              className="col-lg-offset-2 col-lg-8 col-xs-12"
+            <i
+              className="fa fa-4x fa-map-marker text-primary sr-icons"
+            />
+            <h3>
+              Discover
+            </h3>
+            <p
+              className="text-muted"
             >
-              <img
-                alt=""
-                className="img-responsive"
-                src="/assets/images/june-vendors.png"
-              />
-            </div>
+              Venture out to all of the locations we've hand-picked for you. We even included a little background on each featured dessert vendor.
+            </p>
           </div>
         </div>
-      </section>
-      <aside
-        className="bg-dark"
-      >
         <div
-          className="container text-center"
+          className="col-lg-3 col-md-6 text-center"
         >
           <div
-            className="call-to-action"
+            className="service-box"
           >
-            <br />
-            <h2>
-              Subscribe Today
-            </h2>
+            <i
+              className="fa fa-4x fa-birthday-cake text-primary sr-icons"
+            />
+            <h3>
+              Enjoy
+            </h3>
+            <p
+              className="text-muted"
+            >
+              Present your vouchers at the participating locations to claim your in-store or Sugarpost exclusive desserts - snap it, share it, and enjoy it!
+            </p>
+          </div>
+        </div>
+        <div
+          className="col-lg-3 col-md-6 text-center"
+        >
+          <div
+            className="service-box"
+          >
+            <i
+              className="fa fa-4x fa-share-alt text-primary sr-icons"
+            />
+            <h3>
+              Share
+            </h3>
+            <p
+              className="text-muted"
+            >
+              Refer your friends and earn credits. If enough friends sign up, you will get a month free!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    id="portfolio"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-12 text-center"
+        >
+          <h2
+            className="section-heading"
+          >
+            Upcoming Vendors
+          </h2>
+          <hr
+            className="primary"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="container-fluid"
+    >
+      <div
+        className="row no-gutter popup-gallery"
+      >
+        <div
+          className="col-lg-offset-2 col-lg-8 col-xs-12"
+        >
+          <img
+            alt=""
+            className="img-responsive"
+            src="/assets/images/june-vendors.png"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  <aside
+    className="bg-dark"
+  >
+    <div
+      className="container text-center"
+    >
+      <div
+        className="call-to-action"
+      >
+        <br />
+        <h2>
+          Subscribe Today
+        </h2>
+        <a
+          className="btn btn-default btn-xl sr-button"
+          href="/register/signup"
+        >
+          Sign Up Now
+        </a>
+        <br />
+        <br />
+      </div>
+    </div>
+  </aside>
+  <aside
+    className="bg-darker"
+  >
+    <div
+      className="container text-center"
+    >
+      <div>
+        <h2>
+          Featured On
+        </h2>
+        <hr
+          className="primary"
+        />
+        <h4>
+          Coming Soon...
+        </h4>
+      </div>
+    </div>
+  </aside>
+  <section
+    id="contact"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-lg-8 col-lg-offset-2 text-center"
+        >
+          <h2
+            className="section-heading"
+          >
+            Let's Get In Touch!
+          </h2>
+          <hr
+            className="primary"
+          />
+          <p>
+            Interested in partnering with us? Inquiries? Questions? Press coverage? That's great! We look forward to hearing from you! Send us an email and we will get back to you as soon as possible!
+          </p>
+        </div>
+        <div
+          className="col-lg-6 col-lg-offset-3 text-center"
+        >
+          <i
+            className="fa fa-envelope-o fa-3x sr-contact"
+          />
+          <p>
             <a
-              className="btn btn-default btn-xl sr-button"
-              href="/register/signup"
+              href="mailto:administrator@mysugarpost.com"
             >
-              Sign Up Now
+              administrator@mysugarpost.com
             </a>
-            <br />
-            <br />
-          </div>
+          </p>
         </div>
-      </aside>
-    </Component>
-    <Component
-      name="contact"
-    >
-      <section
-        id="contact"
-      >
-        <div
-          className="container"
-        >
-          <div
-            className="row"
-          >
-            <div
-              className="col-lg-8 col-lg-offset-2 text-center"
-            >
-              <h2
-                className="section-heading"
-              >
-                Let's Get In Touch!
-              </h2>
-              <hr
-                className="primary"
-              />
-              <p>
-                Interested in partnering with us? Inquiries? Questions? Press coverage? That's great! We look forward to hearing from you! Send us an email and we will get back to you as soon as possible!
-              </p>
-            </div>
-            <div
-              className="col-lg-6 col-lg-offset-3 text-center"
-            >
-              <i
-                className="fa fa-envelope-o fa-3x sr-contact"
-              />
-              <p>
-                <a
-                  href="mailto:administrator@mysugarpost.com"
-                >
-                  administrator@mysugarpost.com
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </Component>
-  </Component>
+      </div>
+    </div>
+  </section>
   <Footer />
 </div>
 `;

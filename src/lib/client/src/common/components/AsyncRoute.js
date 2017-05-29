@@ -8,7 +8,7 @@ class AsyncRoute extends BaseComponent {
     super(props);
 
     this.state = {
-      isLoaded: false,
+      Component: null,
     };
   }
 
@@ -16,17 +16,15 @@ class AsyncRoute extends BaseComponent {
     if (this.props.loadingPromise) {
       this.props.loadingPromise
         .then((module) => {
-          this.component = module.default || module;
-
-          this.setState({ isLoaded: true });
+          this.setState({ Component: module.default || module });
         });
     }
   }
 
   render() {
-    if (this.state.isLoaded) {
+    if (this.state.Component) {
       return (
-        <this.component { ...this.props.props } />
+        <this.state.Component { ...this.props.props } />
       );
     }
     return (
