@@ -268,21 +268,20 @@ module.exports = function (grunt) {
 
   // For setup production environment.
   grunt.registerTask('prod:preview', [
-    'clean:prod',
     'env:prod',
     'babel:prod',
     'copy:prod',
     'concat:prod',
     'postcss:prod',
-    'open:prod',
     'express:prod',
     'wait-for-server',
+    'open:prod',
     'express-keep-alive',
   ]);
 
   // For "npm" post-install.
   grunt.registerTask('postinstall', [
-    'clean:prod',
+    'clean',
     'env:prod',
     'babel:prod',
     'copy:prod',
