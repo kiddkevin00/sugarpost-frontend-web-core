@@ -1,7 +1,7 @@
 const packageJson = require('./package.json');
 const path = require('path');
 
-// For the production build of React.
+// For the production build of React in Staging environments.
 if (process.env.NODE_ENV === 'staging') {
   process.env.NODE_ENV = 'production';
 }
