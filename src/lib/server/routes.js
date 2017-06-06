@@ -54,7 +54,7 @@ function setupRoutes(app) {
     const env = app.get('env'); // Same as `process.env.NODE_ENV`.
     const markup = renderToString(
       React.createElement(Provider, { store },
-        React.createElement(StaticRouter, { location: req.url, context }, routes)
+        React.createElement(StaticRouter, { location: req.url, context }, routes),
       ),
     );
 

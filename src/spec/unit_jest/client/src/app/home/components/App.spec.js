@@ -9,7 +9,7 @@ import React from 'react';
 
 test('Home App component should be rendered correctly', () => {
   const component = shallow(
-    <UnwrappedHomeApp isModalOpen={ false } dispatchCloseModal={ () => null } />
+    <UnwrappedHomeApp isModalOpen={ false } dispatchCloseModal={ () => null } />,
   );
   const tree = shallowToJson(component);
 
@@ -18,7 +18,7 @@ test('Home App component should be rendered correctly', () => {
 
 test('Home App component should render correct number of Modal', () => {
   const component = shallow(
-    <UnwrappedHomeApp isModalOpen={ true } dispatchCloseModal={ () => null } />
+    <UnwrappedHomeApp isModalOpen={ true } dispatchCloseModal={ () => null } />,
   );
 
   expect(component.find(Modal).length).toBe(1);
@@ -26,7 +26,7 @@ test('Home App component should render correct number of Modal', () => {
 
 test('Home App component can close the initial popup - via mouse click', () => {
   const component = shallow(
-    <UnwrappedHomeApp isModalOpen={ true } dispatchCloseModal={ () => null } />
+    <UnwrappedHomeApp isModalOpen={ true } dispatchCloseModal={ () => null } />,
   );
 
   expect(component.find(Modal).node.props.show).toBe(true);
@@ -42,7 +42,7 @@ test('Home App component can close the initial popup - directly via dispatcher',
   const component = render(
     <Provider store={ store }>
       <HomeApp />
-    </Provider>
+    </Provider>,
   );
 
   pending('Seems to have some issue related to async action.');
