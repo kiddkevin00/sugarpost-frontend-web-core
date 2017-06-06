@@ -10,6 +10,7 @@ import referral from '../../app/register/referral/reducers/referralForm';
 import referralShare from '../../app/register/referral/reducers/shareSection';
 import { combineReducers } from 'redux';
 
+
 const rootReducer = combineReducers({
   home,
   auth,

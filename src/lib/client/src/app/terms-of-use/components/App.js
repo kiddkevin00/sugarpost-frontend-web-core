@@ -1,6 +1,7 @@
 import BaseComponent from '../../../common/components/BaseComponent';
 import React from 'react';
 
+
 class TermsOfUseApp extends BaseComponent {
 
   render() {

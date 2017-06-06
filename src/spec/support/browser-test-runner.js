@@ -11,6 +11,7 @@ const sinonChai = require('sinon-chai');
 const chaiAsPromised = require('chai-as-promised');
 const chaiShallowDeepEqual = require('chai-shallow-deep-equal');
 
+
 global.document = jsDomWrapper.jsdom('');
 global.window = document.defaultView;
 

@@ -86,7 +86,7 @@ function mapStateToProps(state, ownProps) {
     referralCodeToUse: ownProps.location.search.length > 2 ? ownProps.location.search.split('=')[1] : '', // TODO
   };
 }
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(/*dispatch*/) {
   return {};
 }
 

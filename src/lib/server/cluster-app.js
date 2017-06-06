@@ -11,13 +11,14 @@ if (process.env.NODE_ENV !== 'production') {
   require('babel-register'); // eslint-disable-line global-require
 }
 
-const packageJson = require('../../../package.json');
 const setupExpressServer = require('./express-server');
 const setupRoutes = require('./routes.js');
+const packageJson = require('../../../package.json');
+const express = require('express');
 const cluster = require('cluster');
 const http = require('http');
-const express = require('express');
 const os = require('os');
+
 
 const numCPUs = os.cpus().length;
 

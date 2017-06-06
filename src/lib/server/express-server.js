@@ -9,6 +9,7 @@ const compression = require('compression');
 const path = require('path');
 const fs = require('fs');
 
+
 function setupExpressServer(app) {
   const env = app.get('env'); // Same as `process.env.NODE_ENV`.
 

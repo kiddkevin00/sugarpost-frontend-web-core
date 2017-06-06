@@ -1,4 +1,3 @@
-const React = require('react');
 const configureStore = require('../client/src/common/store');
 const { routes } = require('../client/src/app/routes');
 const constants = require('../client/src/common/constants/');
@@ -6,7 +5,9 @@ const packageJson = require('../../../package.json');
 const { StaticRouter } = require('react-router');
 const { Provider } = require('react-redux');
 const { renderToString } = require('react-dom/server');
+const React = require('react');
 const errorHandler = require('errorhandler');
+
 
 const serverStartTimestamp = new Date();
 const containerId = process.env.HOSTNAME;
@@ -54,7 +55,7 @@ function setupRoutes(app) {
     const markup = renderToString(
       React.createElement(Provider, { store },
         React.createElement(StaticRouter, { location: req.url, context }, routes)
-      )
+      ),
     );
 
     if (context.url) {

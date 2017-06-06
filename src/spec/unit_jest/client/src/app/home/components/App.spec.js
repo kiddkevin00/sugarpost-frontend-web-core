@@ -6,6 +6,7 @@ import { Modal } from 'react-bootstrap';
 import { Provider } from 'react-redux';
 import React from 'react';
 
+
 test('Home App component should be rendered correctly', () => {
   const component = shallow(
     <UnwrappedHomeApp isModalOpen={ false } dispatchCloseModal={ () => null } />

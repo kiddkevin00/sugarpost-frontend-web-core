@@ -4,7 +4,7 @@ import AsyncRoute from '../common/components/AsyncRoute';
 import BaseComponent from '../common/components/BaseComponent';
 import constants from '../common/constants/';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { Link, NavLink, Route } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';

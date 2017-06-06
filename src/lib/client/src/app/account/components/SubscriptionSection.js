@@ -105,7 +105,7 @@ SubscriptionSection.propTypes = {
   dispatchResetFormAlertBoxes: PropTypes.func.isRequired,
   dispatchCancelSubscription: PropTypes.func.isRequired,
 
-  routerHistory: PropTypes.object.isRequired,
+  routerHistory: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 
   userType: PropTypes.string,
   userCreditCardLast4: PropTypes.string,

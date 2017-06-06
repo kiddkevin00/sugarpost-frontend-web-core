@@ -1,5 +1,6 @@
 import actionTypes from '../../actiontypes/';
 
+
 const initialUserState = {
   _id: undefined,
   type: undefined,

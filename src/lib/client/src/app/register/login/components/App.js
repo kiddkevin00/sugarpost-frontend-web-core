@@ -96,7 +96,7 @@ function mapStateToProps(state) {
     userType: state.auth.user.type,
   };
 }
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(/*dispatch*/) {
   return {};
 }
 

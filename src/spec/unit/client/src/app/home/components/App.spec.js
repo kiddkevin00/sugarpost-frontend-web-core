@@ -2,6 +2,7 @@ import { UnwrappedHomeApp } from '../../../../../../../lib/client/src/app/home/c
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 
+
 describe('Home App component', () => {
   let props;
   let component;
@@ -22,7 +23,7 @@ describe('Home App component', () => {
     }
   });
 
-  it('is defined', function () {
+  it('is defined', () => {
     expect(UnwrappedHomeApp).not.to.be.an('undefined');
   });
 
