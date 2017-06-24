@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+
 class FormInput extends BaseComponent {
 
   constructor(props) {

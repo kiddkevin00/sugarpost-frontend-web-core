@@ -1,5 +1,6 @@
 import actionTypes from '../../../common/actiontypes/';
 
+
 const defaultInfoMsg = 'Your profile has been updated.';
 const defaultErrorMsg = 'The original password is incorrect.';
 const initialState = {

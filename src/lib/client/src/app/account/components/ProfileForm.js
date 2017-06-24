@@ -6,6 +6,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+
 class ProfileForm extends BaseComponent {
 
   constructor(props) {
@@ -51,7 +52,7 @@ class ProfileForm extends BaseComponent {
     }
 
     return (
-      <form onSubmit={ this._onSave } className="form-horizontal" role="form">
+      <form onSubmit={ this._onSave } className="form-horizontal">
         { loader }
         <div className={ alertSuccessBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>

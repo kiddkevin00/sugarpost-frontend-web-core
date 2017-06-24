@@ -1,8 +1,9 @@
 import actionTypes from '../../actiontypes/';
 import Proxy from '../../proxies/HttpProxy';
-import StandardResponseWrapper from '../../utility/standard-response-wrapper';
-import StandardErrorWrapper from '../../utility/standard-error-wrapper';
+import StandardResponseWrapper from '../../utils/standard-response-wrapper';
+import StandardErrorWrapper from '../../utils/standard-error-wrapper';
 import constants from '../../constants/';
+
 
 const authActionCreator = {
   authCheck(transitionPath) {

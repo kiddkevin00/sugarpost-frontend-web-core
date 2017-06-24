@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 class LoginApp extends BaseComponent {
 
   componentWillUpdate(nextProps) {

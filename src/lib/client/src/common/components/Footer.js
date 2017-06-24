@@ -2,6 +2,7 @@ import BaseComponent from './BaseComponent';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 class Footer extends BaseComponent {
 
   render() {

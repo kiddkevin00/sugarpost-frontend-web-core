@@ -1,5 +1,6 @@
 import actionTypes from '../../../../common/actiontypes/';
 
+
 const defaultInfoMsg = 'If a matching account was found, an email was sent to allow you to reset your password.';
 const initialState = {
   formEmail: '',

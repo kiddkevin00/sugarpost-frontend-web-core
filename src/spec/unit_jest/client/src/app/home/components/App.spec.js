@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 
 
-test('Home App component should be rendered correctly', () => {
+test('Home App component should be rendered correctly', function () {
   const component = shallow(
     <UnwrappedHomeApp isModalOpen={ false } dispatchCloseModal={ () => null } />,
   );
@@ -16,7 +16,7 @@ test('Home App component should be rendered correctly', () => {
   expect(tree).toMatchSnapshot();
 });
 
-test('Home App component should render correct number of Modal', () => {
+test('Home App component should render correct number of Modal', function () {
   const component = shallow(
     <UnwrappedHomeApp isModalOpen={ true } dispatchCloseModal={ () => null } />,
   );
@@ -24,7 +24,7 @@ test('Home App component should render correct number of Modal', () => {
   expect(component.find(Modal).length).toBe(1);
 });
 
-test('Home App component can close the initial popup - via mouse click', () => {
+test('Home App component can close the initial popup - via mouse click', function () {
   const component = shallow(
     <UnwrappedHomeApp isModalOpen={ true } dispatchCloseModal={ () => null } />,
   );
@@ -37,7 +37,7 @@ test('Home App component can close the initial popup - via mouse click', () => {
   expect(component.find(Modal).node.props.show).toBe(false);
 });
 
-test('Home App component can close the initial popup - directly via dispatcher', () => {
+test('Home App component can close the initial popup - directly via dispatcher', function () {
   const store = configureStore();
   const component = render(
     <Provider store={ store }>

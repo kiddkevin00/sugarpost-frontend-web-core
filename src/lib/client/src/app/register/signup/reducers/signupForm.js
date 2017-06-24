@@ -1,5 +1,6 @@
 import actionTypes from '../../../../common/actiontypes/';
 
+
 const defaultErrorMsg = 'Something went wrong while signing up. Please try again.';
 const initialState = {
   formFullName: '',

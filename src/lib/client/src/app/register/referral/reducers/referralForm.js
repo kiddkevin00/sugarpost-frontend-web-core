@@ -1,5 +1,6 @@
 import actionTypes from '../../../../common/actiontypes/';
 
+
 const defaultInfoMsg = 'You have redeemed your next free e-package successfully.';
 const defaultErrorMsg = 'Something went wrong while redeeming. Please try again.';
 const initialState = {

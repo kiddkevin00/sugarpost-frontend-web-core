@@ -1,5 +1,6 @@
 import actionTypes from '../../../../common/actiontypes/';
 
+
 const defaultInfoMsg = 'Thank you! We have received your payment.';
 const defaultErrorMsg = 'Proceeding payment fails. Please try again.';
 const initialState = {

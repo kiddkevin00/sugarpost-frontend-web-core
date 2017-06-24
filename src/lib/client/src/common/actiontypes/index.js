@@ -9,6 +9,7 @@ import paymentActionTypes from '../../app/register/payment/actiontypes/paymentFo
 import referralActionTypes from '../../app/register/referral/actiontypes/referralForm';
 import referralShareActionTypes from '../../app/register/referral/actiontypes/shareSection';
 
+
 const allActionTypesPerSection = {
   HOME: homeActionTypes,
   AUTH: authActionTypes,

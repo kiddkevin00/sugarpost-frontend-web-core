@@ -3,6 +3,7 @@ import BaseComponent from '../../common/components/BaseComponent';
 import { Route } from 'react-router-dom';
 import React from 'react';
 
+
 class RegisterApp extends BaseComponent {
 
   render() {

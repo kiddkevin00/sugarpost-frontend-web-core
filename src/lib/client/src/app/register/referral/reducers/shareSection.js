@@ -1,5 +1,6 @@
 import actionTypes from '../../../../common/actiontypes/';
 
+
 const defaultInfoMsg = 'Referral email has sent out successfully.';
 const defaultErrorMsg = 'Something went wrong while sending referral email. Please try again.';
 const initialState = {

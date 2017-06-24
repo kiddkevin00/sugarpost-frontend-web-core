@@ -1,5 +1,6 @@
 import actionTypes from '../../../../common/actiontypes/';
 
+
 const defaultErrorMsg = 'The username or password is incorrect.';
 const initialState = {
   formEmail: '',

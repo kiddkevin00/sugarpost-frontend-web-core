@@ -1,4 +1,4 @@
-const StandardErrorWrapper = require('../utility/standard-error-wrapper');
+const StandardErrorWrapper = require('./standard-error-wrapper');
 const constants = require('../constants/');
 
 

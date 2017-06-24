@@ -1,5 +1,6 @@
 import actionTypes from '../../../common/actiontypes/';
 
+
 const homeActionCreator = {
   closeModal() {
     return {

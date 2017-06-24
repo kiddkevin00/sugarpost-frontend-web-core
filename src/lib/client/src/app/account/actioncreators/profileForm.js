@@ -1,7 +1,8 @@
 import actionTypes from '../../../common/actiontypes/';
 import Proxy from '../../../common/proxies/HttpProxy';
-import StandardResponseWrapper from '../../../common/utility/standard-response-wrapper';
-import StandardErrorWrapper from '../../../common/utility/standard-error-wrapper';
+import StandardResponseWrapper from '../../../common/utils/standard-response-wrapper';
+import StandardErrorWrapper from '../../../common/utils/standard-error-wrapper';
+
 
 const accountProfileActionCreator = {
   resetFormAlertBoxes() {

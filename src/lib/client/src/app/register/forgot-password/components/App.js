@@ -2,6 +2,7 @@ import ForgotPasswordForm from './ForgotPasswordForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import React from 'react';
 
+
 class ForgotPasswordApp extends BaseComponent {
 
   render() {

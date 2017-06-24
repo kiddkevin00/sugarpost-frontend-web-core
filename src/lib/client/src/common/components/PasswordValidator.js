@@ -14,7 +14,7 @@ class PasswordValidator extends BaseComponent {
       invisible: !this.props.visible,
     });
     const forbiddenWordSpans = this.props.forbiddenWords.map((word, index) => (
-      <span key={ index } className="bad_word">
+      <span key={ index } className="bad_word"> // eslint-disable-line react/no-array-index-key
         &quot;{ word }&quot;
       </span>
     ));

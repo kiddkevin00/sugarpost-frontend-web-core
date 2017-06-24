@@ -10,6 +10,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+
 class PaymentForm extends BaseComponent {
 
   constructor(props) {
@@ -52,7 +53,7 @@ class PaymentForm extends BaseComponent {
     }
 
     return (
-      <form role="form">
+      <form>
         { loader }
         <div className={ alertSuccessBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>

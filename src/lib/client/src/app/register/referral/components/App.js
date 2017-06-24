@@ -1,10 +1,11 @@
-import authActionCreator from '../../../../common/auth/actioncreator/';
 import ReferralForm from './ReferralForm';
+import authActionCreator from '../../../../common/auth/actioncreator/';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
+
 
 class ReferralApp extends BaseComponent {
 

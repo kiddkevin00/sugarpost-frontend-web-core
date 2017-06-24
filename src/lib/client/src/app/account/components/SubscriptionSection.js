@@ -7,6 +7,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+
 class SubscriptionSection extends BaseComponent {
 
   constructor(props) {
@@ -45,7 +46,7 @@ class SubscriptionSection extends BaseComponent {
     }
 
     return (
-      <form className="form-horizontal" role="form">
+      <form className="form-horizontal">
         { loader }
         <div className={ alertSuccessBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>

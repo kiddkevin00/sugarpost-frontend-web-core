@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 class SignupApp extends BaseComponent {
 
   componentWillUpdate(nextProps) {

@@ -1,5 +1,5 @@
-import authActionCreator from '../common/auth/actioncreator/';
 import HomeApp from './home/components/App';
+import authActionCreator from '../common/auth/actioncreator/';
 import AsyncRoute from '../common/components/AsyncRoute';
 import BaseComponent from '../common/components/BaseComponent';
 import constants from '../common/constants/';
@@ -8,6 +8,7 @@ import { NavLink, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
+
 
 class RootApp extends BaseComponent {
 

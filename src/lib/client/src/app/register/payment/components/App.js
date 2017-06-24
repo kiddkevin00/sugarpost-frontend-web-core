@@ -1,5 +1,5 @@
-import authActionCreator from '../../../../common/auth/actioncreator/';
 import PaymentForm from './PaymentForm';
+import authActionCreator from '../../../../common/auth/actioncreator/';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
 import { connect } from 'react-redux';

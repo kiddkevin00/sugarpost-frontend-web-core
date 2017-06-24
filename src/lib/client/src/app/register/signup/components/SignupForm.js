@@ -7,6 +7,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+
 class SignupForm extends BaseComponent {
 
   constructor(props) {
@@ -39,7 +40,7 @@ class SignupForm extends BaseComponent {
     }
 
     return (
-      <form onSubmit={ this._onSubmit } role="form">
+      <form onSubmit={ this._onSubmit }>
         { loader }
         <div className={ alertBoxClasses } role="alert">
           <a className="close" data-dismiss="alert">×</a>

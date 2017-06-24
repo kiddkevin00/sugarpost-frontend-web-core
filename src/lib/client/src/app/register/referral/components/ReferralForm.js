@@ -1,5 +1,5 @@
-import actionCreator from '../actioncreators/referralForm';
 import ShareSection from './ShareSection';
+import actionCreator from '../actioncreators/referralForm';
 import BaseComponent from '../../../../common/components/BaseComponent';
 import constants from '../../../../common/constants/';
 import { Thumbnail } from 'react-bootstrap';
@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+
 
 const refererCredit = 1.25;
 const redeemableAmount = 12.5;

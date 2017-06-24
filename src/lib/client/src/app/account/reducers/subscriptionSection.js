@@ -1,5 +1,6 @@
 import actionTypes from '../../../common/actiontypes/';
 
+
 const defaultInfoMsg = 'Your subscription has been cancelled. Your vouchers will remain available until the end of current cycle.';
 const defaultErrorMsg = 'You haven\'t paid for the subscription yet.';
 const initialState = {
