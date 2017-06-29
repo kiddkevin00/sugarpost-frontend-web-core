@@ -10,7 +10,6 @@ class RegisterApp extends BaseComponent {
     return (
       <div id="registration-template">
         <div className="inner-bg">
-
           <Route
             exact={ true }
             path={ `${this.props.match.path}/login` }

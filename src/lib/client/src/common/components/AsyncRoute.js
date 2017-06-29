@@ -29,7 +29,7 @@ class AsyncRoute extends BaseComponent {
       );
     }
     return (
-      <h1>loading...</h1>
+      <h1 className="text-center">loading...</h1>
     );
   }
 
