@@ -75,10 +75,6 @@ SignupApp.propTypes = {
   userEmail: PropTypes.string,
   referralCodeToUse: PropTypes.string,
 };
-SignupApp.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
-
 
 function mapStateToProps(state, ownProps) {
   return {
