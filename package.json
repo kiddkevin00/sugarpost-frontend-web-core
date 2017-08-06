@@ -130,6 +130,7 @@
     "react-share": "1.13.0",
     "react-stripe-checkout": "2.2.5",
     "redux": "3.6.0",
+    "redux-logger": "3.0.6",
     "redux-thunk": "2.2.0",
     "serve-favicon": "2.4.2",
     "time-grunt": "1.4.0",
