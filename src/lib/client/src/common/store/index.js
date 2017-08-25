@@ -8,8 +8,8 @@ function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, compose(
     applyMiddleware(thunkMiddleware),
     applyMiddleware(logger),
-    typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ?
-      window.devToolsExtension() : (f) => f,
+    typeof window === 'object' ? window.devToolsExtension && window.devToolsExtension() :
+      ((f) => f),
   ));
 
   return store;
